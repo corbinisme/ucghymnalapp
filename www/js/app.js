@@ -108,7 +108,7 @@ function redirectToSystemBrowser(url) {
           let currentLang = app.lang;
           let currentTitle = "Hymnal";
           let searchTitle = "Search";
-          let hymnTitle = "Hcopyrightymn Number";
+          let hymnTitle = "Hymn Number";
           let langObj = 'menu_' + currentLang;
           if(window[langObj]){
               currentTitle = window[langObj].Hymnal;
