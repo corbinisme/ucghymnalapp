@@ -10,7 +10,7 @@
         <!-- Default -->
         <preference 
         name="AndroidWindowSplashScreenAnimatedIcon" 
-        value="res/android/SpashScreenAndroid.png" />
+        value="res/android/IconForegroundCrop.png" />
         <preference name="AndroidWindowSplashScreenBackground" value="#178CE0" />
     </platform>
     <allow-intent href="http://*/*" />
