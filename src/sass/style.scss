@@ -277,6 +277,13 @@ body {
             min-width: 100vw;
             z-index: 1;
 
+
+            #loader {
+                padding: 1em;
+                padding-bottom: 0;
+
+                ol {margin: 0;}
+            }
             
 
             #pdfloader {

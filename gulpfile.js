@@ -16,20 +16,6 @@ function clean(cb) {
   }
 
 
-  function css(cb) {
-    // body omitted
-    watch('src/css/*.css', { ignoreInitial: false }, function(cb) {
-      // body omitted
-      gulp.src('./src/css/*.css')
-      .pipe(concat('assets.css'))
-        .pipe(gulp.dest("www/css"))
-        .pipe(rename('assets.min.css'))
-        .pipe(uglifycss())
-        .pipe(gulp.dest("www/css"));
-      cb();
-    });
-  }
-
   
 function javascript(cb) {
     // body omitted
@@ -90,4 +76,4 @@ gulp.task('minify-lang', function() {
 
 
 
-exports.build = series(clean, parallel(css, scss, javascript));
+exports.build = series(clean, parallel(scss, javascript));

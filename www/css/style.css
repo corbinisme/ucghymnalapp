@@ -93,8 +93,11 @@ body #search .navbar .navbar-brand, body #number .navbar .navbar-brand {
 body #search .navbar .btn, body #number .navbar .btn {
   color: var(--searchHeaderButtonText);
 }
-body #backToHymns {
+body .backToHymns {
   color: #fff;
+}
+body .backToHymns.inactive {
+  pointer-events: none;
 }
 body .form-control {
   background-color: var(--bg-body);
@@ -202,6 +205,13 @@ body .mainContent .page {
   overflow-x: hidden;
   min-width: 100vw;
   z-index: 1;
+}
+body .mainContent .page #loader {
+  padding: 1em;
+  padding-bottom: 0;
+}
+body .mainContent .page #loader ol {
+  margin: 0;
 }
 body .mainContent .page #pdfloader {
   position: relative;
