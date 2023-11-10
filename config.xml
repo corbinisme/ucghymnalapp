@@ -45,6 +45,8 @@
         <icon src="res/iOS/100.png" width="100" height="100" />
         <!-- iTunes Marketing Image -->
         <icon src="res/iOS/1024.png" width="1024" height="1024" />
+         <splash src="res/IOSsplash~anyany.png" />
+         <!-- splash bg color #1973B6-->
     </platform>
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
