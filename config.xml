@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.UCG.hymnal" version="6.3.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.UCG.hymnal" version="6.3.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Hymnal</name>
     <description>Hymnal App for the United Church of God</description>
     <author email="corbin_rose@ucg.org" href="https://ucg.org">
@@ -10,8 +10,43 @@
         <!-- Default -->
         <preference 
         name="AndroidWindowSplashScreenAnimatedIcon" 
-        value="res/android/IconForegroundCrop.png" />
+        value="res/IconForegroundTransparent.png" />
         <preference name="AndroidWindowSplashScreenBackground" value="#178CE0" />
+    </platform>
+    <platform name="ios">
+        <!-- iOS 8.0+ -->
+        <!-- iPhone 6 Plus  -->
+        <icon src="res/iOS/180.png" width="180" height="180" />
+        <!-- iOS 7.0+ -->
+        <!-- iPhone / iPod Touch  -->
+        <icon src="res/iOS/60.png" width="60" height="60" />
+        <icon src="res/iOS/120.png" width="120" height="120" />
+        <!-- iPad -->
+        <icon src="res/iOS/76.png" width="76" height="76" />
+        <icon src="res/iOS/152.png" width="152" height="152" />
+        <!-- Spotlight Icon -->
+        <icon src="res/iOS/40.png" width="40" height="40" />
+        <icon src="res/iOS/80.png" width="80" height="80" />
+        <!-- iOS 6.1 -->
+        <!-- iPhone / iPod Touch -->
+        <icon src="res/iOS/57.png" width="57" height="57" />
+        <icon src="res/iOS/114.png" width="114" height="114" />
+        <!-- iPad -->
+        <icon src="res/iOS/72.png" width="72" height="72" />
+        <icon src="res/iOS/144.png" width="144" height="144" />
+        <!-- iPad Pro -->
+        <icon src="res/iOS/167.png" width="167" height="167" />
+        <!-- iPhone Spotlight and Settings Icon -->
+        <icon src="res/iOS/29.png" width="29" height="29" />
+        <icon src="res/iOS/58.png" width="58" height="58" />
+        <icon src="res/iOS/87.png" width="87" height="87" />
+        <!-- iPad Spotlight and Settings Icon -->
+        <icon src="res/iOS/50.png" width="50" height="50" />
+        <icon src="res/iOS/100.png" width="100" height="100" />
+        <!-- iTunes Marketing Image -->
+        <icon src="res/iOS/1024.png" width="1024" height="1024" />
+         <splash src="res/IOSsplash~anyany.png" />
+         <!-- splash bg color #1973B6-->
     </platform>
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
