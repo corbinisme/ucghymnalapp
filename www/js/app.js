@@ -451,7 +451,10 @@ De grands efforts ont été déployés afin de trouver les propriétaires des pi
             }
            
         }
-        
+        console.log(langValue, "langValue")
+        if(langValue=="null"){
+            langValue = "en";
+        }
         app.setLang(langValue);
         app.getTitle();
 
@@ -629,6 +632,11 @@ De grands efforts ont été déployés afin de trouver les propriétaires des pi
       },
 
       eventBindings: function(){
+
+        document.getElementById("chooseLanguage").addEventListener("click", function(e){
+            e.preventDefault();
+            document.getElementById("langDropdown").classList.add("shown")
+        });
         
         document.getElementById("musicControl").addEventListener("click", function(e){
             let thisbutton = document.getElementById("musicControl");
@@ -665,6 +673,39 @@ De grands efforts ont été déployés afin de trouver les propriétaires des pi
                 app.setCurrentMusicState("piano")
             }
             
+        });
+
+        document.querySelector("#copyrightBtn").addEventListener("click", function(el){
+            el.preventDefault();
+            app.toggleHamburger();
+            app.changePage("copyright");
+                if(true){
+                    //load it in!
+                    fetch("about.html?about=true")
+                    .then(resp=>{
+                        if (!resp.ok) {
+                            throw new Error('Network response was not ok');
+                            //alert("ahh!")
+                        }
+                        return resp.text()
+                    })
+                    .then(data=>{
+
+                        document.getElementById("loadCopyright").innerHTML = data;
+                        app.makeCopyrightTabs();
+                        document.getElementById("copyright").classList.add("loaded");
+
+                    }).catch(error => {
+                        // Handle the error
+                        // get the english
+                        console.warn('Fetch error, fallback loaded:', error);
+                        const target = document.getElementById("loadCopyright");
+                        target.innerHTML = copyrightEnglishBackup;
+                        app.makeCopyrightTabs();
+                        document.getElementById("copyright").classList.add("loaded");
+
+                      });
+                }
         });
 
         document.getElementById("closeMusic").addEventListener("click", function(e){
@@ -1185,85 +1226,48 @@ De grands efforts ont été déployés afin de trouver les propriétaires des pi
               // hide dropdown
               document.querySelector(".navbar-toggler").remove();
           } else {
-              let target = document.getElementById("languageSelector");
+              let target = document.getElementById("langDropdown");
               target.innerHTML = "";
               for(var i=0;i<app.languages.length; i++){
                   var thisLang = app.languages[i];
-  
+                
                   var li = document.createElement("li");
-                  li.classList.add("nav-item")
+                  li.classList.add("nav-item");
+                  if(thisLang==app.lang){
+                    li.classList.add("active");
+                  }
                   var a = document.createElement("a");
                   a.setAttribute("data-lang", thisLang);
                   a.classList.add("nav-link")
+                  
                   a.setAttribute("href", "#");
                   
                   let languageDisplay = "Hymnal";
                   if(window['menu_'+ thisLang]){
                       languageDisplay = window['menu_'+ thisLang]["Language"]
                   } 
-                  a.innerHTML = languageDisplay;
+                  a.innerHTML = "(" + thisLang + ") " + languageDisplay;
   
                   li.append(a);
                   target.append(li);
               }
 
-              
-              let infoLi = document.createElement("li");
-              infoLi.classList.add("nav-item");
-              infoLi.classList.add("copyrightLi");
-              infoLi.innerHTML = `<a href="#" id='copyrightBtn' class="nav-link"><i class="fa fa-info-circle"></i> Copyright Information</a>`
-              target.appendChild(infoLi);
 
+              const dropmenu = document.getElementById("langDropdown");
+                    dropmenu.classList.remove("shown");
 
-              document.querySelectorAll("#languageSelector li a").forEach(element=>{
-                
+              document.querySelectorAll("#langDropdown li a").forEach(element=>{
                 element.addEventListener("click", function(el){
                     el.preventDefault();
 
-                    let id = el.target.id;
-
-                    if(id!="copyrightBtn"){
-                        
-                        let lang = el.target.getAttribute("data-lang");
-
-                        app.setLang(lang)
-                        app.toggleHamburger();
-                        app.loadCurrentLang();
-                    } else {
-                        
-    
-                        app.toggleHamburger();
-                        app.changePage("copyright");
-                        if(true){
-                            //load it in!
-                            fetch("about.html?about=true")
-                            .then(resp=>{
-                                if (!resp.ok) {
-                                    throw new Error('Network response was not ok');
-                                    //alert("ahh!")
-                                }
-                                return resp.text()
-                            })
-                            .then(data=>{
-
-                                document.getElementById("loadCopyright").innerHTML = data;
-                                app.makeCopyrightTabs();
-                                document.getElementById("copyright").classList.add("loaded");
-
-                            }).catch(error => {
-                                // Handle the error
-                                // get the english
-                                console.warn('Fetch error, fallback loaded:', error);
-                                const target = document.getElementById("loadCopyright");
-                                target.innerHTML = copyrightEnglishBackup;
-                                app.makeCopyrightTabs();
-                                document.getElementById("copyright").classList.add("loaded");
-
-                              });
-                        }
-                    }
+                    let lang = el.target.getAttribute("data-lang");
+                    const dropmenu = document.getElementById("langDropdown");
+                    dropmenu.classList.remove("shown");
+                    app.setLang(lang)
+                    app.loadCurrentLang();
                 })
-              })
+              });
+              
           }
       },
       

@@ -206,6 +206,34 @@ body .mainContent .page {
   min-width: 100vw;
   z-index: 1;
 }
+body .mainContent .page #langDropdownWrapper {
+  position: relative;
+}
+body .mainContent .page #langDropdownWrapper #langDropdown {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: 10px;
+  background-color: var(--bg-header);
+  list-style: none;
+  display: none;
+  box-shadow: 0 7px 11px -4px #333;
+}
+body .mainContent .page #langDropdownWrapper #langDropdown.shown {
+  display: inherit;
+}
+body .mainContent .page #langDropdownWrapper #langDropdown li {
+  list-style: none;
+  padding: 1em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+body .mainContent .page #langDropdownWrapper #langDropdown li.active a {
+  font-family: Noto-sans-bold, sans-serif;
+  color: var(--yellowButton);
+}
+body .mainContent .page #langDropdownWrapper #langDropdown li a {
+  white-space: nowrap;
+}
 body .mainContent .page #loader {
   padding: 1em;
   padding-bottom: 0;
