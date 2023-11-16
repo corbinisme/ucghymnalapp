@@ -145,6 +145,28 @@ body {
             pointer-events: none;
         }
     }
+    .form-switch {
+        display: flex;
+        justify-content: start;
+        padding-left: 2.5em;
+        align-items: center; 
+        .form-check-label {
+            margin-left: -2.5em;
+        }
+        
+        .form-check-input {
+            position: relative;
+            left: 3em;
+            background-color: var(--toggleBG);
+            border-color: var(--toggleBorder);
+
+            &:checked {
+                background-color: var(--toggleCheckedBG);
+                border-color: var(--toggleCheckedBG);
+            }
+        }
+        
+    }
     .form-control {
         background-color: var(--bg-body);
         color: var(--text-color);
@@ -448,6 +470,7 @@ body {
                     #toggleType {
                         font-size: 16px;
                         line-height: 26px;
+                        background: rgba(000,000,000,0.03);
                     }
                     #pdfloader {
                         height: calc(100vh - 5em);
@@ -518,28 +541,7 @@ body {
                         transform: translateY(0em);
                     }
 
-                    .form-switch {
-                        display: flex;
-                        justify-content: start;
-                        padding-left: 2.5em;
-                        align-items: center; 
-                        .form-check-label {
-                            margin-left: -2.5em;
-                        }
-                        
-                        .form-check-input {
-                            position: relative;
-                            left: 3em;
-                            background-color: var(--toggleBG);
-                            border-color: var(--toggleBorder);
-
-                            &:checked {
-                                background-color: var(--toggleCheckedBG);
-                                border-color: var(--toggleCheckedBG);
-                            }
-                        }
-                        
-                    }
+                    
 
                     .musicPlayerWrapper {
                         align-items: center;
@@ -599,6 +601,33 @@ body {
 
                     >* {
                         color: #fff;
+                    }
+
+                    .headingBar {
+                        justify-content: flex-start;
+                    }
+
+
+                    .navbar-collapse {
+                        position: absolute;
+                        top: 56px;
+                        z-index: 54;
+                        background: var(--bg-header);
+                        width: 100%;
+                        left: 0;
+                        padding: 1em;
+                        
+
+                        .navbar-nav {
+                            margin: 0;
+
+                             li {
+                                border-top: 1px solid rgba(255, 255, 255, 0.2);
+                                &:first-child {
+                                    border-top: none;
+                                }
+                             }
+                        }
                     }
 
                     .navbar-toggler {

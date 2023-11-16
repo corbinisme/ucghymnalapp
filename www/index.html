@@ -67,6 +67,7 @@
         <nav class="navbar">
           <div class="container-fluid">
            
+            <div class="d-flex align-items-center">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-override fa fa-bars"></span>
             </button>
@@ -88,7 +89,7 @@
               </div>
               
             </div>
-
+          </div>
             <div class="d-flex actions">
               <div class="text-white" id="navigationActions">
                 
@@ -105,19 +106,19 @@
             </div>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="languageSelector">
+              <ul class="navbar-nav me-auto" id="dropdownContent">
                 <li class="nav-item">
-                  <a class="nav-link " id="copyrightBtn" aria-current="page" href="#">
+                  <a class="nav-link " id="copyrightBtn" data-page="copyright" aria-current="page" href="#">
                     <i class="fa fa-info-circle"></i> Information
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link " id="scripturalIndex" aria-current="page" href="#">
+                  <a class="nav-link " id="scripturalIndex" data-page="scripture" aria-current="page" href="#">
                     <i class="fa fa-book"></i> Scriptural Index
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link " id="scripturalIndex" aria-current="page" href="#">
+                  <a class="nav-link " id="topicalIndex" data-page="topical" aria-current="page" href="#">
                     <i class="fa fa-th"></i> Topical Index
                   </a>
                 </li>
@@ -152,7 +153,7 @@
           
               <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" role="switch" id="sheetMusicToggle">
-                <label class="form-check-label" for="sheetMusicToggle">Sheet Music</label>
+                <label class="form-check-label" for="sheetMusicToggle">Music</label>
               </div>
             
           </div>
@@ -270,12 +271,13 @@
     <div class="page wrapper" id="search">
       <header class="headerTop mainPage" >
         <nav class="navbar">
-          <div class="container-fluid">
+          <div class="container-fluid headingBar">
             
-            <a class="navbar-brand pageTitle" href="#" id="searchTitle">Search</a>
             <a href="#" class="btn btn-outline-secondary changePageButton backToHymns" data-page="hymns">
               <i class="fa-solid fa-arrow-left"></i>
             </a>
+            <a class="navbar-brand pageTitle" href="#" id="searchTitle">Search</a>
+           
           </div>
         </nav>
         <div class="p-2 headerFormControl">
@@ -304,12 +306,12 @@
     <div class="page wrapper" id="number">
       <header class="headerTop mainPage" >
         <nav class="navbar">
-          <div class="container-fluid">
-
-            <a class="navbar-brand pageTitle" href="#" id="byNumberTitle">Hymn Number</a>
+          <div class="container-fluid headingBar">
             <a href="#" class="btn btn-outline-secondary changePageButton backToHymns" data-page="hymns">
               <i class="fa-solid fa-arrow-left"></i>
             </a>
+            <a class="navbar-brand pageTitle" href="#" id="byNumberTitle">Hymn Number</a>
+           
           </div>
         </nav>
       
@@ -336,12 +338,13 @@
 
       <header class="headerTop mainPage" >
         <nav class="navbar">
-          <div class="container-fluid">
-            <span>&nbsp;</span>
-            <a class="navbar-brand" href="#">Information</a>
+          <div class="container-fluid headingBar">
+            
             <a href="#" class="btn btn-outline-secondary changePageButton backToHymns" data-page="hymns">
               <i class="fa-solid fa-arrow-left"></i>
             </a>
+            <a class="navbar-brand" href="#">Information</a>
+            
           </div>
         </nav>
         <!--
@@ -370,7 +373,7 @@
  var env="localhost";
  </script>
 
-
+<script src="js/information.js"></script>
  <script src="js/lang.min.js"></script>
  <script src="js/video.js"></script>
  <script src="js/pdf.js"></script>

@@ -99,6 +99,25 @@ body .backToHymns {
 body .backToHymns.inactive {
   pointer-events: none;
 }
+body .form-switch {
+  display: flex;
+  justify-content: start;
+  padding-left: 2.5em;
+  align-items: center;
+}
+body .form-switch .form-check-label {
+  margin-left: -2.5em;
+}
+body .form-switch .form-check-input {
+  position: relative;
+  left: 3em;
+  background-color: var(--toggleBG);
+  border-color: var(--toggleBorder);
+}
+body .form-switch .form-check-input:checked {
+  background-color: var(--toggleCheckedBG);
+  border-color: var(--toggleCheckedBG);
+}
 body .form-control {
   background-color: var(--bg-body);
   color: var(--text-color);
@@ -330,6 +349,7 @@ body .mainContent .page#hymns .contentMain .contentInner h1 {
 body .mainContent .page#hymns .contentMain #toggleType {
   font-size: 16px;
   line-height: 26px;
+  background: rgba(0, 0, 0, 0.03);
 }
 body .mainContent .page#hymns .contentMain #pdfloader {
   height: calc(100vh - 5em);
@@ -388,25 +408,6 @@ body .mainContent .page#hymns .musicPlayer.active {
   display: block;
   background-color: var(--bg-body);
   transform: translateY(0em);
-}
-body .mainContent .page#hymns .musicPlayer .form-switch {
-  display: flex;
-  justify-content: start;
-  padding-left: 2.5em;
-  align-items: center;
-}
-body .mainContent .page#hymns .musicPlayer .form-switch .form-check-label {
-  margin-left: -2.5em;
-}
-body .mainContent .page#hymns .musicPlayer .form-switch .form-check-input {
-  position: relative;
-  left: 3em;
-  background-color: var(--toggleBG);
-  border-color: var(--toggleBorder);
-}
-body .mainContent .page#hymns .musicPlayer .form-switch .form-check-input:checked {
-  background-color: var(--toggleCheckedBG);
-  border-color: var(--toggleCheckedBG);
 }
 body .mainContent .page#hymns .musicPlayer .musicPlayerWrapper {
   align-items: center;
@@ -544,6 +545,27 @@ body .mainContent .page header .navbar {
 }
 body .mainContent .page header .navbar > * {
   color: #fff;
+}
+body .mainContent .page header .navbar .headingBar {
+  justify-content: flex-start;
+}
+body .mainContent .page header .navbar .navbar-collapse {
+  position: absolute;
+  top: 56px;
+  z-index: 54;
+  background: var(--bg-header);
+  width: 100%;
+  left: 0;
+  padding: 1em;
+}
+body .mainContent .page header .navbar .navbar-collapse .navbar-nav {
+  margin: 0;
+}
+body .mainContent .page header .navbar .navbar-collapse .navbar-nav li {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+body .mainContent .page header .navbar .navbar-collapse .navbar-nav li:first-child {
+  border-top: none;
 }
 body .mainContent .page header .navbar .navbar-toggler {
   border: none;
