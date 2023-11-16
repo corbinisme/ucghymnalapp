@@ -85,8 +85,13 @@ function redirectToSystemBrowser(url) {
 
         document.querySelector("#" + id).classList.add("active");
         // more logic
-        document.querySelector(".mainContent").setAttribute("data-page-show", id)
-        
+        const mainContent= document.querySelector(".mainContent");
+        mainContent.setAttribute("data-page-show", id)
+        if(id=="hymns"){
+            mainContent.classList.remove("showOtherPage");
+        } else {
+            mainContent.classList.add("showOtherPage");
+        }
 
 
         if(id=="number"){

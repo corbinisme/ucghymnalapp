@@ -1,4 +1,4 @@
-$scrollbar-width: 17px;
+$scrollbar-width: 0px;
 @font-face {
     font-family: 'Noto-sans';
     src: url('../font/notosans-regular.ttf') format('truetype'),
@@ -249,25 +249,26 @@ body {
 
         height: 100%;
 
-        .page {
-            opacity: 0;
+        &.showOtherPage {
+            transform: translateX(-100vw);
         }
 
         &[data-page-show="search"]{
-            transform: translateX(-100vw);
+            #search {
+                z-index: 89;
+            }
 
         }
         &[data-page-show="copyright"]{
-            transform: translateX(-200vw);
-
-            
-
+            #copyright {
+                z-index: 89;
+            }
         }
         &[data-page-show="number"]{
-            transform: translateX(-100vw);
+            
 
             .page#number {
-                margin-left: -100vw;
+                z-index: 89;
             }
             .page#search {
                 visibility: hidden;
@@ -297,7 +298,20 @@ body {
             height: 100%;
             overflow-x: hidden;
             min-width: 100vw;
+            width: 100vw;
+            max-width: 100vw;
             z-index: 1;
+
+            position: absolute;
+            left: 100vw;
+            top: 0;
+            
+
+            opacity: 0;
+
+            &#hymns {
+                position: static;
+            }
 
 
 
@@ -572,15 +586,8 @@ body {
             }
             &#copyright {
                 
-                transform: translateX(100vw);
-                transition: all ease .3s;
-                z-index: 9;
                 background-color:var(--bg-body);
-                &.active {
-                    transform: translateX(-100vw);
-                    z-index: 90;
-                    opacity: 1;
-                }
+               
             }
             &.active {
                 display: block; 

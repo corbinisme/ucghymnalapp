@@ -75,13 +75,13 @@ body {
   font-family: "Noto-sans", sans-serif;
 }
 body.scrollbar .mainContent .page footer.hymnFooter {
-  width: calc(100vw - 17px);
+  width: calc(100vw - 0px);
 }
 body.scrollbar .mainContent .page#hymns .musicPlayer {
-  width: calc(100vw - 17px);
+  width: calc(100vw - 0px);
 }
 body.scrollbar .mainContent .page#hymns .musicPlayer .video-js .vjs-progress-control {
-  width: calc(100vw - 17px);
+  width: calc(100vw - 0px);
 }
 body #search .navbar, body #number .navbar {
   background-color: var(--searchHeader);
@@ -184,20 +184,17 @@ body .mainContent {
   transition: all ease 0.3s;
   height: 100%;
 }
-body .mainContent .page {
-  opacity: 0;
-}
-body .mainContent[data-page-show=search] {
+body .mainContent.showOtherPage {
   transform: translateX(-100vw);
 }
-body .mainContent[data-page-show=copyright] {
-  transform: translateX(-200vw);
+body .mainContent[data-page-show=search] #search {
+  z-index: 89;
 }
-body .mainContent[data-page-show=number] {
-  transform: translateX(-100vw);
+body .mainContent[data-page-show=copyright] #copyright {
+  z-index: 89;
 }
 body .mainContent[data-page-show=number] .page#number {
-  margin-left: -100vw;
+  z-index: 89;
 }
 body .mainContent[data-page-show=number] .page#search {
   visibility: hidden;
@@ -223,7 +220,16 @@ body .mainContent .page {
   height: 100%;
   overflow-x: hidden;
   min-width: 100vw;
+  width: 100vw;
+  max-width: 100vw;
   z-index: 1;
+  position: absolute;
+  left: 100vw;
+  top: 0;
+  opacity: 0;
+}
+body .mainContent .page#hymns {
+  position: static;
 }
 body .mainContent .page #langDropdownWrapper {
   position: relative;
@@ -517,15 +523,7 @@ body .mainContent .page#hymns .musicPlayer .video-js .vjs-fullscreen-control {
   display: none;
 }
 body .mainContent .page#copyright {
-  transform: translateX(100vw);
-  transition: all ease 0.3s;
-  z-index: 9;
   background-color: var(--bg-body);
-}
-body .mainContent .page#copyright.active {
-  transform: translateX(-100vw);
-  z-index: 90;
-  opacity: 1;
 }
 body .mainContent .page.active {
   display: block;
