@@ -30,9 +30,9 @@ $scrollbar-width: 0px;
 
 
     --bg-footer-start: rgba(255,255,255,0.46);
-    --bg-footer-stop: rgba(255,255,255,0.91);
+    --bg-footer-stop: rgba(255,255,255,0.91); 
     --bg-header:var(--blue);
-    --bg-headerBot: rgb(242, 242, 242);
+    --bg-headerBot: rgb(242, 242, 242);         
     --bg-body: #fff;
     --text-color: var(--charcoal);
     --fontSize: 14px;
@@ -234,9 +234,14 @@ body {
     }
 
     &.hasMusicOpen {
-        .page {
-            .musicContent {
-                padding-bottom: 3em;
+        .mainContent {
+            .page {
+            
+                #loader {
+                    padding-bottom: 6em;
+                }
+                    
+                
             }
         }
     }
@@ -300,7 +305,7 @@ body {
             min-width: 100vw;
             width: 100vw;
             max-width: 100vw;
-            z-index: 1;
+            z-index: 1; 
 
             position: absolute;
             left: 100vw;
@@ -534,14 +539,14 @@ body {
                 audio#audio_player {
                     position: absolute;
                     top: 999em;
-                }
+                }  
 
                 .musicPlayer {
                     width: 100%;
                     width: 100%;
                     left: 0px;
                     position: static;
-                    height: 4em;
+                    height: 8em;
                     overflow: hidden;
                     bottom: 0px;
                     margin-top: 4px;
@@ -734,7 +739,7 @@ body {
                     color: var(--text-color);
 
                     &.musicOpen {
-                        height: 8em;
+                        height: 12em;
                     }
 
                     .row {

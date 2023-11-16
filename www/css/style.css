@@ -174,8 +174,8 @@ body .btn-secondary {
   background-color: var(--yellowButton);
   color: #000;
 }
-body.hasMusicOpen .page .musicContent {
-  padding-bottom: 3em;
+body.hasMusicOpen .mainContent .page #loader {
+  padding-bottom: 6em;
 }
 body .mainContent {
   display: flex;
@@ -401,7 +401,7 @@ body .mainContent .page#hymns .musicPlayer {
   width: 100%;
   left: 0px;
   position: static;
-  height: 4em;
+  height: 8em;
   overflow: hidden;
   bottom: 0px;
   margin-top: 4px;
@@ -463,6 +463,29 @@ body .mainContent .page#hymns .musicPlayer .video-js > .vjs-control-bar .playlis
   height: 43px;
   line-height: 31px;
 }
+body .mainContent .page#hymns .musicPlayer .video-js .vjs-playback-rate .vjs-menu {
+  width: 100vw;
+  left: 0;
+  position: fixed;
+}
+body .mainContent .page#hymns .musicPlayer .video-js .vjs-menu-button-popup .vjs-menu {
+  bottom: -8px;
+}
+body .mainContent .page#hymns .musicPlayer .video-js .vjs-menu .vjs-menu-content {
+  display: flex;
+  justify-content: center;
+}
+body .mainContent .page#hymns .musicPlayer .video-js .vjs-menu li {
+  padding: 8px;
+}
+body .mainContent .page#hymns .musicPlayer .video-js .vjs-menu li:hover, body .mainContent .page#hymns .musicPlayer .video-js .vjs-menu li:focus {
+  background-color: transparent;
+  outline: none;
+}
+body .mainContent .page#hymns .musicPlayer .video-js .vjs-menu li.vjs-selected {
+  background: var(--bg-headerBot);
+  font-weight: bold;
+}
 body .mainContent .page#hymns .musicPlayer .video-js .vjs-control.vjs-button {
   border: 1px solid;
   border-radius: 50%;
@@ -476,13 +499,20 @@ body .mainContent .page#hymns .musicPlayer .video-js .vjs-control.vjs-button {
 }
 body .mainContent .page#hymns .musicPlayer .video-js .vjs-control.vjs-button.vjs-playback-rate {
   border: none;
-  display: none;
 }
 body .mainContent .page#hymns .musicPlayer .video-js .vjs-playback-rate {
   border: none;
+  width: 1px !important;
+}
+body .mainContent .page#hymns .musicPlayer .video-js .vjs-playback-rate:focus-visible {
+  outline: none;
 }
 body .mainContent .page#hymns .musicPlayer .video-js .vjs-playback-rate .vjs-playback-rate-value {
   line-height: 2.4em;
+  display: none;
+}
+body .mainContent .page#hymns .musicPlayer .video-js .vjs-playback-rate .vjs-menu {
+  display: block !important;
 }
 body .mainContent .page#hymns .musicPlayer .video-js .vjs-play-control .vjs-icon-placeholder::before {
   top: 2px;
@@ -643,7 +673,7 @@ body .mainContent .page footer.hymnFooter {
   color: var(--text-color);
 }
 body .mainContent .page footer.hymnFooter.musicOpen {
-  height: 8em;
+  height: 12em;
 }
 body .mainContent .page footer.hymnFooter .row {
   margin: 0;

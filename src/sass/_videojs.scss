@@ -43,7 +43,32 @@
         }
     }
     
-    
+    .vjs-playback-rate .vjs-menu {
+        width: 100vw;
+        left: 0;
+        position: fixed;
+    }
+
+    .vjs-menu-button-popup .vjs-menu {
+        bottom: -8px;
+    }
+    .vjs-menu {
+        .vjs-menu-content {
+            display: flex;
+            justify-content: center;
+        }
+        li {
+            &:hover, &:focus {
+                background-color: transparent;
+                outline: none;
+            }
+            padding: 8px;
+            &.vjs-selected {
+                background: var(--bg-headerBot);
+                font-weight: bold;
+            }
+        }
+    }
     .vjs-control {
         &.vjs-button {
             border: 1px solid;
@@ -59,7 +84,7 @@
 
             &.vjs-playback-rate  {
                 border: none;
-                display: none;
+               
 
             }
         }
@@ -68,8 +93,16 @@
 
     .vjs-playback-rate {
         border: none;
+        width: 1px!important;
+        &:focus-visible {
+            outline: none;
+        }
         .vjs-playback-rate-value {
             line-height: 2.4em;
+            display: none;
+        }
+        .vjs-menu {
+            display: block!important;
         }
     }
     .vjs-play-control {
