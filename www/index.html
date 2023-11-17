@@ -72,8 +72,8 @@
               <span class="navbar-toggler-override fa fa-bars"></span>
             </button>
             <div class="titleArea d-flex align-items-center">
-              <a class="navbar-brand pageTitle" id="brand" href="#">Hymnal</a>
-              <div id="currentLanguage" class="ml-2 languageSelector" style="margin-left: .5em;">
+              
+              <div id="currentLanguage" class="ml-2 languageSelector">
                 
 
                 <button id="chooseLanguage" class="btn text-white text-decoration-none">
@@ -89,16 +89,19 @@
               </div>
               
             </div>
+           
           </div>
+          <a class="navbar-brand pageTitle" id="brand" href="#">Hymnal</a>
             <div class="d-flex actions">
               <div class="text-white" id="navigationActions">
                 
-                <a href="#" class="nav-links changePageButton btn btn-outline-secondary" data-page="search" id="searchButton">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                </a>
                 <a href="#" class="nav-links btn text-white btn-outline-secondary changePageButton"  data-page="number" id="numberButton">
                   <i class="fa-solid fa-hashtag"></i>
                 </a>
+                <a href="#" class="nav-links changePageButton btn btn-outline-secondary" data-page="search" id="searchButton">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
+                
                   
                 
                   
@@ -109,17 +112,20 @@
               <ul class="navbar-nav me-auto" id="dropdownContent">
                 <li class="nav-item">
                   <a class="nav-link " id="copyrightBtn" data-page="copyright" aria-current="page" href="#">
-                    <i class="fa fa-info-circle"></i> Information
+                    <i class="fa fa-info-circle"></i> 
+                    <span class="text">Information</span>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link " id="scripturalIndex" data-page="scripture" aria-current="page" href="#">
-                    <i class="fa fa-book"></i> Scriptural Index
+                    <i class="fa fa-book"></i> 
+                    <span class="text">Scriptural Index</span>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link " id="topicalIndex" data-page="topical" aria-current="page" href="#">
-                    <i class="fa fa-th"></i> Topical Index
+                    <i class="fa fa-th"></i> 
+                    <span class="text">Topical Index</span>
                   </a>
                 </li>
               </ul>

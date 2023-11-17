@@ -6,4 +6,7 @@ var menu_en = {
     'Search':"Search",
     'Title': "Title",
     'Page':"Page",
+    'Information': "Information",
+    "Topical":  "Topical Index",
+    "Scriptural":   "Scriptural Index",
 }

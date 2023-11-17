@@ -79,34 +79,34 @@ function redirectToSystemBrowser(url) {
       },
       changePage: function(id){
         if(document.querySelector("#" + id)){
-        document.querySelectorAll(".page.wrapper").forEach(function(page){
-            page.classList.remove("active");
-        })
+            document.querySelectorAll(".page.wrapper").forEach(function(page){
+                page.classList.remove("active");
+            })
 
-        document.querySelector("#" + id).classList.add("active");
-        // more logic
-        const mainContent= document.querySelector(".mainContent");
-        mainContent.setAttribute("data-page-show", id)
-        if(id=="hymns"){
-            mainContent.classList.remove("showOtherPage");
-        } else {
-            mainContent.classList.add("showOtherPage");
-        }
+            document.querySelector("#" + id).classList.add("active");
+            // more logic
+            const mainContent= document.querySelector(".mainContent");
+            mainContent.setAttribute("data-page-show", id)
+            if(id=="hymns"){
+                mainContent.classList.remove("showOtherPage");
+            } else {
+                mainContent.classList.add("showOtherPage");
+            }
 
 
-        if(id=="number"){
-            window.setTimeout(function(){
-                document.getElementById("searchByNumber").focus();
-            }, 400);
-        }
-        else if(id=="search"){
-            window.setTimeout(function(){
-                document.getElementById("filterSearch").focus();
-            }, 400);
-        } else {
-            document.getElementById("searchByNumber").blur();
-            document.getElementById("filterSearch").blur();
-        }
+            if(id=="number"){
+                window.setTimeout(function(){
+                    document.getElementById("searchByNumber").focus();
+                }, 400);
+            }
+            else if(id=="search"){
+                window.setTimeout(function(){
+                    document.getElementById("filterSearch").focus();
+                }, 400);
+            } else {
+                document.getElementById("searchByNumber").blur();
+                document.getElementById("filterSearch").blur();
+            }
         } else {
             alert("no page yet")
         }
@@ -120,13 +120,18 @@ function redirectToSystemBrowser(url) {
           let currentTitle = "Hymnal";
           let searchTitle = "Search";
           let hymnTitle = "Hymn Number";
+          let informationTitle = "Information";
+          let ScripturalTitle = "Scriptural Index";
+          let TopicalTitle = "Topical Index";
           let langObj = 'menu_' + currentLang;
           if(window[langObj]){
               currentTitle = window[langObj].Hymnal;
               searchTitle = window[langObj]["Search By Title"];
               hymnTitle = window[langObj]["Search By Number"];
+              informationTitle = (window[langObj]["Information"]? window[langObj]["Information"] : informationTitle) ;
           }
           
+          console.log("informationTitle set it!", informationTitle)
           // update currentLanguageCode text
           document.getElementById("currentLanguageCode").innerHTML = currentLang.toLowerCase();
 
@@ -501,7 +506,8 @@ function redirectToSystemBrowser(url) {
             elem.addEventListener("click", function(e){
                 e.preventDefault();
                 const thisNode = e.target;
-                const page = thisNode.getAttribute("data-page");
+                const anchor = thisNode.closest("a");
+                const page = anchor.getAttribute("data-page");
                 app.toggleHamburger();
                 console.log(page, "page")
                 app.changePage(page);
