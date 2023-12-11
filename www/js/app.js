@@ -25,6 +25,7 @@ function redirectToSystemBrowser(url) {
       searchTitleOnly: false,
       hasVocal: false,
       hymn: 1,
+      autoplay: false,
       storage: null,
       sheetMusicEnabled: false,
       sheetMusicActive: false,
@@ -352,6 +353,39 @@ function redirectToSystemBrowser(url) {
 
             }
       },
+      playNext: function(){
+        let current = parseInt(app.currentHymn);
+        if(app.shuffle){
+            app.startRandom();
+            app.setHymn(app.currentHymn);
+        } else {
+            let next = current + 1;
+            if(next>config.totalHymns){
+                next = 1;
+            }
+            let formatNext = app.getHymnWithZeros(next);
+            app.currentHymn = next;
+            app.setHymn(next);
+        }
+        console.log("play next", app.currentMusicType, app.currentHymn)
+        app.makeMusic(app.currentMusicType, true);
+        
+      },
+      playPrevious: function(){
+        let current = parseInt(app.currentHymn);
+        if(app.shuffle){
+            app.startRandom();
+            app.setHymn(app.currentHymn);
+        } else {
+            let next = current - 1;
+            if(next<1){
+                next = 1;
+            }
+            app.currentHymn = next;
+            app.setHymn(next);
+        }
+        app.makeMusic(app.currentMusicType, true);
+      },
       setLang: function(langValue){
         app.lang = langValue;
         app.storage.setItem(app.langKey, langValue)
@@ -457,6 +491,39 @@ function redirectToSystemBrowser(url) {
 
       eventBindings: function(){
 
+        document.querySelectorAll(".music-control-toggler").forEach(function(elem){
+            elem.addEventListener("click", function(e){
+                e.preventDefault();
+                let id = e.target.id;
+                if(id=="hymnPrev"){
+                    app.playPrevious();
+                } else if(id=="hymnNext"){
+                    app.playNext();
+                    
+                } else {
+
+                }
+            });
+        });
+
+        document.querySelectorAll(".music-control-btn").forEach(function(el){
+            el.addEventListener("click", function(e){
+
+                e.preventDefault();
+                let thisbutton = e.target;
+                let thisProp = thisbutton.getAttribute("data-id");
+                app[thisProp] = !app[thisProp];
+                if(app[thisProp]==true){
+                    thisbutton.classList.add("active");
+                } else {
+                    thisbutton.classList.remove("active");
+                }
+            });
+            
+        })
+        
+        
+
         document.getElementById("chooseLanguage").addEventListener("click", function(e){
             e.preventDefault();
             document.getElementById("langDropdown").classList.add("shown")
@@ -493,8 +560,8 @@ function redirectToSystemBrowser(url) {
             let musicType = app.currentMusicType;
             
             if(originalState==false){
-                app.makeMusic(musicType);
-                app.setCurrentMusicState("piano")
+                app.makeMusic(musicType, app.autoplay);
+                //app.setCurrentMusicState("piano")
             }
             
         });
@@ -583,7 +650,7 @@ function redirectToSystemBrowser(url) {
             app.storage.setItem("currentMusicType", currentType);
 
             app.setMusicOptions();
-            app.makeMusic(currentType);
+            app.makeMusic(currentType, app.autoplay);
         });
 
 
@@ -990,11 +1057,16 @@ function redirectToSystemBrowser(url) {
             
       },
 
-      makeMusic:function(type){
+      makeMusic:function(type, autoplay){
         
+        console.log("make music", type, autoplay)
         let audio = document.querySelector(".video-js");
         let source = audio.querySelector("source");
         let sourcePath = app.getHymnWithZeros(app.currentHymn) + ".mp3";
+        let autoPlayVal = false;
+        if(app.autoplay==true || autoplay==true){
+            autoPlayVal = true;
+        }
         if(type=="piano" || type=="vocal"){
             if(type=="vocal"){
                 sourcePath = vocal_path + sourcePath;
@@ -1014,16 +1086,37 @@ function redirectToSystemBrowser(url) {
                     app.musicPlayer.pause();
                 } else {
 
+                    
+                    console.log("autoplay", autoPlayVal)
                     app.musicPlayer = videojs('audio_player', {
                         "playbackRates": [0.8, 0.9, 1, 1.2, 1.3],
                         controls: true,
-                        autoplay: false,
+                        autoplay: autoPlayVal,
                         preload: 'auto'
+                    });
+
+                    app.musicPlayer.on('ended', function() {
+                   
+                        const playerWrapper = document.querySelector(".video-js");
+                        playerWrapper.setAttribute("data-playing", "false");
+                    
+                        if(app.autoplay==true){
+    
+                            window.setTimeout(function(){
+                            app.playNext();
+    
+                            }, 1000)
+                           
+                           
+                        } else {
+                            console.log("ended")
+                        }
                     });
                 }
 
                 app.musicPlayer.src({type: 'audio/mp3', src: sourcePath});
 
+               
                 app.musicPlayer.on('play',()=>{
 
                     const playerWrapper = document.querySelector(".video-js");
@@ -1041,6 +1134,12 @@ function redirectToSystemBrowser(url) {
                     // in the future, add shuffle controls
                     //app.addShuffleControls();
                 });
+
+                if(autoPlayVal==true){
+                    app.musicPlayer.play();
+       
+                  
+                }
    
               
             }

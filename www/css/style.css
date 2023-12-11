@@ -404,7 +404,7 @@ body .mainContent .page#hymns .musicPlayer {
   height: 8em;
   overflow: hidden;
   bottom: 0px;
-  margin-top: 4px;
+  margin-top: 0px;
   z-index: 989;
   padding: 0 1em;
   transform: translateY(10em);
@@ -509,10 +509,6 @@ body .mainContent .page#hymns .musicPlayer .video-js .vjs-playback-rate:focus-vi
 }
 body .mainContent .page#hymns .musicPlayer .video-js .vjs-playback-rate .vjs-playback-rate-value {
   line-height: 2.4em;
-  display: none;
-}
-body .mainContent .page#hymns .musicPlayer .video-js .vjs-playback-rate .vjs-menu {
-  display: block !important;
 }
 body .mainContent .page#hymns .musicPlayer .video-js .vjs-play-control .vjs-icon-placeholder::before {
   top: 2px;
@@ -623,7 +619,6 @@ body .mainContent .page header .navbar .btn:active, body .mainContent .page head
   background: transparent;
 }
 body .mainContent .page header .navbar-brand {
-  margin-right: 0;
   color: #fff;
   font-family: "Noto-sans-semi-bold", sans-serif;
 }
@@ -669,8 +664,12 @@ body .mainContent .page footer.hymnFooter {
   z-index: 78;
   line-height: 3.8em;
   height: 3.8em;
+  color: var(--text-color);
+}
+body .mainContent .page footer.hymnFooter .initialFooter {
   background: linear-gradient(0deg, var(--bg-footer-stop), transparent);
   color: var(--text-color);
+  height: 67px;
 }
 body .mainContent .page footer.hymnFooter.musicOpen {
   height: 12em;
@@ -684,9 +683,23 @@ body .mainContent .page footer.hymnFooter .row .col {
 }
 body .mainContent .page footer.hymnFooter a {
   color: var(--text-color);
+}
+body .mainContent .page footer.hymnFooter .musicPlayerWrapper a {
+  color: var(--text-color);
   width: 42px;
   height: 42px;
   line-height: 1.75em;
+}
+body .mainContent .page footer.hymnFooter .mediaControls {
+  justify-content: space-between;
+}
+body .mainContent .page footer.hymnFooter .music-control-btn {
+  padding: 0.5em;
+}
+body .mainContent .page footer.hymnFooter .music-control-btn.active {
+  background-color: var(--bg-headerBot);
+  border: 1px solid;
+  border-radius: 5px;
 }
 body .mainContent .page footer.hymnFooter .col.actions {
   flex: 1 99%;

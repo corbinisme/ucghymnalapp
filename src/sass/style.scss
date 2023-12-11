@@ -549,11 +549,12 @@ body {
                     height: 8em;
                     overflow: hidden;
                     bottom: 0px;
-                    margin-top: 4px;
+                    margin-top: 0px;
                     z-index: 989;
                     padding: 0 1em;
                     transform: translateY(10em);
                     box-shadow: -1px -3px 21px -15px var(--text-color);
+                    //backdrop-filter: blur(7px);
                     &.active {
                         display: block;
                         background-color: var(--bg-body);
@@ -677,10 +678,10 @@ body {
                         }
                         
                     }
-                }
+                }  
 
                 .navbar-brand {
-                    margin-right: 0;
+  
                     color: #fff;
                     font-family: 'Noto-sans-semi-bold', sans-serif;
                 }
@@ -735,8 +736,14 @@ body {
                     z-index: 78;
                     line-height: 3.8em;
                     height: 3.8em;
-                    background: linear-gradient(0deg, var(--bg-footer-stop), transparent);
+                    //background: linear-gradient(0deg, var(--bg-footer-stop), transparent);
                     color: var(--text-color);
+
+                    .initialFooter {
+                        background: linear-gradient(0deg, var(--bg-footer-stop), transparent);
+                        color: var(--text-color);
+                        height: 67px;
+                    }
 
                     &.musicOpen {
                         height: 12em;
@@ -752,9 +759,26 @@ body {
                     }
                     a {
                         color: var(--text-color);
-                        width: 42px;
-                        height: 42px;
-                        line-height: 1.75em;
+                    }
+                    .musicPlayerWrapper  {
+                        a {
+                            color: var(--text-color);
+                            width: 42px;
+                            height: 42px;
+                            line-height: 1.75em;
+                        }
+                    }
+                    .mediaControls {
+                        justify-content: space-between;
+                    }
+                    
+                    .music-control-btn {
+                        padding: 0.5em;
+                        &.active {
+                            background-color: var(--bg-headerBot);
+                            border: 1px solid;
+                            border-radius: 5px;
+                        }
                     }
 
                     .col.actions {
