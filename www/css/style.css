@@ -92,6 +92,10 @@ body #search .navbar .navbar-brand, body #number .navbar .navbar-brand {
 }
 body #search .navbar .btn, body #number .navbar .btn {
   color: var(--searchHeaderButtonText);
+  margin-right: 0.5em;
+}
+body #search .navbar .btn:focus, body #number .navbar .btn:focus {
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.2);
 }
 body .backToHymns {
   color: #fff;
@@ -633,6 +637,9 @@ body .mainContent .page header #languageSelector::before {
   height: 1px;
   left: 0;
   top: 0;
+}
+body .mainContent .page header #chooseLanguage:focus {
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.2);
 }
 body .mainContent .page header .headerFormControl {
   background-color: var(--bg-headerBot);

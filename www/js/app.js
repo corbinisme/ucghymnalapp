@@ -403,6 +403,7 @@ function redirectToSystemBrowser(url) {
             button.classList.add("collapsed")
             menu.classList.add("show")
         }
+        app.closeAllMenus("menu")
       },
       setMusicOptions: function(){
         
@@ -489,6 +490,22 @@ function redirectToSystemBrowser(url) {
         //document.querySelector(`#${type}Icon`).classList.add("active");
       },
 
+      closeAllMenus: function(exclude){
+        
+        const navbarToggle = document.querySelector(".navbar-toggler");
+        const dropdownMain = document.querySelector(".navbar-collapse");
+        const languageButton = document.getElementById("chooseLanguage");
+        const languageDropdown = document.getElementById("langDropdown");
+
+        if(exclude!="language"){
+            languageDropdown.classList.remove("shown");
+        }
+        if(exclude!="menu"){
+            navbarToggle.classList.remove("collapsed");
+            dropdownMain.classList.remove("show");
+        }
+      },
+
       eventBindings: function(){
 
         document.querySelectorAll(".music-control-toggler").forEach(function(elem){
@@ -521,12 +538,33 @@ function redirectToSystemBrowser(url) {
             });
             
         })
+
+        //close language and menu when clicking anywhere else
+        document.addEventListener("click", function(e){
+            let target = e.target;
+            console.log("document click", target)
+            if(target.id && target.id=="chooseLanguage"){
+                return;
+            }
+            if(target.classList.contains("navbar-toggler") || target.classList.contains("navbar-toggler-override")){
+                return;
+            }
+            app.closeAllMenus("");
+           
+        })
         
         
 
         document.getElementById("chooseLanguage").addEventListener("click", function(e){
             e.preventDefault();
-            document.getElementById("langDropdown").classList.add("shown")
+            const languageDropdown = document.getElementById("langDropdown");
+            if(languageDropdown.classList.contains("shown")){
+                languageDropdown.classList.remove("shown");
+            } else {
+                languageDropdown.classList.add("shown");
+            }
+            app.closeAllMenus("language")
+            
         });
         
         document.getElementById("musicControl").addEventListener("click", function(e){
