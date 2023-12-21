@@ -78,7 +78,10 @@
 
                 <button id="chooseLanguage" class="btn text-white text-decoration-none">
                   <span id="currentLanguageCode">en</span>
-                  <i class="fa fa-caret-down"></i>
+                  <span id="currentLanguageCaret">
+                    <i class="fa fa-caret-down"></i>
+                  </span>
+                  
                 </button>
 
                 <div id="langDropdownWrapper">
@@ -433,15 +436,18 @@
         </nav>
        
           <div class="p-2 headerFormControl">
-          <input type="text" class="searchBar form-control" id="topicalSearch" placeholder="Search by topic" />
+          <select class="form-select" id="topicSelect" title="topics selection">
+            <option value="0">All Topics</option>
+          </select>
         </div>
        
       </header>
       <div class="contentMain">
         
-        <div id="topicsContent" class="align-items-center d-flex justify-content-center">
-
-          <i class="fa fa-spinner fa-spin"></i>
+        <div id="topicsContent" class="p-3">
+          <div class="align-items-center d-flex justify-content-center">
+            <i class="fa fa-spinner fa-spin"></i>
+          </div>
         </div>
       </div>
       
@@ -457,7 +463,8 @@
  var env="localhost";
  </script>
 
-<script src="js/information.js"></script>
+ <script src="js/topical.js"></script>
+ <script src="js/information.js"></script>
  <script src="js/lang.min.js"></script>
  <script src="js/video.js"></script>
  <script src="js/pdf.js"></script>

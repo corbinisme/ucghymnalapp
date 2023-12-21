@@ -34,11 +34,13 @@ function redirectToSystemBrowser(url) {
       musicPlayer: null,
       musicOpen: false,
       currentMusicType: "piano",
+      selectedTopic: "0",
       init: function(){
             app.getConfig();
             app.eventBindings();
             app.loadCurrentLang(true);
             app.getPageSizing();
+            app.populateTopics();
             window.addEventListener("resize", function(){
                 app.getPageSizing();
             })
@@ -116,6 +118,36 @@ function redirectToSystemBrowser(url) {
       changeStorage:function(key,val){
           app.storage.setItem(key, val);
       },
+
+      populateTopics: function(){
+
+        const container = document.getElementById("topicsContent");
+        const topicDropdown = document.getElementById("topicSelect");
+        let html = "";
+
+        topics.forEach(function(topic){
+
+            const thisOp = document.createElement("option");
+            thisOp.value = topic.id;
+            thisOp.innerHTML = topic.name;
+            topicDropdown.append(thisOp);
+
+
+            html+=`<div class="topic" data-id="${topic.id}"><h3 class="topicName">${topic.name}</h3><div class="topicHymns"><table class="table"><tbody>`;
+            topic.hymns.forEach(function(hymn){
+                const hymnLookup = app.getHymnWithZeros(hymn);
+                const hymnSelector = document.getElementById("hymnSelect");
+                let hymnTitle = hymnSelector.querySelector(`option[value="${hymnLookup}"]`).innerText;
+
+                // get rid of the characters before the ) in the title
+                hymnTitle = hymnTitle.substring(hymnTitle.indexOf(")")+2, hymnTitle.length).trim()
+
+                html+=`<tr><td>${hymn}</td><td><a href="#" onClick='app.loadSearch("${hymnLookup}")' class="topicSearchLink" data-page="hymns" data-hymn="${hymn}">${hymnTitle}</a></td></tr>`;
+            })
+            html+=`</tbody></table></div></div>`;
+        });
+        container.innerHTML = html;
+      },
       getTitle: function(){
           let currentLang = app.lang;
           let currentTitle = "Hymnal";
@@ -132,7 +164,7 @@ function redirectToSystemBrowser(url) {
               informationTitle = (window[langObj]["Information"]? window[langObj]["Information"] : informationTitle) ;
           }
           
-          console.log("informationTitle set it!", informationTitle)
+
           // update currentLanguageCode text
           document.getElementById("currentLanguageCode").innerHTML = currentLang.toLowerCase();
 
@@ -276,7 +308,7 @@ function redirectToSystemBrowser(url) {
             }
            
         }
-        console.log(langValue, "langValue")
+
         if(langValue=="null"){
             langValue = "en";
         }
@@ -508,6 +540,20 @@ function redirectToSystemBrowser(url) {
 
       eventBindings: function(){
 
+        document.getElementById("topicSelect").addEventListener("change", function(e){
+            app.selectedTopic = e.target.value;
+            if(app.selectedTopic=="0"){
+                document.querySelectorAll(".topic").forEach(function(elem){
+                    elem.classList.remove("hidden");
+                })
+            } else {
+                document.querySelectorAll(".topic").forEach(function(elem){
+                    elem.classList.add("hidden");
+                })
+                document.querySelector(`.topic[data-id="${app.selectedTopic}"]`).classList.remove("hidden");
+            }
+        });
+
         document.querySelectorAll(".music-control-toggler").forEach(function(elem){
             elem.addEventListener("click", function(e){
                 e.preventDefault();
@@ -542,10 +588,11 @@ function redirectToSystemBrowser(url) {
         //close language and menu when clicking anywhere else
         document.addEventListener("click", function(e){
             let target = e.target;
-            console.log("document click", target)
-            if(target.id && target.id=="chooseLanguage"){
+            console.log(target)
+            if(target.id && (target.id=="chooseLanguage" || target.id=="currentLanguageCaret" || target.id=="currentLanguageCode")){
                 return;
             }
+           
             if(target.classList.contains("navbar-toggler") || target.classList.contains("navbar-toggler-override")){
                 return;
             }
@@ -614,7 +661,7 @@ function redirectToSystemBrowser(url) {
                 const anchor = thisNode.closest("a");
                 const page = anchor.getAttribute("data-page");
                 app.toggleHamburger();
-                console.log(page, "page")
+
                 app.changePage(page);
                 if(page=="copyright"){
 
