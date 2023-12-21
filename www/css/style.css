@@ -396,6 +396,7 @@ body .mainContent .page#hymns .musicPlayer .video-js > .vjs-control-bar {
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  margin-left: 20px;
 }
 body .mainContent .page#hymns .musicPlayer .video-js > .vjs-control-bar .playlist-controls .btn {
   background-color: var(--bg-body);
@@ -439,13 +440,7 @@ body .mainContent .page#hymns .musicPlayer .video-js .vjs-control.vjs-button {
 }
 body .mainContent .page#hymns .musicPlayer .video-js .vjs-control.vjs-button.vjs-playback-rate {
   border: none;
-}
-body .mainContent .page#hymns .musicPlayer .video-js .vjs-playback-rate {
-  border: none;
-  width: 1px !important;
-}
-body .mainContent .page#hymns .musicPlayer .video-js .vjs-playback-rate:focus-visible {
-  outline: none;
+  width: 45px;
 }
 body .mainContent .page#hymns .musicPlayer .video-js .vjs-playback-rate .vjs-playback-rate-value {
   line-height: 2.4em;

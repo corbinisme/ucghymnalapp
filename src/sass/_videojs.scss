@@ -32,6 +32,7 @@
         display: flex;
         align-items: flex-start;
         justify-content: center;
+        margin-left: 20px;
 
         .playlist-controls {
             .btn {
@@ -84,7 +85,7 @@
 
             &.vjs-playback-rate  {
                 border: none;
-               
+                width:45px;
 
             }
         }
@@ -92,10 +93,8 @@
     }
 
     .vjs-playback-rate {
-        border: none;
-        width: 1px!important;
         &:focus-visible {
-            outline: none;
+           
         }
         .vjs-playback-rate-value {
             line-height: 2.4em;
