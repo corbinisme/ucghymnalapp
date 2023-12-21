@@ -67,34 +67,6 @@ html{
     
     }
     height: 100%;
-    &[lang="en"],
-    &[lang="de"],
-    &[lang="pg"],
-    &[lang="nl"],
-    &[lang="it"]{
-        #copyright {
-            .contentMain {
-                #loadCopyright  >div{
-                    display: none;
-                    &.en {
-                        display: block;
-                    }
-                }
-            }
-        }
-    }
-    &[lang="fr"]{
-        #copyright {
-            .contentMain {
-                #loadCopyright >div{
-                    display: none;
-                    &.fr {
-                        display: block;
-                    }
-                }
-            }
-        }
-    }
     
 }
 
@@ -136,10 +108,15 @@ body {
             .btn {
                 color: var(--searchHeaderButtonText);
                 margin-right: 0.5em;
-                &:focus {
-                    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.2);
                 
-                }
+            }
+        }
+    }
+    .navbar {
+        .btn {
+            &:focus {
+                box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.2);
+            
             }
         }
     }
@@ -187,6 +164,7 @@ body {
         color: var(--text-color);
         border-color: var(--form-border);
     }
+
     .table {
         color: var(--text-color);
 
@@ -196,14 +174,13 @@ body {
             background-color: var(--body-bg);
             color: var(--text-color);
         }
-        #tocBody {
+        .tocBody {
             td {
                 background-color: var(--body-bg);
                 color: var(--text-color);
                 border-color: var(--form-border);
                 a {
                     color: var(--linkColor);
-                    font-size: 1.2em;
                     text-decoration: none;
                     font-family: 'Noto-sans-semi-bold', sans-serif;
                 }
@@ -382,6 +359,11 @@ body {
                 }
             }
 
+            .topicName {
+                background-color: var(--yellowButton);
+                padding: .5em;
+            }
+
             &#number {
                 .contentMain {
                     overflow: hidden;
@@ -398,74 +380,7 @@ body {
                     
                 }
             }
-           &#copyright {
-            overflow: hidden;
-                .contentMain {
-                   display: block;
-                    position: relative;
-                    z-index: 99;
-                }
-
-                .tabs {
-                    display: flex;
-                    list-style: none;
-                    margin: 0;
-                    li {
-                        flex: 1 auto;
-                    }
-
-                   
-                }
-                .closeCopyright {
-                    display: none;
-                }
-                #loadCopyright {
-
-                    
-                    .tabs {
-                        position: sticky;
-                        top: 52px;
-                        margin-top: -54px;
-                        background:var(--bg-headerBot);
-                        margin-left: 0;
-                        padding: 0;
-                         li{
-                            margin: 0;
-                            padding: 0;
-                            a {
-                                display: block;
-                                text-align: center;
-                                color: var(--text-color);
-                                font-size: 16px;
-                                line-height: 50px;
-                                &.active {
-                                    background: var(--bg-body);
-                                }
-                            }
-                         }
-
-                       
-                        
-                    }
-                    .tabContents {
-                        width: 100vw;
-                        height: calc(100vh - 5em);
-                        font-size: 22px;
-                        line-height: 32px;
-                        overflow: auto;
-                        >div {
-                            display: none;
-                            &.active {
-                                display: block;
-                                padding: 1em;
-                            }
-                        }
-                    }
-                }
-                
-
-               
-            }
+           
 
             &#search {
                
@@ -603,6 +518,7 @@ body {
             &.active {
                 display: block; 
                 opacity: 1;
+                z-index: 91;
             }
 
             header {  

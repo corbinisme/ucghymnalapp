@@ -40,7 +40,7 @@ function redirectToSystemBrowser(url) {
             app.eventBindings();
             app.loadCurrentLang(true);
             app.getPageSizing();
-            app.populateTopics();
+            app.populatePages()
             window.addEventListener("resize", function(){
                 app.getPageSizing();
             })
@@ -54,10 +54,6 @@ function redirectToSystemBrowser(url) {
             app.startRandom();
         } 
         app.setHymn(app.currentHymn);
-        
-        
-       
-
       },
       getPageSizing: function(){
         // detect if there is a vertical scrollbar
@@ -118,7 +114,29 @@ function redirectToSystemBrowser(url) {
       changeStorage:function(key,val){
           app.storage.setItem(key, val);
       },
+      populatePages: function(){
+        app.populateAbout();
+        app.populateCopyright();
+        app.populateUcg();
+        app.populateTopics();
+      },
+      populateUcg: function(){
+        const ucgContent = document.getElementById("ucgContent");
+        const ucgText = window['pages_en']['ucg'].content;
+        ucgContent.innerHTML = ucgText;
+      },
 
+      populateCopyright: function(){
+        const copyContent = document.getElementById("loadCopyright");
+        const copyText = window['pages_en']['copyright'].content;
+        copyContent.innerHTML = copyText;
+      },
+
+      populateAbout: function(){
+        const aboutContent = document.getElementById("aboutContent");
+        const aboutText = window['pages_en']['about'].content;
+        aboutContent.innerHTML = aboutText;
+      },
       populateTopics: function(){
 
         const container = document.getElementById("topicsContent");
@@ -133,7 +151,7 @@ function redirectToSystemBrowser(url) {
             topicDropdown.append(thisOp);
 
 
-            html+=`<div class="topic" data-id="${topic.id}"><h3 class="topicName">${topic.name}</h3><div class="topicHymns"><table class="table"><tbody>`;
+            html+=`<div class="topic" data-id="${topic.id}"><h3 class="topicName">${topic.name}</h3><div class="topicHymns"><table class="table"><tbody class="tocBody">`;
             topic.hymns.forEach(function(hymn){
                 const hymnLookup = app.getHymnWithZeros(hymn);
                 const hymnSelector = document.getElementById("hymnSelect");
@@ -459,60 +477,7 @@ function redirectToSystemBrowser(url) {
             
         }
       },
-      makeCopyrightTabs: function(){
-       
-        
-        document.querySelectorAll("#loadCopyright .tabs li a").forEach(elem=>{
-            elem.addEventListener("click", function(e){
 
-                e.target.closest("ul").querySelectorAll("li a").forEach(element=>{
-                    element.classList.remove("active")
-                })
-                e.target.classList.add("active");
-                let tarId = e.target.getAttribute("data-id");
-                document.querySelectorAll(`.tabContents>div`).forEach(element=>{
-                    element.classList.remove("active");
-                })
-                document.querySelectorAll(`.tabContents>div.${tarId}`).forEach(element=>{
-                    element.classList.add("active");
-
-                })
-            });
-        })
-        document.querySelector("#loadCopyright .tabs>li:nth-child(1) a").click()
-        
-        // now make dropdown
-        let select= document.createElement("select");
-        select.classList.add("form-control");
-        select.classList.add("tab-alt");
-        select.classList.add("form-select");
-        document.querySelectorAll(`#loadCopyright .${app.lang} .tabs li a`).forEach(function(tab){
-            let id = tab.getAttribute("data-id");
-            let text = tab.innerHTML;
-            let option = document.createElement("option");
-            option.value=id;
-            option.innerHTML = text;
-            select.append(option);
-        });
-        let div = document.createElement("div");
-        div.append(select)
-
-        document.querySelector(`#loadCopyright .${app.lang} .tabs`).classList.add("p-2")
-        document.querySelector(`#loadCopyright .${app.lang} .tabs`).innerHTML = div.innerHTML;
-        document.querySelector(`#loadCopyright .${app.lang} .tabs .form-control`).addEventListener("change", function(e){
-            
-            let tarId = e.target.value;
-            document.querySelectorAll(`.tabContents>div`).forEach(element=>{
-                element.classList.remove("active");
-            })
-            document.querySelectorAll(`.tabContents>div.${tarId}`).forEach(element=>{
-                element.classList.add("active");
-
-            })
-        })
-
-
-      },
       setCurrentMusicState: function(type){
         //app.storage.setItem("music", type);
         app.currentMusicType = type;
@@ -661,45 +626,8 @@ function redirectToSystemBrowser(url) {
                 const anchor = thisNode.closest("a");
                 const page = anchor.getAttribute("data-page");
                 app.toggleHamburger();
-
                 app.changePage(page);
-                if(page=="copyright"){
 
-                    const target = document.getElementById("loadCopyright");
-                            target.innerHTML = copyrightEnglishBackup;
-                            app.makeCopyrightTabs();
-                            document.getElementById("copyright").classList.add("loaded");
-                    
-
-                    /*if(true){
-                        //load it in!
-                        fetch("about.html?about=true")
-                        .then(resp=>{
-                            if (!resp.ok) {
-                                throw new Error('Network response was not ok');
-                                //alert("ahh!")
-                            }
-                            return resp.text()
-                        })
-                        .then(data=>{
-    
-                            document.getElementById("loadCopyright").innerHTML = data;
-                            app.makeCopyrightTabs();
-                            document.getElementById("copyright").classList.add("loaded");
-    
-                        }).catch(error => {
-                            // Handle the error
-                            // get the english
-                            console.warn('Fetch error, fallback loaded:', error);
-                            const target = document.getElementById("loadCopyright");
-                            target.innerHTML = copyrightEnglishBackup;
-                            app.makeCopyrightTabs();
-                            document.getElementById("copyright").classList.add("loaded");
-    
-                          });
-                    }
-                    */
-                }
             })
         });
 
