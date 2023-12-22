@@ -119,6 +119,44 @@ function redirectToSystemBrowser(url) {
         app.populateCopyright();
         app.populateUcg();
         app.populateTopics();
+        app.populateScriptural();
+      },
+      populateScriptural: function(){
+        const wrapper = document.getElementById("scriptureContent");
+        //const scripturalText = window['pages_en']['scriptural'].title;
+        let html = "";
+        const scriptural = window['scriptural'];
+        const books = Object.keys(scriptural);
+        books.forEach(function(book){
+            const chapters = scriptural[book];
+            
+            html+=`<div class="book"><h3 class="bookName topicName text-dark">${book}</h3><div class="bookChapters"><table class="table"><tbody class="tocBody">`;
+            chapters.forEach(function(chapter){
+                console.log(book, chapter)
+                const verses = Object.keys(chapter)[0];
+                console.log("verses", verses);
+                const hymns = chapter[verses];
+                console.log("hymns", hymns);
+               
+                html+=`<tr><td>${verses}</td><td>
+                    <ul>`;
+                    hymns.forEach(function(hymn){
+                        const hymnLookup = app.getHymnWithZeros(hymn);
+                        const hymnSelector = document.getElementById("hymnSelect");
+                        let hymnTitle = hymnSelector.querySelector(`option[value="${hymnLookup}"]`).innerText;
+                        
+                        // get rid of the characters before the ) in the title
+                        hymnTitle = hymnTitle.substring(hymnTitle.indexOf(")")+2, hymnTitle.length).trim()
+
+                        html+=`<li><a href="#" onClick='app.loadSearch("${hymnLookup}")' class="topicSearchLink" data-page="hymns" data-hymn="${hymn}">${hymn}) ${hymnTitle}</a></li>`;
+                    });
+                html+=`</ul>
+                </td></tr>`;
+            })
+            html+=`</tbody></table></div></div>`;
+        })
+        wrapper.innerHTML = html;
+
       },
       populateUcg: function(){
         const ucgContent = document.getElementById("ucgContent");
