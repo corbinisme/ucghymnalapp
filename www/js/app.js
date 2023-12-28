@@ -35,6 +35,7 @@ function redirectToSystemBrowser(url) {
       musicOpen: false,
       currentMusicType: "piano",
       selectedTopic: "0",
+      selectedBook: "all",
       init: function(){
             app.getConfig();
             app.eventBindings();
@@ -127,10 +128,17 @@ function redirectToSystemBrowser(url) {
         let html = "";
         const scriptural = window['scriptural'];
         const books = Object.keys(scriptural);
+
+        const scriptureDropdown = document.getElementById("searchScripture");
         books.forEach(function(book){
             const chapters = scriptural[book];
             
-            html+=`<div class="book"><h3 class="bookName topicName text-dark">${book}</h3><div class="bookChapters"><table class="table"><tbody class="tocBody">`;
+            const thisOp = document.createElement("option");
+            thisOp.value = book;
+            thisOp.innerHTML = book;
+            scriptureDropdown.append(thisOp);
+
+            html+=`<div class="book" data-id="${book}"><h3 class="bookName topicName text-dark">${book}</h3><div class="bookChapters"><table class="table"><tbody class="tocBody">`;
             chapters.forEach(function(chapter){
                 console.log(book, chapter)
                 const verses = Object.keys(chapter)[0];
@@ -189,7 +197,7 @@ function redirectToSystemBrowser(url) {
             topicDropdown.append(thisOp);
 
 
-            html+=`<div class="topic" data-id="${topic.id}"><h3 class="topicName">${topic.name}</h3><div class="topicHymns"><table class="table"><tbody class="tocBody">`;
+            html+=`<div class="topic" data-id="${topic.id}"><h3 class="topicName text-dark">${topic.name}</h3><div class="topicHymns"><table class="table"><tbody class="tocBody">`;
             topic.hymns.forEach(function(hymn){
                 const hymnLookup = app.getHymnWithZeros(hymn);
                 const hymnSelector = document.getElementById("hymnSelect");
@@ -255,6 +263,28 @@ function redirectToSystemBrowser(url) {
             document.getElementById("loader").classList.remove("hidden");
         }
       },
+      searchScriptureByHymn: function(hymn){
+        //loop through object `scriptural`
+        let result = [];
+        const scriptureArr = window['scriptural'];
+        const books = Object.keys(scriptureArr);
+        books.forEach(function(book){
+            const chapters = scriptureArr[book];
+            chapters.forEach(function(chapter){
+                const verses = Object.keys(chapter)[0];
+                const hymns = chapter[verses];
+                hymns.forEach(function(hymnNum){
+                    console.log("verses here", verses, hymnNum, hymn)
+                    if(hymnNum==hymn){
+                        result.push(book + " " + verses);
+                    }
+                })
+            })
+        });
+        console.log("result scripture", result)
+        return result;
+
+      },
       getHymnText: function(){
         let result;
         let target = document.getElementById("loader");
@@ -276,14 +306,32 @@ function redirectToSystemBrowser(url) {
         }
         
         let file = "hymn" + app.getHymnWithZeros(app.currentHymn);
-        if(window['lyrics_' + app.lang]){
-            result = window['lyrics_' + app.lang][file];
 
+        // get scriptural references
+        let scriptureForHymn = app.searchScriptureByHymn(app.currentHymn)
+
+
+        if(window['lyrics_' + app.lang]){
+
+            result = window['lyrics_' + app.lang][file];
+            let output = "";
             if(result==null || typeof result == "undefined"){
 
-                result = `<p>Cannot find hymn # ${app.currentHymn}</p>`;
+                output = `<p>Cannot find hymn # ${app.currentHymn}</p>`;
+            } else{
+                // add scripture references
+                output = result;
+                if(scriptureForHymn.length>0){
+                    output += `<div class="scriptureReferences alert alert-info fs-sm"><p>Scriptural References</p><ul>`;
+                    scriptureForHymn.forEach(function(scripture){
+                        output+=`<li>${scripture}</li>`;
+                    })
+                    output+=`</ul></div>`;
+                }
             } 
-            target.innerHTML = result;
+
+
+            target.innerHTML = output;
             document.querySelector(".page#hymns .contentMain").scrollTo(0,0);
 
             
@@ -543,6 +591,28 @@ function redirectToSystemBrowser(url) {
 
       eventBindings: function(){
 
+
+        document.getElementById("searchScripture").addEventListener("change", function(e){
+
+            let val = e.target.value;
+            app.selectedBook = val;
+            
+            if(app.selectedBook=="all"){
+                document.querySelectorAll("#scriptureContent .book").forEach(function(elem){
+                    elem.classList.remove("hidden");
+                });
+            } else {
+                let target = document.querySelector(`#scriptureContent .book[data-id="${val}"]`);
+            
+                document.querySelectorAll("#scriptureContent .book").forEach(function(elem){
+                    elem.classList.add("hidden");
+                });
+                target.classList.remove("hidden");
+            }
+            
+            
+            
+        })
         document.getElementById("topicSelect").addEventListener("change", function(e){
             app.selectedTopic = e.target.value;
             if(app.selectedTopic=="0"){
