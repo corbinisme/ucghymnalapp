@@ -23,37 +23,261 @@ var pages_en = {
             contents, this hymnal has been organized with this scripture in mind. 
         May we use this hymnal to fulfill God's instruction: “I will praise the LORD with my whole heart, in the assembly of the upright and in the congregation" (Psalm 111:1) and "I will sing to the LORD as long as I live; I will sings praise to my God while I have my being" (Psalm 104:33).</p>
         <p>&nbsp;</p>`},
-    "copyright": {title: "Copyright Acknowledgements", content:`<h1>Copyright Acknowledgments</h1>
-    <p>Babcock,  Sharon  Treybig.  Used  by  permission:  Selection  116                                    <br>
-      Bowles,  Jonathan.  Used  by  permission:  Selection  156                                      <br>
-      Breitkopf  &amp;  Härtel,  Walkmühlstrasse  52,  65195    Wiesbaden,  Germany:  Selection  171<br>
-      Cokesbury,  c/o  The  Copyright  Company,  P.O.  Box  128139,  Nashville,  TN  37212  8139:  Selection  115<br>
-      Delamater,  Scott.  Used  by  permission:  Selection  114                                                <br>
-      E.  C.  Schirmer  Company,  c/o  ECS  Publishing,  138    Ipswich  St.,  Boston,  MA  02215:  Selection  136<br>
-      Ford,  Kevin.  Used  by  permission:  Selections  159,  161                                                        <br>
-      Fred  Bock  Music  Company,  P.O.  Box  570567,  Tarzana,  CA  91357:  Selection  133<br>
-      Graham,  Mark.,  P.O.  Box  770261,  Cleveland,  OH  44107.  Used  by  permission:                Selections  2,  7,  53,  73,  75,  96,  99,  109,  112,  123,  135,  146,  148,  158,  160,  167,  174,  191<br>
-      Hammett,  Thomas.  ©Thomas  Hammett,  5603  Cold  Springs  Rd.,  Hixson,  TN  37343.Used  by  permission:  Selection  165                                                        <br>
-      Hoover,  David  E.  Used  by  permission:  Selections  16,  187Hope  Publishing  Company,  380  S.  Main  Place,  Carol  Stream,  IL  60188:  Selection  147        <br>
-      Hoyer,  Gerald  E.  Used  by  permission:  Selections  149,  154,  174<br>
-      Johnson,  Janel.  Used  by  permission:  Selections  164,  184                                                <br>
-      Jutsum,  Ross  F.,  State  of  the  Heart  Productions,  P.O.  Box  56,  Sierra  Madre,  CA  91204.Used  by  permission:  Selections  59,  98,  104,  105,  108,  132,  150,  157,  163,  190        <br>
-      King,  Sonia  J.  Used  by  permission:  Selections  134,  143<br>
-      Manna  Music,  c/o  Manna  Music,  Inc.,  P.O.  Box  218,  Pacific  City,  OR  97135:  Selection  129<br>
-      Maranatha  Music,  c/o  Music  Services,  1526  Otter  Creek  Rd.,  Nashville,  TN  37212  8139:    Selections  100,  121<br>
-      McKinney  Music,  c/o  Genevox  Music  Group,  127  Ninth  Ave.  N.,  Nashville,  TN  37234: Selection:  186<br>
-      Miller,  Terry.  Used  by  permission:  Selection  181<br>
-      Mirigian,  David.  Used  by  permission:  Selections  69,  89<br>
-      Myrick,  Ruth.  Used  by  permission:  Selections  142,  168,  176<br>
-      Philp,  Mary  Beth.  ©Mary  Beth  Philp.  Used  by  permission:  Selections  111,  120,  153,  177,  179<br>
-      Ranew,  Jason.  Used  by  permission:  Selection  142<br>
-      Rigdon,  Becky.  ©Becky  Rigdon.  Used  by  permission:  Selections  172,  182,  189<br>
-      Seifert,  Dottie.  Used  by  permission:  Selections  94,  107<br>
-      Shemet,  Paul  R.  Used  by  permission:  Selection  170<br>
-      Singspiration  Music,  c/o  Brentwood  Benson  Music  Publishing,  Inc.,  741  Cool  Springs  Blvd.,  Franklin,  TN  36067:  Selections  124,  127<br>
-      Tannert,  Ann.  Used  by  permission:  Selections  22,  62,  67,  69,  86,  88,  116,  122,  141,  152,  155,  166<br>
-    The  Hymn  Society  in  the  U.S.  and  Canada,  c/o  Hope  Publishing  Company,  380  S.  Main  Place,  Carol  Stream,      IL  60188:  Selection  183</p>
-    <p>Extensive  effort  has  been  made  to  locate  the  owners  of  copyrighted  material  used  in  this  hymnal app. Upon  notification,  the  publisher  will  make  proper  correction  in  subsequent  app updates.</p>
+    "copyright": {title: "Copyright Acknowledgements", content:`<p>Extensive  effort  has  been  made  to  locate  the  owners  of  copyrighted  material  used  in  this  hymnal app. Upon  notification,  the  publisher  will  make  proper  correction  in  subsequent  app updates.</p>
+    <h3>Babcock, Sharon Treybig.</h3>
+
+    <p>Used by permission:</p>
+    
+    <p>Selection 116</p>
+    
+    <hr />
+    
+    <h3>Bowles, Jonathan.</h3>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selection 156</p>
+    
+    <hr />
+    
+    <h3>Breitkopf &amp; H&auml;rtel, Walkm&uuml;hlstrasse</h3>
+    
+    <p>52, 65195 Wiesbaden, Germany:</p>
+    
+    <p>Selection 171</p>
+    
+    <hr />
+    
+    <h3>Cokesbury, c/o The Copyright Company</h3>
+    
+    <p>P.O. Box 128139, Nashville, TN 37212 8139:</p>
+    
+    <p>Selection 115</p>
+    
+    <hr />
+    
+    <h3>Delamater, Scott.</h3>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selection 114</p>
+    
+    <hr />
+    
+    <h3>E. C. Schirmer Company</h3>
+    
+    <p>c/o ECS Publishing, <br />138 Ipswich St., Boston, MA 02215:</p>
+    
+    <p>Selection 136</p>
+    
+    <hr />
+    
+    <h3>Ford, Kevin.</h3>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selections 159, 161</p>
+    
+    <hr />
+    
+    <h3>Fred Bock Music Company,</h3>
+    
+    <p>P.O. Box 570567, Tarzana, CA 91357:</p>
+    
+    <p>Selection 133</p>
+    
+    <hr />
+    
+    <h3>Graham, Mark.</h3>
+    
+    <p>P.O. Box 770261, Cleveland, OH 44107.</p>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selections 2, 7, 53, 73, 75, 96, 99, 109, 112, 123, 135, 146, 148, 158, 160, 167, 174, 191</p>
+    
+    <hr />
+    
+    <h3>Hammett, Thomas.</h3>
+    
+    <p>&copy;Thomas Hammett,</p>
+    
+    <p>5603 Cold Springs Rd., Hixson, TN 37343.</p>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selection 165</p>
+    
+    <hr />
+    
+    <h3>Hoover, David E.</h3>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selections 16, 187</p>
+    
+    <hr />
+    
+    <h3>Hope Publishing Company,</h3>
+    
+    <p>380 S. Main Place, Carol Stream, IL 60188:</p>
+    
+    <p>Selection 147</p>
+    
+    <hr />
+    
+    <h3>Hoyer, Gerald E.</h3>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selections 149, 154, 174</p>
+    
+    <hr />
+    
+    <h3>Johnson, Janel.</h3>
+    
+    <p>Used by permission: </p>
+    <p></p>Selections 164, 184</p>
+    
+    <hr />
+    
+    <h3>Jutsum, Ross F.,</h3>
+    
+    <p>State of the Heart Productions,</p>
+    
+    <p>P.O. Box 56, Sierra Madre, CA 91204.</p>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selections 59, 98, 104, 105, 108, 132, 150, 157, 163, 190</p>
+    
+    <hr />
+    
+    <h3>King, Sonia J.</h3>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selections 134, 143</p>
+    
+    <hr />
+    
+    <h3>Manna Music</h3>
+    
+    <p>c/o Manna Music, Inc.,</p>
+    
+    <p>P.O. Box 218, Pacific City, OR 97135:</p>
+    
+    <p>Selection 129</p>
+    
+    <hr />
+    
+    <h3>Maranatha Music,</h3>
+    
+    <p>c/o Music Services, 1526 Otter Creek Rd.<br />Nashville, TN 37212 8139:</p>
+    
+    <p>Selections 100, 121</p>
+    
+    <hr />
+    
+    <h3>McKinney Music,</h3>
+    
+    <p>c/o Genevox Music Group<br />127 Ninth Ave. N., Nashville, TN 37234:</p>
+    
+    <p>Selection: 186</p>
+    
+    <hr />
+    
+    <h3>Miller, Terry.</h3>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selection 181</p>
+    
+    <hr />
+    
+    <h3>Mirigian, David.</h3>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selections 69, 89</p>
+    
+    <hr />
+    
+    <h3>Myrick, Ruth.</h3>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selections 142, 168, 176</p>
+    
+    <hr />
+    
+    <h3>Philp, Mary Beth.</h3>
+    
+    <p>&copy;Mary Beth Philp.</p>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selections 111, 120, 153, 177, 179</p>
+    
+    <hr />
+    
+    <h3>Ranew, Jason.</h3>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selection 142</p>
+    
+    <hr />
+    
+    <h3>Rigdon, Becky.</h3>
+    
+    <p>&copy;Becky Rigdon.</p>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selections 172, 182, 189</p>
+    
+    <hr />
+    
+    <h3>Seifert, Dottie.</h3>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selections 94, 107</p>
+    
+    <hr />
+    
+    <h3>Shemet, Paul R.</h3>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selection 170</p>
+    
+    <hr />
+    
+    <h3>Singspiration Music,</h3>
+    
+    <p>c/o Brentwood Benson Music Publishing, Inc.<br />741 Cool Springs Blvd., Franklin, TN 36067:</p>
+    
+    <p>Selections 124, 127</p>
+    
+    <hr />
+    
+    <h3>Tannert, Ann.</h3>
+    
+    <p>Used by permission:</p>
+    
+    <p>Selections 22, 62, 67, 69, 86, 88, 116, 122, 141, 152, 155, 166</p>
+    
+    <hr />
+    
+    <h3>The Hymn Society in the U.S. and Canada,</h3>
+    
+    <p>c/o Hope Publishing Company<br /> 380 S. Main Place, Carol Stream, IL 60188:</p>
+    
+    <p>Selection 183</p>
+    
+    <hr />
     `},
     "ucg": {title: "About the United Church of God", content: `<h1>About the United Church of God</h1>
     <h2>Who We Are</h2>

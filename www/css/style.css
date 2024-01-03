@@ -31,6 +31,7 @@
   --toggleBG: #fff;
   --toggleBorder: var(--form-border);
   --toggleCheckedBG: var(--blue);
+  --scriptureBG: rgba(242,242,242,0.8);
 }
 
 html {
@@ -52,6 +53,7 @@ html.dim {
   --toggleBG: #eee;
   --toggleBorder: var(--form-border);
   --toggleCheckedBG: var(--darkGold);
+  --scriptureBG: rgba(242,242,242,0.1);
 }
 
 body {
@@ -63,13 +65,13 @@ body {
   font-family: "Noto-sans", sans-serif;
 }
 body.scrollbar .mainContent .page footer.hymnFooter {
-  width: calc(100vw - 0px);
+  width: calc(100vw - var(--scrollbar-width));
 }
 body.scrollbar .mainContent .page#hymns .musicPlayer {
-  width: calc(100vw - 0px);
+  width: calc(100vw - var(--scrollbar-width));
 }
 body.scrollbar .mainContent .page#hymns .musicPlayer .video-js .vjs-progress-control {
-  width: calc(100vw - 0px);
+  width: calc(100vw - var(--scrollbar-width));
 }
 body #search .navbar, body #number .navbar {
   background-color: var(--searchHeader);
@@ -249,6 +251,23 @@ body .mainContent .page #langDropdownWrapper #langDropdown li.active a {
 }
 body .mainContent .page #langDropdownWrapper #langDropdown li a {
   white-space: nowrap;
+}
+body .mainContent .page #scripturalReferenceModal {
+  display: none;
+}
+body .mainContent .page #scripturalReferenceModal .scripturalReferenceContent {
+  backdrop-filter: blur(7px);
+  padding: 1em;
+  padding-bottom: 60px;
+  width: calc(100vw - var(--scrollbar-width));
+  background-color: var(--scriptureBG);
+}
+body .mainContent .page #scripturalReferenceModal.active {
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  left: 0;
 }
 body .mainContent .page #loader {
   padding: 1em;

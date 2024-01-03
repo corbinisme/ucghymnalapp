@@ -1,4 +1,5 @@
-$scrollbar-width: 0px;
+$scrollbar-width: var(--scrollbar-width);
+
 @font-face {
     font-family: 'Noto-sans';
     src: url('../font/notosans-regular.ttf') format('truetype'),
@@ -45,6 +46,7 @@ $scrollbar-width: 0px;
     --toggleBG: #fff;
     --toggleBorder: var(--form-border);
     --toggleCheckedBG: var(--blue);
+    --scriptureBG: rgba(242,242,242,0.8);
 
 }
 html{
@@ -64,6 +66,7 @@ html{
         --toggleBG: #eee;
         --toggleBorder: var(--form-border);
         --toggleCheckedBG: var(--darkGold);
+        --scriptureBG: rgba(242,242,242,0.1);
     
     }
     height: 100%;
@@ -84,12 +87,12 @@ body {
     &.scrollbar {
         .mainContent {
             .page footer.hymnFooter {
-                width: calc(100vw - $scrollbar-width);
+                width: calc(100vw - var(--scrollbar-width));
             }
             .page#hymns .musicPlayer {
-                width: calc(100vw - $scrollbar-width);
+                width: calc(100vw - var(--scrollbar-width));
                 .video-js .vjs-progress-control {
-                    width: calc(100vw - $scrollbar-width);
+                    width: calc(100vw - var(--scrollbar-width));
                 }
             }
         }
@@ -338,11 +341,32 @@ body {
 
                 }
             }
+            #scripturalReferenceModal {
+                display: none;
+
+                .scripturalReferenceContent {
+                    backdrop-filter: blur(7px);
+                    padding: 1em;
+                    padding-bottom: 60px;
+                    width: calc(100vw - var(--scrollbar-width));
+                    background-color: var(--scriptureBG);
+                }
+                &.active {
+                    display: block;
+                    position: absolute;
+                    bottom: 0px;
+                    width: 100%;
+                    left: 0;
+                    
+                }
+            }
             #loader {
                 padding: 1em;
                 padding-bottom: 0;
 
                 ol {margin: 0;}
+
+                
             }
             
 

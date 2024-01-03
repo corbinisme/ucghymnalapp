@@ -39,6 +39,7 @@ function redirectToSystemBrowser(url) {
       init: function(){
             app.getConfig();
             app.eventBindings();
+            app.setScrollbarWidth();
             app.loadCurrentLang(true);
             app.getPageSizing();
             app.populatePages()
@@ -55,6 +56,29 @@ function redirectToSystemBrowser(url) {
             app.startRandom();
         } 
         app.setHymn(app.currentHymn);
+      },
+      setScrollbarWidth: function(){
+        document.documentElement.style.setProperty('--scrollbar-width', app.getScrollbarWidth() + 'px');
+      },
+      getScrollbarWidth: function(){
+        // Creating invisible container
+        const outer = document.createElement('div');
+        outer.style.visibility = 'hidden';
+        outer.style.overflow = 'scroll'; // forcing scrollbar to appear
+        outer.style.msOverflowStyle = 'scrollbar'; // needed for WinJS apps
+        document.body.appendChild(outer);
+
+        // Creating inner element and placing it in the container
+        const inner = document.createElement('div');
+        outer.appendChild(inner);
+
+        // Calculating difference between container's full width and the child width
+        const scrollbarWidth = (outer.offsetWidth - inner.offsetWidth);
+        console.log("scrollbar",scrollbarWidth)
+        // Removing temporary elements from the DOM
+        document.body.removeChild(outer);
+
+        return scrollbarWidth;
       },
       getPageSizing: function(){
         // detect if there is a vertical scrollbar
@@ -263,6 +287,17 @@ function redirectToSystemBrowser(url) {
             document.getElementById("loader").classList.remove("hidden");
         }
       },
+      toggleScripturalReference: function(){
+        const target = document.getElementById("scripturalReferenceModal");
+        const node = document.getElementById("scripturalReferenceButton")
+        if(node.classList.contains("active")){
+            node.classList.remove("active");
+            target.classList.remove("active");
+        } else {
+            node.classList.add("active");
+            target.classList.add("active");
+        }
+      },
       searchScriptureByHymn: function(hymn){
         //loop through object `scriptural`
         let result = [];
@@ -290,6 +325,11 @@ function redirectToSystemBrowser(url) {
         let target = document.getElementById("loader");
         let pdfTarget = document.getElementById("pdfloader");
        
+        const scriptureActive = document.getElementById("scripturalReferenceButton");
+        if(scriptureActive.classList.contains("active")){
+            app.toggleScripturalReference();
+        }
+
         if(app.sheetMusicActive){
            // make a shell for pdf viewing
            // show pdf div
@@ -317,21 +357,24 @@ function redirectToSystemBrowser(url) {
             let output = "";
             if(result==null || typeof result == "undefined"){
 
-                output = `<p>Cannot find hymn # ${app.currentHymn}</p>`;
+                result = `<p>Cannot find hymn # ${app.currentHymn}</p>`;
             } else{
                 // add scripture references
-                output = result;
+               
                 if(scriptureForHymn.length>0){
-                    output += `<div class="scriptureReferences alert alert-info fs-sm"><p>Scriptural References</p><ul>`;
+                    output += `<div class="scriptureReferences">
+                        <div class="scripturalReferenceContent"><p>Scriptural References</p><ul>`;
                     scriptureForHymn.forEach(function(scripture){
                         output+=`<li>${scripture}</li>`;
                     })
-                    output+=`</ul></div>`;
+                    output+=`</ul></div></div>`;
                 }
+                const scriptureTarget = document.getElementById("scripturalReferenceModal");
+                scriptureTarget.innerHTML = output;
             } 
 
 
-            target.innerHTML = output;
+            target.innerHTML = result;
             document.querySelector(".page#hymns .contentMain").scrollTo(0,0);
 
             
@@ -591,6 +634,10 @@ function redirectToSystemBrowser(url) {
 
       eventBindings: function(){
 
+        document.getElementById("scripturalReferenceButton").addEventListener("click", function(e){
+            e.preventDefault();
+            app.toggleScripturalReference();
+        });
 
         document.getElementById("searchScripture").addEventListener("change", function(e){
 
