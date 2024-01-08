@@ -292,10 +292,10 @@
               </a>
             </div>
           </div>
-          <div class="mediaControls w-100 d-flex justify-content-space-between">
-            <a href="#" id="hymnPrev" class="music-control-toggler">
+          <div class="mediaControls align-items-center w-100 d-flex justify-content-space-between">
+            <a href="#" id="hymnPrev" class="music-control-toggler btn btn-outline-secondary">
               <i class="fa-solid fa-arrow-left"></i>
-              prev
+              
               
             </a> 
             
@@ -305,12 +305,15 @@
                 shuffle
               </a> 
               <a href="#" id="playAll" data-id="autoplay" class="music-control-btn">
-                <i class="fa fa-repeat"></i>
+                <span class="fa-stack" style="position: relative; left: 9px">
+                  <i class="fas fa-play-circle fa-stack-1x" style="position: relative; left: -19px"></i>
+                  <i class="fas fa-forward fa-stack-1x"></i>
+                </span>
                 autoplay
               </a>
             </div>
               
-              <a href="#" id="hymnNext" class="music-control-toggler">next
+              <a href="#" id="hymnNext" class="music-control-toggler  btn btn-outline-secondary">
                 <i class="fa-solid fa-arrow-right"></i>
               </a>
           </div>
@@ -550,7 +553,7 @@
  <script>
  var env="localhost";
  </script>
-
+ <script src="js/copyright.js"></script>
  <script src="js/topical.js"></script>
  <script src="js/scriptural.js"></script>
  <script src="js/information.js"></script>

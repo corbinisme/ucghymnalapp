@@ -287,10 +287,10 @@ function redirectToSystemBrowser(url) {
             document.getElementById("loader").classList.remove("hidden");
         }
       },
-      toggleScripturalReference: function(){
+      toggleScripturalReference: function(forceClose){
         const target = document.getElementById("scripturalReferenceModal");
         const node = document.getElementById("scripturalReferenceButton")
-        if(node.classList.contains("active")){
+        if(node.classList.contains("active") || forceClose==true){
             node.classList.remove("active");
             target.classList.remove("active");
         } else {
@@ -327,7 +327,7 @@ function redirectToSystemBrowser(url) {
        
         const scriptureActive = document.getElementById("scripturalReferenceButton");
         if(scriptureActive.classList.contains("active")){
-            app.toggleScripturalReference();
+            app.toggleScripturalReference(false);
         }
 
         if(app.sheetMusicActive){
@@ -636,7 +636,7 @@ function redirectToSystemBrowser(url) {
 
         document.getElementById("scripturalReferenceButton").addEventListener("click", function(e){
             e.preventDefault();
-            app.toggleScripturalReference();
+            app.toggleScripturalReference(false);
         });
 
         document.getElementById("searchScripture").addEventListener("change", function(e){
@@ -1227,7 +1227,9 @@ function redirectToSystemBrowser(url) {
 
       makeMusic:function(type, autoplay){
         
-        console.log("make music", type, autoplay)
+
+        app.toggleScripturalReference(true);
+
         let audio = document.querySelector(".video-js");
         let source = audio.querySelector("source");
         let sourcePath = app.getHymnWithZeros(app.currentHymn) + ".mp3";
