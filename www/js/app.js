@@ -218,7 +218,7 @@ function redirectToSystemBrowser(url) {
             copyContent.innerHTML+=html;
         });
         const copyText = window['pages_en']['copyright'].content;
-        //copyContent.innerHTML = copyText;
+        copyContent.innerHTML += copyText;
       },
       getHymnTitle: function(hymnLookup){
         const hymnSelector = document.getElementById("hymnSelect");
