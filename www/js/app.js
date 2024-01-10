@@ -198,10 +198,36 @@ function redirectToSystemBrowser(url) {
 
       populateCopyright: function(){
         const copyContent = document.getElementById("loadCopyright");
+        copyContent.innerHTML = "";
+        const copyrightData = window['copyright'];
+        copyrightData.forEach(function(item){
+            let html = "";
+            html+=`<div class="copyItem">
+                <div class="copyEntity">
+                    <h3 class="topicName">${item.entity}</h3>
+                </div>
+                <div class="copyPermission p-2" style="background-color: #eee">${item.permission}</div>
+                <div class="copySelection"><ul>`;
+                let splits = item.selection.split(",");
+                splits.forEach(function(hymn){
+                    let hymnLookup = app.getHymnWithZeros(hymn.trim());
+                    let hymnTitle = app.getHymnTitle(hymnLookup);
+                    html+=`<li><a href="#" onClick='app.loadSearch("${app.getHymnWithZeros(hymn)}")' class="topicSearchLink" data-page="hymns" data-hymn="${hymn}">${hymn}) ${hymnTitle}</a></li>`
+                });
+                html+=`</ul></div>`;
+            copyContent.innerHTML+=html;
+        });
         const copyText = window['pages_en']['copyright'].content;
-        copyContent.innerHTML = copyText;
+        //copyContent.innerHTML = copyText;
       },
+      getHymnTitle: function(hymnLookup){
+        const hymnSelector = document.getElementById("hymnSelect");
+        let hymnTitle = hymnSelector.querySelector(`option[value="${hymnLookup}"]`).innerText;
 
+        // get rid of the characters before the ) in the title
+        hymnTitle = hymnTitle.substring(hymnTitle.indexOf(")")+2, hymnTitle.length).trim()
+        return hymnTitle;
+      },
       populateAbout: function(){
         const aboutContent = document.getElementById("aboutContent");
         const aboutText = window['pages_en']['about'].content;
@@ -224,12 +250,8 @@ function redirectToSystemBrowser(url) {
             html+=`<div class="topic" data-id="${topic.id}"><h3 class="topicName text-dark">${topic.name}</h3><div class="topicHymns"><table class="table"><tbody class="tocBody">`;
             topic.hymns.forEach(function(hymn){
                 const hymnLookup = app.getHymnWithZeros(hymn);
-                const hymnSelector = document.getElementById("hymnSelect");
-                let hymnTitle = hymnSelector.querySelector(`option[value="${hymnLookup}"]`).innerText;
-
-                // get rid of the characters before the ) in the title
-                hymnTitle = hymnTitle.substring(hymnTitle.indexOf(")")+2, hymnTitle.length).trim()
-
+                const hymnTitle = app.getHymnTitle(hymnLookup);
+                
                 html+=`<tr><td>${hymn}</td><td><a href="#" onClick='app.loadSearch("${hymnLookup}")' class="topicSearchLink" data-page="hymns" data-hymn="${hymn}">${hymnTitle}</a></td></tr>`;
             })
             html+=`</tbody></table></div></div>`;
