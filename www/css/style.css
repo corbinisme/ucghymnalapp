@@ -170,6 +170,9 @@ body .btn-secondary {
 body.hasMusicOpen .mainContent .page #loader {
   padding-bottom: 6em;
 }
+body #scriptureContent .tocBody tr td:first-child {
+  width: 24%;
+}
 body .mainContent {
   display: flex;
   flex-wrap: nowrap;

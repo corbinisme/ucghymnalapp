@@ -162,7 +162,7 @@ function redirectToSystemBrowser(url) {
             thisOp.innerHTML = book;
             scriptureDropdown.append(thisOp);
 
-            html+=`<div class="book" data-id="${book}"><h3 class="bookName topicName text-dark">${book}</h3><div class="bookChapters"><table class="table"><tbody class="tocBody">`;
+            html+=`<div class="book" data-id="${book}"><h3 class="bookName pageHeading mb-4 mt-4">${book}</h3><div class="bookChapters"><table class="table"><tbody class="tocBody">`;
             chapters.forEach(function(chapter){
                 console.log(book, chapter)
                 const verses = Object.keys(chapter)[0];
@@ -204,9 +204,9 @@ function redirectToSystemBrowser(url) {
             let html = "";
             html+=`<div class="copyItem">
                 <div class="copyEntity">
-                    <h3 class="topicName">${item.entity}</h3>
+                    <h3 class="pageHeading mb-4 mt-4">${item.entity}</h3>
                 </div>
-                <div class="copyPermission p-2" style="background-color: #eee">${item.permission}</div>
+                <div class="copyPermission"><h4>${item.permission}</h4></div>
                 <div class="copySelection"><ul>`;
                 let splits = item.selection.split(",");
                 splits.forEach(function(hymn){
@@ -247,7 +247,7 @@ function redirectToSystemBrowser(url) {
             topicDropdown.append(thisOp);
 
 
-            html+=`<div class="topic" data-id="${topic.id}"><h3 class="topicName text-dark">${topic.name}</h3><div class="topicHymns"><table class="table"><tbody class="tocBody">`;
+            html+=`<div class="topic" data-id="${topic.id}"><h3 class="pageHeading mb-4 mt-4">${topic.name}</h3><div class="topicHymns"><table class="table"><tbody class="tocBody">`;
             topic.hymns.forEach(function(hymn){
                 const hymnLookup = app.getHymnWithZeros(hymn);
                 const hymnTitle = app.getHymnTitle(hymnLookup);

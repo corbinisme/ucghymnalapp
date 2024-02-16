@@ -230,6 +230,17 @@ body {
             }
         }
     } 
+
+    #scriptureContent {
+        .tocBody {
+            tr {
+                td:first-child {
+                    width: 24%;
+                
+                }
+            }
+        }
+    }
     .mainContent {
         display: flex;
         flex-wrap: nowrap;
