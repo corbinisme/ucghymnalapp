@@ -281,6 +281,13 @@ body {
             &:not(.searchPage) {
                 font-size: var(--fontSize);
             }
+
+            &.searchPage {
+                a {
+                    color: var(--linkColor);
+                
+                }
+            }
             
             h1 {
                 text-align: center;

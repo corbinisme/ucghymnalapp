@@ -201,6 +201,9 @@ body .mainContent .contentMain {
 body .mainContent .contentMain:not(.searchPage) {
   font-size: var(--fontSize);
 }
+body .mainContent .contentMain.searchPage a {
+  color: var(--linkColor);
+}
 body .mainContent .contentMain h1 {
   text-align: center;
 }
