@@ -403,8 +403,13 @@ function redirectToSystemBrowser(url) {
         }
 
         // if music is playing, stop it
-        if(app.musicPlayer)
-            app.musicPlayer.pause()
+        if(app.musicPlayer) {
+            app.musicPlayer.pause();
+            app.makeMusic(app.currentMusicType, false);
+            //app.musicPlayer.dispose();
+            // remove crrent source
+            
+        }
 
         
         document.querySelectorAll(".hymnFooter .musicType").forEach(function(elem){
@@ -733,6 +738,14 @@ function redirectToSystemBrowser(url) {
             console.log(target)
             if(target.id && (target.id=="chooseLanguage" || target.id=="currentLanguageCaret" || target.id=="currentLanguageCode")){
                 return;
+            }
+            if (target.parentElement) {
+                // Code to handle the parent element of target
+                const parentElement = target.parentElement;
+                if(parentElement.classList.contains("music-control-toggler")){
+                    console.log("music control toggler");
+                    parentElement.click();
+                }
             }
            
             if(target.classList.contains("navbar-toggler") || target.classList.contains("navbar-toggler-override")){
@@ -1275,6 +1288,7 @@ function redirectToSystemBrowser(url) {
                 source.setAttribute("src", sourcePath);
 
                 if(app.musicPlayer){
+
                     app.musicPlayer.pause();
                 } else {
 
