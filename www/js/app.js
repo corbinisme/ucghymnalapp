@@ -58,6 +58,7 @@ function redirectToSystemBrowser(url) {
         app.setHymn(app.currentHymn);
         app.populateAbout();
         app.populateUcg();
+        app.updateMenus();
       },
       setScrollbarWidth: function(){
         document.documentElement.style.setProperty('--scrollbar-width', app.getScrollbarWidth() + 'px');
@@ -141,6 +142,24 @@ function redirectToSystemBrowser(url) {
       changeStorage:function(key,val){
           app.storage.setItem(key, val);
       },
+      updateMenus: function(){
+        const dropdownContent = document.getElementById("dropdownContent");
+        const currentLang = app.lang;
+        let html = "";
+        const menuItems = window['menu_' + currentLang];
+        const menuItemsBackup = window["menu_en"];
+        dropdownContent.querySelectorAll(".nav-link").forEach(function(item){
+            const id = item.getAttribute("id");
+            const page = item.getAttribute("data-page");
+            const textNode = item.querySelector(".text");
+            let newText = (menuItems[page]? menuItems[page]: menuItemsBackup[page]);
+            textNode.innerHTML = newText;
+
+            document.querySelector("#" + page + " .navbar-brand").innerHTML = newText;
+            
+        });
+        
+      },
       populatePages: function(){
         app.populateAbout();
         app.populateCopyright();
@@ -194,7 +213,8 @@ function redirectToSystemBrowser(url) {
       },
       populateUcg: function(){
         const ucgContent = document.getElementById("ucgContent");
-        const ucgText = window['pages_en']['ucg'].content;
+        const currentLang = app.lang; 
+        const ucgText = window[`pages_${currentLang}`]? window[`pages_${currentLang}`]['ucg'].content: window['pages_en']['ucg'].content;
         ucgContent.innerHTML = ucgText;
       },
 
@@ -315,13 +335,16 @@ function redirectToSystemBrowser(url) {
       },
       toggleScripturalReference: function(forceClose){
         const target = document.getElementById("scripturalReferenceModal");
-        const node = document.getElementById("scripturalReferenceButton")
+        const node = document.getElementById("scripturalReferenceButton");
+        const body = document.querySelector("body");
         if(node.classList.contains("active") || forceClose==true){
             node.classList.remove("active");
             target.classList.remove("active");
+            body.classList.remove("scripturalReferenceOpen");
         } else {
             node.classList.add("active");
             target.classList.add("active");
+            body.classList.add("scripturalReferenceOpen");
         }
       },
       searchScriptureByHymn: function(hymn){

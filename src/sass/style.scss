@@ -226,13 +226,17 @@ body {
                     padding-bottom: 6em;
                 }
                 #scripturalReferenceModal {
-                    bottom: 8em;
+                    
+                    &.active {
+                        bottom: 8em;
+                    }
                 }
                     
                 
             }
         }
     } 
+    
 
     #scriptureContent {
         .tocBody {
@@ -322,6 +326,16 @@ body {
 
             &#hymns {
                 position: static;
+            }
+            &#about {
+                header {
+                    height: auto;
+                }
+            }
+            &#ucg {
+                header {
+                    height: auto;
+                }
             }
 
 

@@ -170,7 +170,7 @@ body .btn-secondary {
 body.hasMusicOpen .mainContent .page #loader {
   padding-bottom: 6em;
 }
-body.hasMusicOpen .mainContent .page #scripturalReferenceModal {
+body.hasMusicOpen .mainContent .page #scripturalReferenceModal.active {
   bottom: 8em;
 }
 body #scriptureContent .tocBody tr td:first-child {
@@ -232,6 +232,12 @@ body .mainContent .page {
 }
 body .mainContent .page#hymns {
   position: static;
+}
+body .mainContent .page#about header {
+  height: auto;
+}
+body .mainContent .page#ucg header {
+  height: auto;
 }
 body .mainContent .page #langDropdownWrapper {
   position: relative;

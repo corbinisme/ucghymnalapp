@@ -6,7 +6,9 @@ var menu_en = {
     'Search':"Search",
     'Title': "Title",
     'Page':"Page",
-    'Information': "Information",
-    "Topical":  "Topical Index",
-    "Scriptural":   "Scriptural Index",
+    'copyright': "Copyright Information",
+    "topical":  "Topical Index",
+    "scripture":   "Scriptural Index",
+    "about": "About the App",
+    "ucg": "About United Church of God",
 }
