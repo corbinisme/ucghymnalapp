@@ -77,7 +77,6 @@ function redirectToSystemBrowser(url) {
 
         // Calculating difference between container's full width and the child width
         const scrollbarWidth = (outer.offsetWidth - inner.offsetWidth);
-        console.log("scrollbar",scrollbarWidth)
         // Removing temporary elements from the DOM
         document.body.removeChild(outer);
 
@@ -185,11 +184,9 @@ function redirectToSystemBrowser(url) {
 
             html+=`<div class="book" data-id="${book}"><h3 class="bookName pageHeading mb-4 mt-4">${book}</h3><div class="bookChapters"><table class="table"><tbody class="tocBody">`;
             chapters.forEach(function(chapter){
-                console.log(book, chapter)
+
                 const verses = Object.keys(chapter)[0];
-                console.log("verses", verses);
                 const hymns = chapter[verses];
-                console.log("hymns", hymns);
                
                 html+=`<tr><td>${verses}</td><td>
                     <ul>`;
@@ -254,7 +251,6 @@ function redirectToSystemBrowser(url) {
         const aboutContent = document.getElementById("aboutContent");
         const currentLang = app.lang;
         const aboutText = (window[`pages_${currentLang}`]? window[`pages_${currentLang}`]['about'].content : window['pages_en']['about'].content);
-        console.log(currentLang, "about text", window[`pages_${currentLang}`])
         aboutContent.innerHTML = aboutText;
       },
       populateTopics: function(){
@@ -358,14 +354,13 @@ function redirectToSystemBrowser(url) {
                 const verses = Object.keys(chapter)[0];
                 const hymns = chapter[verses];
                 hymns.forEach(function(hymnNum){
-                    console.log("verses here", verses, hymnNum, hymn)
                     if(hymnNum==hymn){
                         result.push(book + " " + verses);
                     }
                 })
             })
         });
-        console.log("result scripture", result)
+
         return result;
 
       },
@@ -600,7 +595,7 @@ function redirectToSystemBrowser(url) {
             app.currentHymn = next;
             app.setHymn(next);
         }
-        console.log("play next", app.currentMusicType, app.currentHymn)
+
         app.makeMusic(app.currentMusicType, true);
         
       },
@@ -763,6 +758,10 @@ function redirectToSystemBrowser(url) {
         document.addEventListener("click", function(e){
             let target = e.target;
             console.log(target)
+            if(target.classList.contains("incorrectTarget")){;
+                target.closest("a").click();
+                return;
+            }
             if(target.id && (target.id=="chooseLanguage" || target.id=="currentLanguageCaret" || target.id=="currentLanguageCode")){
                 return;
             }
@@ -770,7 +769,6 @@ function redirectToSystemBrowser(url) {
                 // Code to handle the parent element of target
                 const parentElement = target.parentElement;
                 if(parentElement.classList.contains("music-control-toggler")){
-                    console.log("music control toggler");
                     parentElement.click();
                 }
             }
@@ -815,7 +813,6 @@ function redirectToSystemBrowser(url) {
                 app.musicPlayer.pause();
                 thisbutton.classList.remove("active");
             } else {
-                console.log("should be active")
                 
                 bodyTag.classList.add("hasMusicOpen");
                 
@@ -1319,8 +1316,6 @@ function redirectToSystemBrowser(url) {
                     app.musicPlayer.pause();
                 } else {
 
-                    
-                    console.log("autoplay", autoPlayVal)
                     app.musicPlayer = videojs('audio_player', {
                         "playbackRates": [0.8, 0.9, 1, 1.2, 1.3],
                         controls: true,
@@ -1341,9 +1336,7 @@ function redirectToSystemBrowser(url) {
                             }, 1000)
                            
                            
-                        } else {
-                            console.log("ended")
-                        }
+                        } 
                     });
                 }
 

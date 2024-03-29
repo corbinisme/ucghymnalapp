@@ -431,6 +431,7 @@ body .mainContent .page#hymns .musicPlayer .video-js > .vjs-control-bar {
   align-items: flex-start;
   justify-content: center;
   margin-left: 20px;
+  width: auto;
 }
 body .mainContent .page#hymns .musicPlayer .video-js > .vjs-control-bar .playlist-controls .btn {
   background-color: var(--bg-body);
@@ -449,6 +450,7 @@ body .mainContent .page#hymns .musicPlayer .video-js .vjs-menu-button-popup .vjs
 body .mainContent .page#hymns .musicPlayer .video-js .vjs-menu .vjs-menu-content {
   display: flex;
   justify-content: center;
+  bottom: 5.5em;
 }
 body .mainContent .page#hymns .musicPlayer .video-js .vjs-menu li {
   padding: 8px;
@@ -468,8 +470,8 @@ body .mainContent .page#hymns .musicPlayer .video-js .vjs-control.vjs-button {
   margin-right: 5px;
   background: var(--bg-body);
   color: var(--text-color);
-  height: 42px;
-  width: 42px;
+  height: 50px;
+  width: 50px;
   border-color: var(--button-border);
 }
 body .mainContent .page#hymns .musicPlayer .video-js .vjs-control.vjs-button.vjs-playback-rate {
@@ -477,10 +479,11 @@ body .mainContent .page#hymns .musicPlayer .video-js .vjs-control.vjs-button.vjs
   width: 45px;
 }
 body .mainContent .page#hymns .musicPlayer .video-js .vjs-playback-rate .vjs-playback-rate-value {
-  line-height: 2.4em;
+  line-height: 3em;
 }
 body .mainContent .page#hymns .musicPlayer .video-js .vjs-play-control .vjs-icon-placeholder::before {
-  top: 2px;
+  top: -0.2em;
+  font-size: 3em;
 }
 body .mainContent .page#hymns .musicPlayer .video-js .vjs-volume-panel {
   display: none;
