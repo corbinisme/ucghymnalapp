@@ -56,6 +56,8 @@ function redirectToSystemBrowser(url) {
             app.startRandom();
         } 
         app.setHymn(app.currentHymn);
+        app.populateAbout();
+        app.populateUcg();
       },
       setScrollbarWidth: function(){
         document.documentElement.style.setProperty('--scrollbar-width', app.getScrollbarWidth() + 'px');
@@ -230,7 +232,9 @@ function redirectToSystemBrowser(url) {
       },
       populateAbout: function(){
         const aboutContent = document.getElementById("aboutContent");
-        const aboutText = window['pages_en']['about'].content;
+        const currentLang = app.lang;
+        const aboutText = (window[`pages_${currentLang}`]? window[`pages_${currentLang}`]['about'].content : window['pages_en']['about'].content);
+        console.log(currentLang, "about text", window[`pages_${currentLang}`])
         aboutContent.innerHTML = aboutText;
       },
       populateTopics: function(){

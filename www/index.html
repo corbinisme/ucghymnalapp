@@ -253,70 +253,71 @@
         </div>
 
         <div class="musicPlayer" data-playing="false">
-          <div class="musicPlayerWrapper d-flex">
-            <div class="col">
+          <div class="musicPlayerWrapper">
+            <div class="d-flex">
+              <div class="col">
            
-             
+                <div class="form-check form-switch"  id="vocal_version_toggle">
+                  <label class="form-check-label" 
+                  for="vocal_version"><span>Vocal</span>
+                  </label>
+                  <input class="form-check-input" 
+                  type="checkbox" id="vocal_version">
+                  
+                </div>
+              </div>
 
-              <div class="form-check form-switch"  id="vocal_version_toggle">
-                <label class="form-check-label" 
-                for="vocal_version"><span>Vocal</span>
-                </label>
-                <input class="form-check-input" 
-                type="checkbox" id="vocal_version">
+              <div class="col text-end">
                 
+                <a class="btn btn-outline-tertiary musicAction" href="#" id="closeMusic">
+                  <i class="fa-solid fa-xmark"></i>
+                </a>
+              </div>
+            
             </div>
-              
-         
-          </div>
-          
-            <div class="mediaPlayer col">
-              <audio
-              id="audio_player"
-              class="video-js vjs-default-skin"
-              controls
-              preload="auto"
-              width="600"
-              height="44"
-              
-                >
-                <source src="https://ucgweb.s3.amazonaws.com/files/ucg-hymnal-app-v2/mp3/001.mp3" type="audio/mp3" />
-              </audio>
+            
+            <div class="mediaPlayer">
+
+              <div class="d-flex align-items-flex-start">
+
+                <a href="#" id="shuffleBtn" data-id="shuffle" class="music-control-btn btn btn-outline-secondary">
+                  <i class="fa-solid fa-random"></i>
+                  
+                </a> 
+                
+                <a href="#" id="hymnPrev" class="music-control-toggler btn btn-outline-secondary">
+                  <i class="fa-solid fa-arrow-left"></i>
+                </a> 
+                <audio
+                  id="audio_player"
+                  class="video-js vjs-default-skin"
+                  controls
+                  preload="auto"
+                  width="600"
+                  height="44"
+                  
+                  >
+                  <source src="https://ucgweb.s3.amazonaws.com/files/ucg-hymnal-app-v2/mp3/001.mp3" type="audio/mp3" />
+                </audio>
+
+                <a href="#" id="hymnNext" class="music-control-toggler  btn btn-outline-secondary">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+                <a href="#" id="playAll" data-id="autoplay" class="music-control-btn btn btn-outline-secondary">
+                  
+                    <!--<i class="fas fa-play-circle fa-stack-1x" style="position: relative; left: -19px"></i>-->
+                    <i class="fas fa-forward"></i>
+                  
+                  
+                </a>
+              </div>
          
             </div>
   
-            <div class="col text-end">
-              
-              <a class="btn btn-outline-tertiary musicAction" href="#" id="closeMusic">
-                <i class="fa-solid fa-xmark"></i>
-              </a>
-            </div>
-          </div>
-          <div class="mediaControls align-items-center w-100 d-flex justify-content-space-between">
-            <a href="#" id="hymnPrev" class="music-control-toggler btn btn-outline-secondary">
-              <i class="fa-solid fa-arrow-left"></i>
-              
-              
-            </a> 
             
-            <div>
-              <a href="#" id="shuffleBtn" data-id="shuffle" class="music-control-btn">
-                <i class="fa-solid fa-random"></i>
-                shuffle
-              </a> 
-              <a href="#" id="playAll" data-id="autoplay" class="music-control-btn">
-                <span class="fa-stack" style="position: relative; left: 9px">
-                  <i class="fas fa-play-circle fa-stack-1x" style="position: relative; left: -19px"></i>
-                  <i class="fas fa-forward fa-stack-1x"></i>
-                </span>
-                autoplay
-              </a>
-            </div>
-              
-              <a href="#" id="hymnNext" class="music-control-toggler  btn btn-outline-secondary">
-                <i class="fa-solid fa-arrow-right"></i>
-              </a>
           </div>
+          
         </div>
 
       </footer>

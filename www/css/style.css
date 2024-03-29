@@ -170,6 +170,9 @@ body .btn-secondary {
 body.hasMusicOpen .mainContent .page #loader {
   padding-bottom: 6em;
 }
+body.hasMusicOpen .mainContent .page #scripturalReferenceModal {
+  bottom: 8em;
+}
 body #scriptureContent .tocBody tr td:first-child {
   width: 24%;
 }
@@ -381,7 +384,7 @@ body .mainContent .page#hymns .musicPlayer.active {
   transform: translateY(0em);
 }
 body .mainContent .page#hymns .musicPlayer .musicPlayerWrapper {
-  align-items: center;
+  align-items: flex-start;
 }
 body .mainContent .page#hymns .musicPlayer .musicType {
   display: none;
@@ -397,7 +400,7 @@ body .mainContent .page#hymns .musicPlayer .video-js {
   background-color: transparent;
   width: 100%;
   z-index: 80;
-  margin-top: 0.62em;
+  margin-top: -0.5em;
 }
 body .mainContent .page#hymns .musicPlayer .video-js .vjs-menu-content {
   background-color: var(--bg-body);

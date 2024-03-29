@@ -225,6 +225,9 @@ body {
                 #loader {
                     padding-bottom: 6em;
                 }
+                #scripturalReferenceModal {
+                    bottom: 8em;
+                }
                     
                 
             }
@@ -526,7 +529,7 @@ body {
                     
 
                     .musicPlayerWrapper {
-                        align-items: center;
+                        align-items: flex-start;
                     }
                     .musicType  {
                         display: none;
@@ -740,7 +743,7 @@ body {
                     }
                     .mediaControls {
                         justify-content: space-between;
-                    }
+                    } 
                     
                     .music-control-btn {
                         padding: 0.5em;
