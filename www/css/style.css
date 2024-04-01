@@ -690,3 +690,25 @@ body .mainContent .page footer.hymnFooter #pianoIcon.solo {
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
+
+#whatsnew-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+}
+#whatsnew-modal .popup-inner {
+  margin-top: 7em;
+  padding: 1em;
+}
+
+#whatsnew-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 998;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
