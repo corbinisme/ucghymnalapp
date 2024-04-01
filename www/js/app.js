@@ -437,13 +437,10 @@ function redirectToSystemBrowser(url) {
         document.querySelectorAll(".hymnFooter .musicType").forEach(function(elem){
             elem.classList.remove("active");
         });
-       
-        /*if(app.musicOpen){
-            document.querySelector(".musicPlayer").classList.add("active");
-        } else {
-            document.querySelector(".musicPlayer").classList.remove("active");
-        }
-        */
+
+        // scroll back to top
+        document.querySelector(".page#hymns").scrollTo(0,0);
+
       },
       toggleTheme: function(reverse){
 
