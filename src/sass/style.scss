@@ -47,6 +47,7 @@ $scrollbar-width: var(--scrollbar-width);
     --toggleBorder: var(--form-border);
     --toggleCheckedBG: var(--blue);
     --scriptureBG: rgba(242,242,242,0.8);
+    --footer-btn-active: rgb(222,222,222);
 
 }
 html{
@@ -67,6 +68,7 @@ html{
         --toggleBorder: var(--form-border);
         --toggleCheckedBG: var(--darkGold);
         --scriptureBG: rgba(242,242,242,0.1);
+        --footer-btn-active: var(--bg-headerBot);
     
     }
     height: 100%;
@@ -762,7 +764,7 @@ body {
                         &.active {
                             background-color: var(--bg-headerBot);
                             border: 1px solid;
-                            border-radius: 5px;
+                           
                         }
                     }
 
@@ -773,7 +775,7 @@ body {
                         background-color: var(--bg-body);
 
                         &.active {
-                            background-color: var(--bg-headerBot);
+                            background-color: var(--footer-btn-active);
                         }
                     }
                     #pianoIcon {

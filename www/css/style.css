@@ -32,6 +32,7 @@
   --toggleBorder: var(--form-border);
   --toggleCheckedBG: var(--blue);
   --scriptureBG: rgba(242,242,242,0.8);
+  --footer-btn-active: rgb(222,222,222);
 }
 
 html {
@@ -54,6 +55,7 @@ html.dim {
   --toggleBorder: var(--form-border);
   --toggleCheckedBG: var(--darkGold);
   --scriptureBG: rgba(242,242,242,0.1);
+  --footer-btn-active: var(--bg-headerBot);
 }
 
 body {
@@ -675,7 +677,6 @@ body .mainContent .page footer.hymnFooter .music-control-btn {
 body .mainContent .page footer.hymnFooter .music-control-btn.active {
   background-color: var(--bg-headerBot);
   border: 1px solid;
-  border-radius: 5px;
 }
 body .mainContent .page footer.hymnFooter .col.actions {
   flex: 1 99%;
@@ -684,7 +685,7 @@ body .mainContent .page footer.hymnFooter .btn {
   background-color: var(--bg-body);
 }
 body .mainContent .page footer.hymnFooter .btn.active {
-  background-color: var(--bg-headerBot);
+  background-color: var(--footer-btn-active);
 }
 body .mainContent .page footer.hymnFooter #pianoIcon.solo {
   border-top-left-radius: 3px;
