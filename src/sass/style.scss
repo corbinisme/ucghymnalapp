@@ -67,7 +67,7 @@ html{
         --toggleBG: #eee;
         --toggleBorder: var(--form-border);
         --toggleCheckedBG: var(--darkGold);
-        --scriptureBG: rgba(242,242,242,0.1);
+        --scriptureBG: rgba(0,0,0,0.6);
         --footer-btn-active: var(--bg-headerBot);
     
     }
@@ -230,7 +230,7 @@ body {
                 #scripturalReferenceModal {
                     
                     &.active {
-                        bottom: 8em;
+                        bottom: calc(8em - 3px);
                     }
                 }
                     

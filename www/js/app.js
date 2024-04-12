@@ -26,6 +26,7 @@ function redirectToSystemBrowser(url) {
       hasVocal: false,
       hymn: 1,
       autoplay: false,
+      shuffle: false,
       storage: null,
       sheetMusicEnabled: false,
       sheetMusicActive: false,
@@ -36,13 +37,16 @@ function redirectToSystemBrowser(url) {
       currentMusicType: "piano",
       selectedTopic: "0",
       selectedBook: "all",
+      isPlaying: false,
+      randomPlaylists:[],
       init: function(){
             app.getConfig();
             app.eventBindings();
             app.setScrollbarWidth();
             app.loadCurrentLang(true);
             app.getPageSizing();
-            app.populatePages()
+            app.populatePages();
+            
             window.addEventListener("resize", function(){
                 app.getPageSizing();
             })
@@ -102,6 +106,31 @@ function redirectToSystemBrowser(url) {
         } else {
             document.querySelector("body").classList.remove("scrollbar");
         }
+      },
+      shuffleArray: function(array){
+        let currentIndex = array.length,  randomIndex;
+        while (currentIndex != 0) {
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+        return array;
+      },
+      setRandomPlaylistForLang: function(){
+        config.langs.split(",").forEach(function(lang){
+            //randomPlaylists
+            console.log("setting random playlist for", lang);
+            let hymnCount = window['title_'+ lang].length;
+            let playlist = [];
+            for(let i=1; i<=hymnCount; i++){
+                playlist.push(i);
+            }
+            // randomize the playlist
+            playlist = app.shuffleArray(playlist);
+            app.randomPlaylists[lang] = playlist;
+        })
+        console.log("random playlists", app.randomPlaylists)
       },
       changePage: function(id){
         if(document.querySelector("#" + id)){
@@ -585,15 +614,17 @@ function redirectToSystemBrowser(url) {
             app.setHymn(app.currentHymn);
         } else {
             let next = current + 1;
-            if(next>config.totalHymns){
-                next = 1;
+            let hymnCount = window['title_'+ app.lang].length;
+            if(next>hymnCount){
+                next = hymnCount;
             }
+            
             let formatNext = app.getHymnWithZeros(next);
             app.currentHymn = next;
             app.setHymn(next);
         }
-
-        app.makeMusic(app.currentMusicType, true);
+        if(app.isPlaying==true)
+            app.makeMusic(app.currentMusicType, true);
         
       },
       playPrevious: function(){
@@ -609,7 +640,8 @@ function redirectToSystemBrowser(url) {
             app.currentHymn = next;
             app.setHymn(next);
         }
-        app.makeMusic(app.currentMusicType, true);
+        if(app.isPlaying==true)
+            app.makeMusic(app.currentMusicType, true);
       },
       setLang: function(langValue){
         app.lang = langValue;
@@ -747,6 +779,10 @@ function redirectToSystemBrowser(url) {
                 } else {
                     thisbutton.classList.remove("active");
                 }
+                if(thisProp=="shuffle"){
+                    //make random playlist
+                    app.setRandomPlaylistForLang();
+                }
             });
             
         })
@@ -754,7 +790,7 @@ function redirectToSystemBrowser(url) {
         //close language and menu when clicking anywhere else
         document.addEventListener("click", function(e){
             let target = e.target;
-            console.log(target)
+            console.log("clicked",target)
             if(target.classList.contains("incorrectTarget")){;
                 target.closest("a").click();
                 return;
@@ -762,6 +798,33 @@ function redirectToSystemBrowser(url) {
             if(target.id && (target.id=="chooseLanguage" || target.id=="currentLanguageCaret" || target.id=="currentLanguageCode")){
                 return;
             }
+
+            // music player controls
+            let isMusicPlayerControl = false;
+            if(target.classList.contains("vjs-icon-placeholder") || target.classList.contains("vjs-icon") || target.classList.contains("vjs-control-text")){
+                // check parent
+                let parent = target.parentElement;
+                if(parent.classList.contains("vjs-play-control")){
+                    isMusicPlayerControl = true;
+                }
+            }
+            if(target.classList.contains("vjs-play-control")){
+                
+                isMusicPlayerControl = true;
+            }
+            if(isMusicPlayerControl){
+                console.log("music player control")
+                let buttonstate = document.querySelector(".vjs-play-control");
+                let title = buttonstate.getAttribute("title");
+                console.log("current play button title", title)
+                if(title=="Play"){
+                    app.isPlaying = true;
+                } else {
+                    app.isPlaying = false;
+                }
+                return;
+            }
+
             if (target.parentElement) {
                 // Code to handle the parent element of target
                 const parentElement = target.parentElement;
@@ -1283,14 +1346,14 @@ function redirectToSystemBrowser(url) {
 
       makeMusic:function(type, autoplay){
         
-
+        console.log("making music", type)
         app.toggleScripturalReference(true);
 
         let audio = document.querySelector(".video-js");
         let source = audio.querySelector("source");
         let sourcePath = app.getHymnWithZeros(app.currentHymn) + ".mp3";
         let autoPlayVal = false;
-        if(app.autoplay==true || autoplay==true){
+        if((app.autoplay==true && app.isPlaying) || autoplay==true){
             autoPlayVal = true;
         }
         if(type=="piano" || type=="vocal"){
@@ -1323,13 +1386,16 @@ function redirectToSystemBrowser(url) {
                     app.musicPlayer.on('ended', function() {
                    
                         const playerWrapper = document.querySelector(".video-js");
+                        const musicWrapper = document.querySelector(".musicPlayer");
                         playerWrapper.setAttribute("data-playing", "false");
-                    
+                        musicWrapper.setAttribute("data-playing", "false");
+
+                
                         if(app.autoplay==true){
     
                             window.setTimeout(function(){
                             app.playNext();
-    
+                                
                             }, 1000)
                            
                            
@@ -1341,21 +1407,23 @@ function redirectToSystemBrowser(url) {
 
                
                 app.musicPlayer.on('play',()=>{
-
+                    console.log("playing")
                     const playerWrapper = document.querySelector(".video-js");
+                    const musicWrapper = document.querySelector(".musicPlayer");
                     playerWrapper.setAttribute("data-playing", "true");
+                    musicWrapper.setAttribute("data-playing", "true");
+
                 });
                 app.musicPlayer.on('pause',()=>{
-
+                    console.log("pause")
                     const playerWrapper = document.querySelector(".video-js");
+                    const musicWrapper = document.querySelector(".musicPlayer");
                     playerWrapper.setAttribute("data-playing", "false");
+                    musicWrapper.setAttribute("data-playing", "false");
                 });
                 app.musicPlayer.ready(function() {
 
                     // add logic to know if we should auto play
-                    //app.musicPlayer.play();\
-                    // in the future, add shuffle controls
-                    //app.addShuffleControls();
                 });
 
                 if(autoPlayVal==true){
@@ -1374,19 +1442,7 @@ function redirectToSystemBrowser(url) {
         }
 
       },
-      addShuffleControls: function(){
-        const controlBar = document.querySelector(".musicPlayer .video-js .vjs-control-bar");
-        let shufflestring = `
-        
-      `;
-
-      const temp = document.createElement('div');
-      temp.classList.add("playlist-controls")
-        temp.innerHTML = shufflestring;
-
-      //controlBar.appendChild(temp);
-        
-      },
+      
       makeLanguageDropdown: function(){
           if(app.languages.length==1){
               // only english
