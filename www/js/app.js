@@ -609,8 +609,17 @@ function redirectToSystemBrowser(url) {
       },
       playNext: function(){
         let current = parseInt(app.currentHymn);
+        let list = app.randomPlaylists[app.lang];
+        let currentIndex = list.indexOf(current);
         if(app.shuffle){
-            app.startRandom();
+            // look at the random playlist generated when the shuffle button was enabled
+            
+            let next = list[currentIndex+1];
+            if(next==undefined){
+                next = list[0];
+            }
+            app.currentHymn = next;
+            //app.startRandom();
             app.setHymn(app.currentHymn);
         } else {
             let next = current + 1;
@@ -629,8 +638,15 @@ function redirectToSystemBrowser(url) {
       },
       playPrevious: function(){
         let current = parseInt(app.currentHymn);
+        let list = app.randomPlaylists[app.lang];
+        let currentIndex = list.indexOf(current);
         if(app.shuffle){
-            app.startRandom();
+            let next = list[currentIndex-1];
+            if(next==undefined){
+                next = list[list.length-1];
+            }
+            app.currentHymn = next;
+            //app.startRandom();
             app.setHymn(app.currentHymn);
         } else {
             let next = current - 1;
@@ -1317,6 +1333,7 @@ function redirectToSystemBrowser(url) {
             hymnSelector.value = startVal;
         app.getHymnText();
       }, 
+
       startRandom: function(){
         // get actual list of values for the current lang
         let titles = window["title_" + app.lang];
