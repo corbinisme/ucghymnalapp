@@ -151,7 +151,9 @@ function redirectToSystemBrowser(url) {
 
             if(id=="number"){
                 window.setTimeout(function(){
-                    document.getElementById("searchByNumber").focus();
+                    const numInput  =document.getElementById("searchByNumber");
+                    numInput.value = "";
+                    numInput.focus();
                 }, 400);
             }
             else if(id=="search"){

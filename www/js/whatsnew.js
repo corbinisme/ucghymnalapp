@@ -4,8 +4,8 @@ var whatsnew = {
     init: function() {
         console.log("whatsnew init")
         if(this.st.getItem('whatsnewseen') == null) {
-            //this.showWhatsNew();
-            //this.bindEvents();
+            this.showWhatsNew();
+            this.bindEvents();
             //this.st.setItem('whatsnewseen', '1');
         }
     },
@@ -18,6 +18,28 @@ var whatsnew = {
             }, false);
         }
         );
+    },
+    updateLang: function(el) {
+        console.log("updateLang", el.value);
+        app.lang = el.value;
+        this.lang = el.value;
+        this.closeWhatsNew();
+        this.showWhatsNew();
+    },
+    createLanguageSelector: function() {
+        let currentLang = this.lang;
+        var langSelector = `<div id="lang-selector">
+                                <select id="lang-select" onChange="whatsnew.updateLang(this)">
+                                    <option value="en" ${(currentLang=="en"?"selected":"")}>English</option>
+                                    <option value="de" ${(currentLang=="de"?"selected":"")}>Deutsch</option>
+                                    <option value="pg" ${(currentLang=="pg"?"selected":"")}>Português</option>
+                                    <option value="es" ${(currentLang=="es"?"selected":"")}>Español</option>
+                                    <option value="fr" ${(currentLang=="fr"?"selected":"")}>Français</option>
+                                    <option value="nl" ${(currentLang=="nl"?"selected":"")}>Nederlands</option>
+                                    <option value="it" ${(currentLang=="it"?"selected":"")}>Italiano</option>
+                                </select>
+                            </div>`;
+        return langSelector;
     },
     copy: [
         {lang: "en", text: "What's New"},
@@ -42,6 +64,7 @@ var whatsnew = {
                             <div class="popup-inner">
                                 <div class="popup-title">
                                     ${this.copy.find(x => x.lang === this.lang).text}
+                                    ${whatsnew.createLanguageSelector()}
                                 </div>
                                 <div class="popup-content">
                                     <p>Version 1.0.0</p>
