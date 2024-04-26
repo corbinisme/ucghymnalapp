@@ -5,5 +5,11 @@ var menu_de = {
     'Search By Title':'Suche nach Titel',
     'Search':'Suche',
     'Title':'Titel',
-    'Page':'Seite'
+    'Page':'Seite',
+    'copyright': "Urheberrechtsinformation",
+    "topical":  "Themenindex",
+    "scripture":   "Schriftindex",
+    "about": "Über diese App",
+    "ucg": "Über die Vereinigte Kirche Gottes",
+    "404": "Seite nicht gefunden"
 }

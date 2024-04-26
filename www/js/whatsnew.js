@@ -5,7 +5,7 @@ var whatsnew = {
         console.log("whatsnew init")
         if(this.st.getItem('whatsnewseen') == null) {
             this.showWhatsNew();
-            this.bindEvents();
+  
             //this.st.setItem('whatsnewseen', '1');
         }
     },
@@ -67,7 +67,6 @@ var whatsnew = {
                                     ${whatsnew.createLanguageSelector()}
                                 </div>
                                 <div class="popup-content">
-                                    <p>Version 1.0.0</p>
                                     <ul>
                                         <li>Initial release</li>
                                     </ul>
@@ -79,6 +78,8 @@ var whatsnew = {
                     </div>`;
         document.querySelector('body').insertAdjacentHTML('beforeend', popup);
         //$('#whatsnew').addClass('popup-visible');
+
+        this.bindEvents();
     }
 }
 

@@ -11,4 +11,5 @@ var menu_en = {
     "scripture":   "Scriptural Index",
     "about": "About the App",
     "ucg": "About United Church of God",
+    "404": "Page not found"
 }

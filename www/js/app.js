@@ -431,8 +431,10 @@ function redirectToSystemBrowser(url) {
             result = window['lyrics_' + app.lang][file];
             let output = "";
             if(result==null || typeof result == "undefined"){
-
-                result = `<p>Cannot find hymn # ${app.currentHymn}</p>`;
+                
+                let translation404 = window['menu_' + app.lang]['404'];
+                result = `<p>${translation404}</p>`;
+                //result = `<p>Cannot find hymn # ${app.currentHymn}</p>`;
             } else{
                 // add scripture references
                

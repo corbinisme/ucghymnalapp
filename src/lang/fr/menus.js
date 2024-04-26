@@ -11,6 +11,7 @@ var menu_fr = {
     "scripture":   "Index biblique",
     "about": "À propos de Cantiques EDU",
     "ucg": "À propos de l'Église de Dieu Unie",
+    "404": "Page non trouvée"
     
     
     

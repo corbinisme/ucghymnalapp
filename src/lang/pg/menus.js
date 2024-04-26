@@ -6,4 +6,10 @@ var menu_pg = {
     'Search':"Buscar",
     'Title': "Título",
     'Page':"Pagina",
+    'copyright': "Informações sobre direitos autorais",
+    "topical":  "Índice Tópico",
+    "scripture":   "Índice Bíblico",
+    "about": "Sobre este aplicativo",
+    "ucg": "Sobre a Igreja de Deus Unida",
+    "404": "Página não encontrada",
 }

@@ -5,5 +5,11 @@ var menu_nl = {
     'Search By Title':'Zoek Op Titel',
     'Search':'Zoek',
     'Title':'Titel',
-    'Page':'Pagina'
+    'Page':'Bladzijde',
+    'copyright': "Informatie over copyright",
+    "topical":  "Actuele index",
+    "scripture":   "Schriftuurlijke index",
+    "about": "Over deze app",
+    "ucg": "Over de Verenigde Kerk van God",
+    "404": "Pagina niet gevonden"
 }
