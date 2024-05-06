@@ -10,6 +10,29 @@
         margin-top: 7em;
         padding: 1em;
     }
+
+    .whatsnew-close {
+        position: fixed;
+        top: 0;
+        left: calc(50vw - 20px);
+        width: 40px;
+    }
+
+    .slider-dots {
+        margin: 1em 0;
+        text-align: center;
+
+        .slider-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 0 5px;
+            border-radius: 50%;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+    }
 }
 
 #whatsnew-backdrop {
@@ -21,3 +44,4 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
 }
+

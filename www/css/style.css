@@ -704,6 +704,25 @@ body .mainContent .page footer.hymnFooter #pianoIcon.solo {
   margin-top: 7em;
   padding: 1em;
 }
+#whatsnew-modal .whatsnew-close {
+  position: fixed;
+  top: 0;
+  left: calc(50vw - 20px);
+  width: 40px;
+}
+#whatsnew-modal .slider-dots {
+  margin: 1em 0;
+  text-align: center;
+}
+#whatsnew-modal .slider-dots .slider-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background-color: #fff;
+  cursor: pointer;
+}
 
 #whatsnew-backdrop {
   position: fixed;

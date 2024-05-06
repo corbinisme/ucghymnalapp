@@ -2,6 +2,8 @@ var whatsnew = {
     st: window.localStorage,
     lang: app.lang,
     whatsNewId: config.whatsNewId,
+    currentStep: 1,
+    currentStepCount: 0,
     init: function() {
         console.log("whatsnew init")
         if(this.st.getItem('whatsnewseen') == null) {
@@ -23,6 +25,25 @@ var whatsnew = {
             }, false);
         }
         );
+        document.querySelectorAll("#whatsnew-modal .slider .slider-buttons button").forEach(function(el) {
+            el.addEventListener('click', function(e) {
+                e.target.classList.contains("slider-prev") ? whatsnew.changeStep(whatsnew.currentStep-1) : whatsnew.changeStep(whatsnew.currentStep+1);
+            }, false);
+        }
+        );
+
+    },
+    changeStep: function(step) {
+        console.log("changeStep", step);
+        if(step<1){
+            step = 1;
+        }
+        if(step>this.currentStepCount){
+            step = this.currentStepCount;
+        }
+        this.currentStep = step;
+        console.log("currentStep", this.currentStep);
+       
     },
     updateLang: function(el) {
         console.log("updateLang", el.value);
@@ -130,13 +151,15 @@ var whatsnew = {
         document.querySelector('body').insertAdjacentHTML('beforeend', popup);
         //$('#whatsnew').addClass('popup-visible');
 
-        this.bindEvents();
+        
         this.loadWhatsNew();
+        this.bindEvents();
     },
     loadWhatsNew: function() {
         let target = document.getElementById("loadWhatsNew");
         let whatsNewData = this.whatsNewData;
         let thisData = whatsNewData.find(x => x.id === whatsnew.whatsNewId);
+        this.currentStepCount = thisData.steps.length;
         let title = thisData.title[this.lang];
         let description = thisData.description[this.lang];
         let date = thisData.date;
@@ -148,13 +171,21 @@ var whatsnew = {
                             <h3>Step ${step.step}</h3>
                             <p>Step ${step.step} description</p>
                         </div>`;
-            sliderDotsHtml += `<span class="slider-dot" data-step="${step.step}">${step.step}</span>`;            
+            sliderDotsHtml += `<div class="slider-dot" data-step="${step.step}"><span class="sr-only">${step.step}</span></div>`;            
         });
         let content = `<h2>${title}</h2>
                         <p>${description}</p>
                         <p>${date}</p>
                         ${stepsHtml}
-                        <div class="slider-dots">${sliderDotsHtml}</div>`;
+                        <div class="slider">
+                            <div class="slider-buttons text-center">
+                                <div class="btn-group">
+                                    <button type="button" class="slider-prev btn btn-secondary">Prev</button>
+                                    <button type="button" class="slider-next btn btn-secondary">Next</button>
+                                </div>
+                            </div>
+                            <div class="slider-dots">${sliderDotsHtml}</div>
+                        </div>`;
                         
         target.innerHTML = content;
     },
