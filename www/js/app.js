@@ -516,7 +516,7 @@ function redirectToSystemBrowser(url) {
         
         let langValue = app.storage.getItem(app.langKey); 
         
-        let browserLang = navigator.language;
+        let browserLang = navigator.language || navigator.userLanguage;
         let langOverride = "";
 
         let allLangs = config.langs.split(",");
@@ -525,6 +525,7 @@ function redirectToSystemBrowser(url) {
                 langOverride = la;
             }
         })
+
         if(langValue==null || langValue==""){
             
             if(langOverride!==""){

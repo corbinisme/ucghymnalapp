@@ -710,6 +710,40 @@ body .mainContent .page footer.hymnFooter #pianoIcon.solo {
   left: calc(50vw - 20px);
   width: 40px;
 }
+#whatsnew-modal #take-tour-wrapper {
+  display: none;
+  margin-top: 4em;
+}
+#whatsnew-modal #take-tour-wrapper.active {
+  display: block;
+}
+#whatsnew-modal #whatsnewintro {
+  display: none;
+}
+#whatsnew-modal #whatsnewintro.active {
+  display: block;
+}
+#whatsnew-modal #whatsnew-steps .whatsnew-step {
+  display: none;
+  text-align: center;
+}
+#whatsnew-modal #whatsnew-steps .whatsnew-step.active {
+  display: block;
+}
+#whatsnew-modal #whatsnew-steps .whatsnew-step .whatsnew-title {
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+#whatsnew-modal #whatsnew-steps .whatsnew-step .whatsnew-content {
+  font-size: 1.2em;
+  margin-bottom: 1em;
+}
+#whatsnew-modal .take-tour {
+  display: none;
+}
+#whatsnew-modal .take-tour.active {
+  display: block;
+}
 #whatsnew-modal .slider-dots {
   margin: 1em 0;
   text-align: center;
@@ -722,6 +756,9 @@ body .mainContent .page footer.hymnFooter #pianoIcon.solo {
   border-radius: 50%;
   background-color: #fff;
   cursor: pointer;
+}
+#whatsnew-modal .slider-dots .slider-dot.active {
+  background-color: #f00;
 }
 
 #whatsnew-backdrop {

@@ -3,6 +3,7 @@ var whatsnew = {
     lang: app.lang,
     whatsNewId: config.whatsNewId,
     currentStep: 1,
+    showingSteps: false,
     currentStepCount: 0,
     init: function() {
         console.log("whatsnew init")
@@ -32,9 +33,19 @@ var whatsnew = {
         }
         );
 
+        document.querySelectorAll("#whatsnew-modal .slider-dots .slider-dot").forEach(function(el) {
+            el.addEventListener('click', function(e) {
+                whatsnew.changeStep(parseInt(el.getAttribute("data-step")));
+            }, false);
+        });
+        document.querySelector("#take-a-tour").addEventListener('click', function(e) {
+            e.preventDefault();
+            whatsnew.showTour();
+        }, false);
+
     },
     changeStep: function(step) {
-        console.log("changeStep", step);
+
         if(step<1){
             step = 1;
         }
@@ -42,11 +53,40 @@ var whatsnew = {
             step = this.currentStepCount;
         }
         this.currentStep = step;
-        console.log("currentStep", this.currentStep);
+
+        // update currently shown step
+        document.querySelectorAll("#whatsnew-steps .whatsnew-step").forEach(function(el) {
+            el.classList.remove("active");
+            let thisStep = parseInt(el.getAttribute("data-step"));
+
+            if(thisStep == step){
+                el.classList.add("active");
+            }
+        })
+
+
+        // update dot
+        document.querySelectorAll(".slider-dots .slider-dot").forEach(function(el) {
+            el.classList.remove("active");
+            if(el.getAttribute("data-step") == whatsnew.currentStep){
+                el.classList.add("active");
+            }
+        }); 
+
+        // run step callback
+        let thisData = this.whatsNewData.find(x => x.id === whatsnew.whatsNewId);
+        let thisStep = thisData.steps.find(x => x.step === whatsnew.currentStep);
+        thisStep.callback();
        
     },
+    showTour: function() {
+        this.showingSteps = true;
+        document.querySelector("#take-tour-wrapper").classList.add("active");
+        document.querySelector("#whatsnew-modal .take-tour").classList.remove("active");
+        document.querySelector("#whatsnewintro").classList.remove("active");
+    },
     updateLang: function(el) {
-        console.log("updateLang", el.value);
+
         app.lang = el.value;
         this.lang = el.value;
         app.setLang(el.value);
@@ -79,18 +119,36 @@ var whatsnew = {
             },
             steps: [
                 {   step:1, 
+                    title: [
+                        {lang: "en", text: "Topical Index"},
+                    ],
+                    content: [
+                        {lang: "en", text: "This is the first step"},
+                    ],
                     callback: function(){
                         console.log("Step 1");
                 
                     }
                 },
                 {   step:2, 
+                    title: [
+                        {lang: "en", text: "Scripture Index"},
+                    ],
+                    content: [
+                        {lang: "en", text: "This is the second step"},
+                    ],
                     callback: function(){
                         console.log("Step 2");
                 
                     }
                 },
                 {   step:3, 
+                    title: [
+                        {lang: "en", text: "Play All Hymns"},
+                    ],
+                    content: [
+                        {lang: "en", text: "This is the third step"},
+                    ],
                     callback: function(){
                         console.log("Step 3");
                 
@@ -116,13 +174,13 @@ var whatsnew = {
         return langSelector;
     },
     copy: [
-        {lang: "en", text: "What's New"},
-        {lang: "de", text: "Was ist neu"},
-        {lang: "pg", text: "O que há de novo"},
-        {lang: "es", text: "Qué hay de nuevo"},
-        {lang: "fr", text: "Quoi de neuf"},
-        {lang: "nl", text: "Wat is nieuw"},
-        {lang: "it", text: "Cosa c'è di nuovo"},
+        {lang: "en", text: "What's New", tourbutton: "Take a tour"},
+        {lang: "de", text: "Was ist neu", tourbutton: "Tour machen"},
+        {lang: "pg", text: "O que há de novo", tourbutton: "Fazer um tour"},
+        {lang: "es", text: "Qué hay de nuevo", tourbutton: "Hacer un recorrido"},
+        {lang: "fr", text: "Quoi de neuf",  tourbutton: "Faire un tour"},
+        {lang: "nl", text: "Wat is nieuw", tourbutton: "Maak een rondleiding"},
+        {lang: "it", text: "Cosa c'è di nuovo", tourbutton: "Fai un giro"},
 
     ],
     closeWhatsNew: function() {
@@ -136,7 +194,7 @@ var whatsnew = {
                         <div id="whatsnew-backdrop" class="backdrop"></div>
                         <div id="whatsnew-modal" class="popup">
                             <div class="popup-inner">
-                                <div class="popup-title">
+                                <div class="popup-title text-center">
                                     ${this.copy.find(x => x.lang === this.lang).text}
                                     ${whatsnew.createLanguageSelector()}
                                 </div>
@@ -166,28 +224,50 @@ var whatsnew = {
         let steps = thisData.steps;
         let stepsHtml = "";
         let sliderDotsHtml = "";
+        let tourbuttonText = this.copy.find(x => x.lang === this.lang).tourbutton;
+        
+        let counter = 1;
         steps.forEach(function(step) {
-            stepsHtml += `<div class="whatsnew-step">
-                            <h3>Step ${step.step}</h3>
-                            <p>Step ${step.step} description</p>
+            stepTitle = step.title.find(x => x.lang === whatsnew.lang)?step.title.find(x => x.lang === whatsnew.lang).text: "No title";
+            stepContent = step.content.find(x => x.lang === whatsnew.lang)?step.content.find(x => x.lang === whatsnew.lang).text: "No content";
+            stepsHtml += `<div class="whatsnew-step" data-step="${counter}">
+                            <h3>${stepTitle}</h3>
+                            <p>${stepContent}</p>
                         </div>`;
-            sliderDotsHtml += `<div class="slider-dot" data-step="${step.step}"><span class="sr-only">${step.step}</span></div>`;            
+            sliderDotsHtml += `<div class="slider-dot" data-step="${step.step}"><span class="sr-only">${step.step}</span></div>`;  
+            counter++;          
         });
-        let content = `<h2>${title}</h2>
-                        <p>${description}</p>
-                        <p>${date}</p>
-                        ${stepsHtml}
-                        <div class="slider">
-                            <div class="slider-buttons text-center">
-                                <div class="btn-group">
-                                    <button type="button" class="slider-prev btn btn-secondary">Prev</button>
-                                    <button type="button" class="slider-next btn btn-secondary">Next</button>
-                                </div>
+
+        let content = `<div id="whatsnewintro" class="text-center mb-4 mt-4 ps-4 pe-4 active">
+                            
+                            <h2>${title}</h2>
+                            <p>${date}</p>
+                            
+                            <p>${description}</p>
+                            
+                        </div>
+                        <div class="take-tour text-center active">
+                            <button type="button" class="btn btn-secondary" id="take-a-tour">
+                                <span class="take-tour-text">${tourbuttonText}</span>
+                            </button>
+                        </div>
+                        <div id="take-tour-wrapper">
+                            <div id="whatsnew-steps">
+                            ${stepsHtml}
                             </div>
-                            <div class="slider-dots">${sliderDotsHtml}</div>
+                            <div class="slider">
+                                <div class="slider-buttons text-center">
+                                    <div class="btn-group">
+                                        <button type="button" class="slider-prev btn btn-secondary">Prev</button>
+                                        <button type="button" class="slider-next btn btn-secondary">Next</button>
+                                    </div>
+                                </div>
+                                <div class="slider-dots">${sliderDotsHtml}</div>
+                            </div>
                         </div>`;
                         
         target.innerHTML = content;
+        this.changeStep(1);
     },
 }
 
