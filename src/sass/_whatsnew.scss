@@ -1,22 +1,26 @@
+
+.whatsnew-open * {
+    pointer-events: none;
+}
+.whatsnew-open #whatsNewHolder * {
+    pointer-events: all;
+
+}
+.whatsnew-open .whatsNewHighlighted {
+    outline: 3px solid red;
+    pointer-events: all;
+}
 #whatsnew-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 999;
-    width: 100%;
-    color: #fff;
 
     .popup-inner {
-        margin-top: 7em;
         padding: 1em;
     }
 
 
     .whatsnew-close {
-        position: fixed;
-        top: 0;
-        left: calc(50vw - 20px);
-        width: 40px;
+        
+        display: inline-block;
+        margin: auto;
     }
     #take-tour-wrapper {
         display: none;
@@ -71,7 +75,7 @@
             height: 10px;
             margin: 0 5px;
             border-radius: 50%;
-            background-color: #fff;
+            background-color: #ddd;
             cursor: pointer;
 
             &.active {

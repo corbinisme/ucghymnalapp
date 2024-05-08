@@ -126,6 +126,7 @@ var whatsnew = {
                         {lang: "en", text: "This is the first step"},
                     ],
                     callback: function(){
+                        document.getElementById("musicControl").classList.add("whatsNewHighlighted")
                         console.log("Step 1");
                 
                     }
@@ -138,6 +139,7 @@ var whatsnew = {
                         {lang: "en", text: "This is the second step"},
                     ],
                     callback: function(){
+                        document.getElementById("musicControl").classList.remove("whatsNewHighlighted")
                         console.log("Step 2");
                 
                     }
@@ -189,9 +191,10 @@ var whatsnew = {
         //this.st.setItem('whatsnewseen', '1');
     },
     showWhatsNew: function() {
+        document.getElementById("loader").classList.add("hidden")
         document.querySelector("body").classList.add("whatsnew-open");
         var popup = `<div id="whatsnew-wrapper">
-                        <div id="whatsnew-backdrop" class="backdrop"></div>
+                        
                         <div id="whatsnew-modal" class="popup">
                             <div class="popup-inner">
                                 <div class="popup-title text-center">
@@ -201,12 +204,13 @@ var whatsnew = {
                                 <div class="popup-content" id="loadWhatsNew">
                                     
                                 </div>
-                                <div class="popup-buttons">
+                                <div class="popup-buttons text-center">
                                     <a href="#" class="whatsnew-close button button-block button-positive">Close</a>
                                 </div>
                             </div>
                     </div>`;
-        document.querySelector('body').insertAdjacentHTML('beforeend', popup);
+        //document.querySelector('body').insertAdjacentHTML('beforeend', popup);
+        document.querySelector('#whatsNewHolder').innerHTML += popup;
         //$('#whatsnew').addClass('popup-visible');
 
         
