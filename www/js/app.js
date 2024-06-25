@@ -630,7 +630,7 @@ function redirectToSystemBrowser(url) {
             let next = current + 1;
             let hymnCount = window['title_'+ app.lang].length;
             if(next>hymnCount){
-                next = hymnCount;
+                next = 1;
             }
             
             let formatNext = app.getHymnWithZeros(next);
@@ -643,9 +643,10 @@ function redirectToSystemBrowser(url) {
       },
       playPrevious: function(){
         let current = parseInt(app.currentHymn);
-        let list = app.randomPlaylists[app.lang];
-        let currentIndex = list.indexOf(current);
+        
         if(app.shuffle){
+            let list = app.randomPlaylists[app.lang];
+            let currentIndex = list.indexOf(current);
             let next = list[currentIndex-1];
             if(next==undefined){
                 next = list[list.length-1];
@@ -655,8 +656,9 @@ function redirectToSystemBrowser(url) {
             app.setHymn(app.currentHymn);
         } else {
             let next = current - 1;
+            let hymnCount = window['title_'+ app.lang].length;
             if(next<1){
-                next = 1;
+                next = hymnCount;
             }
             app.currentHymn = next;
             app.setHymn(next);
