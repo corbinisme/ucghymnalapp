@@ -614,11 +614,11 @@ function redirectToSystemBrowser(url) {
       },
       playNext: function(){
         let current = parseInt(app.currentHymn);
-        let list = app.randomPlaylists[app.lang];
-        let currentIndex = list.indexOf(current);
+        
         if(app.shuffle){
             // look at the random playlist generated when the shuffle button was enabled
-            
+            let list = app.randomPlaylists[app.lang];
+            let currentIndex = list.indexOf(current);
             let next = list[currentIndex+1];
             if(next==undefined){
                 next = list[0];
