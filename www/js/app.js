@@ -821,6 +821,17 @@ function redirectToSystemBrowser(url) {
             if(target.id && (target.id=="chooseLanguage" || target.id=="currentLanguageCaret" || target.id=="currentLanguageCode")){
                 return;
             }
+            let hasLanguageButtonParent = false;
+            if(target.parentElement){
+                if(target.closest(".btn")){
+                    if(target.closest(".btn").id=="chooseLanguage"){
+                        hasLanguageButtonParent = true;
+                        
+                        return;
+                    }
+                }
+            }
+           
 
             // music player controls
             let isMusicPlayerControl = false;
@@ -859,7 +870,9 @@ function redirectToSystemBrowser(url) {
             if(target.classList.contains("navbar-toggler") || target.classList.contains("navbar-toggler-override")){
                 return;
             }
+            
             app.closeAllMenus("");
+            
            
         })
         

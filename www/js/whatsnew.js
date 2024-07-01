@@ -41,6 +41,7 @@ var whatsnew = {
         document.querySelector("#take-a-tour").addEventListener('click', function(e) {
             e.preventDefault();
             whatsnew.showTour();
+            whatsnew.changeStep(1);
         }, false);
 
     },
@@ -94,6 +95,32 @@ var whatsnew = {
         this.closeWhatsNew();
         this.showWhatsNew();
     },
+    makeHighlightedElement: function(elem){
+        elem.classList.add("whatsNewHighlighted");
+        // clone element and place above everything else?
+        // get position of element
+        let rect = elem.getBoundingClientRect();
+        let top = rect.top + window.scrollY;
+        let left = rect.left + window.scrollX;
+        let width = rect.width;
+        let height = rect.height;
+
+        let clone = elem.cloneNode(true);
+        clone.classList.add("whatsNewClone");
+        // set same position
+        clone.style.top = top + "px";
+        clone.style.left = left + "px";
+        clone.style.width = width + "px";
+        clone.style.height = height + "px";
+        clone.style.position = "fixed";
+        clone.style.zIndex = 1001;
+
+        document.querySelector("body").appendChild(clone);   
+
+        
+        // scroll to element
+
+    },
     whatsNewData: [
         {
             id: 1, 
@@ -126,7 +153,12 @@ var whatsnew = {
                         {lang: "en", text: "This is the first step"},
                     ],
                     callback: function(){
-                        document.getElementById("musicControl").classList.add("whatsNewHighlighted")
+                        const musicControl = document.getElementById("musicControl");
+                        musicControl.click();
+                        window.setTimeout(function(){
+                            whatsnew.makeHighlightedElement(musicControl);
+                        }, 300);
+                        
                         console.log("Step 1");
                 
                     }
@@ -162,8 +194,8 @@ var whatsnew = {
     ],
     createLanguageSelector: function() {
         let currentLang = this.lang;
-        var langSelector = `<div id="lang-selector">
-                                <select id="lang-select" onChange="whatsnew.updateLang(this)">
+        var langSelector = `<div id="lang-selector" class="text-end d-flex justify-content-end">
+                                <select id="lang-select" class="form-select w-auto" onChange="whatsnew.updateLang(this)">
                                     <option value="en" ${(currentLang=="en"?"selected":"")}>English</option>
                                     <option value="de" ${(currentLang=="de"?"selected":"")}>Deutsch</option>
                                     <option value="pg" ${(currentLang=="pg"?"selected":"")}>Português</option>
@@ -187,21 +219,34 @@ var whatsnew = {
     ],
     closeWhatsNew: function() {
         document.querySelector("body").classList.remove("whatsnew-open");
+        document.getElementById("loader").classList.remove("muted")
         document.querySelector("#whatsnew-wrapper").remove();
+        document.querySelectorAll(".whatsNewClone").forEach(function(el) { 
+            el.remove();
+        });
+        // set hymnal
+        app.startRandom();
+        app.getHymnText();
         //this.st.setItem('whatsnewseen', '1');
     },
     showWhatsNew: function() {
-        document.getElementById("loader").classList.add("hidden")
+        document.getElementById("loader").classList.add("muted")
         document.querySelector("body").classList.add("whatsnew-open");
         var popup = `<div id="whatsnew-wrapper">
                         
                         <div id="whatsnew-modal" class="popup">
-                            <div class="popup-inner">
-                                <div class="popup-title text-center">
-                                    ${this.copy.find(x => x.lang === this.lang).text}
-                                    ${whatsnew.createLanguageSelector()}
+                            <div class="popup-inner card">
+                                <div class="card-header popup-title text-center">
+                                    <div class="row">
+                                        <div class="col text-start align-content-center">
+                                        ${this.copy.find(x => x.lang === this.lang).text}
+                                        </div>
+                                        <div class="col text-end">
+                                        ${whatsnew.createLanguageSelector()}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="popup-content" id="loadWhatsNew">
+                                <div class="popup-content card-body" id="loadWhatsNew">
                                     
                                 </div>
                                 <div class="popup-buttons text-center">
@@ -209,9 +254,9 @@ var whatsnew = {
                                 </div>
                             </div>
                     </div>`;
-        //document.querySelector('body').insertAdjacentHTML('beforeend', popup);
-        document.querySelector('#whatsNewHolder').innerHTML += popup;
-        //$('#whatsnew').addClass('popup-visible');
+        document.querySelector('body').insertAdjacentHTML('beforeend', popup);
+        //document.querySelector('#whatsNewHolder').innerHTML += popup;
+        document.querySelector('#whatsnew-wrapper').classList.add('popup-visible');
 
         
         this.loadWhatsNew();
@@ -271,7 +316,7 @@ var whatsnew = {
                         </div>`;
                         
         target.innerHTML = content;
-        this.changeStep(1);
+        //this.changeStep(1);
     },
 }
 

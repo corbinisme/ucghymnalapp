@@ -696,17 +696,33 @@ body .mainContent .page footer.hymnFooter #pianoIcon.solo {
   pointer-events: none;
 }
 
-.whatsnew-open #whatsNewHolder * {
+.whatsnew-open #whatsnew-wrapper * {
   pointer-events: all;
 }
 
+.whatsnew-open #whatsnew-wrapper {
+  position: fixed;
+  top: 7em;
+  width: calc(100% - 2em);
+  left: 1em;
+  z-index: 1004;
+}
 .whatsnew-open .whatsNewHighlighted {
   outline: 3px solid red;
   pointer-events: all;
 }
+.whatsnew-open .whatsNewClone {
+  outline: 9999px solid rgba(0, 0, 0, 0.7);
+}
 
-#whatsnew-modal .popup-inner {
-  padding: 1em;
+#loader.muted {
+  opacity: 0.4;
+}
+
+#whatsnew-modal {
+  font-size: 16px;
+  margin: 1em auto;
+  max-width: 800px;
 }
 #whatsnew-modal .whatsnew-close {
   display: inline-block;
