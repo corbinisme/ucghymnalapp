@@ -77,7 +77,7 @@ var whatsnew = {
         // run step callback
         let thisData = this.whatsNewData.find(x => x.id === whatsnew.whatsNewId);
         let thisStep = thisData.steps.find(x => x.step === whatsnew.currentStep);
-        thisStep.callback();
+        //thisStep.callback();
        
     },
     showTour: function() {
@@ -126,13 +126,15 @@ var whatsnew = {
             id: 1, 
             revision: "6.1.0", 
             title: {
-                en: "Initial release",
-                de: "Erstveröffentlichung",
-                pg: "Lançamento inicial",
-                es: "Lanzamiento inicial",
-                fr: "Première version",
-                nl: "Eerste versie",
-                it: "Rilascio iniziale"
+                en: "Latest Updates",
+                de: "Neueste Updates",
+                pg: "Atualizações mais recentes",
+                es: "Últimas actualizaciones",
+                fr: "Dernières mises à jour",
+                nl: "Laatste updates",
+                it: "Ultimi aggiornamenti"
+
+               
             },
             date: "2024-05-06",
             description: {
@@ -148,45 +150,87 @@ var whatsnew = {
                 {   step:1, 
                     title: [
                         {lang: "en", text: "Topical Index"},
+                        {lang: "de", text: "Themenindex"},
+                        {lang: "pg", text: "Índice Temático"},
+                        {lang: "es", text: "Índice Temático"},
+                        {lang: "fr", text: "Index thématique"},
+                        {lang: "nl", text: "Thematisch Index"},
+                        {lang: "it", text: "Indice tematico"}
                     ],
+                    example: `<span class="navbar-toggler-override fa fa-bars"></span><br />
+                             <br /><a class="nav-link btn btn-primary" href="#">
+                                <i class="fa fa-th"></i> 
+                                <span class="text">Topical Index</span>
+                            </a>
+                             `,                    
                     content: [
-                        {lang: "en", text: "This is the first step"},
+                        {lang: "en", text: `You can view the topical categories of hymns by clicking on the 'Topical Index' button in the upper left menu.`},
+                        {lang: "de", text: `Sie können die thematischen Kategorien von Liedern anzeigen, indem Sie auf die Schaltfläche 'Themenindex' im oberen linken Menü klicken.`},
+                        {lang: "pg", text: `Você pode visualizar as categorias temáticas dos hinos clicando no botão 'Índice Temático' no menu superior esquerdo.`},
+                        {lang: "es", text: `Puede ver las categorías temáticas de los himnos haciendo clic en el botón 'Índice Temático' en el menú superior izquierdo.`},
+                        {lang: "fr", text: `Vous pouvez afficher les catégories thématiques des cantiques en cliquant sur le bouton 'Index thématique' dans le menu supérieur gauche.`},
+                        {lang: "nl", text: `U kunt de thematische categorieën van liederen bekijken door te klikken op de knop 'Thematisch Index' in het bovenste linker menu.`},
+                        {lang: "it", text: `È possibile visualizzare le categorie tematiche degli inni facendo clic sul pulsante 'Indice tematico' nel menu in alto a sinistra.`}
+
                     ],
-                    callback: function(){
-                        const musicControl = document.getElementById("musicControl");
-                        musicControl.click();
-                        window.setTimeout(function(){
-                            whatsnew.makeHighlightedElement(musicControl);
-                        }, 300);
-                        
-                        console.log("Step 1");
-                
-                    }
+                    
                 },
                 {   step:2, 
                     title: [
                         {lang: "en", text: "Scripture Index"},
+                        {lang: "de", text: "Schriftindex"},
+                        {lang: "pg", text: "Índice das Escrituras"},
+                        {lang: "es", text: "Índice de las Escrituras"},
+                        {lang: "fr", text: "Index des Écritures"},
+                        {lang: "nl", text: "Schriftuur Index"},
+                        {lang: "it", text: "Indice delle Scritture"}
+
                     ],
+                    example: `<span class="navbar-toggler-override fa fa-bars"></span><br />
+                                <br />
+                            <a class="nav-link btn btn-primary" href="#">
+                                <i class="fa fa-book"></i> 
+                                <span class="text">Scriptural Index</span>
+                            </a>`,
                     content: [
-                        {lang: "en", text: "This is the second step"},
+                        {lang: "en", text: `You can view the Scriptures used by the hymns filterable by book by clicking on the 'Scriptural Index'
+                             button in the upper left menu. `},
+                        {lang: "de", text: `Sie können die von den Liedern verwendeten Schriften filtern, indem Sie auf die Schaltfläche 'Schriftindex' im oberen linken Menü klicken.`},
+                        {lang: "pg", text: `Você pode visualizar as Escrituras usadas pelos hinos filtráveis por livro clicando no botão 'Índice das Escrituras' no menu superior esquerdo.`},
+                        {lang: "es", text: `Puede ver las Escrituras utilizadas por los himnos filtrables por libro haciendo clic en el botón 'Índice de las Escrituras' en el menú superior izquierdo.`},
+                        {lang: "fr", text: `Vous pouvez afficher les Écritures utilisées par les cantiques filtrables par livre en cliquant sur le bouton 'Index des Écritures' dans le menu supérieur gauche.`},
+                        {lang: "nl", text: `U kunt de Schriften die door de liederen worden gebruikt, filteren op boek door te klikken op de knop 'Schriftuur Index' in het bovenste linker menu.`},
+                        {lang: "it", text: `È possibile visualizzare le Scritture utilizzate dagli inni filtrabili per libro facendo clic sul pulsante 'Indice delle Scritture' nel menu in alto a sinistra.`}
                     ],
-                    callback: function(){
-                        document.getElementById("musicControl").classList.remove("whatsNewHighlighted")
-                        console.log("Step 2");
-                
-                    }
+                   
                 },
                 {   step:3, 
                     title: [
                         {lang: "en", text: "Play All Hymns"},
+                        {lang: "de", text: "Alle Lieder abspielen"},
+                        {lang: "pg", text: "Reproduzir todos os hinos"},
+                        {lang: "es", text: "Reproducir todos los himnos"},
+                        {lang: "fr", text: "Jouer tous les cantiques"},
+                        {lang: "nl", text: "Speel alle liederen af"},
+                        {lang: "it", text: "Riproduci tutti gli inni"}
+
                     ],
+                    example: `<br /><a class="btn btn-outline-secondary musicControl active" id="musicControlExample">
+                        <i class="fa-solid fa-music"></i>
+                        </a> <span class="translate" data-translation-id="then">then</span> 
+                        <a href="#" id="playAllExample"  class="music-control-btn btn btn-outline-secondary">
+                                <i class="fas fa-repeat incorrectTarget"></i>
+                        </a>`,
                     content: [
-                        {lang: "en", text: "This is the third step"},
+                        {lang: "en", text: "Autoplay all hymns in the hymnal. Open the music panel and toggle the 'Play All' button.<br />"},
+                        {lang: "de", text: "Alle Lieder im Gesangbuch automatisch abspielen. Öffnen Sie das Musikpanel und schalten Sie die Schaltfläche 'Alle abspielen' um.<br />"},
+                        {lang: "pg", text: "Reproduza automaticamente todos os hinos do hinário. Abra o painel de música e alterne o botão 'Reproduzir todos'.<br />"},
+                        {lang: "es", text: "Reproduzca automáticamente todos los himnos del himnario. Abra el panel de música y cambie el botón 'Reproducir todos'.<br />"},
+                        {lang: "fr", text: "Lecture automatique de tous les cantiques du cantique. Ouvrez le panneau de musique et basculez le bouton 'Jouer tout'.<br />"},
+                        {lang: "nl", text: "Speel alle liederen in het gezangboek automatisch af. Open het muziekpaneel en schakel de knop 'Alles afspelen'.<br />"},
+                        {lang: "it", text: "Riproduci automaticamente tutti gli inni del canto. Apri il pannello della musica e attiva il pulsante 'Riproduci tutto'.<br />"}
                     ],
-                    callback: function(){
-                        console.log("Step 3");
-                
-                    }
+                    
                 }
             ]
         },
@@ -249,8 +293,8 @@ var whatsnew = {
                                 <div class="popup-content card-body" id="loadWhatsNew">
                                     
                                 </div>
-                                <div class="popup-buttons text-center">
-                                    <a href="#" class="whatsnew-close button button-block button-positive">Close</a>
+                                <div class="popup-buttons text-end card-footer">
+                                    <a href="#" class="whatsnew-close btn btn-primary button button-block button-positive">Close</a>
                                 </div>
                             </div>
                     </div>`;
@@ -279,9 +323,10 @@ var whatsnew = {
         steps.forEach(function(step) {
             stepTitle = step.title.find(x => x.lang === whatsnew.lang)?step.title.find(x => x.lang === whatsnew.lang).text: "No title";
             stepContent = step.content.find(x => x.lang === whatsnew.lang)?step.content.find(x => x.lang === whatsnew.lang).text: "No content";
+            stepExample = step.example;
             stepsHtml += `<div class="whatsnew-step" data-step="${counter}">
                             <h3>${stepTitle}</h3>
-                            <p>${stepContent}</p>
+                            <p>${stepContent}${stepExample}</p>
                         </div>`;
             sliderDotsHtml += `<div class="slider-dot" data-step="${step.step}"><span class="sr-only">${step.step}</span></div>`;  
             counter++;          

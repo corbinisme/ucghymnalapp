@@ -730,7 +730,7 @@ body .mainContent .page footer.hymnFooter #pianoIcon.solo {
 }
 #whatsnew-modal #take-tour-wrapper {
   display: none;
-  margin-top: 4em;
+  margin-top: 0.5em;
 }
 #whatsnew-modal #take-tour-wrapper.active {
   display: block;
