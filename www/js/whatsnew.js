@@ -218,8 +218,8 @@ var whatsnew = {
                     example: `<br /><a class="btn btn-outline-secondary musicControl active" id="musicControlExample">
                         <i class="fa-solid fa-music"></i>
                         </a> <span class="translate" data-translation-id="then">then</span> 
-                        <a href="#" id="playAllExample"  class="music-control-btn btn btn-outline-secondary">
-                                <i class="fas fa-repeat incorrectTarget"></i>
+                        <a href="#" id="playAllExample"  class=" btn btn-outline-secondary">
+                                <i class="fas fa-repeat"></i>
                         </a>`,
                     content: [
                         {lang: "en", text: "Autoplay all hymns in the hymnal. Open the music panel and toggle the 'Play All' button.<br />"},

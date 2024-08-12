@@ -690,7 +690,7 @@ function redirectToSystemBrowser(url) {
         const bodyTag = document.querySelector("body");
         const vocal_version_toggle = document.getElementById("vocal_version_toggle");
 
-        if(app.lang=="en"){
+        if(app.lang=="en" || app.lang=="fr"){
             app.hasVocal = true;
         } else {
             app.hasVocal = false;
@@ -1395,7 +1395,11 @@ function redirectToSystemBrowser(url) {
         }
         if(type=="piano" || type=="vocal"){
             if(type=="vocal"){
-                sourcePath = vocal_path + sourcePath;
+                let vocal_path_suffix = "";
+                if(app.lang=="fr"){
+                    vocal_path_suffix = "fr/";
+                }
+                sourcePath = vocal_path + vocal_path_suffix + sourcePath;
                 if(config.novocal.includes(app.currentHymn)){
                     sourcePath = null;
                 }
