@@ -271,7 +271,7 @@ var whatsnew = {
         // set hymnal
         app.startRandom();
         app.getHymnText();
-        //this.st.setItem('whatsnewseen', '1');
+        this.st.setItem('whatsnewseen', '1');
     },
     showWhatsNew: function() {
         document.getElementById("loader").classList.add("muted")

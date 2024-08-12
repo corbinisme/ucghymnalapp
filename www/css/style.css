@@ -788,3 +788,8 @@ body .mainContent .page footer.hymnFooter #pianoIcon.solo {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
 }
+
+html.dim #whatsnew-modal .card {
+  background: var(--bg-headerBot);
+  color: var(--bs-card-bg);
+}

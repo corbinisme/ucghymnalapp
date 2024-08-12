@@ -114,3 +114,9 @@
     background-color: rgba(0, 0, 0, 0.7);
 }
 
+html.dim #whatsnew-modal {
+    .card {
+        background: var(--bg-headerBot);
+        color:var(--bs-card-bg);
+    }
+}
