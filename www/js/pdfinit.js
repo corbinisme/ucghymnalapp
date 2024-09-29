@@ -3,6 +3,10 @@ var pdf = {
     pageNum:1,
     pageRendering:false,
     pageNumPending:null,
+    state: [
+      panX=> 0,
+      panY=> 0,
+    ],
     scale:0.8,
     canvas:document.getElementById('thecanvas'),
     ctx: null,
@@ -20,8 +24,11 @@ var pdf = {
 
           console.log("mousedown", event)
           let isDragging = false;
+          let savedStartX = pdf.state.panX;
+          let savedStartY = pdf.state.panY;
           let startX = event.pageX - pdf.canvas.offsetLeft;
           let startY = event.pageY - pdf.canvas.offsetTop;
+
       
           const onMouseMove = (event) => {
               if (isDragging) {
