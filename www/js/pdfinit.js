@@ -14,6 +14,35 @@ var pdf = {
             withCredentials: true
         }).promise.then(function(pdfDoc_) {
         pdfDoc = pdfDoc_;
+
+
+        pdf.canvas.addEventListener('mousedown', (event) => {
+
+          console.log("mousedown", event)
+          let isDragging = false;
+          let startX = event.pageX - pdf.canvas.offsetLeft;
+          let startY = event.pageY - pdf.canvas.offsetTop;
+      
+          const onMouseMove = (event) => {
+              if (isDragging) {
+                  const x = event.pageX - pdf.canvas.offsetLeft;
+                  const y = event.pageY - pdf.canvas.offsetTop;
+                  pdf.canvas.style.transform = `translate(${x - startX}px, ${y - startY}px)`;
+              }
+          };
+
+          const onMouseUp = () => {
+            isDragging = false;
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+          };
+    
+          isDragging = true;
+          document.addEventListener('mousemove', onMouseMove);
+          document.addEventListener('mouseup', onMouseUp);
+      });
+
+        
         document.getElementById('page_count').textContent = pdfDoc.numPages;
         document.getElementById('pdfPlus').addEventListener('click', 
           function(){
