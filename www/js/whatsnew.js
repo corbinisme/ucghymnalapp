@@ -3,11 +3,11 @@ var whatsnew = {
     lang: app.lang,
     whatsNewId: config.whatsNewId,
     currentStep: 1,
-    showingSteps: false,
+    showingSteps: true,
     currentStepCount: 0,
     init: function() {
         console.log("whatsnew init")
-        if(this.st.getItem('whatsnewseen') == null) {
+        if(this.st.getItem('whatsnewseen') == null || this.st.getItem('whatsnewseen')=="0") {
             if(this.whatsNewId !==null && this.whatsNewId !== undefined && this.whatsNewId !== "" && this.whatsNewId !== 0){
                 this.showWhatsNew();
                 
@@ -158,7 +158,7 @@ var whatsnew = {
                         {lang: "it", text: "Indice tematico"}
                     ],
                     example: `<span class="navbar-toggler-override fa fa-bars"></span><br />
-                             <br /><a class="nav-link btn btn-primary" href="#">
+                             <br /><a class="nav-links btn btn-default" href="#">
                                 <i class="fa fa-th"></i> 
                                 <span class="text">Topical Index</span>
                             </a>
@@ -188,7 +188,7 @@ var whatsnew = {
                     ],
                     example: `<span class="navbar-toggler-override fa fa-bars"></span><br />
                                 <br />
-                            <a class="nav-link btn btn-primary" href="#">
+                            <a class="nav-links btn btn-default" href="#">
                                 <i class="fa fa-book"></i> 
                                 <span class="text">Scriptural Index</span>
                             </a>`,
@@ -352,8 +352,8 @@ var whatsnew = {
                             <div class="slider">
                                 <div class="slider-buttons text-center">
                                     <div class="btn-group">
-                                        <button type="button" class="slider-prev btn btn-secondary">Prev</button>
-                                        <button type="button" class="slider-next btn btn-secondary">Next</button>
+                                        <button type="button" class="slider-prev btn btn-secondary"><i class="fa fa-chevron-left"></i></button>
+                                        <button type="button" class="slider-next btn btn-secondary"><i class="fa fa-chevron-right"></i></button>
                                     </div>
                                 </div>
                                 <div class="slider-dots">${sliderDotsHtml}</div>

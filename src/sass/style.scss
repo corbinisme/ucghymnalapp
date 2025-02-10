@@ -217,7 +217,18 @@ body {
 
     .btn-secondary {
         background-color: var(--yellowButton);
-        color: #000;
+        color: var(--charcoal);
+        &:hover {
+            background-color: var(--yellowButton);
+            color: var(--charcoal);
+        }
+        &:active {
+            --bs-btn-active-bg: var(--yellowButton);
+            --bs-btn-active-color: #000;
+            background-color: var(--yellowButton);
+            color: #000;
+            outline: 2px solid #000;
+        }
     }
 
     &.hasMusicOpen {
@@ -685,6 +696,9 @@ body {
                     &:focus {
                         box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.2);
                         
+                    }
+                    #currentLanguageCode {
+                        text-transform: capitalize;
                     }
                 }
 

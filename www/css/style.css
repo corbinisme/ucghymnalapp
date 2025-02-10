@@ -167,7 +167,18 @@ body .main {
 }
 body .btn-secondary {
   background-color: var(--yellowButton);
+  color: var(--charcoal);
+}
+body .btn-secondary:hover {
+  background-color: var(--yellowButton);
+  color: var(--charcoal);
+}
+body .btn-secondary:active {
+  --bs-btn-active-bg: var(--yellowButton);
+  --bs-btn-active-color: #000;
+  background-color: var(--yellowButton);
   color: #000;
+  outline: 2px solid #000;
 }
 body.hasMusicOpen .mainContent .page #loader {
   padding-bottom: 6em;
@@ -611,6 +622,9 @@ body .mainContent .page header #languageSelector::before {
 }
 body .mainContent .page header #chooseLanguage:focus {
   box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.2);
+}
+body .mainContent .page header #chooseLanguage #currentLanguageCode {
+  text-transform: capitalize;
 }
 body .mainContent .page header .headerFormControl {
   background-color: var(--bg-headerBot);

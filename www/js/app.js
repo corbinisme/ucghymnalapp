@@ -1418,7 +1418,7 @@ function redirectToSystemBrowser(url) {
                 } else {
 
                     app.musicPlayer = videojs('audio_player', {
-                        "playbackRates": [0.8, 0.9, 1, 1.2, 1.3],
+                        "playbackRates": [0.8, 0.9, 1, 1.1, 1.2],
                         controls: true,
                         autoplay: autoPlayVal,
                         preload: 'auto'
