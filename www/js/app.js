@@ -632,6 +632,7 @@ function redirectToSystemBrowser(url) {
             if(next>hymnCount){
                 next = 1;
             }
+            // @TODO account for languages with missing numbers in the sequence
             
             let formatNext = app.getHymnWithZeros(next);
             app.currentHymn = next;
@@ -1424,13 +1425,13 @@ function redirectToSystemBrowser(url) {
                         preload: 'auto'
                     });
 
-                    app.musicPlayer.on('ended', function() {
+                    app.musicPlayer.on('ended', function(e) {
                    
                         const playerWrapper = document.querySelector(".video-js");
                         const musicWrapper = document.querySelector(".musicPlayer");
                         playerWrapper.setAttribute("data-playing", "false");
                         musicWrapper.setAttribute("data-playing", "false");
-
+                        console.log("music has ended",e)
                 
                         if(app.autoplay==true){
     

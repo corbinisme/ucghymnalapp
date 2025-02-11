@@ -258,8 +258,20 @@
 
         <div class="musicPlayer" data-playing="false">
           <div class="musicPlayerWrapper">
-            <div class="d-flex">
-              <div class="col">
+            <div class="d-flex mediaPlayerRow">
+              <div class="mediaItem">
+
+                <div class="btn-group">
+                  <a href="#" id="shuffleBtn" data-id="shuffle" class="music-control-btn btn btn-outline-secondary">
+                    <i class="fa-solid fa-random incorrectTarget"></i>                   
+                  </a> 
+
+                  <a href="#" id="playAll" data-id="autoplay" class="music-control-btn btn btn-outline-secondary">
+                    <i class="fas fa-repeat incorrectTarget"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="mediaItem col">
            
                 <div class="form-check form-switch"  id="vocal_version_toggle">
                   <label class="form-check-label" 
@@ -271,31 +283,30 @@
                 </div>
               </div>
 
-              <div class="col text-end">
-                
+              <div class="mediaItem text-end">
+
                 <a class="btn btn-outline-tertiary musicAction" href="#" id="closeMusic">
                   <i class="fa-solid fa-xmark"></i>
                 </a>
+
+                <div class="btn-group">
+                  <a href="#" id="hymnPrev" class="music-control-toggler btn btn-outline-secondary">
+                    <i class="fa-solid fa-chevron-left"></i>
+                  </a> 
+
+                  <a href="#" id="hymnNext" class="music-control-toggler  btn btn-outline-secondary">
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </a>
+                </div>
+                
+               
               </div>
             
             </div>
             
-            <div class="mediaPlayer">
+            <div class="mediaPlayer mediaPlayerRow">
 
-              <div class="d-flex align-items-flex-start">
-
-                  <div class="btn-group">
-                    <a href="#" id="shuffleBtn" data-id="shuffle" class="music-control-btn btn btn-outline-secondary">
-                      <i class="fa-solid fa-random incorrectTarget"></i>                   
-                    </a> 
-
-                    <a href="#" id="playAll" data-id="autoplay" class="music-control-btn btn btn-outline-secondary">
-                      <i class="fas fa-repeat incorrectTarget"></i>
-                    </a>
-                  </div>
-                  
-
-                  <div class="video-js-wrapper w-100 d-flex me-2 ms-2">
+                  <div class="video-js-wrapper w-100 d-flex">
 
                     <audio
                       id="audio_player"
@@ -310,18 +321,6 @@
                 </div>
 
 
-                <div class="btn-group">
-                  <a href="#" id="hymnPrev" class="music-control-toggler btn btn-outline-secondary">
-                    <i class="fa-solid fa-chevron-left"></i>
-                  </a> 
-
-                  <a href="#" id="hymnNext" class="music-control-toggler  btn btn-outline-secondary">
-                    <i class="fa-solid fa-chevron-right"></i>
-                  </a>
-                </div>
-
-               
-              </div>
          
             </div>
   

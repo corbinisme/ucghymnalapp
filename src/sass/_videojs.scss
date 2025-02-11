@@ -1,4 +1,79 @@
-.video-js {
+$videoJsHeight: 60px;
+$videoJsFont: 17px;
+.video-js-wrapper {
+    margin: 0!important;
+
+    .video-js {
+        background-color: transparent;
+        width: 100%;
+        height: $videoJsHeight;
+        font-size: $videoJsFont;
+
+        .vjs-control-bar {
+            display: flex;
+            position: static;
+        }
+        .vjs-progress-control {
+            margin-left: 5px;
+        }
+        .vjs-current-time  {
+            display: block;
+        }
+        .vjs-duration {
+            display: block;
+            order: 1;
+        }
+
+        .vjs-menu-button-popup .vjs-menu {
+            width: calc(100% - 2em + 2px);
+            position: fixed;
+            bottom: 100px;
+            margin: 0;
+            z-index: 9;
+            left: calc(1em - 1px);
+            .vjs-menu-content {
+                display: flex;
+                justify-content: center;
+                position: relative;
+                height: 60px;
+                align-items: center;
+                background-color: #333;
+                li {
+                    padding: 0 8px;
+                }
+            }
+        }
+        div.vjs-playback-rate {
+            order: 2;
+            border-left: 1px solid #444;
+            .vjs-playback-rate-value {
+                font-size: $videoJsFont;
+                line-height: 52px;
+            }
+        }
+        
+        .vjs-big-play-button {
+            display: none;
+        }
+        .vjs-volume-panel, .vjs-fullscreen-control {
+            display: none;
+        }
+
+        button.vjs-play-control {
+            border-right: 1px solid #444;
+        }
+
+        .vjs-time-divider, .vjs-live-control, 
+        .vjs-seek-to-live-control, 
+        .vjs-time-tooltip,
+        .vjs-remaining-time {
+            display: none!important;
+        }
+    }
+}
+
+/* old way */
+.video-jss {
                         
     background-color: transparent;
     width: 100%;

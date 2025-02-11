@@ -135,10 +135,11 @@ body {
     .form-switch {
         display: flex;
         justify-content: start;
-        padding-left: 2.5em;
+        padding-left: 40px;
         align-items: center; 
+        margin-left: 10px;
         .form-check-label {
-            margin-left: -2.5em;
+            margin-left: -40px;
         }
         
         .form-check-input {
@@ -241,7 +242,7 @@ body {
                 #scripturalReferenceModal {
                     
                     &.active {
-                        bottom: calc(8em - 3px);
+                        bottom: 122px;
                     }
                 }
                     
@@ -536,7 +537,7 @@ body {
                     width: 100%;
                     left: 0px;
                     position: static;
-                    height: 8em;
+                    height: 125px;
                     overflow: hidden;
                     bottom: 0px;
                     margin-top: 0px;
@@ -735,10 +736,15 @@ body {
                     left: 0;
                     width: 100%;
                     z-index: 78;
-                    line-height: 3.8em;
-                    height: 3.8em;
+                    line-height: 60px;
+                    height: 60px;
                     //background: linear-gradient(0deg, var(--bg-footer-stop), transparent);
                     color: var(--text-color);
+
+
+                    .mediaPlayerRow {
+                        height: 62px;
+                    }
 
                     .initialFooter {
                         background: linear-gradient(0deg, var(--bg-footer-stop), transparent);
@@ -747,7 +753,7 @@ body {
                     }
 
                     &.musicOpen {
-                        height: 12em;
+                        height: 192px;
                     }
 
                     .row {
