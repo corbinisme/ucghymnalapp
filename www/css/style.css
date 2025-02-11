@@ -15,6 +15,10 @@
   --yellowButton: #ffc742;
   --darkGold: #AC7A00;
   --blue: #178CE0;
+  --videojs-bg: #fff;
+  --videojs-border: #ccc;
+  --videojs-text: var(--charcoal);
+  --videojs-selected-percentage: .1;
   --bg-footer-start: rgba(255,255,255,0.46);
   --bg-footer-stop: rgba(255,255,255,0.91);
   --bg-header:var(--blue);
@@ -39,6 +43,10 @@ html {
   height: 100%;
 }
 html.dim {
+  --videojs-bg: #333;
+  --videojs-border: #111;
+  --videojs-text: #fff;
+  --videojs-selected-percentage: .6;
   --bg-footer-start: rgba(000,000,000,0.46);
   --bg-footer-stop: rgba(000,000,000,0.91);
   --bg-header: #333;
@@ -53,7 +61,6 @@ html.dim {
   --form-border: #333;
   --toggleBG: #eee;
   --toggleBorder: var(--form-border);
-  --toggleCheckedBG: var(--darkGold);
   --scriptureBG: rgba(0,0,0,0.6);
   --footer-btn-active: var(--bg-headerBot);
 }
@@ -274,6 +281,9 @@ body .mainContent .page #langDropdownWrapper #langDropdown li {
   padding: 1em;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
+body .mainContent .page #langDropdownWrapper #langDropdown li a {
+  text-transform: capitalize;
+}
 body .mainContent .page #langDropdownWrapper #langDropdown li.active a {
   font-family: Noto-sans-bold, sans-serif;
   color: var(--yellowButton);
@@ -423,15 +433,18 @@ body .mainContent .page#hymns .musicPlayer .video-js-wrapper {
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js {
   background-color: transparent;
   width: 100%;
-  height: 60px;
+  height: auto;
+  max-height: 53px;
+  border: 1px solid var(--videojs-border);
   font-size: 17px;
 }
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-control-bar {
   display: flex;
   position: static;
+  background-color: var(--videojs-bg);
 }
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-progress-control {
-  margin-left: 5px;
+  margin-left: 0px;
 }
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-current-time {
   display: block;
@@ -454,18 +467,30 @@ body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-menu
   position: relative;
   height: 60px;
   align-items: center;
-  background-color: #333;
+  background-color: var(--videojs-bg);
 }
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-menu-button-popup .vjs-menu .vjs-menu-content li {
   padding: 0 8px;
 }
+body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-menu-button-popup .vjs-menu .vjs-menu-content li.vjs-selected {
+  background: rgba(0, 0, 0, var(--videojs-selected-percentage));
+}
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js div.vjs-playback-rate {
   order: 2;
-  border-left: 1px solid #444;
+  border-left: 1px solid var(--videojs-border);
 }
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js div.vjs-playback-rate .vjs-playback-rate-value {
   font-size: 17px;
   line-height: 52px;
+}
+body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js div.vjs-playback-rate button.vjs-playback-rate:focus {
+  outline: 2px solid var(--videojs-border);
+}
+body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js * {
+  color: var(--videojs-text);
+}
+body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js button {
+  color: var(--videojs-text);
 }
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-big-play-button {
   display: none;
@@ -474,7 +499,7 @@ body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-volu
   display: none;
 }
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js button.vjs-play-control {
-  border-right: 1px solid #444;
+  border-right: 1px solid var(--videojs-border);
 }
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-time-divider, body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-live-control,
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-seek-to-live-control,
@@ -692,6 +717,9 @@ body .mainContent .page header #chooseLanguage:focus {
 }
 body .mainContent .page header #chooseLanguage #currentLanguageCode {
   text-transform: capitalize;
+}
+body .mainContent .page header #chooseLanguage .languageIcon i {
+  transform: scale(1.5);
 }
 body .mainContent .page header .headerFormControl {
   background-color: var(--bg-headerBot);

@@ -1,20 +1,24 @@
 $videoJsHeight: 60px;
 $videoJsFont: 17px;
+
 .video-js-wrapper {
     margin: 0!important;
 
     .video-js {
         background-color: transparent;
         width: 100%;
-        height: $videoJsHeight;
+        height: auto;
+        max-height: 53px;
+        border: 1px solid var(--videojs-border);
         font-size: $videoJsFont;
 
         .vjs-control-bar {
             display: flex;
             position: static;
+            background-color: var(--videojs-bg);
         }
         .vjs-progress-control {
-            margin-left: 5px;
+            margin-left: 0px;
         }
         .vjs-current-time  {
             display: block;
@@ -37,19 +41,34 @@ $videoJsFont: 17px;
                 position: relative;
                 height: 60px;
                 align-items: center;
-                background-color: #333;
+                background-color: var(--videojs-bg);
                 li {
                     padding: 0 8px;
+                    &.vjs-selected {
+                        background: rgba(0,0,0,var(--videojs-selected-percentage));
+                    }
                 }
             }
         }
         div.vjs-playback-rate {
             order: 2;
-            border-left: 1px solid #444;
+            border-left: 1px solid var(--videojs-border);
             .vjs-playback-rate-value {
                 font-size: $videoJsFont;
                 line-height: 52px;
             }
+            button.vjs-playback-rate {
+                &:focus {
+                    outline: 2px solid var(--videojs-border);
+                }
+            }
+        }
+        * {
+            color: var(--videojs-text);
+        }
+
+        button {
+            color: var(--videojs-text);
         }
         
         .vjs-big-play-button {
@@ -60,7 +79,7 @@ $videoJsFont: 17px;
         }
 
         button.vjs-play-control {
-            border-right: 1px solid #444;
+            border-right: 1px solid var(--videojs-border);
         }
 
         .vjs-time-divider, .vjs-live-control, 

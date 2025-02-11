@@ -29,6 +29,10 @@ $scrollbar-width: var(--scrollbar-width);
     --darkGold:  #AC7A00;
     --blue: #178CE0;
 
+    --videojs-bg: #fff;
+    --videojs-border: #ccc;
+    --videojs-text: var(--charcoal);
+    --videojs-selected-percentage: .1;
 
     --bg-footer-start: rgba(255,255,255,0.46);
     --bg-footer-stop: rgba(255,255,255,0.91); 
@@ -52,6 +56,12 @@ $scrollbar-width: var(--scrollbar-width);
 }
 html{
     &.dim {
+
+        --videojs-bg: #333;
+        --videojs-border: #111;
+        --videojs-text: #fff;
+        --videojs-selected-percentage: .6;
+
         --bg-footer-start: rgba(000,000,000,0.46);
         --bg-footer-stop: rgba(000,000,000,0.91);
         --bg-header: #333;
@@ -66,7 +76,6 @@ html{
         --form-border: #333;
         --toggleBG: #eee;
         --toggleBorder: var(--form-border);
-        --toggleCheckedBG: var(--darkGold);
         --scriptureBG: rgba(0,0,0,0.6);
         --footer-btn-active: var(--bg-headerBot);
     
@@ -371,6 +380,10 @@ body {
                         list-style: none;
                         padding: 1em;
                         border-bottom: 1px solid #fff3;
+
+                        a {
+                            text-transform: capitalize;
+                        }
 
                         &.active {
 
@@ -700,6 +713,11 @@ body {
                     }
                     #currentLanguageCode {
                         text-transform: capitalize;
+                    }
+                    .languageIcon {
+                        i {
+                            transform: scale(1.5);
+                        }
                     }
                 }
 
