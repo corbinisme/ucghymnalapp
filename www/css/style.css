@@ -648,12 +648,16 @@ body .mainContent .page header .navbar {
 body .mainContent .page header .navbar > * {
   color: #fff;
 }
+body .mainContent .page header .navbar .navbar-inner {
+  flex-wrap: nowrap;
+  padding-left: 0.25em;
+}
 body .mainContent .page header .navbar .headingBar {
   justify-content: flex-start;
 }
 body .mainContent .page header .navbar .navbar-collapse {
   position: absolute;
-  top: 56px;
+  top: 53px;
   z-index: 54;
   background: var(--bg-header);
   width: 100%;
@@ -698,7 +702,6 @@ body .mainContent .page header .navbar .btn:active, body .mainContent .page head
 }
 body .mainContent .page header .navbar-brand {
   color: #fff;
-  font-family: "Noto-sans-semi-bold", sans-serif;
 }
 body .mainContent .page header #languageSelector {
   margin-top: 1em;
@@ -717,6 +720,16 @@ body .mainContent .page header #chooseLanguage:focus {
 }
 body .mainContent .page header #chooseLanguage #currentLanguageCode {
   text-transform: capitalize;
+}
+@media all and (min-width: 360px) {
+  body .mainContent .page header #chooseLanguage #currentLanguageCode {
+    margin-left: 6px;
+  }
+}
+@media all and (max-width: 360px) {
+  body .mainContent .page header #chooseLanguage .languageIcon {
+    display: none;
+  }
 }
 body .mainContent .page header #chooseLanguage .languageIcon i {
   transform: scale(1.5);

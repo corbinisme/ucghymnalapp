@@ -621,6 +621,11 @@ body {
                         color: #fff;
                     }
 
+                    .navbar-inner {
+                        flex-wrap: nowrap;
+                        padding-left: .25em;
+                    }
+
                     .headingBar {
                         justify-content: flex-start;
                     }
@@ -628,7 +633,7 @@ body {
 
                     .navbar-collapse {
                         position: absolute;
-                        top: 56px;
+                        top: 53px;
                         z-index: 54;
                         background: var(--bg-header);
                         width: 100%;
@@ -686,9 +691,9 @@ body {
                 }  
 
                 .navbar-brand {
-  
+
                     color: #fff;
-                    font-family: 'Noto-sans-semi-bold', sans-serif;
+                    
                 }
 
 
@@ -713,8 +718,14 @@ body {
                     }
                     #currentLanguageCode {
                         text-transform: capitalize;
+                        @media all and  (min-width: 360px){
+                            margin-left: 6px;
+                        }
                     }
                     .languageIcon {
+                        @media all and  (max-width: 360px){
+                           display: none;
+                        }
                         i {
                             transform: scale(1.5);
                         }
