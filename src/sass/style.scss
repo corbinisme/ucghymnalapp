@@ -670,6 +670,11 @@ body {
                                 &:first-child {
                                     border-top: none;
                                 }
+                                .nav-link {
+                                    span.text {
+                                        margin-left: 4px;
+                                    }
+                                }
                              }
                         }
                     }
@@ -677,12 +682,27 @@ body {
                     .navbar-toggler {
                         border: none;
                         padding: 6px 12px;
+
+                        .fa-times {
+                            display: none;
+                            color: #fff;
+                        }
+
                         &:focus {
-                           box-shadow: 0 0 0 0.25rem #fff3;
+                           box-shadow: 0 0 0 1px #ffffff1a;
+                        }
+                        &.collapsed {
+                            .fa-times {
+                                display: block;
+                            }
+                            .navbar-toggler-override {
+                                display: none;
+                            }
                         }
                     }
                     .navbar-toggler-override {
                         color: #fff;
+                        display: block;
                     }
 
                     .navbar-nav {
@@ -845,8 +865,9 @@ body {
                             }
                         }
                         &.active {
-                            background-color: var(--bg-headerBot);
+                            background-color: transparent;
                             border: 1px solid;
+                            color: var(--blue);
 
                             &.btn-outline-tertiary {
                                 background: transparent;
@@ -864,7 +885,8 @@ body {
                         background-color: var(--bg-body);
 
                         &.active {
-                            background-color: var(--footer-btn-active);
+                            
+                            color: var(--blue);
                         }
                     }
                     #pianoIcon {

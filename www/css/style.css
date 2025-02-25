@@ -704,15 +704,29 @@ body .mainContent .page header .navbar .navbar-collapse .navbar-nav li {
 body .mainContent .page header .navbar .navbar-collapse .navbar-nav li:first-child {
   border-top: none;
 }
+body .mainContent .page header .navbar .navbar-collapse .navbar-nav li .nav-link span.text {
+  margin-left: 4px;
+}
 body .mainContent .page header .navbar .navbar-toggler {
   border: none;
   padding: 6px 12px;
 }
+body .mainContent .page header .navbar .navbar-toggler .fa-times {
+  display: none;
+  color: #fff;
+}
 body .mainContent .page header .navbar .navbar-toggler:focus {
-  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1019607843);
+}
+body .mainContent .page header .navbar .navbar-toggler.collapsed .fa-times {
+  display: block;
+}
+body .mainContent .page header .navbar .navbar-toggler.collapsed .navbar-toggler-override {
+  display: none;
 }
 body .mainContent .page header .navbar .navbar-toggler-override {
   color: #fff;
+  display: block;
 }
 body .mainContent .page header .navbar .navbar-nav li a {
   color: #fff;
@@ -842,8 +856,9 @@ body .mainContent .page footer.hymnFooter .music-control-btn.btn-outline-tertiar
   background: transparent;
 }
 body .mainContent .page footer.hymnFooter .music-control-btn.active {
-  background-color: var(--bg-headerBot);
+  background-color: transparent;
   border: 1px solid;
+  color: var(--blue);
 }
 body .mainContent .page footer.hymnFooter .music-control-btn.active.btn-outline-tertiary {
   background: transparent;
@@ -857,7 +872,7 @@ body .mainContent .page footer.hymnFooter .btn {
   background-color: var(--bg-body);
 }
 body .mainContent .page footer.hymnFooter .btn.active {
-  background-color: var(--footer-btn-active);
+  color: var(--blue);
 }
 body .mainContent .page footer.hymnFooter #pianoIcon.solo {
   border-top-left-radius: 3px;
