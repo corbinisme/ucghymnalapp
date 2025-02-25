@@ -679,10 +679,10 @@ function redirectToSystemBrowser(url) {
         let menu = document.getElementById("navbarSupportedContent");
         if(button.classList.contains("collapsed")){
             button.classList.remove("collapsed");
-            menu.classList.remove("show")
+            menu.classList.remove("shown")
         } else {
             button.classList.add("collapsed")
-            menu.classList.add("show")
+            menu.classList.add("shown")
         }
         app.closeAllMenus("menu")
       },

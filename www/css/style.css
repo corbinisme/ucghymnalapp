@@ -109,6 +109,13 @@ body .form-switch {
   align-items: center;
   margin-left: 10px;
 }
+body .form-switch > * {
+  position: relative;
+  top: 3px;
+}
+body .form-switch > *.form-check-input {
+  top: 2px;
+}
 body .form-switch .form-check-label {
   margin-left: -40px;
 }
@@ -267,7 +274,9 @@ body .mainContent .page #langDropdownWrapper #langDropdown {
   position: absolute;
   margin: 0;
   padding: 0;
+  right: 0;
   top: 10px;
+  text-align: left;
   background-color: var(--bg-header);
   list-style: none;
   display: none;
@@ -672,12 +681,19 @@ body .mainContent .page header .navbar .headingBar {
 }
 body .mainContent .page header .navbar .navbar-collapse {
   position: absolute;
-  top: 53px;
+  top: 0px;
   z-index: 54;
-  background: var(--bg-header);
-  width: 100%;
+  background: var(--charcoal);
+  width: calc(100% - 59px);
   left: 0;
   padding: 1em;
+  height: 100vh;
+  transform: translateX(-110%);
+  transition: all ease 0.3s;
+  display: block;
+}
+body .mainContent .page header .navbar .navbar-collapse.shown {
+  transform: translateX(0%);
 }
 body .mainContent .page header .navbar .navbar-collapse .navbar-nav {
   margin: 0;
@@ -712,11 +728,16 @@ body .mainContent .page header .navbar .btn#searchButton {
   background-color: var(--yellowButton);
   color: #3B3B3B;
 }
+body .mainContent .page header .navbar .btn#searchButton i {
+  position: relative;
+  top: 1px;
+}
 body .mainContent .page header .navbar .btn:active, body .mainContent .page header .navbar .btn:hover, body .mainContent .page header .navbar .btn:focus {
   background: transparent;
 }
 body .mainContent .page header .navbar-brand {
   color: #fff;
+  margin: 0;
 }
 body .mainContent .page header #languageSelector {
   margin-top: 1em;
@@ -814,9 +835,20 @@ body .mainContent .page footer.hymnFooter .mediaControls {
 body .mainContent .page footer.hymnFooter .music-control-btn {
   padding: 0.5em;
 }
+body .mainContent .page footer.hymnFooter .music-control-btn.btn-outline-tertiary {
+  border: none !important;
+}
+body .mainContent .page footer.hymnFooter .music-control-btn.btn-outline-tertiary:focus {
+  background: transparent;
+}
 body .mainContent .page footer.hymnFooter .music-control-btn.active {
   background-color: var(--bg-headerBot);
   border: 1px solid;
+}
+body .mainContent .page footer.hymnFooter .music-control-btn.active.btn-outline-tertiary {
+  background: transparent;
+  color: var(--blue);
+  border: none;
 }
 body .mainContent .page footer.hymnFooter .col.actions {
   flex: 1 99%;

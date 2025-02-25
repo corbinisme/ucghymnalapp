@@ -67,50 +67,60 @@
         <nav class="navbar">
           <div class="container-fluid d-flex navbar-inner">
            
-            <div class="d-flex align-items-center">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-override fa fa-bars"></span>
-            </button>
-            <div class="titleArea d-flex align-items-center">
+            <div class="d-flex ms-1 actions">
               
-              <div id="currentLanguage" class="ml-2 languageSelector">
-                
-
-                <a id="chooseLanguage" href="#" class="btn text-white text-decoration-none">
-                  <span class="languageIcon"><i class="fa-light fa-language"></i></span>
-                  <span id="currentLanguageCode">en</span>
-                  <span id="currentLanguageCaret" class="hidden">
-                    <i class="fa fa-chevron-down"></i>
-                  </span>
-                  
-                </a>
-
-                <div id="langDropdownWrapper">
-                  <ul id="langDropdown">
-
-                  </ul>
-                </div>
-              </div>
-              
-            </div>
-           
-          </div>
-          <a class="navbar-brand pageTitle" id="brand" href="#">Hymnal</a>
-            <div class="d-flex actions">
               <div class="text-white" id="navigationActions">
                 
-                <a href="#" class="nav-links btn text-white btn-outline-secondary changePageButton"  data-page="number" id="numberButton">
-                  <i class="fa-solid fa-hashtag"></i>
-                </a>
                 <a href="#" class="nav-links changePageButton btn btn-outline-secondary" data-page="search" id="searchButton">
                   <i class="fa-solid fa-magnifying-glass"></i>
                 </a>
-                
-                  
-                
-                  
+                <a href="#" class="nav-links btn text-white btn-outline-secondary changePageButton"  data-page="number" id="numberButton">
+                  <i class="fa-solid fa-hashtag"></i>
+                </a>
+               
+                 
               </div>
             </div>
+
+            <div class="d-flex align-items-center">
+            
+              <div class="titleArea d-flex align-items-center">
+                
+                <a class="navbar-brand pageTitle" id="brand" href="#">Hymnal</a>
+              
+                
+              </div>
+           
+            </div>
+         
+
+            <div class="d-flex text-end">
+            <div id="currentLanguage" class="ml-2 languageSelector">
+                
+
+            <a id="chooseLanguage" href="#" class="btn text-white text-decoration-none">
+              <span class="languageIcon"><i class="fa-light fa-language"></i></span>
+              <span id="currentLanguageCode">en</span>
+              <span id="currentLanguageCaret" class="hidden">
+                <i class="fa fa-chevron-down"></i>
+              </span>
+              
+            </a>
+
+            <div id="langDropdownWrapper">
+              <ul id="langDropdown">
+
+              </ul>
+            </div>
+          </div>
+
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-override fa fa-bars"></span>
+          </button>
+        </div>
+          
+
+            
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto" id="dropdownContent">
@@ -262,18 +272,32 @@
               <div class="mediaItem">
 
                 <div class="btn-group">
-                  <a href="#" id="shuffleBtn" data-id="shuffle" class="music-control-btn btn btn-outline-secondary">
+                  <a href="#" id="hymnPrev" class="music-control-toggler btn btn-outline-secondary">
+                    <i class="fa-solid fa-chevron-left"></i>
+                  </a> 
+
+                  <a href="#" id="hymnNext" class="music-control-toggler  btn btn-outline-secondary">
+                    <i class="fa-solid fa-chevron-right"></i>
+                  </a>
+                </div>
+
+                <div class="btn-group">
+                  <a href="#" id="shuffleBtn" data-id="shuffle" class="music-control-btn btn btn-outline-tertiary">
                     <i class="fa-solid fa-random incorrectTarget"></i>                   
                   </a> 
 
-                  <a href="#" id="playAll" data-id="autoplay" class="music-control-btn btn btn-outline-secondary">
+                  <a href="#" id="playAll" data-id="autoplay" class="music-control-btn btn btn-outline-tertiary">
                     <i class="fas fa-repeat incorrectTarget"></i>
                   </a>
+
+                  
                 </div>
+
+                
               </div>
               <div class="mediaItem col">
            
-                <div class="form-check form-switch"  id="vocal_version_toggle">
+                <div class="form-check form-switch hidden"  id="vocal_version_toggle">
                   <label class="form-check-label" 
                   for="vocal_version"><span>Vocal</span>
                   </label>
@@ -289,15 +313,7 @@
                   <i class="fa-solid fa-xmark"></i>
                 </a>
 
-                <div class="btn-group">
-                  <a href="#" id="hymnPrev" class="music-control-toggler btn btn-outline-secondary">
-                    <i class="fa-solid fa-chevron-left"></i>
-                  </a> 
 
-                  <a href="#" id="hymnNext" class="music-control-toggler  btn btn-outline-secondary">
-                    <i class="fa-solid fa-chevron-right"></i>
-                  </a>
-                </div>
                 
                
               </div>
