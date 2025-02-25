@@ -438,6 +438,9 @@ body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js {
   border: 1px solid var(--videojs-border);
   font-size: 17px;
 }
+body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-play-progress {
+  background-color: #ccc;
+}
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-control-bar {
   display: flex;
   position: static;
@@ -445,6 +448,18 @@ body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-cont
 }
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-progress-control {
   margin-left: 0px;
+}
+body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-progress-control > * {
+  position: relative;
+  top: 1px;
+}
+body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-duration-display {
+  top: 2px;
+  position: relative;
+}
+body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-current-time-display {
+  top: 1px;
+  position: relative;
 }
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-current-time {
   display: block;
@@ -481,7 +496,7 @@ body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js div.vjs-p
 }
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js div.vjs-playback-rate .vjs-playback-rate-value {
   font-size: 17px;
-  line-height: 52px;
+  line-height: 55px;
 }
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js div.vjs-playback-rate button.vjs-playback-rate:focus {
   outline: 2px solid var(--videojs-border);

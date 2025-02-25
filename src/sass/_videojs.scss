@@ -12,6 +12,10 @@ $videoJsFont: 17px;
         border: 1px solid var(--videojs-border);
         font-size: $videoJsFont;
 
+        .vjs-play-progress {
+            background-color: #ccc;
+        }
+
         .vjs-control-bar {
             display: flex;
             position: static;
@@ -19,7 +23,23 @@ $videoJsFont: 17px;
         }
         .vjs-progress-control {
             margin-left: 0px;
+
+            > * {
+                position: relative;
+                top: 1px;
+            }
+            
         }
+
+        .vjs-duration-display {
+            top: 2px;
+            position: relative;
+        }
+        .vjs-current-time-display {
+            top: 1px;
+            position: relative;
+        }
+
         .vjs-current-time  {
             display: block;
         }
@@ -55,7 +75,7 @@ $videoJsFont: 17px;
             border-left: 1px solid var(--videojs-border);
             .vjs-playback-rate-value {
                 font-size: $videoJsFont;
-                line-height: 52px;
+                line-height: 55px;
             }
             button.vjs-playback-rate {
                 &:focus {
