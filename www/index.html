@@ -239,7 +239,30 @@
      
       <footer class="hymnFooter">
         <div class="row initialFooter">
-          <div class="col">
+          
+
+          <div class="col actions">
+            <div class="btn-group">
+              <a href="#" id="hymnPrev" class="music-control-toggler btn btn-outline-secondary">
+                <i class="fa-solid fa-chevron-left"></i>
+              </a> 
+
+              <a href="#" id="hymnNext" class="music-control-toggler  btn btn-outline-secondary">
+                <i class="fa-solid fa-chevron-right"></i>
+              </a>
+            </div>
+          </div>
+          
+          <div class="col text-end">
+            
+
+            <a href="#" class="shareIcon contrastIcon btn btn-outline-secondary" id="contrast">
+              <i class="fa-solid fa-sun hidden" id="sunSolid"></i>
+              <i class="fa fa-solid fa-moon hidden" id="moonSolid"></i>
+            </a>
+            <a href="#" class="fontSizer btn btn-outline-secondary">
+              <i class="fa-solid fa-text-size"></i>
+            </a>
 
             <a class="btn btn-outline-secondary scripturalReferenceButton" id="scripturalReferenceButton">
               <i class="fa-solid fa-book"></i>
@@ -247,21 +270,6 @@
 
             <a class="btn btn-outline-secondary musicControl" id="musicControl">
               <i class="fa-solid fa-music"></i>
-            </a>
-           
-          </div>
-
-          <div class="col actions">
-              
-          </div>
-          
-          <div class="col text-end">
-            <a href="#" class="shareIcon contrastIcon btn btn-outline-secondary" id="contrast">
-              <i class="fa-solid fa-sun hidden" id="sunSolid"></i>
-              <i class="fa fa-solid fa-moon hidden" id="moonSolid"></i>
-            </a>
-            <a href="#" class="fontSizer btn btn-outline-secondary">
-              <i class="fa-solid fa-text-size"></i>
             </a>
           </div>
         </div>
@@ -271,15 +279,7 @@
             <div class="d-flex mediaPlayerRow">
               <div class="mediaItem">
 
-                <div class="btn-group">
-                  <a href="#" id="hymnPrev" class="music-control-toggler btn btn-outline-secondary">
-                    <i class="fa-solid fa-chevron-left"></i>
-                  </a> 
-
-                  <a href="#" id="hymnNext" class="music-control-toggler  btn btn-outline-secondary">
-                    <i class="fa-solid fa-chevron-right"></i>
-                  </a>
-                </div>
+                
 
                 <div class="btn-group">
                   <a href="#" id="shuffleBtn" data-id="shuffle" class="music-control-btn btn btn-outline-tertiary">
