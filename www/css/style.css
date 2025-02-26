@@ -707,22 +707,75 @@ body .mainContent .page header .navbar .navbar-collapse .navbar-nav li:first-chi
 body .mainContent .page header .navbar .navbar-collapse .navbar-nav li .nav-link span.text {
   margin-left: 4px;
 }
+body .mainContent .page header .navbar .languageAndMenu #currentLanguage {
+  position: relative;
+  top: 2px;
+}
 body .mainContent .page header .navbar .navbar-toggler {
   border: none;
-  padding: 6px 12px;
+  width: 42px;
+  height: 40px;
+  position: relative;
 }
 body .mainContent .page header .navbar .navbar-toggler .fa-times {
   display: none;
   color: #fff;
 }
-body .mainContent .page header .navbar .navbar-toggler:focus {
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1019607843);
-}
-body .mainContent .page header .navbar .navbar-toggler.collapsed .fa-times {
+body .mainContent .page header .navbar .navbar-toggler .bars {
   display: block;
+  height: 2px;
+  width: 32px;
+  background-color: #fff;
+  position: absolute;
+  top: 18px;
+  right: 5px;
+  left: 5px;
+  transition: background-color 0s 0.3s;
 }
-body .mainContent .page header .navbar .navbar-toggler.collapsed .navbar-toggler-override {
-  display: none;
+body .mainContent .page header .navbar .navbar-toggler .bars:before {
+  content: "";
+  background-color: #fff;
+  height: 2px;
+  top: -10px;
+  width: 32px;
+  transition-property: top, transform;
+  transition-delay: 0.3s, 0s;
+  transition-duration: 0.3s, 0.3s;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+}
+body .mainContent .page header .navbar .navbar-toggler .bars:after {
+  content: "";
+  background-color: #fff;
+  bottom: -10px;
+  width: 32px;
+  height: 2px;
+  transition-property: bottom, transform;
+  transition-delay: 0.3s, 0s;
+  transition-duration: 0.3s, 0.3s;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+}
+body .mainContent .page header .navbar .navbar-toggler:focus {
+  box-shadow: none;
+}
+body .mainContent .page header .navbar .navbar-toggler.collapsed {
+  outline: 999em solid rgba(0, 0, 0, 0.5);
+}
+body .mainContent .page header .navbar .navbar-toggler.collapsed .bars {
+  background-color: transparent;
+}
+body .mainContent .page header .navbar .navbar-toggler.collapsed .bars:before {
+  top: 0px;
+  transform: rotate(45deg);
+  transition-delay: 0s, 0.3s;
+}
+body .mainContent .page header .navbar .navbar-toggler.collapsed .bars:after {
+  bottom: 0px;
+  transform: rotate(-45deg);
+  transition-delay: 0s, 0.3s;
 }
 body .mainContent .page header .navbar .navbar-toggler-override {
   color: #fff;

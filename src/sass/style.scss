@@ -678,26 +678,83 @@ body {
                              }
                         }
                     }
+                    .languageAndMenu #currentLanguage {
+                        position: relative;
+                        top: 2px;
+                    }
 
                     .navbar-toggler {
                         border: none;
-                        padding: 6px 12px;
+                        width: 42px;
+                        height: 40px;
+                        position: relative;
 
                         .fa-times {
                             display: none;
                             color: #fff;
                         }
+                        .bars {
+                            display: block;
+                            height: 2px;
+                            width: 32px;
+                            background-color: #fff;
+                            position: absolute;
+                            top: 18px;
+                            right: 5px;
+                            left: 5px;
+                            transition: background-color 0s 0.3s;
+                            &:before {
+                                content: "";
+                                background-color: #fff;
+                                
+                                height: 2px;
+                                top: -10px;
+                                width: 32px;
+                                transition-property: top, transform;
+                                transition-delay: .3s, 0s;
+                                transition-duration: 0.3s, 0.3s;
+                                
+                                position: absolute;
+                                left: 0px;
+                                right: 0px;
+                            }
+                            &:after {
+                                content: "";
+                                background-color: #fff;
+                                bottom: -10px;
+                                width: 32px;
+                                
+                                height: 2px;
+                                transition-property: bottom, transform;
+                                transition-delay: .3s, 0s;
+                                transition-duration: 0.3s, 0.3s;
+                                
+                                position: absolute;
+                                left: 0px;
+                                right: 0px;
+                            }
+                        }
 
                         &:focus {
-                           box-shadow: 0 0 0 1px #ffffff1a;
+                           box-shadow: none;
+                           
                         }
                         &.collapsed {
-                            .fa-times {
-                                display: block;
+                            outline: 999em solid rgba(0,0,0,0.5);
+                            .bars {
+                                background-color: transparent;
+                                &:before {
+                                    top: 0px;
+                                    transform: rotate(45deg);
+                                    transition-delay:  0s,0.3s;
+                                }
+                                &:after {
+                                    bottom: 0px;
+                                    transform: rotate(-45deg);
+                                    transition-delay:  0s,0.3s;
+                                }
                             }
-                            .navbar-toggler-override {
-                                display: none;
-                            }
+                            
                         }
                     }
                     .navbar-toggler-override {
