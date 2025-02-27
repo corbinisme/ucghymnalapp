@@ -188,6 +188,12 @@ function redirectToSystemBrowser(url) {
             document.querySelector("#" + page + " .navbar-brand").innerHTML = newText;
             
         });
+
+        const scriptureRef = document.querySelector(".scripturalReferenceContent .text");
+        if(scriptureRef){
+            let translatedTitle = (menuItems["scriptureref"]? menuItems["scriptureref"]: menuItemsBackup["scriptureref"]);
+            scriptureRef.innerHTML = translatedTitle;
+        }
         
       },
       populatePages: function(){
@@ -440,7 +446,7 @@ function redirectToSystemBrowser(url) {
                
                 if(scriptureForHymn.length>0){
                     output += `<div class="scriptureReferences">
-                        <div class="scripturalReferenceContent"><p>Scriptural References</p><ul>`;
+                        <div class="scripturalReferenceContent"><p class="text">Scriptural References</p><ul>`;
                     scriptureForHymn.forEach(function(scripture){
                         output+=`<li>${scripture}</li>`;
                     })
