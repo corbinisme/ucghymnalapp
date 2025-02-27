@@ -799,6 +799,9 @@ body {
                     margin: 0;
                     
                 }
+                .languageSelector {
+                    margin-right: 9px;
+                }
 
 
                 #languageSelector {
@@ -816,17 +819,32 @@ body {
                 }
 
                 #chooseLanguage {
+                    padding-left: 0;
+                    padding-right: 0;
+                    display: flex;
+                    align-items: center;
+                    align-content: center;
+                    height: 36px;
+
+
                     &:focus {
-                        box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.2);
+                        box-shadow: none;
                         
                     }
                     #currentLanguageCode {
                         text-transform: capitalize;
                         @media all and  (min-width: 360px){
-                            margin-left: 6px;
+                            margin-left: 2px;
                         }
                     }
                     .languageIcon {
+                        display: block;
+                        width: 44px;
+
+                        svg {
+                            fill: #fff;
+                            height: 27px;
+                        }
                         @media all and  (max-width: 360px){
                            display: none;
                         }
