@@ -12,4 +12,6 @@ var menu_es = {
     "about": "Acerca de esta aplicación",
     "ucg": "Acerca de la Iglesia de Dios Unida",
     "404": "Página no encontrada",
+    "holydaycalendar": "Calendario de días santos",
+    "scriptureref": "Referencias bíblicas",
 }

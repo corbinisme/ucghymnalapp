@@ -11,5 +11,7 @@ var menu_nl = {
     "scripture":   "Schriftuurlijke index",
     "about": "Over deze app",
     "ucg": "Over de Verenigde Kerk van God",
-    "404": "Pagina niet gevonden"
+    "404": "Pagina niet gevonden",
+    "holydays": "Heilige Dagen Kalender",
+    "scriptureref": "Bijbelverwijzingen",
 }

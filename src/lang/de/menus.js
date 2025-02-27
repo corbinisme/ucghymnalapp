@@ -11,5 +11,7 @@ var menu_de = {
     "scripture":   "Schriftindex",
     "about": "Über diese App",
     "ucg": "Über die Vereinigte Kirche Gottes",
-    "404": "Seite nicht gefunden"
+    "404": "Seite nicht gefunden",
+    "holydaycalendar": "Holy Day Calendar",
+    "scriptureref": "Scripture References",
 }

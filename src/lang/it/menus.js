@@ -11,5 +11,7 @@ var menu_it = {
     "scripture":   "Indice scritturale",
     "about": "Informazioni su questa app",
     "ucg": "Sulla Chiesa di Dio Unificata",
-    "404": "Pagina non trovata"
+    "404": "Pagina non trovata",
+    "holydays": "Calendario delle festività",
+    "scriptureref": "Riferimenti scritturali",
 }

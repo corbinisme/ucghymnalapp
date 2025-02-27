@@ -5,7 +5,7 @@
  */
 .fa {
   font-family: var(--fa-style-family, "Font Awesome 6 Pro");
-  font-weight: var(--fa-style, 900); }
+  font-weight: var(--fa-style, 300); }
 
 .fa,
 .fa-classic,

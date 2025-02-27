@@ -11,5 +11,7 @@ var menu_en = {
     "scripture":   "Scriptural Index",
     "about": "About the App",
     "ucg": "About United Church of God",
-    "404": "Page not found"
+    "404": "Page not found",
+    "holydays": "Holy Day Calendar",
+    "scriptureref": "Scripture References",
 }
