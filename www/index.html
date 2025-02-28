@@ -237,17 +237,11 @@
             </div>
             <canvas id="thecanvas" class="pdfCanvas"></canvas>
           </div>
+
+          
         </div>
       </div>
-      <div class="modalsm" id="fontSizer">
-        <div class="input-group">
-          <input type="range" class="form-control" id="fontSlider" value="16" min="10" max="70" />
-          <a class="input-group-addon btn btn-outline-secondary fontSizer fontSizerClose" href="#">
-            <i class="fa fa-check"></i>
-          </a>
-        </div>
-        
-      </div>
+      
       <div id="scripturalReferenceModal">
         <h3>References for this hymn</h3>
       </div>
@@ -275,7 +269,7 @@
               <i class="fa-solid fa-sun hidden" id="sunSolid"></i>
               <i class="fa fa-solid fa-moon hidden" id="moonSolid"></i>
             </a>
-            <a href="#" class="fontSizer btn btn-outline-secondary">
+            <a href="#" class="fontSizeToggle btn btn-outline-secondary">
               <i class="fa-solid fa-text-size"></i>
             </a>
 
@@ -356,6 +350,16 @@
             </div>
   
             
+          </div>
+          
+        </div>
+
+        <div class="modalsm" id="fontSizer">
+          <div class="input-grouping d-flex">
+            <input type="range" class="form-control" id="fontSlider" value="16" min="10" max="70" />
+            <a class="btn btn-outline-tertiary fontSizer fontSizerClose" href="#">
+              <i class="fa fa-times"></i>
+            </a>
           </div>
           
         </div>

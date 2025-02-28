@@ -446,6 +446,7 @@ function redirectToSystemBrowser(url) {
                
                 if(scriptureForHymn.length>0){
                     output += `<div class="scriptureReferences">
+                    <a href="#" onClick="app.toggleScripturalReference(false)" class="btn btn-outline-tertiary scripturalReferenceButtonClose"><i class="fa fa-times"></i></a>
                         <div class="scripturalReferenceContent"><p class="text">Scriptural References</p><ul>`;
                     scriptureForHymn.forEach(function(scripture){
                         output+=`<li>${scripture}</li>`;
@@ -1062,14 +1063,33 @@ function redirectToSystemBrowser(url) {
             
         })
 
+        document.querySelectorAll(".fontSizeToggle").forEach(function(el){
+            el.addEventListener("click", function(e){
+                e.preventDefault();
+                let target = e.target;
+                if(target.tagName=="I"){
+                    target = target.parentElement;
+                }
+                target.classList.toggle("active");
+                let tar = document.querySelector("#hymns");
+                if(tar.classList.contains("showFontSizer")){
+                    tar.classList.remove("showFontSizer")
+                } else {
+                    tar.classList.add("showFontSizer")
+                }
+            
+              
+            })
+        })
 
         document.querySelectorAll(".fontSizer").forEach(function(el){
             el.addEventListener("click", function(e){
                 e.preventDefault();
-                
+                let togglerIcon = document.querySelector(".fontSizeToggle");
                 let tar = document.querySelector("#hymns");
                 if(tar.classList.contains("showFontSizer")){
-                    tar.classList.remove("showFontSizer")
+                    tar.classList.remove("showFontSizer");
+                    togglerIcon.classList.remove("active"); 
                 } else {
                     tar.classList.add("showFontSizer")
                 }

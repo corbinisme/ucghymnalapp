@@ -47,6 +47,7 @@ html.dim {
   --videojs-border: #111;
   --videojs-text: #fff;
   --videojs-selected-percentage: .6;
+  --blue: #33AAFF;
   --bg-footer-start: rgba(000,000,000,0.46);
   --bg-footer-stop: rgba(000,000,000,0.91);
   --bg-header: #333;
@@ -72,6 +73,9 @@ body {
   color: var(--text-color);
   height: 100%;
   font-family: "Noto-sans", sans-serif;
+}
+body.scripturalReferenceOpen .page.showFontSizer .scripturalReferenceContent {
+  padding-bottom: 105px !important;
 }
 body.scrollbar .mainContent .page footer.hymnFooter {
   width: calc(100vw - var(--scrollbar-width));
@@ -303,12 +307,26 @@ body .mainContent .page #langDropdownWrapper #langDropdown li a {
 body .mainContent .page #scripturalReferenceModal {
   display: none;
 }
+body .mainContent .page #scripturalReferenceModal .scriptureReferences {
+  position: relative;
+}
+body .mainContent .page #scripturalReferenceModal .scriptureReferences .scripturalReferenceButtonClose {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  color: var(--blue);
+  z-index: 8;
+}
 body .mainContent .page #scripturalReferenceModal .scripturalReferenceContent {
   backdrop-filter: blur(7px);
   padding: 1em;
   padding-bottom: 60px;
-  width: calc(100vw - var(--scrollbar-width));
+  width: 100vw;
   background-color: var(--scriptureBG);
+}
+body .mainContent .page #scripturalReferenceModal .scripturalReferenceContent .text {
+  font-weight: bold;
+  color: var(--blue);
 }
 body .mainContent .page #scripturalReferenceModal.active {
   display: block;
@@ -388,16 +406,32 @@ body .mainContent .page#hymns a.fontSizer .biggerA {
 body .mainContent .page#hymns #fontSizer {
   position: fixed;
   bottom: 0px;
-  width: 100%;
+  width: calc(100vw - var(--scrollbar-width));
   left: 0;
-  display: none;
-  padding: 0.75em;
+  padding: 0px 13px;
   background-color: var(--bg-body);
   transition: all ease 0.3s;
   z-index: 793;
+  transform: translateY(100%);
+  transition: all ease 0.3s;
+  height: 0;
+  overflow: hidden;
+}
+body .mainContent .page#hymns #fontSizer .input-grouping {
+  margin: 10px 0;
+}
+body .mainContent .page#hymns #fontSizer .fontSizerClose {
+  margin-left: 5px;
+}
+body .mainContent .page#hymns.showFontSizer .hymnFooter {
+  bottom: 55px;
 }
 body .mainContent .page#hymns.showFontSizer #fontSizer {
-  display: block;
+  transform: translateY(0%);
+  height: auto;
+}
+body .mainContent .page#hymns.showFontSizer #loader {
+  padding-bottom: 60px;
 }
 body .mainContent .page#hymns audio#audio_player {
   position: absolute;
@@ -949,6 +983,13 @@ body .mainContent .page footer.hymnFooter .btn.active {
 body .mainContent .page footer.hymnFooter #pianoIcon.solo {
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
+}
+
+body.scrollbar .mainContent .page #scripturalReferenceModal .scripturalReferenceContent {
+  width: calc(100vw - var(--scrollbar-width));
+}
+body.scrollbar .mainContent .page #scripturalReferenceModal .scriptureReferences .scripturalReferenceButtonClose {
+  right: calc(10px + var(--scrollbar-width));
 }
 
 .whatsnew-open * {

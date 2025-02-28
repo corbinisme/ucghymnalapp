@@ -62,6 +62,7 @@ html{
         --videojs-text: #fff;
         --videojs-selected-percentage: .6;
 
+        --blue: #33AAFF;
         --bg-footer-start: rgba(000,000,000,0.46);
         --bg-footer-stop: rgba(000,000,000,0.91);
         --bg-header: #333;
@@ -93,7 +94,13 @@ body {
     font-family: 'Noto-sans', sans-serif;
 
 
-
+    &.scripturalReferenceOpen {
+        .page.showFontSizer {
+            .scripturalReferenceContent {
+                padding-bottom: 105px!important;
+            }
+        }
+    }
     
     &.scrollbar {
         .mainContent {
@@ -263,6 +270,8 @@ body {
                     &.active {
                         bottom: 122px;
                     }
+
+                   
                 }
                     
                 
@@ -416,12 +425,28 @@ body {
             #scripturalReferenceModal {
                 display: none;
 
+                .scriptureReferences {
+                    position: relative;
+
+                    .scripturalReferenceButtonClose {
+                        position: absolute;
+                        right: 10px;
+                        top: 5px;
+                        color: var(--blue);
+                        z-index: 8;
+                    }
+                }
+
                 .scripturalReferenceContent {
                     backdrop-filter: blur(7px);
                     padding: 1em;
                     padding-bottom: 60px;
-                    width: calc(100vw - var(--scrollbar-width));
+                    width: 100vw;
                     background-color: var(--scriptureBG);
+                    .text {
+                        font-weight: bold;
+                        color: var(--blue);
+                    }
                 }
                 &.active {
                     display: block;
@@ -537,18 +562,37 @@ body {
                 #fontSizer {
                     position: fixed;
                     bottom:0px;
-                    width: 100%;
+                    width: calc(100vw - var(--scrollbar-width));
                     left: 0;
-                    display: none;
-                    padding: .75em;
+                    padding: 0px 13px;
                     background-color: var(--bg-body);
                     transition: all ease 0.3s;
                     z-index: 793;
+                    transform: translateY(100%);
+                    transition: all ease .3s;
+                    height: 0;
+                    overflow: hidden;
+
+                    .input-grouping {
+                        margin: 10px 0;
+                    }
+
+                    .fontSizerClose {
+                        margin-left: 5px;
+                    }
+                    
 
                 }
                 &.showFontSizer {
+                    .hymnFooter {
+                        bottom:55px;
+                    }
                     #fontSizer {
-                        display: block;
+                        transform: translateY(0%);
+                        height: auto;
+                    }
+                    #loader {
+                        padding-bottom: 60px;
                     }
                 }
 
@@ -977,6 +1021,15 @@ body {
             }
 
         }
+    }
+}
+
+body.scrollbar {
+    .mainContent .page #scripturalReferenceModal .scripturalReferenceContent {
+        width: calc(100vw - var(--scrollbar-width));
+    }
+    .mainContent .page #scripturalReferenceModal .scriptureReferences .scripturalReferenceButtonClose {
+        right: calc(10px + var(--scrollbar-width));
     }
 }
 
