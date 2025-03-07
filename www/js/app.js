@@ -1410,7 +1410,15 @@ function redirectToSystemBrowser(url) {
 
       makeMusic:function(type, autoplay){
         
-        console.log("making music", type)
+        console.group("Make music function");
+        console.log("music type", type);
+        console.log("autoplay", autoplay, app.autoplay);  
+        console.log("current music type", app.currentMusicType);
+        console.log("app.isPlaying", app.isPlaying);
+        console.groupEnd();
+        
+
+        
         app.toggleScripturalReference(true);
 
         let audio = document.querySelector(".video-js");
