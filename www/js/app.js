@@ -120,7 +120,7 @@ function redirectToSystemBrowser(url) {
       setRandomPlaylistForLang: function(){
         config.langs.split(",").forEach(function(lang){
             //randomPlaylists
-            console.log("setting random playlist for", lang);
+
             let hymnCount = window['title_'+ lang].length;
             let playlist = [];
             for(let i=1; i<=hymnCount; i++){
@@ -130,7 +130,7 @@ function redirectToSystemBrowser(url) {
             playlist = app.shuffleArray(playlist);
             app.randomPlaylists[lang] = playlist;
         })
-        console.log("random playlists", app.randomPlaylists)
+
       },
       changePage: function(id){
         if(document.querySelector("#" + id)){
@@ -821,7 +821,7 @@ function redirectToSystemBrowser(url) {
         //close language and menu when clicking anywhere else
         document.addEventListener("click", function(e){
             let target = e.target;
-            console.log("clicked",target)
+            
             if(target.classList.contains("incorrectTarget")){;
                 target.closest("a").click();
                 return;
@@ -855,16 +855,16 @@ function redirectToSystemBrowser(url) {
                 isMusicPlayerControl = true;
             }
             if(isMusicPlayerControl){
-                console.log("music player control")
                 let buttonstate = document.querySelector(".vjs-play-control");
                 let title = buttonstate.getAttribute("title");
                 console.log("current play button title", title)
-                if(title=="Play"){
+                if(title=="Play" || title=="Replay"){
                     app.isPlaying = true;
                 } else {
                     app.isPlaying = false;
                 }
                 return;
+                
             }
 
             if (target.parentElement) {

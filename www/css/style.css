@@ -450,7 +450,6 @@ body .mainContent .page#hymns .musicPlayer {
   padding: 0 1em;
   transform: translateY(10em);
   box-shadow: -1px -3px 21px -15px var(--text-color);
-  /* old way */
 }
 body .mainContent .page#hymns .musicPlayer.active {
   display: block;
@@ -565,123 +564,8 @@ body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-time
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-remaining-time {
   display: none !important;
 }
-body .mainContent .page#hymns .musicPlayer .video-jss {
-  background-color: transparent;
-  width: 100%;
-  z-index: 80;
-  margin-top: -0.5em;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-menu-content {
-  background-color: var(--bg-body);
-  border: 1px solid var(--form-border);
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-big-play-button {
-  opacity: 1;
-  display: block;
-  border-radius: 100%;
-  height: 88px;
-  width: 88px;
-  top: 7px;
-  display: none;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-big-play-button .vjs-icon-placeholder:before {
-  top: 21px;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss > .vjs-control-bar {
-  background-color: transparent;
-  height: 38px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  margin-left: 20px;
-  width: auto;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss > .vjs-control-bar .playlist-controls .btn {
-  background-color: var(--bg-body);
-  color: var(--text-color);
-  height: 43px;
-  line-height: 31px;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-playback-rate .vjs-menu {
-  width: 100vw;
-  left: 0;
-  position: fixed;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-menu-button-popup .vjs-menu {
-  bottom: -8px;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-menu .vjs-menu-content {
-  display: flex;
-  justify-content: center;
-  bottom: 5.5em;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-menu li {
-  padding: 8px;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-menu li:hover, body .mainContent .page#hymns .musicPlayer .video-jss .vjs-menu li:focus {
-  background-color: transparent;
-  outline: none;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-menu li.vjs-selected {
-  background: var(--bg-headerBot);
-  font-weight: bold;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-control.vjs-button {
-  border: 1px solid;
-  border-radius: 50%;
-  font-size: 12px;
-  margin-right: 5px;
-  background: var(--bg-body);
-  color: var(--text-color);
-  height: 50px;
-  width: 50px;
-  border-color: var(--button-border);
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-control.vjs-button.vjs-playback-rate {
-  border: none;
-  width: 45px;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-playback-rate .vjs-playback-rate-value {
-  line-height: 3em;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-play-control .vjs-icon-placeholder::before {
-  top: -0.2em;
-  font-size: 3em;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-volume-panel {
-  display: none;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-text-track-display {
-  display: none;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-remaining-time {
-  display: none;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-progress-control {
-  position: fixed;
-  top: 0px;
-  z-index: 99;
-  height: 6px;
-  left: 0;
-  width: 100vw;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-progress-control .vjs-progress-holder {
-  margin: 0;
-  height: 6px;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss[data-playing=true] .vjs-big-play-button {
-  display: none;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss[data-playing=true] .vjs-progress-control {
-  opacity: 1;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
-  max-height: 30em;
-}
-body .mainContent .page#hymns .musicPlayer .video-jss .vjs-fullscreen-control {
-  display: none;
+body .mainContent .page#hymns .musicPlayer .vjs-icon-replay:before, body .mainContent .page#hymns .musicPlayer .video-js .vjs-play-control.vjs-ended .vjs-icon-placeholder:before {
+  content: "\f101";
 }
 body .mainContent .page#copyright {
   background-color: var(--bg-body);
