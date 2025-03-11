@@ -74,4 +74,15 @@ var bible_fr = {
     "1th": "1 Thessaloniciens",
     "2th": "2 Thessaloniciens",
     "1ti": "1 Timothée",
+    "tit": "Titus",
+    "phl": "Philemon",
+    "heb": "Hebrews",
+    "jam": "James",
+    "1pt": "1 Peter",
+    "2pt": "2 Peter",
+    "1jn": "1 John",
+    "2jn": "2 John",
+    "3jn": "3 John",
+    "jud": "Jude",
+    "rev": "Revelation"
 }

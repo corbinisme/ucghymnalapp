@@ -213,13 +213,14 @@ function redirectToSystemBrowser(url) {
         const scriptureDropdown = document.getElementById("searchScripture");
         books.forEach(function(book){
             const chapters = scriptural[book];
-            
+            let bookName = window['bible_' + app.lang][book];
             const thisOp = document.createElement("option");
             thisOp.value = book;
-            thisOp.innerHTML = book;
+            thisOp.innerHTML = bookName;
             scriptureDropdown.append(thisOp);
 
-            html+=`<div class="book" data-id="${book}"><h3 class="bookName pageHeading mb-4 mt-4">${book}</h3><div class="bookChapters"><table class="table"><tbody class="tocBody">`;
+            
+            html+=`<div class="book" data-id="${book}"><h3 class="bookName pageHeading mb-4 mt-4">${bookName}</h3><div class="bookChapters"><table class="table"><tbody class="tocBody">`;
             chapters.forEach(function(chapter){
 
                 const verses = Object.keys(chapter)[0];
@@ -444,12 +445,18 @@ function redirectToSystemBrowser(url) {
             } else{
                 // add scripture references
                
+
                 if(scriptureForHymn.length>0){
+                    console.log("scriptureForHymn", scriptureForHymn);
+                   
                     output += `<div class="scriptureReferences">
                     <a href="#" onClick="app.toggleScripturalReference(false)" class="btn btn-outline-tertiary scripturalReferenceButtonClose"><i class="fa fa-times"></i></a>
                         <div class="scripturalReferenceContent"><p class="text">Scriptural References</p><ul>`;
                     scriptureForHymn.forEach(function(scripture){
-                        output+=`<li>${scripture}</li>`;
+                        let book = scripture.substring(0, scripture.indexOf(" "));
+                        let bookName = window['bible_' + app.lang][book];
+                        let verses = scripture.substring(scripture.indexOf(" ")+1, scripture.length);
+                        output+=`<li>${bookName} ${verses}</li>`;
                     })
                     output+=`</ul></div></div>`;
                 }
@@ -680,6 +687,7 @@ function redirectToSystemBrowser(url) {
         document.querySelector("html").setAttribute("lang", langValue);
         app.getTitle();
         app.setMusicOptions();
+        
       },
       toggleHamburger: function(){
         let button = document.querySelector(".navbar-toggler")
@@ -1573,6 +1581,7 @@ function redirectToSystemBrowser(url) {
                     dropmenu.classList.remove("shown");
                     app.setLang(lang)
                     app.loadCurrentLang();
+                    app.populatePages();
                 })
               });
               

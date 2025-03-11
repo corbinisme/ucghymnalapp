@@ -24,6 +24,9 @@ $scrollbar-width: var(--scrollbar-width);
   
 
 :root {
+    --loader-bottom-padding: 0;
+    --padding: 8px;
+    --big-padding: 16px;
     --charcoal: #3B3B3B;
     --yellowButton: #F9B718;
     --darkGold:  #AC7A00;
@@ -129,7 +132,7 @@ body {
             }
             .btn {
                 color: var(--searchHeaderButtonText);
-                margin-right: 0.5em;
+                margin-right: var(--padding);
                 
             }
         }
@@ -170,7 +173,7 @@ body {
         
         .form-check-input {
             position: relative;
-            left: 3em;
+            left: 48px;
             background-color: var(--toggleBG);
             border-color: var(--toggleBorder);
 
@@ -263,7 +266,7 @@ body {
             .page {
             
                 #loader {
-                    padding-bottom: 6em;
+                    --loader-bottom-padding: 180px;
                 }
                 #scripturalReferenceModal {
                     
@@ -367,6 +370,17 @@ body {
             &#hymns {
                 position: static;
             }
+            &#holydays {
+                .headerFormControl a {
+                    color: var(--linkColor);
+                }
+                .table {
+                    th, td {
+                        background: transparent;
+                        color: var(--text-color);
+                    }
+                }
+            }
             &#about {
                 header {
                     height: auto;
@@ -439,7 +453,7 @@ body {
 
                 .scripturalReferenceContent {
                     backdrop-filter: blur(7px);
-                    padding: 1em;
+                    padding: var(--big-padding);
                     padding-bottom: 60px;
                     width: 100vw;
                     background-color: var(--scriptureBG);
@@ -459,7 +473,7 @@ body {
             }
             #loader {
                 padding: 1em;
-                padding-bottom: 0;
+                padding-bottom: var(--loader-bottom-padding);
 
                 ol {margin: 0;}
 
@@ -482,7 +496,7 @@ body {
 
             .topicName {
                 background-color: var(--yellowButton);
-                padding: .5em;
+                padding: var(--padding);
             }
 
             &#number {
@@ -515,13 +529,15 @@ body {
             }
             &#hymns {
 
-                
+                .hymnalSelectionWrapper {
+                    padding: var(--padding);
+                }
                 .contentMain {
                    
 
                     .contentInner {
                         margin-top: 0em;
-                        padding-bottom: 2.5em;
+                        padding-bottom: 75px;
                         h1 {
                             display: none;
                         }
@@ -533,7 +549,7 @@ body {
                         background: rgba(000,000,000,0.03);
                     }
                     #pdfloader {
-                        height: calc(100vh - 5em);
+                        height: calc(100vh - 150px);
                     }
                 }
             
@@ -592,7 +608,7 @@ body {
                         height: auto;
                     }
                     #loader {
-                        padding-bottom: 60px;
+                        --loader-bottom-padding: 60px;
                     }
                 }
 
@@ -611,14 +627,14 @@ body {
                     bottom: 0px;
                     margin-top: 0px;
                     z-index: 989;
-                    padding: 0 1em;
-                    transform: translateY(10em);
+                    padding: 0 var(--padding);
+                    transform: translateY(160px);
                     box-shadow: -1px -3px 21px -15px var(--text-color);
                     //backdrop-filter: blur(7px);
                     &.active {
                         display: block;
                         background-color: var(--bg-body);
-                        transform: translateY(0em);
+                        transform: translateY(0px);
                         
                     }
 
@@ -680,7 +696,7 @@ body {
 
                     .navbar-inner {
                         flex-wrap: nowrap;
-                        padding-left: .25em;
+                        padding-left: 4px;
                     }
 
                     .headingBar {
@@ -905,13 +921,8 @@ body {
                     list-style: none;
                     display: flex;
                     flex-direction: row;
-                    gap: .25em;
-                    li {
-                        a {
-                            display: block;
-                            padding: 0 .5em;
-                        }
-                    }
+                    gap: 4px;
+                    
                 }
             }
 
@@ -926,7 +937,6 @@ body {
                     position: fixed;
                     padding: 0;
                     bottom: 0;
-                    width: 100%;
                     transition: all ease .3s;
                     left: 0;
                     width: 100%;
@@ -935,6 +945,11 @@ body {
                     height: 60px;
                     //background: linear-gradient(0deg, var(--bg-footer-stop), transparent);
                     color: var(--text-color);
+
+                    .row>* {
+                        padding-left: var(--padding);
+                        padding-right: var(--padding);
+                    }
 
 
                     .mediaPlayerRow {
@@ -949,6 +964,7 @@ body {
 
                     &.musicOpen {
                         height: 192px;
+                        
                     }
 
                     .row {
@@ -967,7 +983,7 @@ body {
                             color: var(--text-color);
                             width: 42px;
                             height: 42px;
-                            line-height: 1.75em;
+                            line-height: 28px;
                         }
                     }
                     .mediaControls {
@@ -975,7 +991,7 @@ body {
                     } 
                     
                     .music-control-btn {
-                        padding: 0.5em;
+                        padding: var(--padding);
                         &.btn-outline-tertiary {
                             border: none!important;
                             &:focus {

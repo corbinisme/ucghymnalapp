@@ -72,4 +72,15 @@ var bible_pt = {
     "2th": "2 Tessalonicenses",
     "1ti": "1 Timóteo",
     "2ti": "2 Timóteo",
+    "tit": "Titus",
+    "phl": "Philemon",
+    "heb": "Hebrews",
+    "jam": "James",
+    "1pt": "1 Peter",
+    "2pt": "2 Peter",
+    "1jn": "1 John",
+    "2jn": "2 John",
+    "3jn": "3 John",
+    "jud": "Jude",
+    "rev": "Revelation"
 }

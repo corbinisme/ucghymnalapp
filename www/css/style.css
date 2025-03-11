@@ -11,6 +11,9 @@
   src: url("../font/notosans-semibold.ttf") format("truetype"), url("../font/notosans-semibold-webfont.woff") format("woff"), url("../font/notosans-semibold-webfont.woff2") format("woff2");
 }
 :root {
+  --loader-bottom-padding: 0;
+  --padding: 8px;
+  --big-padding: 16px;
   --charcoal: #3B3B3B;
   --yellowButton: #F9B718;
   --darkGold: #AC7A00;
@@ -95,7 +98,7 @@ body #search .navbar .navbar-brand, body #number .navbar .navbar-brand {
 }
 body #search .navbar .btn, body #number .navbar .btn {
   color: var(--searchHeaderButtonText);
-  margin-right: 0.5em;
+  margin-right: var(--padding);
 }
 body .navbar .btn:focus {
   box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.2);
@@ -125,7 +128,7 @@ body .form-switch .form-check-label {
 }
 body .form-switch .form-check-input {
   position: relative;
-  left: 3em;
+  left: 48px;
   background-color: var(--toggleBG);
   border-color: var(--toggleBorder);
 }
@@ -200,7 +203,7 @@ body .btn-secondary:active {
   outline: 2px solid #000;
 }
 body.hasMusicOpen .mainContent .page #loader {
-  padding-bottom: 6em;
+  --loader-bottom-padding: 180px;
 }
 body.hasMusicOpen .mainContent .page #scripturalReferenceModal.active {
   bottom: 122px;
@@ -265,6 +268,13 @@ body .mainContent .page {
 body .mainContent .page#hymns {
   position: static;
 }
+body .mainContent .page#holydays .headerFormControl a {
+  color: var(--linkColor);
+}
+body .mainContent .page#holydays .table th, body .mainContent .page#holydays .table td {
+  background: transparent;
+  color: var(--text-color);
+}
 body .mainContent .page#about header {
   height: auto;
 }
@@ -319,7 +329,7 @@ body .mainContent .page #scripturalReferenceModal .scriptureReferences .scriptur
 }
 body .mainContent .page #scripturalReferenceModal .scripturalReferenceContent {
   backdrop-filter: blur(7px);
-  padding: 1em;
+  padding: var(--big-padding);
   padding-bottom: 60px;
   width: 100vw;
   background-color: var(--scriptureBG);
@@ -337,7 +347,7 @@ body .mainContent .page #scripturalReferenceModal.active {
 }
 body .mainContent .page #loader {
   padding: 1em;
-  padding-bottom: 0;
+  padding-bottom: var(--loader-bottom-padding);
 }
 body .mainContent .page #loader ol {
   margin: 0;
@@ -355,7 +365,7 @@ body .mainContent .page #pdfloader .pdfToolbar {
 }
 body .mainContent .page .topicName {
   background-color: var(--yellowButton);
-  padding: 0.5em;
+  padding: var(--padding);
 }
 body .mainContent .page#number .contentMain {
   overflow: hidden;
@@ -370,9 +380,12 @@ body .mainContent .page#number #searchByNumberBtn {
 body .mainContent .page#search .contentMain .contentInner {
   margin-top: 0;
 }
+body .mainContent .page#hymns .hymnalSelectionWrapper {
+  padding: var(--padding);
+}
 body .mainContent .page#hymns .contentMain .contentInner {
   margin-top: 0em;
-  padding-bottom: 2.5em;
+  padding-bottom: 75px;
 }
 body .mainContent .page#hymns .contentMain .contentInner h1 {
   display: none;
@@ -383,7 +396,7 @@ body .mainContent .page#hymns .contentMain #toggleType {
   background: rgba(0, 0, 0, 0.03);
 }
 body .mainContent .page#hymns .contentMain #pdfloader {
-  height: calc(100vh - 5em);
+  height: calc(100vh - 150px);
 }
 body .mainContent .page#hymns #vocalIcon span {
   position: relative;
@@ -431,7 +444,7 @@ body .mainContent .page#hymns.showFontSizer #fontSizer {
   height: auto;
 }
 body .mainContent .page#hymns.showFontSizer #loader {
-  padding-bottom: 60px;
+  --loader-bottom-padding: 60px;
 }
 body .mainContent .page#hymns audio#audio_player {
   position: absolute;
@@ -447,14 +460,14 @@ body .mainContent .page#hymns .musicPlayer {
   bottom: 0px;
   margin-top: 0px;
   z-index: 989;
-  padding: 0 1em;
-  transform: translateY(10em);
+  padding: 0 var(--padding);
+  transform: translateY(160px);
   box-shadow: -1px -3px 21px -15px var(--text-color);
 }
 body .mainContent .page#hymns .musicPlayer.active {
   display: block;
   background-color: var(--bg-body);
-  transform: translateY(0em);
+  transform: translateY(0px);
 }
 body .mainContent .page#hymns .musicPlayer .musicPlayerWrapper {
   align-items: flex-start;
@@ -592,7 +605,7 @@ body .mainContent .page header .navbar > * {
 }
 body .mainContent .page header .navbar .navbar-inner {
   flex-wrap: nowrap;
-  padding-left: 0.25em;
+  padding-left: 4px;
 }
 body .mainContent .page header .navbar .headingBar {
   justify-content: flex-start;
@@ -781,11 +794,7 @@ body .mainContent .page header #navigationActions {
   list-style: none;
   display: flex;
   flex-direction: row;
-  gap: 0.25em;
-}
-body .mainContent .page header #navigationActions li a {
-  display: block;
-  padding: 0 0.5em;
+  gap: 4px;
 }
 body .mainContent .page .contentInner {
   margin-top: 0px;
@@ -797,7 +806,6 @@ body .mainContent .page footer.hymnFooter {
   position: fixed;
   padding: 0;
   bottom: 0;
-  width: 100%;
   transition: all ease 0.3s;
   left: 0;
   width: 100%;
@@ -805,6 +813,10 @@ body .mainContent .page footer.hymnFooter {
   line-height: 60px;
   height: 60px;
   color: var(--text-color);
+}
+body .mainContent .page footer.hymnFooter .row > * {
+  padding-left: var(--padding);
+  padding-right: var(--padding);
 }
 body .mainContent .page footer.hymnFooter .mediaPlayerRow {
   height: 62px;
@@ -831,13 +843,13 @@ body .mainContent .page footer.hymnFooter .musicPlayerWrapper a {
   color: var(--text-color);
   width: 42px;
   height: 42px;
-  line-height: 1.75em;
+  line-height: 28px;
 }
 body .mainContent .page footer.hymnFooter .mediaControls {
   justify-content: space-between;
 }
 body .mainContent .page footer.hymnFooter .music-control-btn {
-  padding: 0.5em;
+  padding: var(--padding);
 }
 body .mainContent .page footer.hymnFooter .music-control-btn.btn-outline-tertiary {
   border: none !important;
