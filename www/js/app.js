@@ -905,6 +905,15 @@ function redirectToSystemBrowser(url) {
             let originalState = app.musicOpen;
             app.musicOpen = !app.musicOpen;
 
+            if(app.musicOpen==false){
+                app.autoplay = false;
+            } else {
+                const autoPlayNode = document.getElementById("playAll");
+                if(autoPlayNode.classList.contains("active")){
+                    app.autoplay = true;
+                }
+            }   
+
             const bodyTag = document.querySelector("body");
             const musicPlayerWrapper  = document.querySelector(".musicPlayer");
             const hymnFooter = document.querySelector(".hymnFooter");

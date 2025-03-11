@@ -13,3 +13,5 @@ var menu_pg = {
     "ucg": "Sobre a Igreja de Deus Unida",
     "404": "Página não encontrada",
 }
+
+var bible_pg = {}

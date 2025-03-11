@@ -15,3 +15,27 @@ var menu_nl = {
     "holydays": "Heilige Dagen Kalender",
     "scriptureref": "Bijbelverwijzingen",
 }
+
+var bible_nl = {
+    "gen": "Genesis",
+    "exo": "Exodus",
+    "lev": "Leviticus",
+    "num": "Numeri",
+    "deu": "Deuteronomium",
+    "jos": "Jozua",
+    "jdg": "Richteren",
+    "rut": "Ruth",
+    "1sa": "1 Samuel",
+    "2sa": "2 Samuel",
+    "1ki": "1 Koningen",
+    "2ki": "2 Koningen",
+    "1ch": "1 Kronieken",
+    "2ch": "2 Kronieken",
+    "ezr": "Ezra",
+    "neh": "Nehemia",
+    "est": "Esther",
+    "job": "Job",
+    "psa": "Psalmen",
+    "pro": "Spreuken",
+    "ecc": "Prediker",
+}
