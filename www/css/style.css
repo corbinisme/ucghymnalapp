@@ -493,6 +493,9 @@ body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js {
   border: 1px solid var(--videojs-border);
   font-size: 17px;
 }
+body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-control {
+  width: 60px;
+}
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-play-progress {
   background-color: #ccc;
 }

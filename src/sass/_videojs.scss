@@ -12,6 +12,10 @@ $videoJsFont: 17px;
         border: 1px solid var(--videojs-border);
         font-size: $videoJsFont;
 
+        .vjs-control {
+            width: $videoJsHeight;
+        }
+
         .vjs-play-progress {
             background-color: #ccc;
         }
