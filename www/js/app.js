@@ -327,11 +327,12 @@ function redirectToSystemBrowser(url) {
 
             const thisOp = document.createElement("option");
             thisOp.value = topic.id;
-            thisOp.innerHTML = topic.name;
+            let topicNameTranslated = window['topics_' + app.lang]? window['topics_' + app.lang][topic.id]: topic.name;
+            thisOp.innerHTML = topicNameTranslated;
             topicDropdown.append(thisOp);
 
 
-            html+=`<div class="topic" data-id="${topic.id}"><h3 class="pageHeading mb-4 mt-4">${topic.name}</h3><div class="topicHymns"><table class="table"><tbody class="tocBody">`;
+            html+=`<div class="topic" data-id="${topic.id}"><h3 class="pageHeading mb-4 mt-4">${topicNameTranslated}</h3><div class="topicHymns"><table class="table"><tbody class="tocBody">`;
             topic.hymns.forEach(function(hymn){
                 const hymnLookup = app.getHymnWithZeros(hymn);
                 const hymnTitle = app.getHymnTitle(hymnLookup);
@@ -719,14 +720,18 @@ function redirectToSystemBrowser(url) {
         
       },
       toggleHamburger: function(){
+        console.log("toggle hambugder")
         let button = document.querySelector(".navbar-toggler")
         let menu = document.getElementById("navbarSupportedContent");
+        let body = document.querySelector("body");
         if(button.classList.contains("collapsed")){
             button.classList.remove("collapsed");
             menu.classList.remove("shown")
+            body.classList.remove("menuOpen");
         } else {
             button.classList.add("collapsed")
             menu.classList.add("shown")
+            body.classList.add("menuOpen");
         }
         app.closeAllMenus("menu")
       },
@@ -858,6 +863,26 @@ function redirectToSystemBrowser(url) {
         //close language and menu when clicking anywhere else
         document.addEventListener("click", function(e){
             let target = e.target;
+
+            let body = document.querySelector("body");
+            if(body.classList.contains("menuOpen")){
+                // if menu is already open
+                if(target.classList.contains("navbar-toggler") || target.closest(".navbar-toggler")){
+                    console.log("its the menu button");
+                    return;
+                } else {
+                    if(target.closest(".navbar-collapse") || target.closest(".navbar-toggler")){
+                        console.log("its the manu itsself")
+
+                    } else {
+                        console.log("its clicking on something else")
+                        app.toggleHamburger();
+                    }
+                }
+               
+            }
+            
+            console.log("click target", target)
             
             if(target.classList.contains("incorrectTarget")){;
                 target.closest("a").click();

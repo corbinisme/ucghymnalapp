@@ -367,6 +367,8 @@ body {
             top: 0;
             opacity: 0;
 
+           
+
             &#hymns {
                 position: static;
             }
@@ -748,6 +750,7 @@ body {
                         width: 42px;
                         height: 40px;
                         position: relative;
+                        transform: scale(.8);
 
                         .fa-times {
                             display: none;
@@ -801,6 +804,7 @@ body {
                         }
                         &.collapsed {
                             outline: 999em solid rgba(0,0,0,0.5);
+                            z-index: 52;
                             .bars {
                                 background-color: transparent;
                                 &:before {
@@ -835,6 +839,7 @@ body {
 
                     .btn {
                         border: 0;
+                        color: var(--yellowButton);
                         &#searchButton{
                             background-color: var(--yellowButton);
                             color: #3B3B3B;
@@ -845,7 +850,6 @@ body {
                             }
                         }
 
-                        color: #fff;
                         &:active, &:hover, &:focus {
                             background: transparent;
                         }
