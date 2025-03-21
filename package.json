@@ -35,6 +35,7 @@
     "cordova-browser": "^7.0.0",
     "cordova-electron": "^3.1.0",
     "cordova-ios": "^7.0.0",
+    "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-device": "github:apache/cordova-plugin-device",
     "cordova-plugin-music-controls2": "^3.0.7",
     "cordova-plugin-network-information": "github:apache/cordova-plugin-network-information",
@@ -61,7 +62,8 @@
     "plugins": {
       "cordova-android-reset-font-size-plugin": {},
       "phonegap-plugin-mobile-accessibility": {},
-      "cordova-plugin-music-controls2": {}
+      "cordova-plugin-music-controls2": {},
+      "cordova-plugin-console": {}
     }
   }
 }
