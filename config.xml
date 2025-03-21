@@ -10,7 +10,7 @@
         <!-- Default -->
         <preference 
         name="AndroidWindowSplashScreenAnimatedIcon" 
-        value="res/IconForegroundTransparent.png" />
+        value="res/IconSplashScreenCrop.png" />
         <preference name="AndroidWindowSplashScreenBackground" value="#178CE0" />
     </platform>
     <platform name="ios">

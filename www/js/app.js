@@ -1495,6 +1495,53 @@ function redirectToSystemBrowser(url) {
             } 
 
             if(sourcePath!=null){
+
+                /* create music system notification */
+
+                if(typeof MusicControls !== "undefined"){
+
+                    // Music title
+                    let hymnTitle = window['title_'+app.lang][app.currentHymn-1];
+                    hymnTitle = hymnTitle.substring(hymnTitle.indexOf(")")+2, hymnTitle.length);
+                    MusicControls.create({
+                        track       : hymnTitle,	// optional, default : ''
+                        artist      : 'UCG',		// optional, default : ''
+                        album       : 'Hymnal',     // optional, default: ''
+                        cover       : 'images/iconTransparent.png',		// optional, default : nothing
+                        // cover can be a local path (use fullpath 'file:///storage/emulated/...', or only 'my_image.jpg' if my_image.jpg is in the www folder of your app)
+                        // or a remote url ('http://...', 'https://...', 'ftp://...')
+                        isPlaying   : true,							// optional, default : true
+                        dismissable : true,							// optional, default : false
+                    
+                        // hide previous/next/close buttons:
+                        hasPrev   : false,		// show previous button, optional, default: true
+                        hasNext   : false,		// show next button, optional, default: true
+                        hasClose  : true,		// show close button, optional, default: false
+                    
+                        // iOS only, optional
+                        
+                        duration : 60, // optional, default: 0
+                        elapsed : 10, // optional, default: 0
+                        hasSkipForward : false, //optional, default: false. true value overrides hasNext.
+                        hasSkipBackward : false, //optional, default: false. true value overrides hasPrev.
+                        skipForwardInterval : 15, //optional. default: 0.
+                        skipBackwardInterval : 15, //optional. default: 0.
+                        hasScrubbing : true, //optional. default to false. Enable scrubbing from control center progress bar 
+                    
+                        // Android only, optional
+                        // text displayed in the status bar when the notification (and the ticker) are updated
+                        ticker	  : 'Now playing "' + hymnTitle + '"', // optional, default: 'Now playing ...'
+                        //All icons default to their built-in android equivalents
+                        //The supplied drawable name, e.g. 'media_play', is the name of a drawable found under android/res/drawable* folders
+                        playIcon: 'media_play',
+                        pauseIcon: 'media_pause',
+                        prevIcon: 'media_prev',
+                        nextIcon: 'media_next',
+                        closeIcon: 'media_close',
+                        notificationIcon: 'notification'
+                    }, onSuccess, onError);
+                }
+
                 document.querySelector(".musicPlayer").classList.add("active");
 
                 source.setAttribute("src", sourcePath);
@@ -1502,6 +1549,8 @@ function redirectToSystemBrowser(url) {
                 if(app.musicPlayer){
 
                     app.musicPlayer.pause();
+                    if(typeof MusicControls !== "undefined")
+                        MusicControls.updateIsPlaying(false);
                 } else {
 
                     app.musicPlayer = videojs('audio_player', {
@@ -1546,6 +1595,8 @@ function redirectToSystemBrowser(url) {
                         const musicWrapper = document.querySelector(".musicPlayer");
                         playerWrapper.setAttribute("data-playing", "true");
                         musicWrapper.setAttribute("data-playing", "true");
+                        if(typeof MusicControls !== "undefined")
+                            MusicControls.updateIsPlaying(true);
     
                     });
                     app.musicPlayer.on('pause',()=>{
