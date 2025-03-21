@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:rim="http://www.blackberry.com/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova-android-reset-font-size-plugin" version="0.1.0">
+  <name>ResetFontSize</name>
+  <description>This cordova plugin prevents the webview from scaling font size due to Android font settings</description>
+  <license>BSD 3-Clause License</license>
+  <repo>https://github.com/Devoter/cordova-android-reset-font-size-plugin.git</repo>
+  <js-module src="www/reset-font-size.js" name="resetFontSize">
+    <clobbers target="cordova.plugins.resetFontSize"/>
+  </js-module>
+  <engines>
+    <engine name="cordova-electron" version="&gt;=3.0.0"/>
+  </engines>
+  <platform name="android">
+    <config-file target="config.xml" parent="/*">
+      <feature name="ResetFontSize">
+        <param name="android-package" value="com.github.devoter.cordova.plugin.ResetFontSize"/>
+      </feature>
+    </config-file>
+    <source-file src="src/android/ResetFontSize.java" target-dir="src/com/github/devoter/cordova/plugin"/>
+  </platform>
+</plugin>

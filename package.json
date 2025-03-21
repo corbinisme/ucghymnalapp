@@ -31,6 +31,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "cordova-android": "^12.0.1",
+    "cordova-android-reset-font-size-plugin": "file:extPlugin/cordova-android-reset-font-size-plugin-main",
     "cordova-browser": "^7.0.0",
     "cordova-electron": "^3.1.0",
     "cordova-ios": "^7.0.0",
@@ -52,6 +53,9 @@
       "android",
       "browser",
       "electron"
-    ]
+    ],
+    "plugins": {
+      "cordova-android-reset-font-size-plugin": {}
+    }
   }
 }
