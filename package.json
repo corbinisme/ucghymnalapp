@@ -35,6 +35,8 @@
     "cordova-browser": "^7.0.0",
     "cordova-electron": "^3.1.0",
     "cordova-ios": "^7.0.0",
+    "cordova-plugin-device": "github:apache/cordova-plugin-device",
+    "cordova-plugin-network-information": "github:apache/cordova-plugin-network-information",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-concat": "^2.6.1",
@@ -42,6 +44,7 @@
     "gulp-sass": "^5.1.0",
     "gulp-uglify": "^3.0.2",
     "gulp-uglifycss": "^1.1.0",
+    "phonegap-plugin-mobile-accessibility": "github:phonegap/phonegap-mobile-accessibility",
     "sass": "^1.49.9",
     "uglify-js": "^3.15.0",
     "uglifyjs-folder": "^3.0.0",
@@ -55,7 +58,8 @@
       "electron"
     ],
     "plugins": {
-      "cordova-android-reset-font-size-plugin": {}
+      "cordova-android-reset-font-size-plugin": {},
+      "phonegap-plugin-mobile-accessibility": {}
     }
   }
 }

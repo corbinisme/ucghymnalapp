@@ -52,6 +52,10 @@ function redirectToSystemBrowser(url) {
                 app.getPageSizing();
             })
             app.setMusicOptions();
+            if(window.MobileAccessibility){
+                console.log("has mobile accessibility")
+                window.MobileAccessibility.usePreferredTextZoom(false);
+            }
       },
       loadCurrentLang: function(random){
         app.makeLanguageDropdown();
