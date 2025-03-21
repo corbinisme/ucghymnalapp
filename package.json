@@ -11,6 +11,7 @@
   "dependencies": {
     "bootstrap": "^5.3.2",
     "gulp-cli": "^2.3.0",
+    "videojs-playlist": "^5.2.0",
     "watchify": "^3.11.0"
   },
   "scripts": {
@@ -22,7 +23,6 @@
     "js": "babel src/nodeSyntax.js  --watch --out-file www/js/transpiled.js",
     "build": "browserify src/nodeSyntax.js  -o www/js/transpiled.js",
     "watch": "watchify src/nodeSyntax.js  -o www/js/transpiled.js -v && sass-dev"
- 
   },
   "keywords": [
     "ecosystem:cordova"

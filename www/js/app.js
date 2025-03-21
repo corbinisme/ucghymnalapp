@@ -39,6 +39,7 @@ function redirectToSystemBrowser(url) {
       selectedBook: "all",
       isPlaying: false,
       randomPlaylists:[],
+      playlists: [],
       init: function(){
             app.getConfig();
             app.eventBindings();
@@ -63,6 +64,7 @@ function redirectToSystemBrowser(url) {
         app.populateAbout();
         app.populateUcg();
         app.updateMenus();
+        app.setNormalPlaylistForLang();
       },
       setScrollbarWidth: function(){
         document.documentElement.style.setProperty('--scrollbar-width', app.getScrollbarWidth() + 'px');
@@ -116,6 +118,26 @@ function redirectToSystemBrowser(url) {
             array[randomIndex], array[currentIndex]];
         }
         return array;
+      },
+      setNormalPlaylistForLang: function(){
+        app.playlists = [];
+        
+        //normalPlaylists
+        let hymnCount = window['title_'+ app.lang].length;
+        let playlist = [];
+        for(let i=1; i<=hymnCount; i++){
+            let playlistObj = {
+                name: window['title_'+ app.lang][i-1],
+                sources: [{
+                    
+                    src: path + app.lang + '/' + app.getHymnWithZeros(i) + '.mp3',
+                    type: 'audio/mp3'
+                    }],
+            }
+            playlist.push(playlistObj);
+        }
+        app.playlists = playlist;
+    
       },
       setRandomPlaylistForLang: function(){
         config.langs.split(",").forEach(function(lang){
@@ -447,7 +469,7 @@ function redirectToSystemBrowser(url) {
                
 
                 if(scriptureForHymn.length>0){
-                    console.log("scriptureForHymn", scriptureForHymn);
+
                    
                     output += `<div class="scriptureReferences">
                     <a href="#" onClick="app.toggleScripturalReference(false)" class="btn btn-outline-tertiary scripturalReferenceButtonClose"><i class="fa fa-times"></i></a>
@@ -474,7 +496,8 @@ function redirectToSystemBrowser(url) {
         // if music is playing, stop it
         if(app.musicPlayer) {
             app.musicPlayer.pause();
-            app.makeMusic(app.currentMusicType, false);
+            //console.log("get hymn text")
+            app.makeMusic(app.currentMusicType, app.autoplay);
             //app.musicPlayer.dispose();
             // remove crrent source
             
@@ -653,6 +676,7 @@ function redirectToSystemBrowser(url) {
             app.setHymn(next);
         }
         if(app.isPlaying==true)
+            //console.log("play next")
             app.makeMusic(app.currentMusicType, true);
         
       },
@@ -679,6 +703,7 @@ function redirectToSystemBrowser(url) {
             app.setHymn(next);
         }
         if(app.isPlaying==true)
+            //console.log("play prev")
             app.makeMusic(app.currentMusicType, true);
       },
       setLang: function(langValue){
@@ -865,7 +890,7 @@ function redirectToSystemBrowser(url) {
             if(isMusicPlayerControl){
                 let buttonstate = document.querySelector(".vjs-play-control");
                 let title = buttonstate.getAttribute("title");
-                console.log("current play button title", title)
+                //console.log("current play button title", title)
                 if(title=="Play" || title=="Replay"){
                     app.isPlaying = true;
                 } else {
@@ -945,6 +970,7 @@ function redirectToSystemBrowser(url) {
             let musicType = app.currentMusicType;
             
             if(originalState==false){
+                //console.log("open music button")
                 app.makeMusic(musicType, app.autoplay);
                 //app.setCurrentMusicState("piano")
             }
@@ -998,6 +1024,7 @@ function redirectToSystemBrowser(url) {
             app.storage.setItem("currentMusicType", currentType);
 
             app.setMusicOptions();
+            //console.log("change to vocal version")
             app.makeMusic(currentType, app.autoplay);
         });
 
@@ -1134,8 +1161,9 @@ function redirectToSystemBrowser(url) {
         let numInt = parseInt(num);
         document.getElementById("hymnSelect").value = num;
         app.currentHymn = numInt;
-        app.getHymnText();
         app.changePage("hymns");
+        app.getHymnText();
+        
       },
       updateSearchFilter: function(node){
           let value = node.value;
@@ -1427,12 +1455,15 @@ function redirectToSystemBrowser(url) {
 
       makeMusic:function(type, autoplay){
         
+        /*
         console.group("Make music function");
         console.log("music type", type);
         console.log("autoplay", autoplay, app.autoplay);  
         console.log("current music type", app.currentMusicType);
         console.log("app.isPlaying", app.isPlaying);
         console.groupEnd();
+        */
+        
         
 
         
@@ -1476,6 +1507,16 @@ function redirectToSystemBrowser(url) {
                         preload: 'auto'
                     });
 
+                    // get playlist
+                    /*if(app.playlists.length>0){
+                        console.log("playlist exists", app.playlists)
+                        app.musicPlayer.playlist(app.playlists);
+                        app.musicPlayer.playlistUi();
+                        app.musicPlayer.playlist.autoadvance(1);
+                    }
+                    */
+
+
                     app.musicPlayer.on('ended', function(e) {
                    
                         const playerWrapper = document.querySelector(".video-js");
@@ -1494,43 +1535,40 @@ function redirectToSystemBrowser(url) {
                            
                         } 
                     });
+
+                    app.musicPlayer.on('play',()=>{
+                        console.log("playing")
+                        const playerWrapper = document.querySelector(".video-js");
+                        const musicWrapper = document.querySelector(".musicPlayer");
+                        playerWrapper.setAttribute("data-playing", "true");
+                        musicWrapper.setAttribute("data-playing", "true");
+    
+                    });
+                    app.musicPlayer.on('pause',()=>{
+                        console.log("pause")
+                        const playerWrapper = document.querySelector(".video-js");
+                        const musicWrapper = document.querySelector(".musicPlayer");
+                        playerWrapper.setAttribute("data-playing", "false");
+                        musicWrapper.setAttribute("data-playing", "false");
+                    });
+                    app.musicPlayer.ready(function() {
+    
+                        // add logic to know if we should auto play
+                    });
                 }
 
                 app.musicPlayer.src({type: 'audio/mp3', src: sourcePath});
 
                
-                app.musicPlayer.on('play',()=>{
-                    console.log("playing")
-                    const playerWrapper = document.querySelector(".video-js");
-                    const musicWrapper = document.querySelector(".musicPlayer");
-                    playerWrapper.setAttribute("data-playing", "true");
-                    musicWrapper.setAttribute("data-playing", "true");
-
-                });
-                app.musicPlayer.on('pause',()=>{
-                    console.log("pause")
-                    const playerWrapper = document.querySelector(".video-js");
-                    const musicWrapper = document.querySelector(".musicPlayer");
-                    playerWrapper.setAttribute("data-playing", "false");
-                    musicWrapper.setAttribute("data-playing", "false");
-                });
-                app.musicPlayer.ready(function() {
-
-                    // add logic to know if we should auto play
-                });
-
                 if(autoPlayVal==true){
                     app.musicPlayer.play();
-       
-                  
                 }
    
               
             }
         } else {
-           // future functionality
+           // future functionality for midi
 
-            
             
         }
 

@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Player</title>
+        <link rel="stylesheet" href="https://vjs.zencdn.net/7.11.4/video-js.css" />
+    </head>
+    <body>
+
+        
+
+        <audio id="player" class="video-js">
+            <source src="https://ucgweb.s3.amazonaws.com/files/ucg-hymnal-app-v2/mp3/en/001.mp3" type="audio/mp3" />
+        </audio>
+
+        <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+        
+        <script>
+
+            var player = videojs('player', {controls: true, autoplay: true, preload: 'auto'});
+
+            // Example playlist
+            var playlist = [
+                { src: 'https://ucgweb.s3.amazonaws.com/files/ucg-hymnal-app-v2/hymns-vocal/001.mp3', type: 'audio/mp3' },
+                { src: 'https://ucgweb.s3.amazonaws.com/files/ucg-hymnal-app-v2/hymns-vocal002.mp3', type: 'audio/mp3' },
+                { src: 'https://ucgweb.s3.amazonaws.com/files/ucg-hymnal-app-v2/hymns-vocal003.mp3', type: 'audio/mp3' }
+            ];
+
+            // Initialize the playlist
+            //player.playlist(playlist);
+            //player.playlist.autoadvance(0); // Set autoadvance to 0 seconds
+            //player.playlistUi(); // Add the UI for the playlist
+
+            // Play the first video in the playlist
+            //player.playlist.currentItem(0);
+            player.play(); // Start playing the video
+        </script>
+    </body>
+</html>
