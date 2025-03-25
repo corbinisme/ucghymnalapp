@@ -34,7 +34,7 @@
     "cordova-android-reset-font-size-plugin": "file:extPlugin/cordova-android-reset-font-size-plugin-main",
     "cordova-browser": "^7.0.0",
     "cordova-electron": "^3.1.0",
-    "cordova-ios": "^7.0.0",
+    "cordova-ios": "^7.1.1",
     "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-device": "github:apache/cordova-plugin-device",
     "cordova-plugin-music-controls2": "^3.0.7",
@@ -54,10 +54,10 @@
   },
   "cordova": {
     "platforms": [
-      "ios",
       "android",
       "browser",
-      "electron"
+      "electron",
+      "ios"
     ],
     "plugins": {
       "cordova-android-reset-font-size-plugin": {},
