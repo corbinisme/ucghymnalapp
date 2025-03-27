@@ -14,6 +14,7 @@ var menu_it = {
     "404": "Pagina non trovata",
     "holydays": "Calendario delle festività",
     "scriptureref": "Riferimenti scritturali",
+    "moreabout": "Maggiori informazioni su",
 }
 
 var bible_it = {

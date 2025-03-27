@@ -14,6 +14,7 @@ var menu_pt = {
     "404": "Página não encontrada",
     "holydays": "Calendário de dias santos",
     "scriptureref": "Referências bíblicas",
+    "moreabout": "Mais informações sobre o",
 }
 
 var bible_pt = {

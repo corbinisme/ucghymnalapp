@@ -220,7 +220,7 @@ function redirectToSystemBrowser(url) {
             let translatedTitle = (menuItems["scriptureref"]? menuItems["scriptureref"]: menuItemsBackup["scriptureref"]);
             scriptureRef.innerHTML = translatedTitle;
         }
-        
+
       },
       populatePages: function(){
         app.populateAbout();
@@ -228,6 +228,20 @@ function redirectToSystemBrowser(url) {
         app.populateUcg();
         app.populateTopics();
         app.populateScriptural();
+        app.populateHolyDayCalendar();
+      },
+      populateHolyDayCalendar: function(){
+        const pageWrapper = document.querySelector(".page#holydays");
+        const currentLang = app.lang;
+
+        const moreInfoTextNode = pageWrapper.querySelector(".moreinfo");
+        const textLink = pageWrapper.querySelector(".text-link");
+
+        const moreInfoText = window[`menu_${currentLang}`]? window[`menu_${currentLang}`]['moreabout'] : window['menu_en']['moreabout'];
+        const holyDayText = window[`menu_${currentLang}`]? window[`menu_${currentLang}`]['holydays'] : window['menu_en']['holydays'];
+        
+        textLink.innerText = holyDayText;
+        moreInfoTextNode.innerText = moreInfoText;
       },
       populateScriptural: function(){
         const wrapper = document.getElementById("scriptureContent");
@@ -1172,7 +1186,7 @@ function redirectToSystemBrowser(url) {
         })
         
         
-        document.querySelector("#fontSlider").addEventListener("change", function(e){
+        document.querySelector("#fontSlider").addEventListener("input", function(e){
             app.setFontSize(e.target.value)
         });
         
@@ -1483,18 +1497,6 @@ function redirectToSystemBrowser(url) {
       },
 
       makeMusic:function(type, autoplay){
-        
-        /*
-        console.group("Make music function");
-        console.log("music type", type);
-        console.log("autoplay", autoplay, app.autoplay);  
-        console.log("current music type", app.currentMusicType);
-        console.log("app.isPlaying", app.isPlaying);
-        console.groupEnd();
-        */
-        
-        
-
         
         app.toggleScripturalReference(true);
 

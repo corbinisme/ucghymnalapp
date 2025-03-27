@@ -14,6 +14,7 @@ var menu_nl = {
     "404": "Pagina niet gevonden",
     "holydays": "Heilige Dagen Kalender",
     "scriptureref": "Bijbelverwijzingen",
+    "moreabout": "Meer informatie over de",
 }
 
 var bible_nl = {
