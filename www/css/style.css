@@ -275,6 +275,11 @@ body .mainContent .page#holydays .table th, body .mainContent .page#holydays .ta
   background: transparent;
   color: var(--text-color);
 }
+body .mainContent .page#holydays .table th {
+  background-color: var(--bg-headerBot);
+  border-left-color: var(--bs-border-color) !important;
+  border-right-color: var(--bs-border-color) !important;
+}
 body .mainContent .page#about header {
   height: auto;
 }

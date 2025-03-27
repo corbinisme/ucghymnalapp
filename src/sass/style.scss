@@ -381,6 +381,11 @@ body {
                         background: transparent;
                         color: var(--text-color);
                     }
+                    th {
+                        background-color: var(--bg-headerBot);
+                        border-left-color: var(--bs-border-color)!important;
+                        border-right-color: var(--bs-border-color)!important;
+                    }
                 }
             }
             &#about {
