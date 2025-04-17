@@ -1525,7 +1525,7 @@ function redirectToSystemBrowser(url) {
 
                 /* create music system notification */
 
-                if(typeof MusicControls !== "undefined"){
+                if(false && typeof MusicControls !== "undefined"){
 
                     // Music title
                     let hymnTitle = window['title_'+app.lang][app.currentHymn-1];
