@@ -1,11 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.UCG.hymnal" version="6.3.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.UCG.hymnal" version="6.3.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Hymnal</name>
     <description>Hymnal App for the United Church of God</description>
     <author email="corbin_rose@ucg.org" href="https://ucg.org">
         Corbin Rose
     </author>
     <content src="index.html" />
+    
     <platform name="android">
         <!-- Default -->
         <preference 

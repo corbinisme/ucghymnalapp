@@ -53,7 +53,7 @@ function redirectToSystemBrowser(url) {
             })
             app.setMusicOptions();
             if(window.MobileAccessibility){
-                console.log("has mobile accessibility")
+
                 window.MobileAccessibility.usePreferredTextZoom(false);
             }
       },
@@ -98,11 +98,11 @@ function redirectToSystemBrowser(url) {
         let isMobile = false;
         if (/Mobi/.test(navigator.userAgent)) {
             // The user is on a mobile device
-            console.log("mobile")
+
             isMobile = true;
         } else {
             // The user is not on a mobile device
-            console.log("not actual mobile")
+
         }
 
         let hasScrollbar = document.getElementById("hymns").scrollHeight > window.innerHeight;
@@ -314,7 +314,7 @@ function redirectToSystemBrowser(url) {
                 html+=`</ul></div>`;
             copyContent.innerHTML+=html;
         });
-        const copyText = window['pages_en']['copyright'].content;
+        const copyText = window[`pages_${app.lang}`]? window[`pages_${app.lang}`]['copyright'].content: window['pages_en']['copyright'].content;
         copyContent.innerHTML += copyText;
       },
       getHymnTitle: function(hymnLookup){
@@ -336,6 +336,10 @@ function redirectToSystemBrowser(url) {
         const container = document.getElementById("topicsContent");
         const topicDropdown = document.getElementById("topicSelect");
         let html = "";
+
+        let firstOption = document.getElementById("allTopics");
+        let topicText= (window[`topics_${app.lang}`]? window[`topics_${app.lang}`]['all'] : window['topics_en']['all']);
+        firstOption.innerHTML = topicText;
 
         topics.forEach(function(topic){
 
@@ -515,9 +519,9 @@ function redirectToSystemBrowser(url) {
         // if music is playing, stop it
         if(app.musicPlayer) {
             app.musicPlayer.pause();
-            //console.log("get hymn text")
+
             app.makeMusic(app.currentMusicType, app.autoplay);
-            //app.musicPlayer.dispose();
+
             // remove crrent source
             
         }
@@ -695,7 +699,7 @@ function redirectToSystemBrowser(url) {
             app.setHymn(next);
         }
         if(app.isPlaying==true)
-            //console.log("play next")
+
             app.makeMusic(app.currentMusicType, true);
         
       },
@@ -722,7 +726,7 @@ function redirectToSystemBrowser(url) {
             app.setHymn(next);
         }
         if(app.isPlaying==true)
-            //console.log("play prev")
+
             app.makeMusic(app.currentMusicType, true);
       },
       setLang: function(langValue){
@@ -734,7 +738,7 @@ function redirectToSystemBrowser(url) {
         
       },
       toggleHamburger: function(){
-        console.log("toggle hambugder")
+
         let button = document.querySelector(".navbar-toggler")
         let menu = document.getElementById("navbarSupportedContent");
         let body = document.querySelector("body");
@@ -882,21 +886,20 @@ function redirectToSystemBrowser(url) {
             if(body.classList.contains("menuOpen")){
                 // if menu is already open
                 if(target.classList.contains("navbar-toggler") || target.closest(".navbar-toggler")){
-                    console.log("its the menu button");
+                    //its the menu button");
                     return;
                 } else {
                     if(target.closest(".navbar-collapse") || target.closest(".navbar-toggler")){
-                        console.log("its the manu itsself")
+                        //its the manu itsself
 
                     } else {
-                        console.log("its clicking on something else")
+                        //its clicking on something else
                         app.toggleHamburger();
                     }
                 }
                
             }
             
-            console.log("click target", target)
             
             if(target.classList.contains("incorrectTarget")){;
                 target.closest("a").click();
@@ -933,7 +936,7 @@ function redirectToSystemBrowser(url) {
             if(isMusicPlayerControl){
                 let buttonstate = document.querySelector(".vjs-play-control");
                 let title = buttonstate.getAttribute("title");
-                //console.log("current play button title", title)
+
                 if(title=="Play" || title=="Replay"){
                     app.isPlaying = true;
                 } else {
@@ -1013,9 +1016,9 @@ function redirectToSystemBrowser(url) {
             let musicType = app.currentMusicType;
             
             if(originalState==false){
-                //console.log("open music button")
+
                 app.makeMusic(musicType, app.autoplay);
-                //app.setCurrentMusicState("piano")
+
             }
             
         });
@@ -1067,7 +1070,7 @@ function redirectToSystemBrowser(url) {
             app.storage.setItem("currentMusicType", currentType);
 
             app.setMusicOptions();
-            //console.log("change to vocal version")
+
             app.makeMusic(currentType, app.autoplay);
         });
 
@@ -1524,7 +1527,7 @@ function redirectToSystemBrowser(url) {
             if(sourcePath!=null){
 
                 /* create music system notification */
-
+                
                 if(false && typeof MusicControls !== "undefined"){
 
                     // Music title
@@ -1587,14 +1590,7 @@ function redirectToSystemBrowser(url) {
                         preload: 'auto'
                     });
 
-                    // get playlist
-                    /*if(app.playlists.length>0){
-                        console.log("playlist exists", app.playlists)
-                        app.musicPlayer.playlist(app.playlists);
-                        app.musicPlayer.playlistUi();
-                        app.musicPlayer.playlist.autoadvance(1);
-                    }
-                    */
+                    
 
 
                     app.musicPlayer.on('ended', function(e) {
@@ -1603,7 +1599,7 @@ function redirectToSystemBrowser(url) {
                         const musicWrapper = document.querySelector(".musicPlayer");
                         playerWrapper.setAttribute("data-playing", "false");
                         musicWrapper.setAttribute("data-playing", "false");
-                        console.log("music has ended",e)
+
                 
                         if(app.autoplay==true){
     
@@ -1617,7 +1613,7 @@ function redirectToSystemBrowser(url) {
                     });
 
                     app.musicPlayer.on('play',()=>{
-                        console.log("playing")
+
                         const playerWrapper = document.querySelector(".video-js");
                         const musicWrapper = document.querySelector(".musicPlayer");
                         playerWrapper.setAttribute("data-playing", "true");
@@ -1627,7 +1623,7 @@ function redirectToSystemBrowser(url) {
     
                     });
                     app.musicPlayer.on('pause',()=>{
-                        console.log("pause")
+  
                         const playerWrapper = document.querySelector(".video-js");
                         const musicWrapper = document.querySelector(".musicPlayer");
                         playerWrapper.setAttribute("data-playing", "false");

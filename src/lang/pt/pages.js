@@ -1,43 +1,14 @@
 var pages_pt = {
-
-    "about": {title: "About the United Church of God", content:`
-        <p> <em><strong>Praise  the  LORD!  For  it  is  good  to  sing  praises  to  our  God; for  it  is  pleasant,  and  praise  is  beautiful. - Psalm  147:1</strong></em></p>
-        <p>Singing  has  been  an  integral  part  of  godly  worship  through  the ages—from the angels singing at the creation of the earth (Job 38:7), to  the  children  of  Israel  singing  praise  to God  for  deliverance  from the  Egyptian  army  (Exodus  15),  to  brethren  in  the New  Testament 
-            being  instructed  to  sing  and  make  melody  to  God  in  their  hearts 
-        (Ephesians 5:19). God wants us to delight in singing His praises.</p>
-        <p> The book of Revelation reveals singing will continue to be a vital part 
-            of worship in the coming Kingdom of God. Revelation 14:3 and 15:3 
-            describe the saints singing a new song, as well as the song of Moses 
-            and the song of the Lamb.</p>
-        <p>Today  this  tradition  of  singing  continues  as  we  fulfill  God's 
-            instruction  by  devoting  a  significant  portion  of  our  services  to 
-            collectively  sing  praise  to  Him.  Inspiring  lyrics  remind  us  of  the 
-            magnificent truths of His Word. Through singing hymns we have an 
-            opportunity  to  musically  express  our  deepest  emotions  of  grateful 
-            appreciation  to  God  for  His  plan  of  salvation  for  us  and  all  of 
-            humanity.  Because  of  the  magnitude  of  His  wonderful  work  and 
-            incredible  love,  God  deserves  our  deepest  love,  honor  and  respect 
-            through praise.</p>
-        <p>Colossians 3:16 instructs us to sing “psalms and hymns and spiritual 
-            songs” to God with thankful hearts. As you will note in the table of 
-            contents, this hymnal has been organized with this scripture in mind. 
-        May we use this hymnal to fulfill God's instruction: “I will praise the LORD with my whole heart, in the assembly of the upright and in the congregation" (Psalm 111:1) and "I will sing to the LORD as long as I live; I will sings praise to my God while I have my being" (Psalm 104:33).</p>
-        <p>&nbsp;</p>`},
-    "copyright": {title: "Copyright Acknowledgements", content:`<p>Extensive  effort  has  been  made  to  locate  the  owners  of  copyrighted  material  used  in  this  hymnal app. Upon  notification,  the  publisher  will  make  proper  correction  in  subsequent  app updates.</p>`
-    },
-    "ucg": {title: "About the United Church of God", content: `
-    <h2>Who We Are</h2>
-    <p>This hymnal app is published by the United Church of God,&nbsp;<em>an International Association</em>&nbsp;, which has ministers and local congregations in the United States and many countries around the world. We trace our origins to the Church that Jesus founded in the early first century. We follow the same teachings, doctrines and practices established then. Our commission is to proclaim the gospel of the coming Kingdom of God to all the world as a witness and teach all nations to observe what Christ commanded. If you would like to know more about the United Church of God please visit our website at <a href="http://www.ucg.org">www.ucg.org</a> .</p>
-    <h2>Personal Counsel Available</h2>
-    <p>Jesus commanded His followers to feed His sheep. To fulfill this command, the United Church of God has congregations around the world. In these congregations believers assemble on the Saturday Sabbath and biblical Holy Days to be instructed from the Scriptures and to fellowship. The United Church of God is committed to understanding and practicing New Testament Christianity. We desire to share God's way of life with those who earnestly seek to worship and follow our Savior, Jesus Christ. Our ministers are available to counsel, answer questions and explain the Bible.</p>
-    <p>If you would like to contact a minister or visit one of our congregations, you can&nbsp;<a href="http://www.ucg.org/congregations/all">view all UCG congregations</a>&nbsp;,&nbsp;<a href="http://www.ucg.org/find-congregation">search by zip code</a>&nbsp;or send an email to&nbsp;<a href="mailto:info@ucg.org">info@ucg.org</a>&nbsp;for the congregation nearest you. If you would like to call, please refer to the&nbsp;<a href="http://www.ucg.org/contact/">contact</a>&nbsp;page at ucg.org for our phone numbers.</p>
-    <p><strong>Mailing address: </strong>United Church of God, <em>an International
-    Association</em>, PO Box 541027, Cincinnati, OH 45254</p>
-    <p><strong>For additional information:</strong> Visit our Web site <a href="http://www.ucg.org">www.ucg.org</a> to
-      download or request any of our publications, including issues of <em>The Good
-      News</em>, dozens of free Bible study aid booklets, Beyond Today programs
-    and much more.</p>
-    <p>&nbsp;</p>
-    <hr>`},
-
+  "about": {
+    "title": "Sobre a Igreja de Deus Unida",
+    "content": "<p> <em><strong>Louvem ao Eterno! Porque é bom cantar louvores ao nosso Deus; porque é agradável, e o louvor é belo. —Salmo 147:1</strong></em></p>\n<p>O canto tem sido uma parte integrante da adoração a Deus ao longo dos séculos — desde os anjos cantando na criação da terra (Jó 38:7), até os filhos de Israel cantando louvores a Deus pela libertação do exército egípcio (Êxodo 15), até os irmãos do Novo Testamento sendo instruídos a cantar e a fazer melodia a Deus em seus corações (Efésios 5:19). Deus quer que nos deleitemos cantando Seus louvores.</p>\n<p>O livro do Apocalipse revela que o canto continuará a ser uma parte vital da adoração no vindouro Reino de Deus. Apocalipse 14:3 e 15:3 descrevem os santos cantando um novo cântico, bem como o cântico de Moisés e o cântico do Cordeiro.</p>\n<p>Hoje, esta tradição de cantar continua enquanto cumprimos a instrução de Deus, dedicando uma parte significativa de nossos serviços para cantar coletivamente louvores a Ele. Letras inspiradoras nos lembram das magníficas verdades de Sua Palavra. Através do canto de hinos, temos a oportunidade de expressar musicalmente nossas mais profundas emoções de grata apreciação a Deus por Seu plano de salvação para nós e para toda a humanidade. Devido à magnitude de Sua obra maravilhosa e Seu amor incrível, Deus merece nosso mais profundo amor, honra e respeito através do louvor.</p>\n<p>Colossenses 3:16 nos instrui a cantar “salmos, hinos e cânticos espirituais” a Deus com corações agradecidos. Como você notará no sumário, este hinário foi organizado com esta escritura em mente. Que possamos usar este hinário para cumprir a instrução de Deus: “Louvarei ao Eterno com todo o meu coração, na companhia dos retos e na congregação” (Salmo 111:1) e “Cantarei ao Eterno enquanto eu viver; cantarei louvores ao meu Deus enquanto eu existir” (Salmo 104:33).</p>\n<p>&nbsp;</p>"
+  },
+  "copyright": {
+    "title": "Agradecimentos de Direitos Autorais",
+    "content": "<p>Um grande esforço foi feito para localizar os proprietários do material protegido por direitos autorais usado neste aplicativo de hinário. Mediante notificação, o editor fará a correção adequada em atualizações subsequentes do aplicativo.</p>"
+  },
+  "ucg": {
+    "title": "Sobre a Igreja de Deus Unida",
+    "content": "<h2>Quem Somos</h2>\n<p>Este aplicativo de hinário é publicado pela Igreja de Deus Unida, <em>uma Associação Internacional</em>, que possui ministros e congregações locais nos Estados Unidos e em muitos países ao redor do mundo. Traçamos nossas origens à Igreja que Jesus fundou no início do primeiro século. Seguimos os mesmos ensinamentos, doutrinas e práticas estabelecidas naquela época. Nossa comissão é proclamar o evangelho do Reino vindouro de Deus a todo o mundo como testemunho e ensinar a todas as nações a observar o que Cristo mandou. Se você gostaria de saber mais sobre a Igreja de Deus Unida, visite nosso site em <a href=\"https://www.ucg.org\">www.ucg.org</a>.</p>\n<h2>Aconselhamento Pessoal Disponível</h2>\n<p>Jesus ordenou a Seus seguidores que alimentassem Suas ovelhas. Para cumprir este mandamento, a Igreja de Deus Unida tem congregações em todo o mundo. Nessas congregações, os crentes se reúnem no sábado e nos Dias Santos bíblicos para serem instruídos pelas Escrituras e para comunhão. A Igreja de Deus Unida está comprometida em compreender e praticar o cristianismo do Novo Testamento. Desejamos compartilhar o modo de vida de Deus com aqueles que buscam sinceramente adorar e seguir nosso Salvador, Jesus Cristo. Nossos ministros estão disponíveis para aconselhar, responder a perguntas e explicar a Bíblia.</p>\n<p>Se você gostaria de entrar em contato com um ministro ou visitar uma de nossas congregações, você pode <a href=\"https://www.ucg.org/congregations/all\">ver todas as congregações da UCG</a>, <a href=\"https://www.ucg.org/find-congregation\">pesquisar por código postal</a> ou enviar um e-mail para <a href=\"mailto:info@ucg.org\">info@ucg.org</a> para a congregação mais próxima de você. Se você quiser ligar, consulte a página de <a href=\"https://www.ucg.org/contact/\">contato</a> em ucg.org para nossos números de telefone.</p>\n<p><strong>Endereço para correspondência:</strong> Igreja de Deus Unida, <em>uma Associação Internacional</em>, PO Box 541027, Cincinnati, OH 45254</p>\n<p><strong>Para informações adicionais:</strong> Visite nosso site <a href=\"https://www.ucg.org\">www.ucg.org</a> para baixar ou solicitar qualquer uma de nossas publicações, incluindo edições de <em>As Boas Notícias</em>, dezenas de livretos gratuitos de estudo bíblico, programas Beyond Today e muito mais.</p>\n<p>&nbsp;</p>\n<hr>"
+  }
 };

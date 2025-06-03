@@ -12,11 +12,11 @@ var pages_de = {
             <p>&nbsp;</p>`
     },
     "copyright": {
-        title: "Copyright Acknowledgements", 
+        title: "Urheberrechtshinweise", 
         content:`<p>Es wurden umfangreiche Anstrengungen unternommen, die Inhaber des in dieser Gesangbuch-App verwendeten urheberrechtlich geschützten Materials ausfindig zu machen. Nach entsprechender Benachrichtigung wird der Herausgeber in nachfolgenden App-Updates entsprechende Korrekturen vornehmen.</p>`
     },
     "ucg": {
-        title: "About the United Church of God", 
+        title: "Über die United Church of God", 
         content: `
             <h2>Wer wir sind</h2>
             <p>Diese Gesangbuch-App wird von der United Church of God herausgegeben, einer internationalen Vereinigung mit Pfarrern und Gemeinden in den USA und vielen Ländern weltweit. Unsere Ursprünge gehen auf die Kirche zurück, die Jesus im frühen 1. Jahrhundert gründete. Wir folgen denselben Lehren, Doktrinen und Praktiken, die damals etabliert wurden. Unser Auftrag ist es, das Evangelium vom kommenden Reich Gottes weltweit zu verkünden und alle Völker zu lehren, die Gebote Christi zu befolgen. Wenn Sie mehr über die United Church of God erfahren möchten, besuchen Sie unsere Website unter <a href="https://www.ucg.org">www.ucg.org</a>.</p>

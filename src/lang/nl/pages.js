@@ -1,43 +1,16 @@
 var pages_nl = {
+  "about": {
+    "title": "Over de United Church of God",
+    "content": "<p> <em><strong>Looft de HEER! Want het is goed om onze God te prijzen; want het is aangenaam, en lof is mooi. —Psalm 147:1</strong></em></p>\n<p>Zingen is door de eeuwen heen een integraal onderdeel geweest van de goddelijke aanbidding — van de engelen die zongen bij de schepping van de aarde (Job 38:7), tot de kinderen van Israël die God prezen voor de bevrijding van het Egyptische leger (Exodus 15), tot de broeders in het Nieuwe Testament die werden opgedragen om te zingen en melodie te maken tot God in hun harten (Efeziërs 5:19). God wil dat we ons verheugen in het zingen van Zijn lof.</p>\n<p>Het boek Openbaring onthult dat zingen een vitaal onderdeel zal blijven van de aanbidding in het komende Koninkrijk van God. Openbaring 14:3 en 15:3 beschrijven de heiligen die een nieuw lied zingen, evenals het lied van Mozes en het lied van het Lam.</p>\n<p>Vandaag de dag wordt deze traditie van zingen voortgezet terwijl we Gods instructie vervullen door een aanzienlijk deel van onze diensten te wijden aan het gezamenlijk zingen van lof aan Hem. Inspirerende teksten herinneren ons aan de prachtige waarheden van Zijn Woord. Door het zingen van hymnes hebben we de gelegenheid om onze diepste emoties van dankbare waardering jegens God muzikaal uit te drukken voor Zijn verlossingsplan voor ons en voor de hele mensheid. Vanwege de omvang van Zijn wonderbaarlijke werk en ongelooflijke liefde, verdient God onze diepste liefde, eer en respect door middel van lof.</p>\n<p>Kolossenzen 3:16 instrueert ons om 'psalmen, lofzangen en geestelijke liederen' tot God te zingen met dankbare harten. Zoals u in de inhoudsopgave zult zien, is dit gezangboek met deze Schrift in gedachten georganiseerd. Mogen we dit gezangboek gebruiken om Gods instructie te vervullen: 'Ik zal de HEER met heel mijn hart prijzen, in de vergadering der oprechten en in de gemeente' (Psalm 111:1) en 'Ik zal de HEER zingen zolang ik leef; ik zal mijn God prijzen zolang ik besta' (Psalm 104:33).</p>\n<p>&nbsp;</p>"
+  },
+  "copyright": {
+    "title": "Auteursrechtelijke Erkenningen",
+    "content": "<p>Er is veel moeite gedaan om de eigenaren van auteursrechtelijk beschermd materiaal dat in deze gezangboek-app wordt gebruikt, op te sporen. Na kennisgeving zal de uitgever de juiste correctie aanbrengen in volgende app-updates.</p>"
+  },
+  "ucg": {
+    "title": "Over de United Church of God",
+    "content": "<h2>Wie Wij Zijn</h2>\n<p>Deze gezangboek-app wordt uitgegeven door de United Church of God, <em>een Internationale Associatie</em>, die predikanten en plaatselijke gemeenten heeft in de Verenigde Staten en vele landen over de hele wereld. Wij traceren onze oorsprong naar de Kerk die Jezus in het begin van de eerste eeuw stichtte. We volgen dezelfde leringen, doctrines en praktijken die toen zijn vastgesteld. Onze opdracht is om het evangelie van het komende Koninkrijk van God aan de hele wereld te verkondigen als een getuigenis en alle naties te leren te gehoorzamen wat Christus gebood. Als u meer wilt weten over de United Church of God, bezoek dan onze website op <a href=\"https://www.ucg.org\">www.ucg.org</a>.</p>\n<h2>Persoonlijk Advies Beschikbaar</h2>\n<p>Jezus beval Zijn volgelingen om Zijn schapen te weiden. Om dit gebod te vervullen, heeft de United Church of God gemeenten over de hele wereld. In deze gemeenten komen gelovigen samen op de zaterdagse sabbat en bij de bijbelse heilige dagen om uit de Schrift te worden onderwezen en om gemeenschap te hebben. De United Church of God zet zich in voor het begrijpen en beoefenen van het Nieuwtestamentische christendom. We willen Gods manier van leven delen met hen die oprecht onze Redder, Jezus Christus, willen aanbidden en volgen. Onze predikanten zijn beschikbaar om advies te geven, vragen te beantwoorden en de Bijbel uit te leggen.</p>\n<p>Als u contact wilt opnemen met een predikant of een van onze gemeenten wilt bezoeken, kunt u <a href=\"https://www.ucg.org/congregations/all\">alle UCG-gemeenten bekijken</a>, <a href=\"https://www.ucg.org/find-congregation\">zoeken op postcode</a> of een e-mail sturen naar <a href=\"mailto:info@ucg.org\">info@ucg.org</a> voor de gemeente bij u in de buurt. Als u wilt bellen, raadpleeg dan de <a href=\"https://www.ucg.org/contact/\">contactpagina</a> op ucg.org voor onze telefoonnummers.</p>\n<p><strong>Postadres:</strong> United Church of God, <em>an International Associatie</em>, Postbus 541027, Cincinnati, OH 45254</p>\n<p><strong>Voor aanvullende informatie:</strong> Bezoek onze website <a href=\"https://www.ucg.org\">www.ucg.org</a> om al onze publicaties te downloaden of aan te vragen, inclusief nummers van <em>Het Goede Nieuws</em>, tientallen gratis Bijbelstudiehulpmiddelen, Beyond Today-programma's en nog veel meer.</p>\n<p>&nbsp;</p>\n<hr>"
+  }
 
-    "about": {title: "About the United Church of God", content:`
-        <p> <em><strong>Praise  the  LORD!  For  it  is  good  to  sing  praises  to  our  God; for  it  is  pleasant,  and  praise  is  beautiful. - Psalm  147:1</strong></em></p>
-        <p>Singing  has  been  an  integral  part  of  godly  worship  through  the ages—from the angels singing at the creation of the earth (Job 38:7), to  the  children  of  Israel  singing  praise  to God  for  deliverance  from the  Egyptian  army  (Exodus  15),  to  brethren  in  the New  Testament 
-            being  instructed  to  sing  and  make  melody  to  God  in  their  hearts 
-        (Ephesians 5:19). God wants us to delight in singing His praises.</p>
-        <p> The book of Revelation reveals singing will continue to be a vital part 
-            of worship in the coming Kingdom of God. Revelation 14:3 and 15:3 
-            describe the saints singing a new song, as well as the song of Moses 
-            and the song of the Lamb.</p>
-        <p>Today  this  tradition  of  singing  continues  as  we  fulfill  God's 
-            instruction  by  devoting  a  significant  portion  of  our  services  to 
-            collectively  sing  praise  to  Him.  Inspiring  lyrics  remind  us  of  the 
-            magnificent truths of His Word. Through singing hymns we have an 
-            opportunity  to  musically  express  our  deepest  emotions  of  grateful 
-            appreciation  to  God  for  His  plan  of  salvation  for  us  and  all  of 
-            humanity.  Because  of  the  magnitude  of  His  wonderful  work  and 
-            incredible  love,  God  deserves  our  deepest  love,  honor  and  respect 
-            through praise.</p>
-        <p>Colossians 3:16 instructs us to sing “psalms and hymns and spiritual 
-            songs” to God with thankful hearts. As you will note in the table of 
-            contents, this hymnal has been organized with this scripture in mind. 
-        May we use this hymnal to fulfill God's instruction: “I will praise the LORD with my whole heart, in the assembly of the upright and in the congregation" (Psalm 111:1) and "I will sing to the LORD as long as I live; I will sings praise to my God while I have my being" (Psalm 104:33).</p>
-        <p>&nbsp;</p>`},
-    "copyright": {title: "Copyright Acknowledgements", content:`<p>Extensive  effort  has  been  made  to  locate  the  owners  of  copyrighted  material  used  in  this  hymnal app. Upon  notification,  the  publisher  will  make  proper  correction  in  subsequent  app updates.</p>`
-    },
-    "ucg": {title: "About the United Church of God", content: `
-    <h2>Who We Are</h2>
-    <p>This hymnal app is published by the United Church of God,&nbsp;<em>an International Association</em>&nbsp;, which has ministers and local congregations in the United States and many countries around the world. We trace our origins to the Church that Jesus founded in the early first century. We follow the same teachings, doctrines and practices established then. Our commission is to proclaim the gospel of the coming Kingdom of God to all the world as a witness and teach all nations to observe what Christ commanded. If you would like to know more about the United Church of God please visit our website at <a href="http://www.ucg.org">www.ucg.org</a> .</p>
-    <h2>Personal Counsel Available</h2>
-    <p>Jesus commanded His followers to feed His sheep. To fulfill this command, the United Church of God has congregations around the world. In these congregations believers assemble on the Saturday Sabbath and biblical Holy Days to be instructed from the Scriptures and to fellowship. The United Church of God is committed to understanding and practicing New Testament Christianity. We desire to share God's way of life with those who earnestly seek to worship and follow our Savior, Jesus Christ. Our ministers are available to counsel, answer questions and explain the Bible.</p>
-    <p>If you would like to contact a minister or visit one of our congregations, you can&nbsp;<a href="http://www.ucg.org/congregations/all">view all UCG congregations</a>&nbsp;,&nbsp;<a href="http://www.ucg.org/find-congregation">search by zip code</a>&nbsp;or send an email to&nbsp;<a href="mailto:info@ucg.org">info@ucg.org</a>&nbsp;for the congregation nearest you. If you would like to call, please refer to the&nbsp;<a href="http://www.ucg.org/contact/">contact</a>&nbsp;page at ucg.org for our phone numbers.</p>
-    <p><strong>Mailing address: </strong>United Church of God, <em>an International
-    Association</em>, PO Box 541027, Cincinnati, OH 45254</p>
-    <p><strong>For additional information:</strong> Visit our Web site <a href="http://www.ucg.org">www.ucg.org</a> to
-      download or request any of our publications, including issues of <em>The Good
-      News</em>, dozens of free Bible study aid booklets, Beyond Today programs
-    and much more.</p>
-    <p>&nbsp;</p>
-    <hr>`},
 
 };
