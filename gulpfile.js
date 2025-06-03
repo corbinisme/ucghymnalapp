@@ -74,6 +74,17 @@ gulp.task('minify-lang', function() {
       .pipe(gulp.dest("www/js"));
 });
 
+gulp.task('minify-pages', function() {
+  return gulp.src("src/js/pages/*.js")
+      .pipe(concat('pages.js'))
+      .pipe(gulp.dest("www/js"))
+      .pipe(rename('pages.min.js'))
+      .pipe(uglify())
+      .pipe(gulp.dest("www/js"));
+});
+
+      
+
 
 
 exports.build = series(clean, parallel(scss, javascript));

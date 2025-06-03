@@ -128,7 +128,7 @@ var whatsnew = {
             title: {
                 en: "Latest Updates",
                 de: "Neueste Updates",
-                pg: "Atualizações mais recentes",
+                pt: "Atualizações mais recentes",
                 es: "Últimas actualizaciones",
                 fr: "Dernières mises à jour",
                 nl: "Laatste updates",
@@ -137,21 +137,21 @@ var whatsnew = {
                
             },
             date: "2024-05-06",
-            description: {
-                en: "This is the initial release of the app. It includes the full hymnal with search by number and title.",
-                de: "Dies ist die Erstveröffentlichung der App. Es enthält das vollständige Gesangbuch mit Suche nach Nummer und Titel.",
-                pg: "Este é o lançamento inicial do aplicativo. Inclui o hinário completo com pesquisa por número e título.",
-                es: "Esta es la versión inicial de la aplicación. Incluye el himnario completo con búsqueda por número y título.",
-                fr: "Il s'agit de la première version de l'application. Il comprend le cantique complet avec recherche par numéro et titre.",
-                nl: "Dit is de eerste versie van de app. Het bevat het volledige gezangboek met zoekopdracht op nummer en titel.",
-                it: "Questa è la versione iniziale dell'app. Include l'inno completo con ricerca per numero e titolo."
+            "description": {
+                "en": "This is the latest version of the Hymnal app. Read about what changes and updates were made",
+                "de": "Dies ist die neueste Version der Gesangbuch-App. Lesen Sie, welche Änderungen und Updates vorgenommen wurden",
+                "pt": "Esta é a versão mais recente do aplicativo Hinário. Leia sobre as alterações e atualizações que foram feitas",
+                "es": "Esta es la última versión de la aplicación del Himnario. Lea acerca de los cambios y actualizaciones que se hicieron",
+                "fr": "Ceci est la dernière version de l'application du recueil de cantiques. Lisez les changements et les mises à jour qui ont été effectués",
+                "nl": "Dit is de nieuwste versie van de Liedboek-app. Lees hier welke wijzigingen en updates zijn doorgevoerd",
+                "it": "Questa è l'ultima versione dell'app Innario. Leggi quali modifiche e aggiornamenti sono stati apportati"
             },
             steps: [
                 {   step:1, 
                     title: [
                         {lang: "en", text: "Topical Index"},
                         {lang: "de", text: "Themenindex"},
-                        {lang: "pg", text: "Índice Temático"},
+                        {lang: "pt", text: "Índice Temático"},
                         {lang: "es", text: "Índice Temático"},
                         {lang: "fr", text: "Index thématique"},
                         {lang: "nl", text: "Thematisch Index"},
@@ -166,7 +166,7 @@ var whatsnew = {
                     content: [
                         {lang: "en", text: `You can view the topical categories of hymns by clicking on the 'Topical Index' button in the upper left menu.`},
                         {lang: "de", text: `Sie können die thematischen Kategorien von Liedern anzeigen, indem Sie auf die Schaltfläche 'Themenindex' im oberen linken Menü klicken.`},
-                        {lang: "pg", text: `Você pode visualizar as categorias temáticas dos hinos clicando no botão 'Índice Temático' no menu superior esquerdo.`},
+                        {lang: "pt", text: `Você pode visualizar as categorias temáticas dos hinos clicando no botão 'Índice Temático' no menu superior esquerdo.`},
                         {lang: "es", text: `Puede ver las categorías temáticas de los himnos haciendo clic en el botón 'Índice Temático' en el menú superior izquierdo.`},
                         {lang: "fr", text: `Vous pouvez afficher les catégories thématiques des cantiques en cliquant sur le bouton 'Index thématique' dans le menu supérieur gauche.`},
                         {lang: "nl", text: `U kunt de thematische categorieën van liederen bekijken door te klikken op de knop 'Thematisch Index' in het bovenste linker menu.`},
@@ -179,7 +179,7 @@ var whatsnew = {
                     title: [
                         {lang: "en", text: "Scripture Index"},
                         {lang: "de", text: "Schriftindex"},
-                        {lang: "pg", text: "Índice das Escrituras"},
+                        {lang: "pt", text: "Índice das Escrituras"},
                         {lang: "es", text: "Índice de las Escrituras"},
                         {lang: "fr", text: "Index des Écritures"},
                         {lang: "nl", text: "Schriftuur Index"},
@@ -196,7 +196,7 @@ var whatsnew = {
                         {lang: "en", text: `You can view the Scriptures used by the hymns filterable by book by clicking on the 'Scriptural Index'
                              button in the upper left menu. `},
                         {lang: "de", text: `Sie können die von den Liedern verwendeten Schriften filtern, indem Sie auf die Schaltfläche 'Schriftindex' im oberen linken Menü klicken.`},
-                        {lang: "pg", text: `Você pode visualizar as Escrituras usadas pelos hinos filtráveis por livro clicando no botão 'Índice das Escrituras' no menu superior esquerdo.`},
+                        {lang: "pt", text: `Você pode visualizar as Escrituras usadas pelos hinos filtráveis por livro clicando no botão 'Índice das Escrituras' no menu superior esquerdo.`},
                         {lang: "es", text: `Puede ver las Escrituras utilizadas por los himnos filtrables por libro haciendo clic en el botón 'Índice de las Escrituras' en el menú superior izquierdo.`},
                         {lang: "fr", text: `Vous pouvez afficher les Écritures utilisées par les cantiques filtrables par livre en cliquant sur le bouton 'Index des Écritures' dans le menu supérieur gauche.`},
                         {lang: "nl", text: `U kunt de Schriften die door de liederen worden gebruikt, filteren op boek door te klikken op de knop 'Schriftuur Index' in het bovenste linker menu.`},
@@ -208,7 +208,7 @@ var whatsnew = {
                     title: [
                         {lang: "en", text: "Play All Hymns"},
                         {lang: "de", text: "Alle Lieder abspielen"},
-                        {lang: "pg", text: "Reproduzir todos os hinos"},
+                        {lang: "pt", text: "Reproduzir todos os hinos"},
                         {lang: "es", text: "Reproducir todos los himnos"},
                         {lang: "fr", text: "Jouer tous les cantiques"},
                         {lang: "nl", text: "Speel alle liederen af"},
@@ -224,7 +224,7 @@ var whatsnew = {
                     content: [
                         {lang: "en", text: "Autoplay all hymns in the hymnal. Open the music panel and toggle the 'Play All' button.<br />"},
                         {lang: "de", text: "Alle Lieder im Gesangbuch automatisch abspielen. Öffnen Sie das Musikpanel und schalten Sie die Schaltfläche 'Alle abspielen' um.<br />"},
-                        {lang: "pg", text: "Reproduza automaticamente todos os hinos do hinário. Abra o painel de música e alterne o botão 'Reproduzir todos'.<br />"},
+                        {lang: "pt", text: "Reproduza automaticamente todos os hinos do hinário. Abra o painel de música e alterne o botão 'Reproduzir todos'.<br />"},
                         {lang: "es", text: "Reproduzca automáticamente todos los himnos del himnario. Abra el panel de música y cambie el botón 'Reproducir todos'.<br />"},
                         {lang: "fr", text: "Lecture automatique de tous les cantiques du cantique. Ouvrez le panneau de musique et basculez le bouton 'Jouer tout'.<br />"},
                         {lang: "nl", text: "Speel alle liederen in het gezangboek automatisch af. Open het muziekpaneel en schakel de knop 'Alles afspelen'.<br />"},
@@ -238,11 +238,13 @@ var whatsnew = {
     ],
     createLanguageSelector: function() {
         let currentLang = this.lang;
+        
         var langSelector = `<div id="lang-selector" class="text-end d-flex justify-content-end">
+                                <img src="./images/languageIcon.svg" alt="Language Icon" class="languageIconImg" />                        
                                 <select id="lang-select" class="form-select w-auto" onChange="whatsnew.updateLang(this)">
                                     <option value="en" ${(currentLang=="en"?"selected":"")}>English</option>
                                     <option value="de" ${(currentLang=="de"?"selected":"")}>Deutsch</option>
-                                    <option value="pg" ${(currentLang=="pg"?"selected":"")}>Português</option>
+                                    <option value="pt" ${(currentLang=="pt"?"selected":"")}>Português</option>
                                     <option value="es" ${(currentLang=="es"?"selected":"")}>Español</option>
                                     <option value="fr" ${(currentLang=="fr"?"selected":"")}>Français</option>
                                     <option value="nl" ${(currentLang=="nl"?"selected":"")}>Nederlands</option>
@@ -254,7 +256,7 @@ var whatsnew = {
     copy: [
         {lang: "en", text: "What's New", tourbutton: "Take a tour"},
         {lang: "de", text: "Was ist neu", tourbutton: "Tour machen"},
-        {lang: "pg", text: "O que há de novo", tourbutton: "Fazer um tour"},
+        {lang: "pt", text: "O que há de novo", tourbutton: "Fazer um tour"},
         {lang: "es", text: "Qué hay de nuevo", tourbutton: "Hacer un recorrido"},
         {lang: "fr", text: "Quoi de neuf",  tourbutton: "Faire un tour"},
         {lang: "nl", text: "Wat is nieuw", tourbutton: "Maak een rondleiding"},
@@ -294,11 +296,13 @@ var whatsnew = {
                                     
                                 </div>
                                 <div class="popup-buttons text-end card-footer">
-                                    <a href="#" class="whatsnew-close btn btn-primary button button-block button-positive">Close</a>
+                                    <a href="#" class="whatsnew-close btn btn-primary button button-block button-positive"><i class="fa fa-times"></i></a>
                                 </div>
                             </div>
                     </div>`;
         document.querySelector('body').insertAdjacentHTML('beforeend', popup);
+      
+        
         //document.querySelector('#whatsNewHolder').innerHTML += popup;
         document.querySelector('#whatsnew-wrapper').classList.add('popup-visible');
 

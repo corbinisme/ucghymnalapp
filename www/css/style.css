@@ -789,6 +789,10 @@ body .mainContent .page header #chooseLanguage .languageIcon svg {
   fill: #fff;
   height: 27px;
 }
+body .mainContent .page header #chooseLanguage .languageIcon .languageIconImg {
+  height: 27px;
+  width: auto;
+}
 @media all and (max-width: 360px) {
   body .mainContent .page header #chooseLanguage .languageIcon {
     display: none;
@@ -898,12 +902,19 @@ body.scrollbar .mainContent .page #scripturalReferenceModal .scriptureReferences
   right: calc(10px + var(--scrollbar-width));
 }
 
+body .main {
+  transition: opacity 0.2s ease-in-out;
+}
+
 .whatsnew-open * {
   pointer-events: none;
 }
 
 .whatsnew-open #whatsnew-wrapper * {
   pointer-events: all;
+}
+.whatsnew-open .main {
+  opacity: 0.4;
 }
 
 .whatsnew-open #whatsnew-wrapper {
@@ -918,7 +929,7 @@ body.scrollbar .mainContent .page #scripturalReferenceModal .scriptureReferences
   pointer-events: all;
 }
 .whatsnew-open .whatsNewClone {
-  outline: 9999px solid rgba(0, 0, 0, 0.7);
+  outline: 9999px solid rgba(0, 0, 0, 0.9);
 }
 
 #loader.muted {
@@ -992,10 +1003,19 @@ body.scrollbar .mainContent .page #scripturalReferenceModal .scriptureReferences
   z-index: 998;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 html.dim #whatsnew-modal .card {
   background: var(--bg-headerBot);
   color: var(--bs-card-bg);
+}
+
+.languageIconImg {
+  height: 27px;
+  margin-right: 5px;
+}
+
+#lang-selector {
+  align-items: center;
 }

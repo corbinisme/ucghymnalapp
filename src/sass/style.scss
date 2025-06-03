@@ -914,6 +914,10 @@ body {
                             fill: #fff;
                             height: 27px;
                         }
+                        .languageIconImg {
+                            height: 27px;
+                            width: auto;
+                        }
                         @media all and  (max-width: 360px){
                            display: none;
                         }
