@@ -15,6 +15,7 @@ var menu_nl = {
     "holydays": "Heilige Dagen Kalender",
     "scriptureref": "Bijbelverwijzingen",
     "moreabout": "Meer informatie over de",
+    "reportbug": "Meld een fout",
 }
 
 var bible_nl = {

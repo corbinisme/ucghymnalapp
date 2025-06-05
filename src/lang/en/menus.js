@@ -15,6 +15,7 @@ var menu_en = {
     "holydays": "Holy Day Calendar",
     "scriptureref": "Scripture References",
     "moreabout": "More information",
+    "reportbug": "Report a Bug",
 }
 
 var bible_en = {

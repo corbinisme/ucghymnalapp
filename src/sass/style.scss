@@ -276,6 +276,7 @@ body {
 
                    
                 }
+                
 
                 footer {
                     &.hymnFooter {
@@ -432,10 +433,25 @@ body {
             top: 0;
             opacity: 0;
 
+            #freshdeskFrame {
+                height: calc(100vh - 95px);
+            }
+
+            #topicSelect {
+                option {
+                    text-transform: uppercase;
+                }
+            }
+
            
 
             &#hymns {
                 position: static;
+            }
+            &#reportbug {
+                header {
+                    height: auto;
+                }
             }
             &#holydays {
                 .headerFormControl a {

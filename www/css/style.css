@@ -294,8 +294,17 @@ body .mainContent .page {
   top: 0;
   opacity: 0;
 }
+body .mainContent .page #freshdeskFrame {
+  height: calc(100vh - 95px);
+}
+body .mainContent .page #topicSelect option {
+  text-transform: uppercase;
+}
 body .mainContent .page#hymns {
   position: static;
+}
+body .mainContent .page#reportbug header {
+  height: auto;
 }
 body .mainContent .page#holydays .headerFormControl a {
   color: var(--linkColor);

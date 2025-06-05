@@ -6,7 +6,7 @@ var whatsnew = {
     showingSteps: true,
     currentStepCount: 0,
     init: function() {
-        console.log("whatsnew init")
+
         if(this.st.getItem('whatsnewseen') == null || this.st.getItem('whatsnewseen')=="0") {
             if(this.whatsNewId !==null && this.whatsNewId !== undefined && this.whatsNewId !== "" && this.whatsNewId !== 0){
                 this.showWhatsNew();

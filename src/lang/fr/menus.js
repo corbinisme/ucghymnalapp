@@ -15,6 +15,7 @@ var menu_fr = {
     "holydays": "Calendrier des jours saints",
     "scriptureref": "Références bibliques",
     "moreabout": "Plus d'informations sur le",
+    "reportbug": "Signaler un bug",
     
     
     

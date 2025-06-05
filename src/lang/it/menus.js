@@ -15,6 +15,7 @@ var menu_it = {
     "holydays": "Calendario delle festività",
     "scriptureref": "Riferimenti scritturali",
     "moreabout": "Maggiori informazioni su",
+    "reportbug": "Segnala un bug",
 }
 
 var bible_it = {

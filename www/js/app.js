@@ -56,6 +56,26 @@ function redirectToSystemBrowser(url) {
 
                 window.MobileAccessibility.usePreferredTextZoom(false);
             }
+            app.loadLogos();
+      },
+      loadLogos: function() {
+      
+        var refTagger = {
+        settings: {
+            bibleVersion: 'NKJV'
+        }
+        }; 
+        console.log("loading reftagger");
+
+        (function(d, t) {
+        var n=d.querySelector('[nonce]');
+        refTagger.settings.nonce = n && (n.nonce||n.getAttribute('nonce'));
+        var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        g.src = 'https://api.reftagger.com/v2/RefTagger.js';
+        g.nonce = refTagger.settings.nonce;
+        s.parentNode.insertBefore(g, s);
+        }(document, 'script'));
+
       },
       loadCurrentLang: function(random){
         app.makeLanguageDropdown();
@@ -248,17 +268,16 @@ function redirectToSystemBrowser(url) {
         
         let beginsEveningBefore = holydayStrings.interface.eveningbefore[currentLang] || holydayStrings.interface.eveningbefore['en'];
         let observedEveningBefore = holydayStrings.interface.observedeveningbefore[currentLang] || holydayStrings.interface.observedeveningbefore['en'];
-        console.log("beginsEveningBefore", beginsEveningBefore, currentLang);
+
         let legendHtml = `<aside class='alert alert-info'>
         * ${beginsEveningBefore};<br />
         ++ ${observedEveningBefore}
         </aside>`;
         holydaycalParentNode.innerHTML = legendHtml;
-        console.log(holydayData);
-        console.log(holydayStrings);
+
         // get object keys for holydayData
         const years = Object.keys(holydayData);
-        console.log("years", years);
+
         years.forEach(function(year){
             let yearData = holydayData[year];
             let yearHtml = `<h3 class="pageHeading mb-4 mt-4">${year}</h3>`;
@@ -470,6 +489,7 @@ function redirectToSystemBrowser(url) {
         }
       },
       toggleScripturalReference: function(forceClose){
+        console.log("toggleScripturalReference", forceClose);
         const target = document.getElementById("scripturalReferenceModal");
         const node = document.getElementById("scripturalReferenceButton");
         const body = document.querySelector("body");
@@ -511,7 +531,7 @@ function redirectToSystemBrowser(url) {
        
         const scriptureActive = document.getElementById("scripturalReferenceButton");
         if(scriptureActive.classList.contains("active")){
-            app.toggleScripturalReference(false);
+            //app.toggleScripturalReference(false);
         }
 
         if(app.sheetMusicActive){
@@ -939,6 +959,7 @@ function redirectToSystemBrowser(url) {
         document.addEventListener("click", function(e){
             let target = e.target;
 
+
             let body = document.querySelector("body");
             if(body.classList.contains("menuOpen")){
                 // if menu is already open
@@ -948,6 +969,13 @@ function redirectToSystemBrowser(url) {
                 } else {
                     if(target.closest(".navbar-collapse") || target.closest(".navbar-toggler")){
                         //its the manu itsself
+                       
+                        if(target.classList.contains("changePageButton")){
+                             // but is it a link?
+                        } else {
+                            // nope, just the menu container
+                            app.toggleHamburger();
+                        }
 
                     } else {
                         //its clicking on something else
@@ -1537,9 +1565,13 @@ function redirectToSystemBrowser(url) {
                 random = Math.floor(Math.random() * (max - min +1)) + min;
     
                 let title = titles[random];
-                title = parseInt(title.substring(0, title.indexOf(")")));
-    
-                startVal = title;
+                if(title){
+                    title = parseInt(title.substring(0, title.indexOf(")")));
+        
+                    startVal = title;
+                } else {
+                    startVal = 1;
+                }
             
             } else {
                  // if we hardcode the hymn in the url, load it
@@ -1552,7 +1584,7 @@ function redirectToSystemBrowser(url) {
 
       makeMusic:function(type, autoplay){
         
-        app.toggleScripturalReference(true);
+       
 
         let audio = document.querySelector(".video-js");
         let source = audio.querySelector("source");
