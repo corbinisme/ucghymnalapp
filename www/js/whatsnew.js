@@ -147,7 +147,8 @@ var whatsnew = {
                 "it": "Questa è l'ultima versione dell'app Innario. Leggi quali modifiche e aggiornamenti sono stati apportati"
             },
             steps: [
-                {   step:1, 
+                {   
+                    step:1, 
                     title: [
                         {lang: "en", text: "Topical Index"},
                         {lang: "de", text: "Themenindex"},
@@ -157,54 +158,110 @@ var whatsnew = {
                         {lang: "nl", text: "Thematisch Index"},
                         {lang: "it", text: "Indice tematico"}
                     ],
-                    example: `<span class="navbar-toggler-override fa fa-bars"></span><br />
-                             <br /><a class="nav-links btn btn-default" href="#">
-                                <i class="fa fa-th"></i> 
-                                <span class="text">Topical Index</span>
-                            </a>
+                    example: `<br /><span class="navbar-toggler-override fa fa-bars"></span><br />
+                             
                              `,                    
+                   
                     content: [
-                        {lang: "en", text: `You can view the topical categories of hymns by clicking on the 'Topical Index' button in the upper left menu.`},
-                        {lang: "de", text: `Sie können die thematischen Kategorien von Liedern anzeigen, indem Sie auf die Schaltfläche 'Themenindex' im oberen linken Menü klicken.`},
-                        {lang: "pt", text: `Você pode visualizar as categorias temáticas dos hinos clicando no botão 'Índice Temático' no menu superior esquerdo.`},
-                        {lang: "es", text: `Puede ver las categorías temáticas de los himnos haciendo clic en el botón 'Índice Temático' en el menú superior izquierdo.`},
-                        {lang: "fr", text: `Vous pouvez afficher les catégories thématiques des cantiques en cliquant sur le bouton 'Index thématique' dans le menu supérieur gauche.`},
-                        {lang: "nl", text: `U kunt de thematische categorieën van liederen bekijken door te klikken op de knop 'Thematisch Index' in het bovenste linker menu.`},
-                        {lang: "it", text: `È possibile visualizzare le categorie tematiche degli inni facendo clic sul pulsante 'Indice tematico' nel menu in alto a sinistra.`}
-
-                    ],
-                    
+                        {
+                        "lang": "en",
+                        "text": "You can view the topical categories of hymns and scriptural index by clicking the 'Topical Index and \"Scriptural Index' buttons in the upper right menu."
+                        },
+                        {
+                        "lang": "de",
+                        "text": "Sie können die thematischen Kategorien von Liedern und den Schriftindex anzeigen, indem Sie auf die Schaltflächen 'Themenindex' und 'Schriftindex' im oberen rechten Menü klicken."
+                        },
+                        {
+                        "lang": "pt",
+                        "text": "Você pode visualizar as categorias temáticas dos hinos e o índice escriturístico clicando nos botões 'Índice Temático' e 'Índice Escriturístico' no menu superior direito."
+                        },
+                        {
+                        "lang": "es",
+                        "text": "Puede ver las categorías temáticas de los himnos y el índice de las escrituras haciendo clic en los botones 'Índice Temático' e 'Índice de Escrituras' en el menú superior derecho."
+                        },
+                        {
+                        "lang": "fr",
+                        "text": "Vous pouvez afficher les catégories thématiques des cantiques et l'index des Écritures en cliquant sur les boutons 'Index thématique' et 'Index des Écritures' dans le menu supérieur droit."
+                        },
+                        {
+                        "lang": "nl",
+                        "text": "U kunt de thematische categorieën van liederen en de schriftuurlijke index bekijken door te klikken op de knoppen 'Thematisch Index' en 'Schriftuurlijke Index' in het bovenste rechter menu."
+                        },
+                        {
+                        "lang": "it",
+                        "text": "È possibile visualizzare le categorie tematiche degli inni e l'indice scritturale facendo clic sui pulsanti 'Indice tematico' e 'Indice scritturale' nel menu in alto a destra."
+                        }
+                    ]
+  
                 },
-                {   step:2, 
+                {
+                    step:2, 
                     title: [
-                        {lang: "en", text: "Scripture Index"},
-                        {lang: "de", text: "Schriftindex"},
-                        {lang: "pt", text: "Índice das Escrituras"},
-                        {lang: "es", text: "Índice de las Escrituras"},
-                        {lang: "fr", text: "Index des Écritures"},
-                        {lang: "nl", text: "Schriftuur Index"},
-                        {lang: "it", text: "Indice delle Scritture"}
-
+                        {
+                        "lang": "en",
+                        "text": "Holy Day Calendar"
+                        },
+                        {
+                        "lang": "de",
+                        "text": "Feiertagskalender"
+                        },
+                        {
+                        "lang": "pt",
+                        "text": "Calendário de Dias Santos"
+                        },
+                        {
+                        "lang": "es",
+                        "text": "Calendario de Días Festivos"
+                        },
+                        {
+                        "lang": "fr",
+                        "text": "Calendrier des Jours Saints"
+                        },
+                        {
+                        "lang": "nl",
+                        "text": "Heilige Dagen Kalender"
+                        },
+                        {
+                        "lang": "it",
+                        "text": "Calendario Giorni Festivi"
+                        }
                     ],
-                    example: `<span class="navbar-toggler-override fa fa-bars"></span><br />
-                                <br />
-                            <a class="nav-links btn btn-default" href="#">
-                                <i class="fa fa-book"></i> 
-                                <span class="text">Scriptural Index</span>
-                            </a>`,
+                    example: `<br /><span class="navbar-toggler-override fa fa-bars"></span><br />
+                               `,
                     content: [
-                        {lang: "en", text: `You can view the Scriptures used by the hymns filterable by book by clicking on the 'Scriptural Index'
-                             button in the upper left menu. `},
-                        {lang: "de", text: `Sie können die von den Liedern verwendeten Schriften filtern, indem Sie auf die Schaltfläche 'Schriftindex' im oberen linken Menü klicken.`},
-                        {lang: "pt", text: `Você pode visualizar as Escrituras usadas pelos hinos filtráveis por livro clicando no botão 'Índice das Escrituras' no menu superior esquerdo.`},
-                        {lang: "es", text: `Puede ver las Escrituras utilizadas por los himnos filtrables por libro haciendo clic en el botón 'Índice de las Escrituras' en el menú superior izquierdo.`},
-                        {lang: "fr", text: `Vous pouvez afficher les Écritures utilisées par les cantiques filtrables par livre en cliquant sur le bouton 'Index des Écritures' dans le menu supérieur gauche.`},
-                        {lang: "nl", text: `U kunt de Schriften die door de liederen worden gebruikt, filteren op boek door te klikken op de knop 'Schriftuur Index' in het bovenste linker menu.`},
-                        {lang: "it", text: `È possibile visualizzare le Scritture utilizzate dagli inni filtrabili per libro facendo clic sul pulsante 'Indice delle Scritture' nel menu in alto a sinistra.`}
+                        {
+                        "lang": "en",
+                        "text": "You can view the Holy Day Calendar dates by selecting \"Holy Day Calendar\" from the button in the upper right menu."
+                        },
+                        {
+                        "lang": "de",
+                        "text": "Sie können die Daten des Feiertagskalenders anzeigen, indem Sie „Feiertagskalender“ aus der Schaltfläche im oberen rechten Menü auswählen."
+                        },
+                        {
+                        "lang": "pt",
+                        "text": "Você pode visualizar as datas do Calendário de Dias Santos selecionando \"Calendário de Dias Santos\" no botão no menu superior direito."
+                        },
+                        {
+                        "lang": "es",
+                        "text": "Puede ver las fechas del Calendario de Días Festivos seleccionando \"Calendario de Días Festivos\" en el botón del menú superior derecho."
+                        },
+                        {
+                        "lang": "fr",
+                        "text": "Vous pouvez consulter les dates du calendrier des jours saints en sélectionnant « Calendrier des jours saints » dans le bouton du menu supérieur droit."
+                        },
+                        {
+                        "lang": "nl",
+                        "text": "U kunt de data van de Heilige Dagen Kalender bekijken door \"Heilige Dagen Kalender\" te selecteren via de knop in het menu rechtsboven."
+                        },
+                        {
+                        "lang": "it",
+                        "text": "È possibile visualizzare le date del Calendario dei Giorni Festivi selezionando \"Calendario Giorni Festivi\" dal pulsante nel menu in alto a destra."
+                        }
                     ],
                    
                 },
-                {   step:3, 
+                {   
+                    step:3, 
                     title: [
                         {lang: "en", text: "Play All Hymns"},
                         {lang: "de", text: "Alle Lieder abspielen"},
@@ -217,8 +274,8 @@ var whatsnew = {
                     ],
                     example: `<br /><a class="btn btn-outline-secondary musicControl active" id="musicControlExample">
                         <i class="fa-solid fa-music"></i>
-                        </a> <span class="translate" data-translation-id="then">then</span> 
-                        <a href="#" id="playAllExample"  class=" btn btn-outline-secondary">
+                        </a> <span class="ms-2 fa fa-arrow-right"></span> 
+                        <a href="#" id="playAllExample"  class=" btn text-white">
                                 <i class="fas fa-repeat"></i>
                         </a>`,
                     content: [
