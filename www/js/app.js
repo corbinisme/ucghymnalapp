@@ -40,6 +40,7 @@ function redirectToSystemBrowser(url) {
       isPlaying: false,
       randomPlaylists:[],
       playlists: [],
+      useLogos: false,
       init: function(){
             app.getConfig();
             app.eventBindings();
@@ -60,21 +61,23 @@ function redirectToSystemBrowser(url) {
       },
       loadLogos: function() {
       
-        var refTagger = {
-        settings: {
-            bibleVersion: 'NKJV'
-        }
-        }; 
-        console.log("loading reftagger");
+        if(app.useLogos==true){
+            window['refTagger'] = {
+            settings: {
+                bibleVersion: 'NKJV'
+            }
+            }; 
 
-        (function(d, t) {
-        var n=d.querySelector('[nonce]');
-        refTagger.settings.nonce = n && (n.nonce||n.getAttribute('nonce'));
-        var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
-        g.src = 'https://api.reftagger.com/v2/RefTagger.js';
-        g.nonce = refTagger.settings.nonce;
-        s.parentNode.insertBefore(g, s);
-        }(document, 'script'));
+
+            (function(d, t) {
+            var n=d.querySelector('[nonce]');
+            window['refTagger'].settings.nonce = n && (n.nonce||n.getAttribute('nonce'));
+            var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            g.src = 'https://api.reftagger.com/v2/RefTagger.js';
+            g.nonce = window['refTagger'].settings.nonce;
+            s.parentNode.insertBefore(g, s);
+            }(document, 'script'));
+        }
 
       },
       loadCurrentLang: function(random){
@@ -611,6 +614,10 @@ function redirectToSystemBrowser(url) {
         // scroll back to top
         document.querySelector(".page#hymns").scrollTo(0,0);
 
+        if ( window['refTagger']) {
+             window['refTagger'].tag();
+        }
+
       },
       toggleTheme: function(reverse){
 
@@ -662,6 +669,10 @@ function redirectToSystemBrowser(url) {
                 langOverride = la;
             }
         })
+
+        if(config.useLogos){
+            app.useLogos = true;
+        }
 
         if(langValue==null || langValue==""){
             
