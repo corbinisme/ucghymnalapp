@@ -81,9 +81,7 @@ gulp.task('minify-pages', function() {
       .pipe(rename('pages.min.js'))
       .pipe(uglify())
       .pipe(gulp.dest("www/js"));
-});
-
-      
+});  
 
 
 

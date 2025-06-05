@@ -1161,12 +1161,9 @@ function redirectToSystemBrowser(url) {
                     target = target.parentElement;
                 }
                 target.classList.toggle("active");
-                let tar = document.querySelector("#hymns");
-                if(tar.classList.contains("showFontSizer")){
-                    tar.classList.remove("showFontSizer")
-                } else {
-                    tar.classList.add("showFontSizer")
-                }
+                const body = document.querySelector("body");
+                body.classList.toggle("hasFontsizerOpen")
+                
             
               
             })
@@ -1175,15 +1172,12 @@ function redirectToSystemBrowser(url) {
         document.querySelectorAll(".fontSizer").forEach(function(el){
             el.addEventListener("click", function(e){
                 e.preventDefault();
-                let togglerIcon = document.querySelector(".fontSizeToggle");
-                let tar = document.querySelector("#hymns");
-                if(tar.classList.contains("showFontSizer")){
-                    tar.classList.remove("showFontSizer");
-                    togglerIcon.classList.remove("active"); 
-                } else {
-                    tar.classList.add("showFontSizer")
-                }
-            
+                const togglerIcon = document.querySelector(".fontSizeToggle");
+                const tar = document.querySelector("#hymns");
+                const body = document.querySelector("body");
+                body.classList.toggle("hasFontsizerOpen")
+                togglerIcon.classList.toggle("active");
+                
               
             })
         })

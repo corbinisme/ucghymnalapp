@@ -276,11 +276,76 @@ body {
 
                    
                 }
+
+                footer {
+                    &.hymnFooter {
+                        height: 192px;
+                    }
+                }
                     
                 
             }
         }
     } 
+    &.hasFontsizerOpen {
+         .mainContent {
+            .page {
+            
+                #loader {
+                    --loader-bottom-padding: 160px;
+                }
+                #scripturalReferenceModal {
+                    
+                    &.active {
+                        bottom: 53px;
+                    }
+
+                   
+                }
+                footer {
+                
+                    &.hymnFooter {
+                        height: 125px;
+                    }
+                }
+                &#hymns {
+                     #fontSizer {
+                        transform: translateY(0%);
+                        height: auto;
+                     }
+                }
+            }
+        }
+    }
+    &.hasMusicOpen.hasFontsizerOpen {
+        .mainContent {
+            .page {
+                #loader {
+                    --loader-bottom-padding: 180px;
+                }
+                #scripturalReferenceModal {
+                    
+                    &.active {
+                        bottom: 175px;
+                    }
+
+                   
+                }
+                footer {
+                
+                    &.hymnFooter {
+                        height: 251px;
+                    }
+                }
+                &#hymns {
+                     #fontSizer {
+                        transform: translateY(0%);
+                        height: 60px;
+                     }
+                }
+            }
+        }
+    }
     
 
     #scriptureContent {
@@ -975,10 +1040,6 @@ body {
                         height: 67px;
                     }
 
-                    &.musicOpen {
-                        height: 192px;
-                        
-                    }
 
                     .row {
                         margin: 0;

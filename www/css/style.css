@@ -208,6 +208,35 @@ body.hasMusicOpen .mainContent .page #loader {
 body.hasMusicOpen .mainContent .page #scripturalReferenceModal.active {
   bottom: 122px;
 }
+body.hasMusicOpen .mainContent .page footer.hymnFooter {
+  height: 192px;
+}
+body.hasFontsizerOpen .mainContent .page #loader {
+  --loader-bottom-padding: 160px;
+}
+body.hasFontsizerOpen .mainContent .page #scripturalReferenceModal.active {
+  bottom: 53px;
+}
+body.hasFontsizerOpen .mainContent .page footer.hymnFooter {
+  height: 125px;
+}
+body.hasFontsizerOpen .mainContent .page#hymns #fontSizer {
+  transform: translateY(0%);
+  height: auto;
+}
+body.hasMusicOpen.hasFontsizerOpen .mainContent .page #loader {
+  --loader-bottom-padding: 180px;
+}
+body.hasMusicOpen.hasFontsizerOpen .mainContent .page #scripturalReferenceModal.active {
+  bottom: 175px;
+}
+body.hasMusicOpen.hasFontsizerOpen .mainContent .page footer.hymnFooter {
+  height: 251px;
+}
+body.hasMusicOpen.hasFontsizerOpen .mainContent .page#hymns #fontSizer {
+  transform: translateY(0%);
+  height: 60px;
+}
 body #scriptureContent .tocBody tr td:first-child {
   width: 24%;
 }
@@ -839,9 +868,6 @@ body .mainContent .page footer.hymnFooter .initialFooter {
   background: linear-gradient(0deg, var(--bg-footer-stop), transparent);
   color: var(--text-color);
   height: 67px;
-}
-body .mainContent .page footer.hymnFooter.musicOpen {
-  height: 192px;
 }
 body .mainContent .page footer.hymnFooter .row {
   margin: 0;
