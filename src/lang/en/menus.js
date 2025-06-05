@@ -14,7 +14,7 @@ var menu_en = {
     "404": "Page not found",
     "holydays": "Holy Day Calendar",
     "scriptureref": "Scripture References",
-    "moreabout": "More information about the",
+    "moreabout": "More information",
 }
 
 var bible_en = {

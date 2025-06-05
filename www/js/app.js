@@ -234,14 +234,71 @@ function redirectToSystemBrowser(url) {
         const pageWrapper = document.querySelector(".page#holydays");
         const currentLang = app.lang;
 
-        const moreInfoTextNode = pageWrapper.querySelector(".moreinfo");
-        const textLink = pageWrapper.querySelector(".text-link");
+        const textLink = pageWrapper.querySelector(".more-info-holy-day-calendar");
 
         const moreInfoText = window[`menu_${currentLang}`]? window[`menu_${currentLang}`]['moreabout'] : window['menu_en']['moreabout'];
-        const holyDayText = window[`menu_${currentLang}`]? window[`menu_${currentLang}`]['holydays'] : window['menu_en']['holydays'];
+       
+        textLink.innerText = moreInfoText;
+
+        const holydaycalParentNode = document.getElementById("holydayContent");
+
+        let holydayData = window['holydaycalendar'].data;
+        let holydayStrings = window['holydaycalendar'].strings;
+
         
-        textLink.innerText = holyDayText;
-        moreInfoTextNode.innerText = moreInfoText;
+        let beginsEveningBefore = holydayStrings.interface.eveningbefore[currentLang] || holydayStrings.interface.eveningbefore['en'];
+        let observedEveningBefore = holydayStrings.interface.observedeveningbefore[currentLang] || holydayStrings.interface.observedeveningbefore['en'];
+        console.log("beginsEveningBefore", beginsEveningBefore, currentLang);
+        let legendHtml = `<aside class='alert alert-info'>
+        * ${beginsEveningBefore};<br />
+        ++ ${observedEveningBefore}
+        </aside>`;
+        holydaycalParentNode.innerHTML = legendHtml;
+        console.log(holydayData);
+        console.log(holydayStrings);
+        // get object keys for holydayData
+        const years = Object.keys(holydayData);
+        console.log("years", years);
+        years.forEach(function(year){
+            let yearData = holydayData[year];
+            let yearHtml = `<h3 class="pageHeading mb-4 mt-4">${year}</h3>`;
+            
+            yearHtml+=`<table class="table"><tbody class="calendarBody">`;
+            // loop through each holyday
+            
+            Object.keys(yearData).forEach(function(holyday){
+                let holydayName = holydayStrings.festivaldays[holyday][currentLang] + "*";
+                if(holyday=="passover"){
+                    holydayName += "++";
+                }
+                
+                let holydayStart = yearData[holyday].start;
+                let holydayEnd = yearData[holyday].end? yearData[holyday].end: null;
+
+                let holydayStartDate;
+
+                // Split the string into year, month, and day
+                const parts = holydayStart.split('-');
+                const year = parseInt(parts[0], 10);
+                const month = parseInt(parts[1], 10) - 1; // Month is 0-indexed in JavaScript Date
+                const day = parseInt(parts[2], 10);
+
+                // Create a Date object in the local time zone
+                holydayStartDate = new Date(year, month, day);
+
+                //let holydayStartDate = new Date(holydayStart);
+                let holydayStartFormatted = holydayStartDate.toLocaleDateString(currentLang, {year: 'numeric', month: 'long', day: 'numeric'});
+                let holydayEndFormatted = "";
+                if(holydayEnd){
+                    let holydayEndDate = new Date(holydayEnd);
+                    holydayEndFormatted = holydayEndDate.toLocaleDateString(currentLang, {year: 'numeric', month: 'long', day: 'numeric'});
+                }
+                yearHtml+=`<tr><td>${holydayName}</td><td>${holydayStartFormatted}${holydayEnd? " - " + holydayEndFormatted : ""}</td></tr>`;
+            });
+
+            holydaycalParentNode.innerHTML+=yearHtml;
+        });
+       
       },
       populateScriptural: function(){
         const wrapper = document.getElementById("scriptureContent");
