@@ -82,10 +82,29 @@ html{
         --toggleBorder: var(--form-border);
         --scriptureBG: rgba(0,0,0,0.6);
         --footer-btn-active: var(--bg-headerBot);
+
+        .rtTooltip {
+            
+
+            .rtTooltipBody, .rtTooltipFooter {
+                background-color: #555;
+                color: #fff;
+            }
+            .rtTooltipHeader {
+                background-color: #000;
+                color: #fff;
+            }
+            .rtTooltipMoreLink {
+                color: #eee;
+            }
+        }
+        #freshdeskFrame {
+               filter: invert(1) hue-rotate(183deg) brightness(.9);
+        }
     
     }
     height: 100%;
-    
+
 }
 
 body {
@@ -95,6 +114,10 @@ body {
     color: var(--text-color);
     height: 100%;
     font-family: 'Noto-sans', sans-serif;
+
+    .rtTooltip {
+        font-family: 'Noto-sans', sans-serif;
+    }
 
 
     &.scripturalReferenceOpen {
@@ -547,6 +570,10 @@ body {
                     background-color: var(--scriptureBG);
                     .text {
                         font-weight: bold;
+                        
+                    }
+
+                    a {
                         color: var(--blue);
                     }
                 }

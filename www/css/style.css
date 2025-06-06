@@ -68,6 +68,20 @@ html.dim {
   --scriptureBG: rgba(0,0,0,0.6);
   --footer-btn-active: var(--bg-headerBot);
 }
+html.dim .rtTooltip .rtTooltipBody, html.dim .rtTooltip .rtTooltipFooter {
+  background-color: #555;
+  color: #fff;
+}
+html.dim .rtTooltip .rtTooltipHeader {
+  background-color: #000;
+  color: #fff;
+}
+html.dim .rtTooltip .rtTooltipMoreLink {
+  color: #eee;
+}
+html.dim #freshdeskFrame {
+  filter: invert(1) hue-rotate(183deg) brightness(0.9);
+}
 
 body {
   display: inherit;
@@ -75,6 +89,9 @@ body {
   background-color: var(--bg-body);
   color: var(--text-color);
   height: 100%;
+  font-family: "Noto-sans", sans-serif;
+}
+body .rtTooltip {
   font-family: "Noto-sans", sans-serif;
 }
 body.scripturalReferenceOpen .page.showFontSizer .scripturalReferenceContent {
@@ -379,6 +396,8 @@ body .mainContent .page #scripturalReferenceModal .scripturalReferenceContent {
 }
 body .mainContent .page #scripturalReferenceModal .scripturalReferenceContent .text {
   font-weight: bold;
+}
+body .mainContent .page #scripturalReferenceModal .scripturalReferenceContent a {
   color: var(--blue);
 }
 body .mainContent .page #scripturalReferenceModal.active {
