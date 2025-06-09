@@ -1,0 +1,286 @@
+<html>
+    <head>
+        <script src="../../../www/js/config.js"></script>
+        <script src="../../../www/js/lang.js"></script>
+        
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta charset="utf-8">
+        <meta name="viewport" id="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=10.0,initial-scale=1.0" /> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+
+        <title>Editor Language</title>
+        <link rel="stylesheet" href="../../../www/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="../../../www/css/style.css">
+        <style>
+            .loading {
+                display: none;
+            }
+            .heading, .hymnTitle {
+                justify-content: space-between;
+                display: flex;
+            }
+
+            section {
+                margin-bottom: 3em;
+                padding-bottom: 3em;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .englishLyrics h1 {
+                display: none;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="container-md pt-2">
+            <h1 class="d-flex align-items-center heading">Lang editor
+                <a href="#" class="btn btn-sm btn-primary float-end" id="exportData">Export</a>
+            </h1>
+            <nav id="nav"></nav>
+            <div id="output">
+                <pre>
+
+                </pre>
+            </div>
+            <main id="main" class="mt-3 loading">
+                <div class="alert alert-info">
+                    <p class="mb-0">Use this page to edit the lyrics</p>
+                </div>
+                <div class="loading" id="editor">
+
+                </div>
+            </main>
+
+        </div>
+
+        <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+
+        <script>
+            var editor = {
+                langData: null,
+                config: null,
+                currentLang: null,
+                allEditors: {}, 
+                editorNode: document.getElementById('editor'),
+                init: function() {
+                    // Initialize the language editor
+                    console.log("Language editor initialized");
+                    editor.getConfig();
+                    editor.getLangs();
+                    editor.langOptions();
+                    window['editors'] = [];
+                    editor.exportData();
+                },
+                getConfig: function(){
+                    editor.config = window['config'];
+                    console.log("Configuration loaded:", editor.config);
+                },
+                getLangs: function() {
+                    // Fetch the available languages
+                    const langs = editor.config.langs.split(",");
+                    editor.langData = {};
+                    langs.forEach(lang => {
+                        editor.langData[lang] = {
+                            title: window[`title_${lang}`],
+                            lyrics: window[`lyrics_${lang}`],
+                            pages: window[`pages_${lang}`],
+                            menu: window[`menu_${lang}`],
+                        };
+                    });
+
+                    console.log("Available languages:", editor.langData);
+                },
+                exportData: function(){
+                    document.getElementById("exportData").addEventListener('click', function() {
+                        console.log("Exporting data...");
+                        let exportData = {};
+                        document.querySelectorAll('.editLyrics .editorContent').forEach(item => {
+                            let contentHTML = item.innerHTML;
+                            let hymnId = item.closest('.editLyrics').getAttribute('data-id');
+                            exportData[hymnId] = contentHTML;
+                        });
+
+                        const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'lyrics-export.json';
+                        a.style.display = 'none';
+                        document.body.appendChild(a);
+                        a.click();
+                        setTimeout(() => {
+                            document.body.removeChild(a);
+                            URL.revokeObjectURL(url);
+                        }, 100);
+                        console.log("Exporting data:", exportData);
+
+                    });
+                },
+                createEditor: function(node) {
+                    // Create a Quill editor instance
+                   
+                    let id = `editors_${node}`;
+                    ClassicEditor
+                    .create(document.querySelector('#' +node))
+                    .then(ckeditorInstance => {
+                        console.log('Editor is ready to use!', ckeditorInstance);
+                        editor.allEditors[id] = ckeditorInstance;
+                    })
+                    .catch(error => {
+                    console.error('There was a problem initializing the editor.', error);
+                    });
+
+                    
+
+                    const saveButton = document.createElement('button');
+                    saveButton.textContent = "Save Changes";
+                    saveButton.className = 'btn btn-success ms-2';
+                    saveButton.addEventListener('click', function(e) {
+                        const content = editor.allEditors[id].getData();
+                        let thisId = id.replace("editors_", "");
+                        console.log("id",id);
+                        console.log("Content to save:", content);
+
+                        const originalNode = document.querySelector('#' + thisId);
+                        originalNode.innerHTML = content; // Update the original node with the new content
+                        console.log("Original node updated with new content:", originalNode);
+                        
+                        // destroy the editor instance
+                        if (editor.allEditors[id]) {
+                            editor.allEditors[id].destroy()
+                                .then(() => {
+                                    console.log('Editor instance destroyed');
+                                    originalNode.innerHTML = content; // Update the original node with the new content
+                                })
+                                .catch(error => {
+                                    console.error('Error destroying editor instance:', error);
+                                });
+                        } else {
+                            console.error('Editor instance not found for id:', id);
+                        }
+
+                        e.target.remove();
+                        
+                    });
+                    var editBtn = document.querySelector('#' + node).closest("section").querySelector(".editButton");
+                    if (editBtn) {
+                        editBtn.insertAdjacentElement('afterend', saveButton);
+                    }
+
+                    
+
+                },
+                langOptions: function(){
+                    // Create options for the language editor
+                    const langSelect = document.createElement('select');
+                    langSelect.className = 'form-select';
+                    langSelect.id = 'langSelect';
+
+                    const optionDefault = document.createElement('option');
+                        optionDefault.value = "";
+                        optionDefault.textContent = "Select Language";
+                        langSelect.appendChild(optionDefault);
+                    Object.keys(editor.langData).forEach(lang => {
+                        const option = document.createElement('option');
+                        option.value = lang;
+                        option.textContent = lang;
+                        langSelect.appendChild(option);
+                    });
+                    document.querySelector("#nav").appendChild(langSelect);
+
+                    langSelect.addEventListener('change', function() {
+                        const selectedLang = this.value;
+           
+                        // Here you can add functionality to display or edit the selected language
+                        editor.currentLang = selectedLang;
+                        editor.displayLangData(selectedLang);
+                    });
+                },
+                displayLangData: function(lang) {
+                    // Display the language data in a readable format
+                    document.getElementById('main').classList.remove('loading');
+                    document.getElementById('editor').classList.remove('loading');
+                    const langData = editor.langData[lang];
+                    if (langData) {
+
+                        editor.editorNode.innerHTML = "";
+                        editor.editorNode.innerHTML += `<h2>Editing ${lang}</h2><hr />`;
+
+                        Object.keys(langData.lyrics).forEach(lyrics => {
+                            
+                            let searchFilterTitle = lyrics.replace(/_/g, '');
+                            searchFilterTitle = parseInt(searchFilterTitle.replace("hymn",""));
+                            
+                            
+                            const lyricsWords = langData.lyrics[lyrics];
+                            const thisHymnTitle = langData.title.filter(item => item.trim().startsWith(searchFilterTitle + ")"));
+
+
+
+                            const enLyrics = editor.langData.en.lyrics[lyrics];
+                            const enTitle = editor.langData.en.title.filter(item => item.trim().startsWith(searchFilterTitle + ")"));
+
+                            const lyricDiv = document.createElement('div');
+                            lyricDiv.classList.add('lyric-item');
+                            lyricDiv.classList.add('row');
+
+                                const editDiv = document.createElement('div');
+                                editDiv.classList.add('editLyrics');
+                                editDiv.classList.add('col-md-6');
+                                editDiv.setAttribute('data-id', lyrics);
+
+                            
+                                editDiv.innerHTML = `<section><h3 class="hymnTitle">${thisHymnTitle} <span><a href='#' class='editButton btn btn-primary' id='edit_${searchFilterTitle}'>Edit</a></span></h3>
+                                    
+                                    <div class="editorContent" id="content_${searchFilterTitle}">${lyricsWords}</div>
+                                    </section>`;
+
+                                const englishDiv = document.createElement('div');
+                                englishDiv.classList.add('englishLyrics');
+                                englishDiv.classList.add('col-md-6');
+
+                                englishDiv.innerHTML = `<section><h3 class="hymnTitle">${enTitle}</h3>
+                                    <div class="editorContentEn" id="content_en_${searchFilterTitle}">${enLyrics}</div>
+                                    </section>`;
+
+
+
+                            lyricDiv.appendChild(editDiv);
+                            lyricDiv.appendChild(englishDiv);
+
+                            editor.editorNode.appendChild(lyricDiv);
+
+                            
+                        });
+
+                        document.querySelectorAll(".editButton").forEach(button => {
+                            button.addEventListener('click', function(event) {
+                                event.preventDefault();
+                                const contentId = event.target.id.replace("edit_", "content_");
+                                const contentDiv = document.getElementById(contentId);
+                                if (contentDiv) {
+                                    // Initialize Quill editor for the content
+                                    editor.createEditor(contentId);
+                                    console.log("Editor initialized for:", contentId);
+                                } else {
+                                    console.error("Content div not found for:", contentId);
+                                }
+                            });
+                        });
+
+                    } else {
+                        console.error("Language data not found for:", lang);
+                    }
+                }
+            }
+
+            editor.init();
+
+        </script>
+
+    </body>
+</html>
