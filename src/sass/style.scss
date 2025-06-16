@@ -576,6 +576,7 @@ body {
                     a {
                         color: var(--blue);
                     }
+                    
                 }
                 &.active {
                     display: block;
@@ -585,6 +586,70 @@ body {
                     left: 0;
                     
                 }
+            }
+
+            #playlistContent {
+                transform: translateY(-100vh);
+                transition: all ease 0.3s;
+                position: fixed;
+                bottom: 60px;
+                width: 100%;
+                height: calc(100vh - 60px);
+                padding:1em;
+                background: var(--bg-body);
+                &.active {
+                    transform: translateY(0vh);
+                    z-index: 99;
+                }
+
+                .playlistHeader {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 1em;
+                    h2 {
+                        margin: 0;
+                        font-size: 20px;
+                        font-weight: bold;
+                    }
+                    .playlistClose {
+                        cursor: pointer;
+                        color: var(--blue);
+                        font-size: 20px;
+                        &:hover {
+                            color: var(--darkGold);
+                        }
+                    }
+                }  
+                .playlistBody {
+                    height: calc(100vh - 175px);
+                    overflow-y: auto;
+
+                    ul {
+                        list-style-type: none;
+                        padding: 0;
+                        margin: 0;
+                        li {
+                           margin: 0;
+                           padding-left: 0; 
+                           border-bottom: 1px solid var(--form-border);
+                           font-size: 16px;
+
+                            &.sortable-item {
+                                cursor: grab;
+                                transition: transform 0.2s ease-in-out;
+                            }
+                            &.sortable-item.dragging {
+                                opacity: 0.5;
+                                transform: scale(0.98);
+                            }
+                            &.sortable-item.drag-over {
+                                border: 2px dashed #007bff;
+                                background-color: #eaf5ff;
+                            }
+                        }
+                    }
+                } 
             }
             #loader {
                 padding: 1em;

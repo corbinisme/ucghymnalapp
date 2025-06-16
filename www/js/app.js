@@ -42,6 +42,7 @@ function redirectToSystemBrowser(url) {
       playlists: [],
       useLogos: false,
       currentLangHymns: null,
+      userplaylist: [],
       init: function(){
             app.getConfig();
             app.eventBindings();
@@ -129,6 +130,7 @@ function redirectToSystemBrowser(url) {
 
         
         app.setNormalPlaylistForLang();
+        app.setRandomPlaylistForLang();
         
       },
       setScrollbarWidth: function(){
@@ -186,25 +188,16 @@ function redirectToSystemBrowser(url) {
       },
       setNormalPlaylistForLang: function(){
         app.playlists = [];
-        
-        //normalPlaylists
-        let hymnCount = window['title_'+ app.lang].length;
-        let playlist = [];
-        for(let i=1; i<=hymnCount; i++){
-            let playlistObj = {
-                name: window['title_'+ app.lang][i-1],
-                sources: [{
-                    
-                    src: path + app.lang + '/' + app.getHymnWithZeros(i) + '.mp3',
-                    type: 'audio/mp3'
-                    }],
-            }
-            playlist.push(playlistObj);
-        }
-        app.playlists = playlist;
+        let numArr = Object.keys(app.currentLangHymns);
+        app.playlists = numArr;
+        app.populatePlaylist();
     
       },
       setRandomPlaylistForLang: function(){
+        let numArr = Object.keys(app.currentLangHymns);
+        let randomPlaylist = app.shuffleArray(numArr);
+        app.randomPlaylists = numArr;
+        /*
         config.langs.split(",").forEach(function(lang){
             //randomPlaylists
 
@@ -217,6 +210,7 @@ function redirectToSystemBrowser(url) {
             playlist = app.shuffleArray(playlist);
             app.randomPlaylists[lang] = playlist;
         })
+        */
 
       },
       changePage: function(id){
@@ -908,8 +902,8 @@ function redirectToSystemBrowser(url) {
         
         if(app.shuffle){
             // look at the random playlist generated when the shuffle button was enabled
-            let list = app.randomPlaylists[app.lang];
-            let currentIndex = list.indexOf(current);
+            let list = app.randomPlaylists;
+            let currentIndex = list.indexOf(current.toString());
             let next = list[currentIndex+1];
             if(next==undefined){
                 next = list[0];
@@ -954,8 +948,8 @@ function redirectToSystemBrowser(url) {
         }
 
         if(app.shuffle){
-            let list = app.randomPlaylists[app.lang];
-            let currentIndex = list.indexOf(current);
+            let list = app.randomPlaylists;
+            let currentIndex = list.indexOf(current.toString());
             next = list[currentIndex-1];
             if(next==undefined){
                 next = list[list.length-1];
@@ -1034,7 +1028,15 @@ function redirectToSystemBrowser(url) {
         })
         //document.querySelector(`#${type}Icon`).classList.add("active");
       },
+      togglePlaylist: function(){
 
+            let tar = document.getElementById("togglePlaylist");
+            tar.classList.toggle("active");
+            const targetNode = document.getElementById("playlistContent");
+            targetNode.classList.toggle("active");
+            console.log(app.playlists);
+            app.playlistDragAndDrop();
+      },
       closeAllMenus: function(exclude){
         
         const navbarToggle = document.querySelector(".navbar-toggler");
@@ -1050,6 +1052,123 @@ function redirectToSystemBrowser(url) {
             dropdownMain.classList.remove("show");
         }
       },
+      playlistDragAndDrop: function(){
+        const sortableList = document.getElementById('playlistUl');
+        //const newItemText = document.getElementById('newItemText');
+        //const addButton = document.getElementById('addButton');
+
+        let draggedItem = null;
+
+        // --- Event Listeners for Drag and Drop ---
+
+        // Event delegation for dragstart, dragend
+        sortableList.addEventListener('dragstart', (e) => {
+            if (e.target.classList.contains('sortable-item')) {
+                draggedItem = e.target;
+                e.target.classList.add('dragging');
+                // Store the ID of the dragged item for transfer (optional, but good practice)
+                e.dataTransfer.setData('text/plain', e.target.id || 'dragged-item');
+                e.dataTransfer.effectAllowed = 'move';
+            }
+        });
+
+        sortableList.addEventListener('dragend', (e) => {
+            if (e.target.classList.contains('sortable-item')) {
+                e.target.classList.remove('dragging');
+                draggedItem = null;
+                // Remove 'drag-over' class from all items
+                document.querySelectorAll('.sortable-item').forEach(item => {
+                    item.classList.remove('drag-over');
+                });
+            }
+        });
+
+        // Event delegation for dragover (important for allowing drops)
+        sortableList.addEventListener('dragover', (e) => {
+            e.preventDefault(); // Crucial: Allows the drop
+            e.dataTransfer.dropEffect = 'move';
+
+            if (e.target.classList.contains('sortable-item') && e.target !== draggedItem) {
+                const currentItem = e.target;
+                const boundingBox = currentItem.getBoundingClientRect();
+                const offset = e.clientY - boundingBox.top;
+
+                // Determine if dragging over the upper or lower half of the item
+                const insertBefore = offset < boundingBox.height / 2;
+
+                // Remove 'drag-over' from other items to prevent multiple highlights
+                document.querySelectorAll('.sortable-item').forEach(item => {
+                    item.classList.remove('drag-over');
+                });
+
+                // Add 'drag-over' class to visually indicate drop target
+                currentItem.classList.add('drag-over');
+
+                if (draggedItem) { // Ensure there's an item being dragged
+                    // Reorder the DOM elements visually
+                    if (insertBefore) {
+                        sortableList.insertBefore(draggedItem, currentItem);
+                    } else {
+                        sortableList.insertBefore(draggedItem, currentItem.nextSibling);
+                    }
+                }
+            } else if (e.target === sortableList && draggedItem) {
+                // If dragging over the empty list area, append to the end
+                document.querySelectorAll('.sortable-item').forEach(item => {
+                    item.classList.remove('drag-over');
+                });
+                if (!sortableList.contains(draggedItem)) { // Prevent re-appending if already inside
+                    sortableList.appendChild(draggedItem);
+                }
+            }
+        });
+
+        // Event delegation for drop
+        sortableList.addEventListener('drop', (e) => {
+            e.preventDefault(); // Crucial: Prevents default browser drop behavior
+            // The DOM reordering has already happened in `dragover`, so we just need cleanup
+            if (draggedItem) {
+                draggedItem.classList.remove('dragging');
+                document.querySelectorAll('.sortable-item').forEach(item => {
+                    item.classList.remove('drag-over');
+                });
+                draggedItem = null;
+            }
+        });
+      },
+      populatePlaylist: function(){
+        const playlistContent = document.getElementById("playlistContent");
+        
+        const playListUl = document.getElementById("playlistUl");
+        playListUl.innerHTML = "";
+        let playlist = app.playlists;
+        if(playlist.length==0){
+            return;
+        } else {
+            playlist.forEach(function(hymn){
+                let hymnLookup = app.getHymnWithZeros(hymn);
+                let hymnTitle = "";
+                if(app.currentLangHymns && app.currentLangHymns[hymn]){
+                    hymnTitle = app.currentLangHymns[hymn].title;
+                }
+                if(hymnTitle==""){
+                    window['title_en'].forEach(function(title){
+                        if(title.indexOf(hymn + ")") === 0){
+                            hymnTitle = title.substring(title.indexOf(")")+2).trim();
+                        }
+                    });
+                }
+                let li = document.createElement("li");
+                li.classList.add("sortable-item");
+                li.setAttribute("data-hymn", hymnLookup);
+                li.setAttribute("draggable", "true");
+                li.classList.add("p-2");
+                li.setAttribute("data-title", hymnTitle);
+                li.innerHTML = `<strong>${hymn}) ${hymnTitle}</strong>`;
+                playListUl.appendChild(li);
+            })
+        }
+    },
 
       eventBindings: function(){
 
@@ -1057,6 +1176,34 @@ function redirectToSystemBrowser(url) {
             e.preventDefault();
             app.toggleScripturalReference(false);
         });
+
+        document.querySelectorAll(".playlistControlBulk").forEach(function(elem){
+            
+            elem.addEventListener("click", function(e){
+                let action = e.target.getAttribute("data-action");
+                if(action=="add"){
+                    app.setNormalPlaylistForLang();
+                    app.populatePlaylist();
+                }
+                if(action=="remove"){
+                    // remove all hymns from playlist
+                    app.playlists = [];
+                    app.populatePlaylist();
+                }
+            });
+        });
+
+        document.querySelector(".playlistClose").addEventListener("click", function(e){
+            e.preventDefault();
+            app.togglePlaylist();
+        });
+
+         document.querySelector("#togglePlaylist").addEventListener("click", function(e){
+            e.preventDefault();
+            app.togglePlaylist();
+        });
+
+      
 
         document.getElementById("searchScripture").addEventListener("change", function(e){
 
@@ -1120,10 +1267,7 @@ function redirectToSystemBrowser(url) {
                 } else {
                     thisbutton.classList.remove("active");
                 }
-                if(thisProp=="shuffle"){
-                    //make random playlist
-                    app.setRandomPlaylistForLang();
-                }
+                
             });
             
         })

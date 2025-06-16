@@ -9,6 +9,7 @@
     "url": "git@github.com:corbinisme/ucghymnalapp.git"
   },
   "dependencies": {
+    "@dragdroptouch/drag-drop-touch": "^2.0.3",
     "bootstrap": "^5.3.2",
     "gulp-cli": "^2.3.0",
     "videojs-playlist": "^5.2.0",
@@ -22,7 +23,8 @@
     "minifylang": "uglifyjs-folder src/lang -o www/js/lang.min.js",
     "js": "babel src/nodeSyntax.js  --watch --out-file www/js/transpiled.js",
     "build": "browserify src/nodeSyntax.js  -o www/js/transpiled.js",
-    "watch": "watchify src/nodeSyntax.js  -o www/js/transpiled.js -v && sass-dev"
+    "watch": "watchify src/nodeSyntax.js  -o www/js/transpiled.js -v && sass-dev",
+    "build:polyfill": "rollup -c"
   },
   "keywords": [
     "ecosystem:cordova"
@@ -47,6 +49,7 @@
     "gulp-uglify": "^3.0.2",
     "gulp-uglifycss": "^1.1.0",
     "phonegap-plugin-mobile-accessibility": "github:phonegap/phonegap-mobile-accessibility",
+    "rollup": "^4.43.0",
     "sass": "^1.49.9",
     "uglify-js": "^3.15.0",
     "uglifyjs-folder": "^3.0.0",
