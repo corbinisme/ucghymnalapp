@@ -1058,83 +1058,159 @@ function redirectToSystemBrowser(url) {
         //const addButton = document.getElementById('addButton');
 
         let draggedItem = null;
+        let isDragging = false; // Flag to indicate a drag is active
+        let initialTouchY = 0; // 
 
-        // --- Event Listeners for Drag and Drop ---
 
-        // Event delegation for dragstart, dragend
+        // --- Helper to get touch/mouse coordinates ---
+        function getCoords(e) {
+            if (e.touches && e.touches.length > 0) {
+                return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+            }
+            return { x: e.clientX, y: e.clientY };
+        }
+
+        // --- Helper to find the element under a point ---
+        function getElementUnderPoint(x, y) {
+            // Hide the dragged item temporarily to find the element underneath
+            if (draggedItem) draggedItem.style.display = 'none';
+            const element = document.elementFromPoint(x, y);
+            if (draggedItem) draggedItem.style.display = ''; // Show it again
+            return element;
+        }
+
+        // --- Common logic for both mouse and touch ---
+
+        function handleDragStart(item, e) {
+            draggedItem = item;
+            draggedItem.classList.add('dragging');
+            isDragging = true;
+
+            // Prevent default browser behavior like selection (for mouse)
+            // For touch, preventDefault is often in touchstart to stop scrolling
+            e.dataTransfer && e.dataTransfer.effectAllowed === 'move'; // For HTML5 DnD API
+        }
+
+        function handleDragEnd() {
+            if (draggedItem) {
+                draggedItem.classList.remove('dragging');
+                draggedItem = null;
+            }
+            isDragging = false;
+            document.querySelectorAll('.sortable-item').forEach(item => {
+                item.classList.remove('drag-over');
+            });
+        }
+
+        function handleDragOver(targetElement, clientY) {
+            if (!draggedItem || targetElement === draggedItem) return;
+
+            // Remove 'drag-over' from other items
+            document.querySelectorAll('.sortable-item').forEach(item => {
+                item.classList.remove('drag-over');
+            });
+
+            // Determine if dragging over the upper or lower half of the item
+            const boundingBox = targetElement.getBoundingClientRect();
+            const offset = clientY - boundingBox.top;
+            const insertBefore = offset < boundingBox.height / 2;
+
+            // Visual feedback
+            targetElement.classList.add('drag-over');
+
+            // Reorder DOM
+            if (insertBefore) {
+                sortableList.insertBefore(draggedItem, targetElement);
+            } else {
+                sortableList.insertBefore(draggedItem, targetElement.nextSibling);
+            }
+        }
+
+
+        // --- Mouse Event Listeners (Existing) ---
         sortableList.addEventListener('dragstart', (e) => {
             if (e.target.classList.contains('sortable-item')) {
-                draggedItem = e.target;
-                e.target.classList.add('dragging');
-                // Store the ID of the dragged item for transfer (optional, but good practice)
+                handleDragStart(e.target, e);
                 e.dataTransfer.setData('text/plain', e.target.id || 'dragged-item');
-                e.dataTransfer.effectAllowed = 'move';
             }
         });
 
-        sortableList.addEventListener('dragend', (e) => {
-            if (e.target.classList.contains('sortable-item')) {
-                e.target.classList.remove('dragging');
-                draggedItem = null;
-                // Remove 'drag-over' class from all items
-                document.querySelectorAll('.sortable-item').forEach(item => {
-                    item.classList.remove('drag-over');
-                });
-            }
-        });
+        sortableList.addEventListener('dragend', handleDragEnd);
 
-        // Event delegation for dragover (important for allowing drops)
         sortableList.addEventListener('dragover', (e) => {
-            e.preventDefault(); // Crucial: Allows the drop
-            e.dataTransfer.dropEffect = 'move';
+            e.preventDefault();
+            const coords = getCoords(e);
+            const target = getElementUnderPoint(coords.x, coords.y);
 
-            if (e.target.classList.contains('sortable-item') && e.target !== draggedItem) {
-                const currentItem = e.target;
-                const boundingBox = currentItem.getBoundingClientRect();
-                const offset = e.clientY - boundingBox.top;
+            if (target && target.classList.contains('sortable-item')) {
+                handleDragOver(target, coords.y);
+            } else if (target === sortableList && draggedItem) {
+                // Dragging over the list background, append to end
+                sortableList.appendChild(draggedItem);
+            }
+        });
 
-                // Determine if dragging over the upper or lower half of the item
-                const insertBefore = offset < boundingBox.height / 2;
+        sortableList.addEventListener('drop', (e) => {
+            e.preventDefault();
+            // The DOM reordering has already happened in `dragover` / `touchmove`
+            handleDragEnd();
+        });
 
-                // Remove 'drag-over' from other items to prevent multiple highlights
-                document.querySelectorAll('.sortable-item').forEach(item => {
-                    item.classList.remove('drag-over');
-                });
 
-                // Add 'drag-over' class to visually indicate drop target
-                currentItem.classList.add('drag-over');
+        // --- Touch Event Listeners (NEW) ---
+        sortableList.addEventListener('touchstart', (e) => {
+            // Only consider single touch for dragging
+            if (e.touches.length === 1 && e.target.classList.contains('sortable-item')) {
+                // Prevent default scrolling/zooming immediately
+                e.preventDefault();
+                draggedItem = e.target;
+                initialTouchY = e.touches[0].clientY; // Store initial Y for threshold
+                // No 'dragging' class yet, wait for actual move to start drag
+            }
+        }, { passive: false }); // `passive: false` is important to allow preventDefault
 
-                if (draggedItem) { // Ensure there's an item being dragged
-                    // Reorder the DOM elements visually
-                    if (insertBefore) {
-                        sortableList.insertBefore(draggedItem, currentItem);
-                    } else {
-                        sortableList.insertBefore(draggedItem, currentItem.nextSibling);
-                    }
-                }
-            } else if (e.target === sortableList && draggedItem) {
-                // If dragging over the empty list area, append to the end
-                document.querySelectorAll('.sortable-item').forEach(item => {
-                    item.classList.remove('drag-over');
-                });
-                if (!sortableList.contains(draggedItem)) { // Prevent re-appending if already inside
+        sortableList.addEventListener('touchmove', (e) => {
+            if (!draggedItem || e.touches.length !== 1) return;
+
+            e.preventDefault(); // Prevent scrolling while dragging
+
+            const currentTouchY = e.touches[0].clientY;
+            const threshold = 5; // Pixels to move before considering it a drag
+
+            // Only start the "drag" (add dragging class, etc.) after a significant move
+            if (!isDragging && Math.abs(currentTouchY - initialTouchY) > threshold) {
+                handleDragStart(draggedItem, e);
+            }
+
+            if (isDragging) {
+                const coords = getCoords(e);
+                const target = getElementUnderPoint(coords.x, coords.y);
+
+                if (target && target.classList.contains('sortable-item')) {
+                    handleDragOver(target, coords.y);
+                } else if (target === sortableList) {
+                    // Dragging over the list background, append to end
                     sortableList.appendChild(draggedItem);
                 }
             }
-        });
+        }, { passive: false });
 
-        // Event delegation for drop
-        sortableList.addEventListener('drop', (e) => {
-            e.preventDefault(); // Crucial: Prevents default browser drop behavior
-            // The DOM reordering has already happened in `dragover`, so we just need cleanup
-            if (draggedItem) {
+        sortableList.addEventListener('touchend', (e) => {
+            if (isDragging) {
+                // Drop logic is essentially handleDragEnd
+                handleDragEnd();
+            } else if (draggedItem) {
+                // If it was just a tap and no drag, reset draggedItem
                 draggedItem.classList.remove('dragging');
-                document.querySelectorAll('.sortable-item').forEach(item => {
-                    item.classList.remove('drag-over');
-                });
                 draggedItem = null;
             }
         });
+
+        sortableList.addEventListener('touchcancel', (e) => {
+            // Handle cases where the touch is interrupted (e.g., call, alert)
+            handleDragEnd();
+        });
+
       },
       populatePlaylist: function(){
         const playlistContent = document.getElementById("playlistContent");
