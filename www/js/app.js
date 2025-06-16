@@ -284,7 +284,7 @@ function redirectToSystemBrowser(url) {
 
       },
       populatePages: function(){
-        console.log("populate pages")
+
         app.populateAbout();
         app.populateCopyright();
         app.populateUcg();
@@ -683,7 +683,7 @@ function redirectToSystemBrowser(url) {
 
             // check for copyright
                 let copyrightText = "";
-                console.log("copyright")
+
                 let copyrightArr = [];
                 if(window['copyright']){
                     let counter = 0;
@@ -707,7 +707,7 @@ function redirectToSystemBrowser(url) {
                     let counter = 0;
                     let max = copyrightArr.length;
                     copyrightArr.forEach(function(hymn){
-                        if(max>1 && counter==0){
+                        if(max>1 && counter==0 || max==1){
                             copyrightDivText +="&copy;<br />";
                         }
                         
@@ -897,7 +897,7 @@ function redirectToSystemBrowser(url) {
         let next = null;
         let currentIndex = 0;
         let currentHymnListArr = Object.keys(hymnList);
-        console.log(current,"currentHymnListArr", currentHymnListArr)
+
         if(currentHymnListArr.indexOf(current.toString())==-1){
             return;
         } else {
