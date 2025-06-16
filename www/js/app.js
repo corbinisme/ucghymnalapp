@@ -41,13 +41,14 @@ function redirectToSystemBrowser(url) {
       randomPlaylists:[],
       playlists: [],
       useLogos: false,
+      currentLangHymns: null,
       init: function(){
             app.getConfig();
             app.eventBindings();
             app.setScrollbarWidth();
             app.loadCurrentLang(true);
             app.getPageSizing();
-            app.populatePages();
+            
             
             window.addEventListener("resize", function(){
                 app.getPageSizing();
@@ -58,6 +59,38 @@ function redirectToSystemBrowser(url) {
                 window.MobileAccessibility.usePreferredTextZoom(false);
             }
             app.loadLogos();
+      },
+      setCurrentHymnObject: function(){
+        const thisLanguageList = window['lyrics_'+ app.lang];
+        const thisLanguageTitles = window['title_'+ app.lang];
+        let hymnKeys = Object.keys(thisLanguageList);
+        let newObj = {};
+        let hymnArr = hymnKeys.map(function(key){
+            return parseInt(key.replace("hymn", ""));
+        });
+        hymnArr.forEach(function(i){
+            let paddedIndex = app.getHymnWithZeros(i);
+            let hymnTitle = thisLanguageTitles.filter(function(title){
+                return title.indexOf(i + ")") === 0;
+            })[0];
+            // remove the number and ) from the start
+
+            if(hymnTitle){
+
+            } else {
+                // probably has padded zeros in the title
+                hymnTitle = thisLanguageTitles.filter(function(title){
+                    return title.indexOf(paddedIndex + ")") === 0;
+                })[0];
+            }
+            let displayTitle = hymnTitle.substring(hymnTitle.indexOf(")")+2).trim();
+            newObj[i] = {
+                title: displayTitle,
+                lyrics: thisLanguageList["hymn" + paddedIndex]
+            } 
+        })
+
+        app.currentLangHymns = newObj;
       },
       loadLogos: function() {
       
@@ -81,17 +114,22 @@ function redirectToSystemBrowser(url) {
 
       },
       loadCurrentLang: function(random){
+        app.setCurrentHymnObject();
         app.makeLanguageDropdown();
         app.makeHymnList();
+
         app.makeSearchContent();
         if(random){
             app.startRandom();
         } 
         app.setHymn(app.currentHymn);
+        app.updateMenus();
         app.populateAbout();
         app.populateUcg();
-        app.updateMenus();
+
+        
         app.setNormalPlaylistForLang();
+        
       },
       setScrollbarWidth: function(){
         document.documentElement.style.setProperty('--scrollbar-width', app.getScrollbarWidth() + 'px');
@@ -246,13 +284,21 @@ function redirectToSystemBrowser(url) {
 
       },
       populatePages: function(){
+        console.log("populate pages")
         app.populateAbout();
         app.populateCopyright();
         app.populateUcg();
         app.populateTopics();
         app.populateScriptural();
         app.populateHolyDayCalendar();
+        app.populateReportBug();
+
       },
+    populateReportBug: function(){
+        const reportBugButtonText = window['menu_'+ app.lang].clickhere;
+        document.getElementById("reportBugButton").innerText = reportBugButtonText;
+
+    },
       populateHolyDayCalendar: function(){
         const pageWrapper = document.querySelector(".page#holydays");
         const currentLang = app.lang;
@@ -315,7 +361,7 @@ function redirectToSystemBrowser(url) {
                     let holydayEndDate = new Date(holydayEnd);
                     holydayEndFormatted = holydayEndDate.toLocaleDateString(currentLang, {year: 'numeric', month: 'long', day: 'numeric'});
                 }
-                yearHtml+=`<tr><td>${holydayName}</td><td>${holydayStartFormatted}${holydayEnd? " - " + holydayEndFormatted : ""}</td></tr>`;
+                yearHtml+=`<tr><td>${holydayName}</td><td>${holydayStartFormatted}${holydayEnd? " - <br />" + holydayEndFormatted : ""}</td></tr>`;
             });
 
             holydaycalParentNode.innerHTML+=yearHtml;
@@ -330,6 +376,7 @@ function redirectToSystemBrowser(url) {
         const books = Object.keys(scriptural);
 
         const scriptureDropdown = document.getElementById("searchScripture");
+        scriptureDropdown.innerHTML = "";
         books.forEach(function(book){
             const chapters = scriptural[book];
             let bookName = window['bible_' + app.lang][book];
@@ -347,15 +394,30 @@ function redirectToSystemBrowser(url) {
                
                 html+=`<tr><td>${verses}</td><td>
                     <ul>`;
+
                     hymns.forEach(function(hymn){
+
                         const hymnLookup = app.getHymnWithZeros(hymn);
                         const hymnSelector = document.getElementById("hymnSelect");
-                        let hymnTitle = hymnSelector.querySelector(`option[value="${hymnLookup}"]`).innerText;
-                        
-                        // get rid of the characters before the ) in the title
-                        hymnTitle = hymnTitle.substring(hymnTitle.indexOf(")")+2, hymnTitle.length).trim()
+                        let hymnTitle = "";
+                        if(app.currentLangHymns && app.currentLangHymns[hymn]){
+                            
+                            hymnTitle = app.currentLangHymns[hymn].title;
+                        }
 
-                        html+=`<li><a href="#" onClick='app.loadSearch("${hymnLookup}")' class="topicSearchLink" data-page="hymns" data-hymn="${hymn}">${hymn}) ${hymnTitle}</a></li>`;
+                        if(hymnTitle==""){
+                            window['title_en'].forEach(function(title){
+                                if(title.indexOf(hymn + ")") === 0){
+                                    hymnTitle = title.substring(title.indexOf(")")+2).trim();
+                                }
+                            });
+                            html+=`<li>${hymn}) ${hymnTitle}</li>`;
+                        } else {
+                            html+=`<li><a href="#" onClick='app.loadSearch("${hymnLookup}")' class="topicSearchLink" data-page="hymns" data-hymn="${hymn}">${hymn}) ${hymnTitle}</a></li>`;
+                        }
+                        
+
+                        
                     });
                 html+=`</ul>
                 </td></tr>`;
@@ -386,8 +448,13 @@ function redirectToSystemBrowser(url) {
                 <div class="copySelection"><ul>`;
                 let splits = item.selection.split(",");
                 splits.forEach(function(hymn){
+                    hymn = hymn.trim();
                     let hymnLookup = app.getHymnWithZeros(hymn.trim());
-                    let hymnTitle = app.getHymnTitle(hymnLookup);
+                    let hymnTitle = "";
+                    if(app.currentLangHymns && app.currentLangHymns[hymn]){
+                        hymnTitle = app.currentLangHymns[hymn].title;
+                    }
+                    //let hymnTitle = app.getHymnTitle(hymnLookup);
                     html+=`<li><a href="#" onClick='app.loadSearch("${app.getHymnWithZeros(hymn)}")' class="topicSearchLink" data-page="hymns" data-hymn="${hymn}">${hymn}) ${hymnTitle}</a></li>`
                 });
                 html+=`</ul></div>`;
@@ -416,6 +483,11 @@ function redirectToSystemBrowser(url) {
         const topicDropdown = document.getElementById("topicSelect");
         let html = "";
 
+        
+        topicDropdown.querySelectorAll("option").forEach(function(op){
+            if(op.id!="allTopics")
+                op.remove();
+        });
         let firstOption = document.getElementById("allTopics");
         let topicText= (window[`topics_${app.lang}`]? window[`topics_${app.lang}`]['all'] : window['topics_en']['all']);
         firstOption.innerHTML = topicText;
@@ -432,9 +504,23 @@ function redirectToSystemBrowser(url) {
             html+=`<div class="topic" data-id="${topic.id}"><h3 class="pageHeading mb-4 mt-4">${topicNameTranslated}</h3><div class="topicHymns"><table class="table"><tbody class="tocBody">`;
             topic.hymns.forEach(function(hymn){
                 const hymnLookup = app.getHymnWithZeros(hymn);
-                const hymnTitle = app.getHymnTitle(hymnLookup);
+                let hymnTitle = "";
+                if(app.currentLangHymns && app.currentLangHymns[hymn]){
+                    hymnTitle = app.currentLangHymns[hymn].title;
+                }
                 
-                html+=`<tr><td>${hymn}</td><td><a href="#" onClick='app.loadSearch("${hymnLookup}")' class="topicSearchLink" data-page="hymns" data-hymn="${hymn}">${hymnTitle}</a></td></tr>`;
+                if(hymnTitle==""){
+                    // get the English title
+                    window['title_en'].forEach(function(title){
+                        if(title.indexOf(hymn + ")") === 0){
+                            hymnTitle = title.substring(title.indexOf(")")+2).trim();
+                        }
+                    });
+                    html+=`<tr><td>${hymn}</td><td>${hymnTitle}</td></tr>`;
+                } else {
+                    html+=`<tr><td>${hymn}</td><td><a href="#" onClick='app.loadSearch("${hymnLookup}")' class="topicSearchLink" data-page="hymns" data-hymn="${hymn}">${hymnTitle}</a></td></tr>`;
+                }
+                
             })
             html+=`</tbody></table></div></div>`;
         });
@@ -492,7 +578,7 @@ function redirectToSystemBrowser(url) {
         }
       },
       toggleScripturalReference: function(forceClose){
-        console.log("toggleScripturalReference", forceClose);
+
         const target = document.getElementById("scripturalReferenceModal");
         const node = document.getElementById("scripturalReferenceButton");
         const body = document.querySelector("body");
@@ -587,10 +673,52 @@ function redirectToSystemBrowser(url) {
                 }
                 const scriptureTarget = document.getElementById("scripturalReferenceModal");
                 scriptureTarget.innerHTML = output;
+
+
+                
             } 
 
 
             target.innerHTML = result;
+
+            // check for copyright
+                let copyrightText = "";
+                console.log("copyright")
+                let copyrightArr = [];
+                if(window['copyright']){
+                    let counter = 0;
+                    
+                    Object.keys(window['copyright']).forEach(function(index){
+                        let item = window['copyright'][index];
+                        item.selection.split(",").forEach(function(hymn){
+                            hymn = hymn.trim();
+                            if(parseInt(hymn)==app.currentHymn){
+                                copyrightArr.push(item);
+                                
+                            }
+                        });
+                    });
+                }
+                if(copyrightArr.length>0){
+   
+                    const copyrightDiv = document.createElement("div");
+
+                    let copyrightDivText = "";
+                    let counter = 0;
+                    let max = copyrightArr.length;
+                    copyrightArr.forEach(function(hymn){
+                        if(max>1 && counter==0){
+                            copyrightDivText +="&copy;<br />";
+                        }
+                        
+                        copyrightDivText +=`${hymn.entity} ${hymn.permission}<br />`;
+                        counter++;
+
+                    });
+                    copyrightDiv.innerHTML = copyrightDivText;
+                    copyrightDiv.classList.add("copyrightText");
+                    document.getElementById("loader").appendChild(copyrightDiv)
+                }
             document.querySelector(".page#hymns .contentMain").scrollTo(0,0);
 
             
@@ -617,6 +745,8 @@ function redirectToSystemBrowser(url) {
         if ( window['refTagger']) {
              window['refTagger'].tag();
         }
+
+        app.populatePages();
 
       },
       toggleTheme: function(reverse){
@@ -762,6 +892,19 @@ function redirectToSystemBrowser(url) {
       },
       playNext: function(){
         let current = parseInt(app.currentHymn);
+
+        let hymnList = app.currentLangHymns;
+        let next = null;
+        let currentIndex = 0;
+        let currentHymnListArr = Object.keys(hymnList);
+        console.log(current,"currentHymnListArr", currentHymnListArr)
+        if(currentHymnListArr.indexOf(current.toString())==-1){
+            return;
+        } else {
+            // if found, get the previous index
+            currentIndex = currentHymnListArr.indexOf(current.toString());
+        }
+
         
         if(app.shuffle){
             // look at the random playlist generated when the shuffle button was enabled
@@ -775,16 +918,17 @@ function redirectToSystemBrowser(url) {
             //app.startRandom();
             app.setHymn(app.currentHymn);
         } else {
-            let next = current + 1;
+            next = currentIndex + 1;
             let hymnCount = window['title_'+ app.lang].length;
-            if(next>hymnCount){
-                next = 1;
+            if(next>=hymnCount){
+                next = 0;
             }
-            // @TODO account for languages with missing numbers in the sequence
+
+            let nextSong = currentHymnListArr[next]
             
-            let formatNext = app.getHymnWithZeros(next);
-            app.currentHymn = next;
-            app.setHymn(next);
+            let formatNext = app.getHymnWithZeros(nextSong);
+            app.currentHymn = nextSong;
+            app.setHymn(nextSong);
         }
         if(app.isPlaying==true)
 
@@ -793,11 +937,26 @@ function redirectToSystemBrowser(url) {
       },
       playPrevious: function(){
         let current = parseInt(app.currentHymn);
+        let hymnList = app.currentLangHymns;
+ 
+        let next = null;
+        let currentIndex = 0;
+        let currentHymnListArr = Object.keys(hymnList);
         
+        
+        if(currentHymnListArr.indexOf(current.toString())==-1){
+
+            // if not found, return
+            return;
+        } else {
+            // if found, get the previous index
+            currentIndex = currentHymnListArr.indexOf(current.toString());
+        }
+
         if(app.shuffle){
             let list = app.randomPlaylists[app.lang];
             let currentIndex = list.indexOf(current);
-            let next = list[currentIndex-1];
+            next = list[currentIndex-1];
             if(next==undefined){
                 next = list[list.length-1];
             }
@@ -805,13 +964,16 @@ function redirectToSystemBrowser(url) {
             //app.startRandom();
             app.setHymn(app.currentHymn);
         } else {
-            let next = current - 1;
+            next = currentIndex - 1;
             let hymnCount = window['title_'+ app.lang].length;
             if(next<1){
-                next = hymnCount;
+                next = hymnCount-1;
             }
-            app.currentHymn = next;
-            app.setHymn(next);
+
+            let nextSong = currentHymnListArr[next]
+
+            app.currentHymn = nextSong;
+            app.setHymn(nextSong);
         }
         if(app.isPlaying==true)
 
@@ -1560,6 +1722,7 @@ function redirectToSystemBrowser(url) {
         let hymnSelector = document.getElementById("hymnSelect");
             hymnSelector.value = startVal;
         app.getHymnText();
+        
       }, 
 
       startRandom: function(){
@@ -1791,7 +1954,7 @@ function redirectToSystemBrowser(url) {
                     dropmenu.classList.remove("shown");
                     app.setLang(lang)
                     app.loadCurrentLang();
-                    app.populatePages();
+
                 })
               });
               

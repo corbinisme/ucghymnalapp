@@ -16,7 +16,7 @@ var title_it = [
     "31) Per la Tua gran bontà",
     "32) Salvami per il Tuo nome, Signore mio",
     "33) Ma quanto a me, invoco Dio",
-    "35)Il Signor, la mia rocca",
+    "35) Il Signor, la mia rocca",
     "37) Signor, non mi lasciare",
     "38) Sin dalla mia gioventù",
     "42) Cantate un cantico a Dio!",

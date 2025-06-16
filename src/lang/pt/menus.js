@@ -16,6 +16,7 @@ var menu_pt = {
     "scriptureref": "Referências bíblicas",
     "moreabout": "Mais informações sobre o",
     "reportbug": "Reportar um erro",
+    "clickhere": "Clique aqui",
 }
 
 var bible_pt = {

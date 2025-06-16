@@ -16,6 +16,7 @@ var menu_es = {
     "scriptureref": "Referencias bíblicas",
     "moreabout": "Más información sobre el",
     "reportbug": "Reportar un error",
+    "clickhere": "Haga clic aquí",
 }
 
 var bible_es= {

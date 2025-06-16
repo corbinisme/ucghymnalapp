@@ -37,8 +37,12 @@
     </head>
     <body>
         <div class="container-md pt-2">
-            <h1 class="d-flex align-items-center heading">Lang editor
-                <a href="#" class="btn btn-sm btn-primary float-end" id="exportData">Export</a>
+            <h1 class="d-flex align-items-center heading">
+                Lang editor
+                <div class="float-end">
+                <a href="#" class="btn btn-sm btn-primary" id="exportData">Export</a>
+                <a href="#" class="btn btn-sm btn-secondary" id="exportReact">React</a>
+                </div>
             </h1>
             <nav id="nav"></nav>
             <div id="output">
@@ -62,6 +66,7 @@
         <script>
             var editor = {
                 langData: null,
+                dataReact: null,
                 config: null,
                 currentLang: null,
                 allEditors: {}, 
@@ -74,6 +79,7 @@
                     editor.langOptions();
                     window['editors'] = [];
                     editor.exportData();
+                    editor.reactData();
                 },
                 getConfig: function(){
                     editor.config = window['config'];
@@ -200,6 +206,69 @@
                         editor.displayLangData(selectedLang);
                     });
                 },
+                reactData: function(data) {
+                    // React to the data received from the server
+
+                    document.getElementById("exportReact").addEventListener('click', function() {
+
+                        let initData = editor.langData;
+                        let dataReact = JSON.parse(JSON.stringify(initData));
+                        Object.keys(dataReact).forEach(lang => {
+                            console.log("lang",lang, dataReact[lang])
+                            dataReact[lang].hymns = {}
+                            Object.keys(dataReact[lang].lyrics).forEach(lyrics => {
+                                let searchFilterTitle = lyrics.replace(/_/g, '');
+                                searchFilterTitle = parseInt(searchFilterTitle.replace("hymn",""));
+                                
+                                
+                                const lyricsWords = dataReact[lang].lyrics[lyrics];
+                                
+                                // remove the hymn number from the title
+                                let thisHymnTitle = dataReact[lang].title.filter(item => item.trim().startsWith(searchFilterTitle + ")"))[0];
+                                if(thisHymnTitle){
+                                    
+                                } else {
+                                    let paddedSearchFilterTitle = "";
+                                    if(searchFilterTitle<100){
+                                        paddedSearchFilterTitle = "0" + searchFilterTitle.toString();
+                                    }
+                                    if(searchFilterTitle<10){
+                                        paddedSearchFilterTitle = "00" + searchFilterTitle.toString();
+                                    } 
+                                    console.log("paddedSearchFilterTitle", paddedSearchFilterTitle);
+                                    thisHymnTitle = dataReact[lang].title.filter(item => item.trim().startsWith(paddedSearchFilterTitle + ")"))[0];
+                                }
+                                thisHymnTitle = thisHymnTitle.substring(thisHymnTitle.indexOf(")") + 1).trim();
+                                
+                                dataReact[lang].hymns[searchFilterTitle] = {
+                                    title: thisHymnTitle,
+                                    lyrics: lyricsWords
+                                };
+                            });
+                            // remove the lyrics object
+                            delete dataReact[lang].lyrics;
+                            delete dataReact[lang].title;
+                        });
+                        
+                        
+                        const blob = new Blob([JSON.stringify(dataReact, null, 2)], { type: 'application/json' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'lyrics-export.json';
+                        a.style.display = 'none';
+                        document.body.appendChild(a);
+                        a.click();
+                        setTimeout(() => {
+                            document.body.removeChild(a);
+                            URL.revokeObjectURL(url);
+                        }, 100);
+                        
+                        
+                        console.log("Exporting react data:", dataReact);
+
+                    });
+                },
                 displayLangData: function(lang) {
                     // Display the language data in a readable format
                     document.getElementById('main').classList.remove('loading');
@@ -214,12 +283,9 @@
                             
                             let searchFilterTitle = lyrics.replace(/_/g, '');
                             searchFilterTitle = parseInt(searchFilterTitle.replace("hymn",""));
-                            
-                            
+   
                             const lyricsWords = langData.lyrics[lyrics];
                             const thisHymnTitle = langData.title.filter(item => item.trim().startsWith(searchFilterTitle + ")"));
-
-
 
                             const enLyrics = editor.langData.en.lyrics[lyrics];
                             const enTitle = editor.langData.en.title.filter(item => item.trim().startsWith(searchFilterTitle + ")"));

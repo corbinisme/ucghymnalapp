@@ -16,6 +16,7 @@ var menu_nl = {
     "scriptureref": "Bijbelverwijzingen",
     "moreabout": "Meer informatie over de",
     "reportbug": "Meld een fout",
+    "clickhere": "Klik hier",
 }
 
 var bible_nl = {

@@ -1,7 +1,7 @@
 var pages_de = {
 
     "about": {
-        title: "About the United Church of God", 
+        title: "Über dieses Gesangbuch", 
         content:`
             <p> <em><strong>Lobe den HERRN! Denn es ist gut, unserem Gott zu singen; denn es ist angenehm, und Lob ist schön. - Psalm 147,1</strong></em></p>
             <p>Singen war im Laufe der Jahrhunderte ein wesentlicher Bestandteil der Gottesverehrung – von den Engeln, die bei der Erschaffung der Erde sangen (Hiob 38,7), über die Kinder Israels, die Gott für die Befreiung vom ägyptischen Heer lobten (Exodus 15), bis hin zu den Brüdern im Neuen Testament, die angewiesen wurden, Gott in ihren Herzen zu singen und zu lobsingen (Epheser 5,19). Gott möchte, dass wir Freude daran haben, ihn zu preisen.</p>
