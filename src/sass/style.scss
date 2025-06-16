@@ -601,12 +601,16 @@ body {
                     transform: translateY(0vh);
                     z-index: 99;
                 }
+                .playlistControls {
+                     font-size: 16px;
+                }
 
                 .playlistHeader {
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     margin-bottom: 1em;
+                     font-size: 16px;
                     h2 {
                         margin: 0;
                         font-size: 20px;
@@ -647,6 +651,9 @@ body {
                                 border: 2px dashed #007bff;
                                 background-color: #eaf5ff;
                             }
+                        }
+                        .sortable-ghost {
+                            opacity: .6;
                         }
                     }
                 } 
@@ -1122,6 +1129,17 @@ body {
                 }
             }
 
+
+             .floatingButton {
+                    position: absolute;
+                    bottom: 65px;
+                    left: 8px;
+                    .btn {
+                        border: none;
+                    }
+                }
+
+
             .contentInner {
                 margin-top: 0px;
             }
@@ -1147,6 +1165,20 @@ body {
                         padding-right: var(--padding);
                     }
 
+                    #addToPlaylist {
+                        .fa-minus {
+                            display: none;
+                        }
+                        &.inPlaylist {
+                            .fa-plus {
+                                display: none;
+                            }
+                            .fa-minus {
+                                display: inline-block;
+                            }
+                        }
+                    }
+                   
 
                     .mediaPlayerRow {
                         height: 62px;

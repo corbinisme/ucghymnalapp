@@ -12,6 +12,7 @@
     "@dragdroptouch/drag-drop-touch": "^2.0.3",
     "bootstrap": "^5.3.2",
     "gulp-cli": "^2.3.0",
+    "sortablejs": "^1.15.6",
     "videojs-playlist": "^5.2.0",
     "watchify": "^3.11.0"
   },

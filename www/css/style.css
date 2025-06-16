@@ -421,11 +421,15 @@ body .mainContent .page #playlistContent.active {
   transform: translateY(0vh);
   z-index: 99;
 }
+body .mainContent .page #playlistContent .playlistControls {
+  font-size: 16px;
+}
 body .mainContent .page #playlistContent .playlistHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1em;
+  font-size: 16px;
 }
 body .mainContent .page #playlistContent .playlistHeader h2 {
   margin: 0;
@@ -466,6 +470,9 @@ body .mainContent .page #playlistContent .playlistBody ul li.sortable-item.dragg
 body .mainContent .page #playlistContent .playlistBody ul li.sortable-item.drag-over {
   border: 2px dashed #007bff;
   background-color: #eaf5ff;
+}
+body .mainContent .page #playlistContent .playlistBody ul .sortable-ghost {
+  opacity: 0.6;
 }
 body .mainContent .page #loader {
   padding: 1em;
@@ -936,6 +943,14 @@ body .mainContent .page header #navigationActions {
   flex-direction: row;
   gap: 4px;
 }
+body .mainContent .page .floatingButton {
+  position: absolute;
+  bottom: 65px;
+  left: 8px;
+}
+body .mainContent .page .floatingButton .btn {
+  border: none;
+}
 body .mainContent .page .contentInner {
   margin-top: 0px;
 }
@@ -957,6 +972,15 @@ body .mainContent .page footer.hymnFooter {
 body .mainContent .page footer.hymnFooter .row > * {
   padding-left: var(--padding);
   padding-right: var(--padding);
+}
+body .mainContent .page footer.hymnFooter #addToPlaylist .fa-minus {
+  display: none;
+}
+body .mainContent .page footer.hymnFooter #addToPlaylist.inPlaylist .fa-plus {
+  display: none;
+}
+body .mainContent .page footer.hymnFooter #addToPlaylist.inPlaylist .fa-minus {
+  display: inline-block;
 }
 body .mainContent .page footer.hymnFooter .mediaPlayerRow {
   height: 62px;

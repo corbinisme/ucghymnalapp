@@ -741,6 +741,7 @@ function redirectToSystemBrowser(url) {
         }
 
         app.populatePages();
+        app.checkPlaylistButton();
 
       },
       toggleTheme: function(reverse){
@@ -1035,7 +1036,10 @@ function redirectToSystemBrowser(url) {
             const targetNode = document.getElementById("playlistContent");
             targetNode.classList.toggle("active");
             console.log(app.playlists);
-            app.playlistDragAndDrop();
+            Sortable.create(playlistUl, {
+                group: 'playlistUl',
+                animation: 100
+            });
       },
       closeAllMenus: function(exclude){
         
@@ -1217,7 +1221,7 @@ function redirectToSystemBrowser(url) {
         
         const playListUl = document.getElementById("playlistUl");
         playListUl.innerHTML = "";
-        let playlist = app.playlists;
+        let playlist = app.userplaylist.length>0? app.userplaylist: app.playlists;
         if(playlist.length==0){
             return;
         } else {
@@ -1245,12 +1249,41 @@ function redirectToSystemBrowser(url) {
             })
         }
     },
+    checkPlaylistButton: function(){
+        const addToPlaylistButton = document.getElementById("addToPlaylist");
+        if(app.userplaylist.length>0 || app.playlists.length>0){
+           if(app.userplaylist.indexOf(app.currentHymn)>-1 || app.playlists.indexOf(app.currentHymn)>-1){
+                // already in playlist
+                addToPlaylistButton.classList.add("inPlaylist");
+            }
+        }
+        
+    },
 
       eventBindings: function(){
 
         document.getElementById("scripturalReferenceButton").addEventListener("click", function(e){
             e.preventDefault();
             app.toggleScripturalReference(false);
+        });
+
+        document.getElementById("addToPlaylist").addEventListener("click", function(e){
+            e.preventDefault();
+            let hymn = app.currentHymn;
+            if(e.target.classList.contains("inPlaylist")){
+                // remove from playlist
+                e.target.classList.remove("inPlaylist");
+                // remove from userplaylist 
+                let index = app.userplaylist.indexOf(hymn);
+                if(index>-1){
+                    app.userplaylist.splice(index, 1);
+                }
+            } else {
+                app.userplaylist.push(hymn);
+            }
+            
+            app.checkPlaylistButton();
+            app.populatePlaylist();
         });
 
         document.querySelectorAll(".playlistControlBulk").forEach(function(elem){

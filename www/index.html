@@ -236,6 +236,8 @@
           <div id="whatsNewHolder">
             
           </div>
+
+         
           <div id="pdfloader" class="hidden musicContent">
             <div class="pdfToolbar d-flex">
               <div class="btn-group">
@@ -274,10 +276,15 @@
       </div>
      
       <footer class="hymnFooter">
+        
         <div class="row initialFooter">
           
-
+          
           <div class="col actions">
+            <a href="#" class="btn btn-outline-secondary" id="addToPlaylist">
+              <i class="fa-solid fa-plus"></i>
+              <i class="fa-solid fa-minus"></i>
+            </a>
             <a href="#" class="btn btn-outline-secondary toggleButton" id="togglePlaylist">
               <i class="fa-solid fa-list"></i>
             </a>
@@ -720,7 +727,7 @@
  var env="localhost";
  </script>
  <script type="text/javascript" src="cordova.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
  
  <script src="js/pages.min.js"></script>
  <script src="js/lang.min.js"></script>
