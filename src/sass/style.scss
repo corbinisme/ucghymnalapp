@@ -642,6 +642,22 @@ body {
                             &.sortable-item {
                                 cursor: grab;
                                 transition: transform 0.2s ease-in-out;
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+
+                                .playlistLeft {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 8px;
+                                    flex: 1;
+                                    
+                                }
+                                .playlistItemHandle {
+                                    display: inline-block;
+                                    width: 20px;
+
+                                }
                             }
                             &.sortable-item.dragging {
                                 opacity: 0.5;

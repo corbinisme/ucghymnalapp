@@ -1244,9 +1244,30 @@ function redirectToSystemBrowser(url) {
                 li.setAttribute("draggable", "true");
                 li.classList.add("p-2");
                 li.setAttribute("data-title", hymnTitle);
-                li.innerHTML = `<strong>${hymn}) ${hymnTitle}</strong>`;
+                li.innerHTML = `<span class="playlistLeft"><span class="playlistItemHandle"><i class="fa  fa-arrows"></i></span><span class="hymnTitle"><strong>${hymn}) ${hymnTitle}</strong></span></span><a href="#" class="playlistItemRemove"><i class="fa fa-times"></i></a>`;
                 playListUl.appendChild(li);
-            })
+            });
+
+            document.querySelectorAll(".playlistItemRemove").forEach(function(elem){
+                elem.removeEventListener("click");
+                elem.addEventListener("click", function(e){
+                    e.preventDefault();
+                    let hymn = e.target.closest("li").getAttribute("data-hymn");
+                    // remove from userplaylist
+                    let index = app.userplaylist.indexOf(hymn);
+                    if(index>-1){
+                        app.userplaylist.splice(index, 1);
+                    }
+                    // remove from playlists
+                    index = app.playlists.indexOf(hymn);
+                    if(index>-1){
+                        app.playlists.splice(index, 1);
+                    }
+                    
+                    app.populatePlaylist();
+                    app.checkPlaylistButton();
+                });
+            });
         }
     },
     checkPlaylistButton: function(){

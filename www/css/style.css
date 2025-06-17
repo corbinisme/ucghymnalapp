@@ -462,6 +462,19 @@ body .mainContent .page #playlistContent .playlistBody ul li {
 body .mainContent .page #playlistContent .playlistBody ul li.sortable-item {
   cursor: grab;
   transition: transform 0.2s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body .mainContent .page #playlistContent .playlistBody ul li.sortable-item .playlistLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+body .mainContent .page #playlistContent .playlistBody ul li.sortable-item .playlistItemHandle {
+  display: inline-block;
+  width: 20px;
 }
 body .mainContent .page #playlistContent .playlistBody ul li.sortable-item.dragging {
   opacity: 0.5;
