@@ -305,6 +305,7 @@ function redirectToSystemBrowser(url) {
         app.populateScriptural();
         app.populateHolyDayCalendar();
         app.populateReportBug();
+        app.populatePlaylist();
 
       },
     populateReportBug: function(){
@@ -707,6 +708,8 @@ function redirectToSystemBrowser(url) {
 
             
         }
+
+        
 
         // if music is playing, stop it
         if(app.musicPlayer) {
