@@ -17,6 +17,11 @@ var menu_en = {
     "moreabout": "More information",
     "reportbug": "Report a Bug",
     "clickhere": "Click here",
+    "playlist": "Playlist",
+    "addall": "Add all",
+    "removeall": "Remove all",
+    "playlistempty": "Your playlist is empty.",
+    "savelist":"Save"
 }
 
 var bible_en = {

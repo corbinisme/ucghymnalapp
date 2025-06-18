@@ -217,14 +217,14 @@
           <div id="playlistContent">
             <div class="playlistHeader">
               <h3 class="playlistTitle">Playlist</h3>
-              <a href="#" class="btn btn-outline-secondary playlistClose" id="togglePlaylistClose">
-                <i class="fa-solid fa-xmark"></i>
+              <a href="#" class="btn btn-primary playlistClose" id="togglePlaylistClose">
+                <i class="fa-save fa"></i> <span class="translate" id="playlistSave">Save</span>
               </a>
               
             </div>
             <div class="playlistControls">
-                <a href="#" class="playlistControlBulk btn btn-primary" data-action="add" id="playlistAddAll"><i class="fa fa-plus"></i> Add all</a> 
-                <a href="#" class="playlistControlBulk  btn btn-primary" data-action="remove" id="playlistRemoveAll"> <i class="fa fa-minus"></i> Remove all</a>
+                <a href="#" class="playlistControlBulk btn-sm btn btn-primary" onClick="app.addAllToPlaylist()" data-action="add" id="playlistAddAll"><i class="fa fa-plus"></i> <span>Add all</span></a> 
+                <a href="#" class="playlistControlBulk btn-sm  btn btn-primary" onClick="app.removeAllFromPlaylist()" data-action="remove" id="playlistRemoveAll"> <i class="fa fa-minus"></i> <span> Remove all</span></a>
               </div>
             <div class="playlistBody">
               
@@ -305,9 +305,19 @@
                     <i class="fa-solid fa-random incorrectTarget"></i>                   
                   </a> 
 
-                  <a href="#" id="playAll" data-id="autoplay" class="music-control-btn btn btn-outline-tertiary">
+                  <!--<div class="form-check form-switch "  id="play_all_toggle">
+                    <label class="form-check-label" 
+                    for="playAll"><span>Auto Play</span>
+                    </label>
+                    <input class="form-check-input" 
+                    type="checkbox" id="playAll">
+                  
+                  </div>-->
+
+                 <a href="#" id="playAll" data-id="autoplay" class="music-control-btn btn btn-outline-tertiary">
                     <i class="fas fa-repeat incorrectTarget"></i>
                   </a>
+                
 
                   
                 </div>

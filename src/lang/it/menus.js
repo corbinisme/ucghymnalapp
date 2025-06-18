@@ -16,6 +16,13 @@ var menu_it = {
     "scriptureref": "Riferimenti scritturali",
     "moreabout": "Maggiori informazioni su",
     "reportbug": "Segnala un bug",
+    "clickhere": "Clicca qui",
+    "playlist": "Playlist",
+    "addall": "Aggiungi tutto",
+    "removeall": "Rimuovi tutto",
+    "playlistempty": "La tua playlist è vuota.",
+    "savelist":"Salva la lista"
+    
 }
 
 var bible_it = {

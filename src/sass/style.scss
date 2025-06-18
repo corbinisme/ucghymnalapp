@@ -299,6 +299,9 @@ body {
 
                    
                 }
+                #playlistContent .playlistBody {
+                    height: calc(100vh - 428px);
+                }
                 
 
                 footer {
@@ -325,6 +328,9 @@ body {
                     }
 
                    
+                }
+                #playlistContent .playlistBody {
+                    height: calc(100vh - 362px);
                 }
                 footer {
                 
@@ -354,6 +360,9 @@ body {
                     }
 
                    
+                }
+                #playlistContent .playlistBody {
+                    height: calc(100vh - 485px);
                 }
                 footer {
                 
@@ -591,22 +600,43 @@ body {
                     
                 }
             }
+            .music-control-toggler {
+                &.disabled {
+                    display: none;
+                }
+            }
+
+            #playAll {
+                &:after {
+                    content:"";
+                    display: block;
+                    height: 10px;
+                    width: 30px;
+                    border-radius: 5px;
+                }
+            }
 
             #playlistContent {
-                transform: translateY(-100vh);
+            
                 transition: all ease 0.3s;
                 position: fixed;
-                bottom: 60px;
-                width: 100%;
-                height: calc(100vh - 60px);
-                padding:1em;
+                top: 111px;
+                width: calc(100% - var(--scrollbar-width));
+                height: calc(100vh - 111px);
+                padding:24px;
                 background: var(--bg-body);
+                z-index: 34;
+                left: -110vw;
+                
                 &.active {
-                    transform: translateY(0vh);
-                    z-index: 99;
+                    
+                    left: 0;
+                    
                 }
                 .playlistControls {
-                     font-size: 16px;
+                    font-size: 16px;
+                    line-height: 24px;
+                    height: 40px;
                 }
 
                 .playlistHeader {
@@ -622,15 +652,15 @@ body {
                     }
                     .playlistClose {
                         cursor: pointer;
-                        color: var(--blue);
+                        
                         font-size: 20px;
                         &:hover {
-                            color: var(--darkGold);
+                            color: #fff;
                         }
                     }
                 }  
                 .playlistBody {
-                    height: calc(100vh - 175px);
+                    height: calc(100vh - 300px);
                     overflow-y: auto;
 
                     ul {
@@ -642,6 +672,7 @@ body {
                            padding-left: 0; 
                            border-bottom: 1px solid var(--form-border);
                            font-size: 16px;
+                           line-height: 24px;
 
                             &.sortable-item {
                                 cursor: grab;

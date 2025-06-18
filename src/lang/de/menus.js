@@ -17,6 +17,12 @@ var menu_de = {
     "moreabout": "Mehr Informationen über die",
     "reportbug": "Fehler melden",
     "clickhere": "Hier klicken",
+    "playlist": "Wiedergabeliste",
+    "addall": "Alle hinzufügen",
+    "removeall": "Alle entfernen",
+    "playlistempty": "Ihre Playlist ist leer.",
+    "savelist":"Playlist speichern"
+
 }
 
 var bible_de = {

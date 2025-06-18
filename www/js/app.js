@@ -264,6 +264,31 @@ function redirectToSystemBrowser(url) {
             
         });
 
+        // playlist
+        const playlistContent = document.querySelector("#playlistContent") 
+        const playlistTitle = playlistContent.querySelector(".playlistTitle");
+        if(playlistTitle){
+            let translatedTitle = (menuItems["playlist"]? menuItems["playlist"]: "Playlists");
+            playlistTitle.innerText = translatedTitle;
+        }
+        const playlistSave = playlistContent.querySelector("#playlistSave");
+        if(playlistSave){
+            let translatedSaveText = (menuItems["savelist"]? menuItems["savelist"]: "Save");
+            playlistSave.innerText = translatedSaveText;
+        }
+        const playlistAddAll = playlistContent.querySelector("#playlistAddAll span");
+        if(playlistAddAll){
+            let translatedAddAllText = (menuItems["addall"]? menuItems["addall"]: "Add All");
+            playlistAddAll.innerText = translatedAddAllText;
+        }
+        const playlistRemoveAll = playlistContent.querySelector("#playlistRemoveAll span");
+        if(playlistRemoveAll){
+            let translatedRemoveAllText = (menuItems["removeall"]? menuItems["removeall"]: "Remove All");
+            playlistRemoveAll.innerText = translatedRemoveAllText;
+        }
+
+
+
         const scriptureRef = document.querySelector(".scripturalReferenceContent .text");
         if(scriptureRef){
             let translatedTitle = (menuItems["scriptureref"]? menuItems["scriptureref"]: menuItemsBackup["scriptureref"]);
@@ -840,7 +865,7 @@ function redirectToSystemBrowser(url) {
       goToNextHymn: function(dir){
         // need to account for when you are on a hymn not in the playlist
         let current = parseInt(app.currentHymn);
-        let userList = app.userplaylist;
+        let userList = app.userplaylist.slice();
         if(userList.length==0){
             // button shouldn't be clickable then
             return;
@@ -1147,9 +1172,12 @@ function redirectToSystemBrowser(url) {
                 }
                 let li = document.createElement("li");
                 li.classList.add("sortable-item");
+                li.classList.add("pe-3");
+                li.classList.add("p-2");
+
                 li.setAttribute("data-hymn", hymnLookup);
                 li.setAttribute("draggable", "true");
-                li.classList.add("p-2");
+                
                 li.setAttribute("data-title", hymnTitle);
                 li.innerHTML = `<span class="playlistLeft">
                         <span class="playlistItemHandle">
@@ -1227,12 +1255,32 @@ function redirectToSystemBrowser(url) {
                 elem.classList.add("disabled");
             }
         });
-       
+
+        // check shuffle and play all buttons
+        const shuffleButton = document.getElementById("shuffleBtn");
+        const playAllButton = document.getElementById("playAll");
+        if(app.userplaylist.length>0){
+            shuffleButton.classList.remove("disabled");
+            playAllButton.classList.remove("disabled");
+        } else {
+            shuffleButton.classList.add("disabled");
+            playAllButton.classList.add("disabled");
+        }
         
         
 
 
         
+    },
+    addAllToPlaylist: function(){
+        app.setNormalPlaylistForLang();
+        app.populatePlaylist();
+        app.checkPlaylistButton();
+    },
+    removeAllFromPlaylist: function(){
+        app.userplaylist = [];
+        app.populatePlaylist();
+        app.checkPlaylistButton();
     },
 
       eventBindings: function(){
@@ -1246,23 +1294,21 @@ function redirectToSystemBrowser(url) {
             e.preventDefault();
 
             let hymn = parseInt(app.currentHymn);
-            if(e.target.classList.contains("inPlaylist")){
-                // remove from playlist
-                e.target.classList.remove("inPlaylist");
-                // remove from userplaylist 
-                let index = app.userplaylist.indexOf(hymn);
-                if(index>-1){
-                    app.userplaylist.splice(index, 1);
-                }
+            let index = app.userplaylist.indexOf(hymn);
+            const tar = e.target;
+            if(index>-1){
+                app.userplaylist.splice(index, 1);
             } else {
                 app.userplaylist.push(hymn);
             }
+            tar.classList.toggle("inPlaylist");
+            
             
             app.checkPlaylistButton();
             app.populatePlaylist();
         });
 
-        document.querySelectorAll(".playlistControlBulk").forEach(function(elem){
+        document.querySelectorAll(".playlistControlBulks").forEach(function(elem){
             
             elem.addEventListener("click", function(e){
                 let action = e.target.getAttribute("data-action");

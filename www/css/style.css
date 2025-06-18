@@ -225,6 +225,9 @@ body.hasMusicOpen .mainContent .page #loader {
 body.hasMusicOpen .mainContent .page #scripturalReferenceModal.active {
   bottom: 122px;
 }
+body.hasMusicOpen .mainContent .page #playlistContent .playlistBody {
+  height: calc(100vh - 428px);
+}
 body.hasMusicOpen .mainContent .page footer.hymnFooter {
   height: 192px;
 }
@@ -233,6 +236,9 @@ body.hasFontsizerOpen .mainContent .page #loader {
 }
 body.hasFontsizerOpen .mainContent .page #scripturalReferenceModal.active {
   bottom: 53px;
+}
+body.hasFontsizerOpen .mainContent .page #playlistContent .playlistBody {
+  height: calc(100vh - 362px);
 }
 body.hasFontsizerOpen .mainContent .page footer.hymnFooter {
   height: 125px;
@@ -246,6 +252,9 @@ body.hasMusicOpen.hasFontsizerOpen .mainContent .page #loader {
 }
 body.hasMusicOpen.hasFontsizerOpen .mainContent .page #scripturalReferenceModal.active {
   bottom: 175px;
+}
+body.hasMusicOpen.hasFontsizerOpen .mainContent .page #playlistContent .playlistBody {
+  height: calc(100vh - 485px);
 }
 body.hasMusicOpen.hasFontsizerOpen .mainContent .page footer.hymnFooter {
   height: 251px;
@@ -410,22 +419,34 @@ body .mainContent .page #scripturalReferenceModal.active {
   width: 100%;
   left: 0;
 }
+body .mainContent .page .music-control-toggler.disabled {
+  display: none;
+}
+body .mainContent .page #playAll:after {
+  content: "";
+  display: block;
+  height: 10px;
+  width: 30px;
+  border-radius: 5px;
+}
 body .mainContent .page #playlistContent {
-  transform: translateY(-100vh);
   transition: all ease 0.3s;
   position: fixed;
-  bottom: 60px;
-  width: 100%;
-  height: calc(100vh - 60px);
-  padding: 1em;
+  top: 111px;
+  width: calc(100% - var(--scrollbar-width));
+  height: calc(100vh - 111px);
+  padding: 24px;
   background: var(--bg-body);
+  z-index: 34;
+  left: -110vw;
 }
 body .mainContent .page #playlistContent.active {
-  transform: translateY(0vh);
-  z-index: 99;
+  left: 0;
 }
 body .mainContent .page #playlistContent .playlistControls {
   font-size: 16px;
+  line-height: 24px;
+  height: 40px;
 }
 body .mainContent .page #playlistContent .playlistHeader {
   display: flex;
@@ -441,14 +462,13 @@ body .mainContent .page #playlistContent .playlistHeader h2 {
 }
 body .mainContent .page #playlistContent .playlistHeader .playlistClose {
   cursor: pointer;
-  color: var(--blue);
   font-size: 20px;
 }
 body .mainContent .page #playlistContent .playlistHeader .playlistClose:hover {
-  color: var(--darkGold);
+  color: #fff;
 }
 body .mainContent .page #playlistContent .playlistBody {
-  height: calc(100vh - 175px);
+  height: calc(100vh - 300px);
   overflow-y: auto;
 }
 body .mainContent .page #playlistContent .playlistBody ul {
@@ -461,6 +481,7 @@ body .mainContent .page #playlistContent .playlistBody ul li {
   padding-left: 0;
   border-bottom: 1px solid var(--form-border);
   font-size: 16px;
+  line-height: 24px;
 }
 body .mainContent .page #playlistContent .playlistBody ul li.sortable-item {
   cursor: grab;
@@ -696,6 +717,9 @@ body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-menu
   align-items: center;
   background-color: var(--videojs-bg);
 }
+body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-menu-button-popup .vjs-menu .vjs-menu-content.active {
+  transform: translateY(0);
+}
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-menu-button-popup .vjs-menu .vjs-menu-content li {
   padding: 0 8px;
 }
@@ -705,6 +729,10 @@ body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js .vjs-menu
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js div.vjs-playback-rate {
   order: 2;
   border-left: 1px solid var(--videojs-border);
+  /*position: absolute;
+  right: 46px;
+  top: -59px; 
+  */
 }
 body .mainContent .page#hymns .musicPlayer .video-js-wrapper .video-js div.vjs-playback-rate .vjs-playback-rate-value {
   font-size: 17px;

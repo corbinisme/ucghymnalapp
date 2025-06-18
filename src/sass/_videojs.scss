@@ -66,17 +66,26 @@ $videoJsFont: 17px;
                 height: 60px;
                 align-items: center;
                 background-color: var(--videojs-bg);
+                
+                &.active {
+                    transform: translateY(0);
+                }
                 li {
                     padding: 0 8px;
                     &.vjs-selected {
                         background: rgba(0,0,0,var(--videojs-selected-percentage));
                     }
+                    
                 }
             }
         }
         div.vjs-playback-rate {
             order: 2;
             border-left: 1px solid var(--videojs-border);
+            /*position: absolute;
+            right: 46px;
+            top: -59px; 
+            */
             .vjs-playback-rate-value {
                 font-size: $videoJsFont;
                 line-height: 55px;
