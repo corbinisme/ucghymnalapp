@@ -432,7 +432,7 @@ body .mainContent .page #playAll:after {
 body .mainContent .page #playlistContent {
   transition: all ease 0.3s;
   position: fixed;
-  top: 111px;
+  top: 109px;
   width: calc(100% - var(--scrollbar-width));
   height: calc(100vh - 111px);
   padding: 24px;
