@@ -456,6 +456,10 @@ body {
             top: 0;
             opacity: 0;
 
+            .showPlaylistSong {
+                color: var(--text-color)
+            }
+
             #freshdeskFrame {
                 height: calc(100vh - 95px);
             }

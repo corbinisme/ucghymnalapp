@@ -128,7 +128,7 @@ function redirectToSystemBrowser(url) {
         app.populateUcg();
 
         
-        app.setNormalPlaylistForLang();
+        //app.setNormalPlaylistForLang();
         app.setRandomPlaylistForLang();
         
       },
@@ -187,29 +187,24 @@ function redirectToSystemBrowser(url) {
       },
       setNormalPlaylistForLang: function(){
         app.playlists = [];
-        let numArr = Object.keys(app.currentLangHymns);
+        let numArr = Object.keys(app.currentLangHymns).map(Number);
         app.playlists = numArr;
+        app.userplaylist = numArr;
+
         app.populatePlaylist();
     
       },
       setRandomPlaylistForLang: function(){
-        let numArr = Object.keys(app.currentLangHymns);
-        let randomPlaylist = app.shuffleArray(numArr);
-        app.randomPlaylists = numArr;
-        /*
-        config.langs.split(",").forEach(function(lang){
-            //randomPlaylists
-
-            let hymnCount = window['title_'+ lang].length;
-            let playlist = [];
-            for(let i=1; i<=hymnCount; i++){
-                playlist.push(i);
-            }
-            // randomize the playlist
-            playlist = app.shuffleArray(playlist);
-            app.randomPlaylists[lang] = playlist;
-        })
-        */
+        let thisPlaylist = null;
+        if(app.userplaylist.length>0){
+            thisPlaylist = app.userplaylist;
+        } else {
+            let numArr = Object.keys(app.currentLangHymns);
+            thisPlaylist = numArr;
+        }
+        let randomPlaylist = app.shuffleArray(thisPlaylist);
+        app.randomPlaylists = randomPlaylist;
+        
 
       },
       changePage: function(id){
@@ -842,92 +837,46 @@ function redirectToSystemBrowser(url) {
 
         
       },
-      playNext: function(){
+      goToNextHymn: function(dir){
+        // need to account for when you are on a hymn not in the playlist
         let current = parseInt(app.currentHymn);
-
-        let hymnList = app.currentLangHymns;
-        let next = null;
-        let currentIndex = 0;
-        let currentHymnListArr = Object.keys(hymnList);
-        const userList = app.userplaylist;
-
-        if(currentHymnListArr.indexOf(current.toString())==-1){
+        let userList = app.userplaylist;
+        if(userList.length==0){
+            // button shouldn't be clickable then
             return;
-        } else {
-            // if found, get the previous index
-            currentIndex = currentHymnListArr.indexOf(current.toString());
         }
-
-        
+        let currentIndex = userList.indexOf(current);
+        let next = null;
         if(app.shuffle){
-            // look at the random playlist generated when the shuffle button was enabled
-            let list = app.randomPlaylists;
-            let currentIndex = list.indexOf(current.toString());
-            let next = list[currentIndex+1];
-            if(next==undefined){
-                next = list[0];
-            }
-            app.currentHymn = next;
-            //app.startRandom();
-            app.setHymn(app.currentHymn);
-        } else {
-            next = currentIndex + 1;
-            let hymnCount = window['title_'+ app.lang].length;
-            if(next>=hymnCount){
-                next = 0;
-            }
-
-            let nextSong = currentHymnListArr[next]
-            
-            let formatNext = app.getHymnWithZeros(nextSong);
-            app.currentHymn = nextSong;
-            app.setHymn(nextSong);
+            userList = app.shuffleArray(userList);
         }
+        if(currentIndex==-1){
+            // if not found, return
+            return;
+        }
+        let newIndex = currentIndex + dir;
+        if(newIndex<0){
+            newIndex = userList.length - 1;
+        }
+        if(newIndex>=userList.length){
+            newIndex = 0;
+        }
+        next = userList[newIndex];
+       
+        app.currentHymn = next;
+        app.setHymn(next);
+      },
+      playNext: function(){
+        app.goToNextHymn(1);
+        
         if(app.isPlaying==true)
 
             app.makeMusic(app.currentMusicType, true);
         
       },
       playPrevious: function(){
-        let current = parseInt(app.currentHymn);
-        let hymnList = app.currentLangHymns;
- 
-        let next = null;
-        let currentIndex = 0;
-        let currentHymnListArr = Object.keys(hymnList);
-        
-        
-        if(currentHymnListArr.indexOf(current.toString())==-1){
-
-            // if not found, return
-            return;
-        } else {
-            // if found, get the previous index
-            currentIndex = currentHymnListArr.indexOf(current.toString());
-        }
-
-        if(app.shuffle){
-            let list = app.randomPlaylists;
-            let currentIndex = list.indexOf(current.toString());
-            next = list[currentIndex-1];
-            if(next==undefined){
-                next = list[list.length-1];
-            }
-            app.currentHymn = next;
-            //app.startRandom();
-            app.setHymn(app.currentHymn);
-        } else {
-            next = currentIndex - 1;
-            let hymnCount = window['title_'+ app.lang].length;
-            if(next<1){
-                next = hymnCount-1;
-            }
-
-            let nextSong = currentHymnListArr[next]
-
-            app.currentHymn = nextSong;
-            app.setHymn(nextSong);
-        }
+        app.goToNextHymn(-1);
+      
         if(app.isPlaying==true)
 
             app.makeMusic(app.currentMusicType, true);
@@ -993,7 +942,7 @@ function redirectToSystemBrowser(url) {
             tar.classList.toggle("active");
             const targetNode = document.getElementById("playlistContent");
             targetNode.classList.toggle("active");
-            console.log(app.playlists);
+
             Sortable.create(playlistUl, {
                 group: 'playlistUl',
                 animation: 100
@@ -1179,7 +1128,7 @@ function redirectToSystemBrowser(url) {
         
         const playListUl = document.getElementById("playlistUl");
         playListUl.innerHTML = "";
-        let playlist = app.userplaylist.length>0? app.userplaylist: app.playlists;
+        let playlist = app.userplaylist;
         if(playlist.length==0){
             return;
         } else {
@@ -1202,14 +1151,35 @@ function redirectToSystemBrowser(url) {
                 li.setAttribute("draggable", "true");
                 li.classList.add("p-2");
                 li.setAttribute("data-title", hymnTitle);
-                li.innerHTML = `<span class="playlistLeft"><span class="playlistItemHandle"><i class="fa  fa-arrows"></i></span><span class="hymnTitle"><strong>${hymn}) ${hymnTitle}</strong></span></span><a href="#" class="playlistItemRemove"><i class="fa fa-times"></i></a>`;
+                li.innerHTML = `<span class="playlistLeft">
+                        <span class="playlistItemHandle">
+                            <i class="fa  fa-arrows"></i>
+                        </span>
+                        <span class="hymnTitle">
+                            <a href="#" data-hymn="${hymn}" class="showPlaylistSong">${hymn}) ${hymnTitle}</a>
+                        </span>
+                    </span>
+                    <a href="#" class="playlistItemRemove">
+                        <i class="fa fa-times"></i>
+                    </a>`;
                 playListUl.appendChild(li);
             });
 
+            document.querySelectorAll(".showPlaylistSong").forEach(function(elem){
+                elem.addEventListener("click", function(e){
+                    e.preventDefault();
+                    let hymn = parseInt(e.target.getAttribute("data-hymn"));
+                    
+                    app.currentHymn = hymn;
+                    app.setHymn(hymn);
+
+                    app.togglePlaylist();
+                });
+            });
             document.querySelectorAll(".playlistItemRemove").forEach(function(elem){
                 elem.addEventListener("click", function(e){
                     e.preventDefault();
-                    console.log("remove from playlist");
+
                     let hymn = parseInt(e.target.closest("li").getAttribute("data-hymn"));
                     // remove from userplaylist
                     let index = app.userplaylist.indexOf(hymn);
@@ -1230,8 +1200,10 @@ function redirectToSystemBrowser(url) {
     },
     checkPlaylistButton: function(){
         const addToPlaylistButton = document.getElementById("addToPlaylist");
+        
+        let currentHymn = parseInt(app.currentHymn);
         if(app.userplaylist.length>0){
-           if(app.userplaylist.indexOf(app.currentHymn)>-1 || app.playlists.indexOf(app.currentHymn)>-1){
+           if(app.userplaylist.indexOf(currentHymn)>-1){
                 // already in playlist
                 addToPlaylistButton.classList.add("inPlaylist");
             } else {
@@ -1240,6 +1212,26 @@ function redirectToSystemBrowser(url) {
         } else {
             addToPlaylistButton.classList.remove("inPlaylist");
         }
+
+        // check prev.next buttons
+        let prevNextButtonWrapper = document.querySelector("#hymnPrev").closest(".btn-group");
+        
+        
+        prevNextButtonWrapper.querySelectorAll(".btn").forEach(function(elem){
+            if(app.userplaylist.length==0){
+                elem.classList.remove("disabled");
+            }
+            if(app.userplaylist.indexOf(currentHymn)>-1){
+                elem.classList.remove("disabled");
+            } else {
+                elem.classList.add("disabled");
+            }
+        });
+       
+        
+        
+
+
         
     },
 
@@ -1252,7 +1244,8 @@ function redirectToSystemBrowser(url) {
 
         document.getElementById("addToPlaylist").addEventListener("click", function(e){
             e.preventDefault();
-            let hymn = app.currentHymn;
+
+            let hymn = parseInt(app.currentHymn);
             if(e.target.classList.contains("inPlaylist")){
                 // remove from playlist
                 e.target.classList.remove("inPlaylist");
@@ -1276,11 +1269,14 @@ function redirectToSystemBrowser(url) {
                 if(action=="add"){
                     app.setNormalPlaylistForLang();
                     app.populatePlaylist();
+                    app.checkPlaylistButton();
                 }
                 if(action=="remove"){
                     // remove all hymns from playlist
                     app.playlists = [];
+                    app.userplaylist = [];
                     app.populatePlaylist();
+                    app.checkPlaylistButton();
                 }
             });
         });

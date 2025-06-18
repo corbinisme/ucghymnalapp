@@ -311,6 +311,9 @@ body .mainContent .page {
   top: 0;
   opacity: 0;
 }
+body .mainContent .page .showPlaylistSong {
+  color: var(--text-color);
+}
 body .mainContent .page #freshdeskFrame {
   height: calc(100vh - 95px);
 }
