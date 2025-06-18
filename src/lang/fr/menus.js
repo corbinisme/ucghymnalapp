@@ -21,7 +21,7 @@ var menu_fr = {
     "addall": "Ajouter tout",
     "removeall": "Supprimer tout",
     "playlistempty": "Votre liste de lecture est vide.",
-    "savelist":"Enregistrer la liste"
+    "savelist":"Enregistrer"
     
     
     

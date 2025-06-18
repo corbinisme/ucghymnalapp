@@ -21,8 +21,8 @@ var menu_nl = {
     "addall": "Voeg alles toe",
     "removeall": "Verwijder alles",
     "playlistempty": "Uw afspeellijst is leeg.",
-    "savelist":"Sla lijst op"
-    
+    "savelist":"Sla"
+
 }
 
 var bible_nl = {

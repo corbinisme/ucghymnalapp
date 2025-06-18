@@ -21,7 +21,7 @@ var menu_de = {
     "addall": "Alle hinzufügen",
     "removeall": "Alle entfernen",
     "playlistempty": "Ihre Playlist ist leer.",
-    "savelist":"Playlist speichern"
+    "savelist":"Speichern"
 
 }
 

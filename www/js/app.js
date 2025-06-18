@@ -1186,7 +1186,7 @@ function redirectToSystemBrowser(url) {
                         <span class="playlistItemHandle">
                             <i class="fa  fa-arrows"></i>
                         </span>
-                        <span class="hymnTitle">
+                        <span class="hymnTitle ${app.currentHymn==hymn? "active fw-bold":""}">
                             <a href="#" data-hymn="${hymn}" class="showPlaylistSong">${hymn}) ${hymnTitle}</a>
                         </span>
                     </span>

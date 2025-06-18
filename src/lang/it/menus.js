@@ -21,8 +21,8 @@ var menu_it = {
     "addall": "Aggiungi tutto",
     "removeall": "Rimuovi tutto",
     "playlistempty": "La tua playlist è vuota.",
-    "savelist":"Salva la lista"
-    
+    "savelist":"Salva"
+
 }
 
 var bible_it = {

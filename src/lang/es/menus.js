@@ -21,7 +21,7 @@ var menu_es = {
     "addall": "Agregar todo",
     "removeall": "Eliminar todo",
     "playlistempty": "Su lista de reproducción está vacía.",
-    "savelist":"Guardar lista"
+    "savelist":"Guardar"
 }
 
 var bible_es= {

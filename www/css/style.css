@@ -462,7 +462,7 @@ body .mainContent .page #playlistContent .playlistHeader h2 {
 }
 body .mainContent .page #playlistContent .playlistHeader .playlistClose {
   cursor: pointer;
-  font-size: 20px;
+  font-size: 16px;
 }
 body .mainContent .page #playlistContent .playlistHeader .playlistClose:hover {
   color: #fff;
