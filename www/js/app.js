@@ -28,8 +28,7 @@ function redirectToSystemBrowser(url) {
       autoplay: false,
       shuffle: false,
       storage: null,
-      sheetMusicEnabled: false,
-      sheetMusicActive: false,
+
       currentSearchFilter: "",
       currentTitles: [],
       musicPlayer: null,
@@ -554,23 +553,7 @@ function redirectToSystemBrowser(url) {
         }
         return newnum;
       },
-      showPdfViewer: function(val){
-        if(val==true){
 
-            document.getElementById("pdfloader").classList.add("active");
-            document.getElementById("pdfloader").classList.remove("hidden");
-            document.getElementById("loader").classList.add("hidden");
-            document.getElementById("loader").classList.remove("active");
-            //check if pdf has loaded yet
-            
-        } else {
-
-            document.getElementById("pdfloader").classList.remove("active");
-            document.getElementById("pdfloader").classList.add("hidden");
-            document.getElementById("loader").classList.add("active");
-            document.getElementById("loader").classList.remove("hidden");
-        }
-      },
       toggleScripturalReference: function(forceClose){
 
         const target = document.getElementById("scripturalReferenceModal");
@@ -610,27 +593,14 @@ function redirectToSystemBrowser(url) {
       getHymnText: function(){
         let result;
         let target = document.getElementById("loader");
-        let pdfTarget = document.getElementById("pdfloader");
+        
        
         const scriptureActive = document.getElementById("scripturalReferenceButton");
         if(scriptureActive.classList.contains("active")){
             //app.toggleScripturalReference(false);
         }
 
-        if(app.sheetMusicActive){
-           // make a shell for pdf viewing
-           // show pdf div
-           app.showPdfViewer(true);
-           let hymnNumber =app.getHymnWithZeros(app.currentHymn);
-           
-           const pdfurl = config.pdfpath + hymnNumber + " Guitar.pdf";
-
-
-            pdf.url = pdfurl;
-            pdf.init();
-        } else {
-            app.showPdfViewer(false);
-        }
+        
         
         let file = "hymn" + app.getHymnWithZeros(app.currentHymn);
 
@@ -868,22 +838,9 @@ function redirectToSystemBrowser(url) {
         */
   
         app.languages = langs.split(",");
-        const sheetMusicOption = (config.pdf? config.pdf:false);
-        app.sheetMusicEnabled = sheetMusicOption;
-        if(app.sheetMusicEnabled){
-            const sheetMusicToggleWrapperNode = document.getElementById("toggleType");
-            sheetMusicToggleWrapperNode.classList.remove("hidden");
-            const sheetMusicToggleNode = document.getElementById("sheetMusicToggle");
-            let sheetMusicActiveInit = (app.storage.getItem("sheetMusicActive")? app.storage.getItem("sheetMusicActive"): false);
+        
 
-            app.sheetMusicActive =  (sheetMusicActiveInit=="true"? true:false);
-            if(app.sheetMusicActive){
-                app.sheetMusicEnabled = true;
-                // get the sheetMusicToggleNode node and set it to checked
-                sheetMusicToggleNode.checked=true;
-            }
-
-            }
+        
       },
       playNext: function(){
         let current = parseInt(app.currentHymn);
@@ -892,6 +849,7 @@ function redirectToSystemBrowser(url) {
         let next = null;
         let currentIndex = 0;
         let currentHymnListArr = Object.keys(hymnList);
+        const userList = app.userplaylist;
 
         if(currentHymnListArr.indexOf(current.toString())==-1){
             return;
@@ -1249,17 +1207,17 @@ function redirectToSystemBrowser(url) {
             });
 
             document.querySelectorAll(".playlistItemRemove").forEach(function(elem){
-                elem.removeEventListener("click");
                 elem.addEventListener("click", function(e){
                     e.preventDefault();
-                    let hymn = e.target.closest("li").getAttribute("data-hymn");
+                    console.log("remove from playlist");
+                    let hymn = parseInt(e.target.closest("li").getAttribute("data-hymn"));
                     // remove from userplaylist
                     let index = app.userplaylist.indexOf(hymn);
                     if(index>-1){
                         app.userplaylist.splice(index, 1);
                     }
                     // remove from playlists
-                    index = app.playlists.indexOf(hymn);
+                    index = app.playlists.indexOf(hymn.toString());
                     if(index>-1){
                         app.playlists.splice(index, 1);
                     }
@@ -1272,11 +1230,15 @@ function redirectToSystemBrowser(url) {
     },
     checkPlaylistButton: function(){
         const addToPlaylistButton = document.getElementById("addToPlaylist");
-        if(app.userplaylist.length>0 || app.playlists.length>0){
+        if(app.userplaylist.length>0){
            if(app.userplaylist.indexOf(app.currentHymn)>-1 || app.playlists.indexOf(app.currentHymn)>-1){
                 // already in playlist
                 addToPlaylistButton.classList.add("inPlaylist");
+            } else {
+                addToPlaylistButton.classList.remove("inPlaylist");
             }
+        } else {
+            addToPlaylistButton.classList.remove("inPlaylist");
         }
         
     },
@@ -1612,21 +1574,7 @@ function redirectToSystemBrowser(url) {
             app.toggleHamburger();
         });
 
-        document.getElementById("sheetMusicToggle").addEventListener("change", function(e){
-            let val = e.target.checked;
-
-            app.sheetMusicActive = val;
-
-            if(val==true){
-                app.showPdfViewer(true);
-               
-                
-            } else {
-                app.showPdfViewer(false);
-               
-            }
-            app.storage.setItem("sheetMusicActive", val);
-        });
+        
 
         
 
