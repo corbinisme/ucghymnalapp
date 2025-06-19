@@ -849,6 +849,12 @@ function redirectToSystemBrowser(url) {
             moonSolid.classList.add("hidden");
         }
 
+        if(app.storage.getItem("userplaylist")){
+            let rawPlaylist = app.storage.getItem("userplaylist");
+            app.userplaylist = JSON.parse(rawPlaylist);
+            app.checkPlaylistButton();
+        }
+
         /*
         if(config.icon!=""){
             var icon = config.icon;
@@ -1350,6 +1356,7 @@ function redirectToSystemBrowser(url) {
                 currentOrder.push(hymn);
             });
             app.userplaylist = currentOrder;
+            app.storage.setItem("userplaylist", JSON.stringify(app.userplaylist));
             app.togglePlaylist();
         });
 

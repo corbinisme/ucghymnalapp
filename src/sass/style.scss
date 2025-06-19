@@ -468,6 +468,10 @@ body {
             .showPlaylistSong {
                 color: var(--text-color)
             }
+            .hymnTitle.active a.showPlaylistSong {
+                color: var(--blue);
+
+            }
 
             #freshdeskFrame {
                 height: calc(100vh - 95px);
@@ -619,6 +623,10 @@ body {
                 border-right: 1px solid var(--form-border);
                 border-radius: 0;
 
+                .btn {
+                    border: 0;
+                }
+
                 .fa-stack {
                     position: relative;
 
@@ -710,6 +718,11 @@ body {
                                     display: inline-block;
                                     width: 20px;
 
+                                }
+                                .hymnTitle {
+                                    a.active {
+                                        color: var(--blue);
+                                    }
                                 }
                             }
                             &.sortable-item.dragging {

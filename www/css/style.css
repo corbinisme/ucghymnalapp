@@ -323,6 +323,9 @@ body .mainContent .page {
 body .mainContent .page .showPlaylistSong {
   color: var(--text-color);
 }
+body .mainContent .page .hymnTitle.active a.showPlaylistSong {
+  color: var(--blue);
+}
 body .mainContent .page #freshdeskFrame {
   height: calc(100vh - 95px);
 }
@@ -433,6 +436,9 @@ body .mainContent .page .playlistControlWrapper {
   border-right: 1px solid var(--form-border);
   border-radius: 0;
 }
+body .mainContent .page .playlistControlWrapper .btn {
+  border: 0;
+}
 body .mainContent .page .playlistControlWrapper .fa-stack {
   position: relative;
 }
@@ -515,6 +521,9 @@ body .mainContent .page #playlistContent .playlistBody ul li.sortable-item .play
 body .mainContent .page #playlistContent .playlistBody ul li.sortable-item .playlistItemHandle {
   display: inline-block;
   width: 20px;
+}
+body .mainContent .page #playlistContent .playlistBody ul li.sortable-item .hymnTitle a.active {
+  color: var(--blue);
 }
 body .mainContent .page #playlistContent .playlistBody ul li.sortable-item.dragging {
   opacity: 0.5;
