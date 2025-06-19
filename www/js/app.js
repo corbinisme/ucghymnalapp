@@ -736,6 +736,11 @@ function redirectToSystemBrowser(url) {
         app.populatePages();
         app.checkPlaylistButton();
 
+        let tar = document.getElementById("togglePlaylist");
+        tar.classList.remove("active");
+        const targetNode = document.getElementById("playlistContent");
+        targetNode.classList.remove("active");
+
       },
       toggleTheme: function(reverse){
 
@@ -982,7 +987,16 @@ function redirectToSystemBrowser(url) {
 
             Sortable.create(playlistUl, {
                 group: 'playlistUl',
-                animation: 100
+                animation: 100,
+                sort: true,
+                handle: '.playlistItemHandle',
+                onEnd: function (evt) {
+                    var itemEl = evt.item; 
+
+                    app.savePlaylistToStorage();
+                   
+                },
+            
             });
       },
       closeAllMenus: function(exclude){
@@ -1211,7 +1225,7 @@ function redirectToSystemBrowser(url) {
                     app.currentHymn = hymn;
                     app.setHymn(hymn);
 
-                    app.togglePlaylist();
+                    //app.togglePlaylist();
                 });
             });
             document.querySelectorAll(".playlistItemRemove").forEach(function(elem){
@@ -1230,6 +1244,7 @@ function redirectToSystemBrowser(url) {
                         app.playlists.splice(index, 1);
                     }
                     
+                    app.storage.setItem("userplaylist", JSON.stringify(app.userplaylist));
                     app.populatePlaylist();
                     app.checkPlaylistButton();
                 });
@@ -1320,7 +1335,7 @@ function redirectToSystemBrowser(url) {
             let shuffleList = app.shuffleArray(app.userplaylist.slice());
             app.randomPlaylists = shuffleList;
 
-            
+            app.storage.setItem("userplaylist", JSON.stringify(app.userplaylist));
             app.checkPlaylistButton();
             app.populatePlaylist();
         });
@@ -1350,13 +1365,8 @@ function redirectToSystemBrowser(url) {
             e.preventDefault();
             // save first
             // get current order of the playlist
-            let currentOrder = [];
-            document.querySelectorAll("#playlistUl li").forEach(function(elem){
-                let hymn = parseInt(elem.getAttribute("data-hymn"));
-                currentOrder.push(hymn);
-            });
-            app.userplaylist = currentOrder;
-            app.storage.setItem("userplaylist", JSON.stringify(app.userplaylist));
+            
+            app.savePlaylistToStorage();
             app.togglePlaylist();
         });
 
@@ -2014,37 +2024,62 @@ function redirectToSystemBrowser(url) {
         let hymnSelector = document.getElementById("hymnSelect");
             hymnSelector.value = startVal;
         app.getHymnText();
+
+        
         
       }, 
+      savePlaylistToStorage: function(){
+        // save userplaylist to storage
+        let currentOrder = [];
+        document.querySelectorAll("#playlistUl li").forEach(function(elem){
+            let hymn = parseInt(elem.getAttribute("data-hymn"));
+            currentOrder.push(hymn);
+        });
+        app.userplaylist = currentOrder;
+        app.storage.setItem("userplaylist", JSON.stringify(app.userplaylist));
+        // also save playlists
+        
+      },
 
       startRandom: function(){
         // get actual list of values for the current lang
         let titles = window["title_" + app.lang];
         let startVal = "";
 
-         // start is a variable set from the url
-            if(typeof start=="undefined"){
-               
+        if(app.userplaylist.length>0){
+            // get the first one
+            startVal = app.userplaylist[0];
+        } 
+
+        // start is a variable set from the url
+        if(typeof start=="undefined"){
+            
+            if(startVal==""){
                 var random;
                 var min=1;
-                var max = titles.length;
+                let hymns = app.currentLangHymns;
+                let hymnCountForLang = Object.keys(hymns).length;
+                var max = hymnCountForLang;
                 random = Math.floor(Math.random() * (max - min +1)) + min;
+                
+                let hymnNum = Object.keys(hymns)[random - 1];
+
+                if(hymnNum){
+                    
     
-                let title = titles[random];
-                if(title){
-                    title = parseInt(title.substring(0, title.indexOf(")")));
-        
-                    startVal = title;
+                    startVal = hymnNum;
                 } else {
                     startVal = 1;
                 }
-            
-            } else {
-                 // if we hardcode the hymn in the url, load it
-                startVal = start;
             }
+        
+        } else {
+            // if we hardcode the hymn in the url, load it
+            // even overriding user playlist
+            startVal = start;
+        }
     
-            app.currentHymn = startVal;
+        app.currentHymn = startVal;
             
       },
 

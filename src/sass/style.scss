@@ -622,6 +622,8 @@ body {
             .playlistControlWrapper {
                 border-right: 1px solid var(--form-border);
                 border-radius: 0;
+                position: relative;
+                top: 2px;
 
                 .btn {
                     border: 0;

@@ -435,6 +435,8 @@ body .mainContent .page #playAll:after {
 body .mainContent .page .playlistControlWrapper {
   border-right: 1px solid var(--form-border);
   border-radius: 0;
+  position: relative;
+  top: 2px;
 }
 body .mainContent .page .playlistControlWrapper .btn {
   border: 0;
