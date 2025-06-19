@@ -129,7 +129,7 @@ function redirectToSystemBrowser(url) {
 
         
         //app.setNormalPlaylistForLang();
-        app.setRandomPlaylistForLang();
+        //app.setRandomPlaylistForLang();
         
       },
       setScrollbarWidth: function(){
@@ -873,11 +873,14 @@ function redirectToSystemBrowser(url) {
             // button shouldn't be clickable then
             return;
         }
+        if(app.shuffle){
+            userList = app.randomPlaylists.slice();   
+            
+        }
+
         let currentIndex = userList.indexOf(current);
         let next = null;
-        if(app.shuffle){
-            userList = app.shuffleArray(userList);
-        }
+        
         if(currentIndex==-1){
             // if not found, return
             return;
@@ -1166,13 +1169,10 @@ function redirectToSystemBrowser(url) {
                 if(app.currentLangHymns && app.currentLangHymns[hymn]){
                     hymnTitle = app.currentLangHymns[hymn].title;
                 }
-                if(hymnTitle==""){
-                    window['title_en'].forEach(function(title){
-                        if(title.indexOf(hymn + ")") === 0){
-                            hymnTitle = title.substring(title.indexOf(")")+2).trim();
-                        }
-                    });
-                }
+                if(hymnTitle!==""){
+                    
+                    
+                
                 let li = document.createElement("li");
                 li.classList.add("sortable-item");
                 li.classList.add("pe-3");
@@ -1194,6 +1194,7 @@ function redirectToSystemBrowser(url) {
                         <i class="fa fa-times"></i>
                     </a>`;
                 playListUl.appendChild(li);
+                }
             });
 
             document.querySelectorAll(".showPlaylistSong").forEach(function(elem){
@@ -1306,10 +1307,19 @@ function redirectToSystemBrowser(url) {
             }
             tar.classList.toggle("inPlaylist");
             
+            if(app.randomPlaylists.length>0){
+                app.randomPlaylists = [];
+                // if there is a random playlist, remove it
+            }
+            let shuffleList = app.shuffleArray(app.userplaylist.slice());
+            app.randomPlaylists = shuffleList;
+
             
             app.checkPlaylistButton();
             app.populatePlaylist();
         });
+
+       
 
         document.querySelectorAll(".playlistControlBulks").forEach(function(elem){
             
@@ -1332,6 +1342,14 @@ function redirectToSystemBrowser(url) {
 
         document.querySelector(".playlistClose").addEventListener("click", function(e){
             e.preventDefault();
+            // save first
+            // get current order of the playlist
+            let currentOrder = [];
+            document.querySelectorAll("#playlistUl li").forEach(function(elem){
+                let hymn = parseInt(elem.getAttribute("data-hymn"));
+                currentOrder.push(hymn);
+            });
+            app.userplaylist = currentOrder;
             app.togglePlaylist();
         });
 

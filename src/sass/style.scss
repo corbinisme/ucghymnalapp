@@ -615,6 +615,24 @@ body {
                     border-radius: 5px;
                 }
             }
+            .playlistControlWrapper {
+                border-right: 1px solid var(--form-border);
+                border-radius: 0;
+
+                .fa-stack {
+                    position: relative;
+
+                    .sub-fa {
+                        position: absolute;
+                        right: 0px;
+                        background: var(--form-border);
+                        border-radius: 100%;
+                        font-size: 11px;
+                        padding: 3px;
+                        top: 4px;
+                    }
+                }
+            }
 
             #playlistContent {
             

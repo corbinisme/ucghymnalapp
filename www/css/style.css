@@ -429,6 +429,22 @@ body .mainContent .page #playAll:after {
   width: 30px;
   border-radius: 5px;
 }
+body .mainContent .page .playlistControlWrapper {
+  border-right: 1px solid var(--form-border);
+  border-radius: 0;
+}
+body .mainContent .page .playlistControlWrapper .fa-stack {
+  position: relative;
+}
+body .mainContent .page .playlistControlWrapper .fa-stack .sub-fa {
+  position: absolute;
+  right: 0px;
+  background: var(--form-border);
+  border-radius: 100%;
+  font-size: 11px;
+  padding: 3px;
+  top: 4px;
+}
 body .mainContent .page #playlistContent {
   transition: all ease 0.3s;
   position: fixed;
