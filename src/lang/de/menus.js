@@ -17,7 +17,7 @@ var menu_de = {
     "moreabout": "Mehr Informationen über die",
     "reportbug": "Fehler melden",
     "clickhere": "Hier klicken",
-    "playlist": "Wiedergabeliste",
+    "playlist": "Playlist",
     "addall": "Alle hinzufügen",
     "removeall": "Alle entfernen",
     "playlistempty": "Ihre Playlist ist leer.",

@@ -17,7 +17,7 @@ var menu_nl = {
     "moreabout": "Meer informatie over de",
     "reportbug": "Meld een fout",
     "clickhere": "Klik hier",
-    "playlist": "Afspeellijst",
+    "playlist": "Lijst",
     "addall": "Voeg alles toe",
     "removeall": "Verwijder alles",
     "playlistempty": "Uw afspeellijst is leeg.",

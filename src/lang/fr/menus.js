@@ -17,7 +17,7 @@ var menu_fr = {
     "moreabout": "Plus d'informations sur le",
     "reportbug": "Signaler un bug",
     "clickhere": "Cliquez ici",
-    "playlist": "Liste de lecture",
+    "playlist": "Liste",
     "addall": "Ajouter tout",
     "removeall": "Supprimer tout",
     "playlistempty": "Votre liste de lecture est vide.",
