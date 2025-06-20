@@ -520,6 +520,23 @@ body {
                 }
             }
 
+            .fa-stack {
+                    position: relative;
+                    width: auto;
+                    padding-right: 15px;
+
+
+                    .sub-fa {
+                        position: absolute;
+                        right: 4px;
+                        background: var(--yellowButton);
+                        border-radius: 100%;
+                        font-size: 11px;
+                        padding: 3px;
+                        top: 4px;
+                    }
+                }
+
 
 
             #langDropdownWrapper {
@@ -629,19 +646,7 @@ body {
                     border: 0;
                 }
 
-                .fa-stack {
-                    position: relative;
-
-                    .sub-fa {
-                        position: absolute;
-                        right: 0px;
-                        background: var(--form-border);
-                        border-radius: 100%;
-                        font-size: 11px;
-                        padding: 3px;
-                        top: 4px;
-                    }
-                }
+                
             }
 
             #playlistContent {
@@ -799,6 +804,20 @@ body {
            
 
             &#search {
+
+                #toggleEditPlaylistSearch {
+                    .activeState {
+                        display: none;
+                    }
+                    &.active {
+                        .initialState {
+                            display: none;
+                        }
+                        .activeState {
+                            display: inline-block;
+                        }
+                    }
+                }
                
                 .contentMain {
                     
@@ -807,6 +826,47 @@ body {
                         margin-top: 0;
                     }
                 }
+                .right-action {
+                    #addToPlaylist {
+                        .inactiveState {
+                            display: inline-block;
+                        }
+                        .activeState {
+                            display: none;
+                        }
+                        &.active {
+                            background-color: var(--yellowButton );
+                            .inactiveState {
+                                display: none;
+                            }
+                            .activeState {
+                                display: inline-block;
+                            }
+                        }
+                    }
+                }
+                .actionCol {
+                    display: none;
+                    position: relative;
+                    min-width: 24px;
+
+                    input {
+                        height: 18px;
+                        width: 18px;
+                        position: absolute;
+                        top: 10px;
+                        left: 10px;
+
+                    }
+
+                }
+                .contentMain.editPlaylist {
+                    .actionCol {
+                        display: table-cell;
+
+                    }
+                }
+
             }
             &#hymns {
 
@@ -981,7 +1041,7 @@ body {
                     }
 
                     .headingBar {
-                        justify-content: flex-start;
+                        justify-content: space-between;
                     }
 
 

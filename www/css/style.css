@@ -356,6 +356,20 @@ body .mainContent .page#about header {
 body .mainContent .page#ucg header {
   height: auto;
 }
+body .mainContent .page .fa-stack {
+  position: relative;
+  width: auto;
+  padding-right: 15px;
+}
+body .mainContent .page .fa-stack .sub-fa {
+  position: absolute;
+  right: 4px;
+  background: var(--yellowButton);
+  border-radius: 100%;
+  font-size: 11px;
+  padding: 3px;
+  top: 4px;
+}
 body .mainContent .page #langDropdownWrapper {
   position: relative;
 }
@@ -440,18 +454,6 @@ body .mainContent .page .playlistControlWrapper {
 }
 body .mainContent .page .playlistControlWrapper .btn {
   border: 0;
-}
-body .mainContent .page .playlistControlWrapper .fa-stack {
-  position: relative;
-}
-body .mainContent .page .playlistControlWrapper .fa-stack .sub-fa {
-  position: absolute;
-  right: 0px;
-  background: var(--form-border);
-  border-radius: 100%;
-  font-size: 11px;
-  padding: 3px;
-  top: 4px;
 }
 body .mainContent .page #playlistContent {
   transition: all ease 0.3s;
@@ -579,8 +581,47 @@ body .mainContent .page#number .contentMain .contentInner {
 body .mainContent .page#number #searchByNumberBtn {
   border-width: 0;
 }
+body .mainContent .page#search #toggleEditPlaylistSearch .activeState {
+  display: none;
+}
+body .mainContent .page#search #toggleEditPlaylistSearch.active .initialState {
+  display: none;
+}
+body .mainContent .page#search #toggleEditPlaylistSearch.active .activeState {
+  display: inline-block;
+}
 body .mainContent .page#search .contentMain .contentInner {
   margin-top: 0;
+}
+body .mainContent .page#search .right-action #addToPlaylist .inactiveState {
+  display: inline-block;
+}
+body .mainContent .page#search .right-action #addToPlaylist .activeState {
+  display: none;
+}
+body .mainContent .page#search .right-action #addToPlaylist.active {
+  background-color: var(--yellowButton);
+}
+body .mainContent .page#search .right-action #addToPlaylist.active .inactiveState {
+  display: none;
+}
+body .mainContent .page#search .right-action #addToPlaylist.active .activeState {
+  display: inline-block;
+}
+body .mainContent .page#search .actionCol {
+  display: none;
+  position: relative;
+  min-width: 24px;
+}
+body .mainContent .page#search .actionCol input {
+  height: 18px;
+  width: 18px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+body .mainContent .page#search .contentMain.editPlaylist .actionCol {
+  display: table-cell;
 }
 body .mainContent .page#hymns .hymnalSelectionWrapper {
   padding: var(--padding);
@@ -820,7 +861,7 @@ body .mainContent .page header .navbar .navbar-inner {
   padding-left: 4px;
 }
 body .mainContent .page header .navbar .headingBar {
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 body .mainContent .page header .navbar .navbar-collapse {
   position: absolute;

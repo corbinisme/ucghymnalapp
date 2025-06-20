@@ -42,6 +42,8 @@ function redirectToSystemBrowser(url) {
       useLogos: false,
       currentLangHymns: null,
       userplaylist: [],
+      editSearchPlaylist: false,
+      usingPlaylist: false,
       init: function(){
             app.getConfig();
             app.eventBindings();
@@ -59,6 +61,7 @@ function redirectToSystemBrowser(url) {
                 window.MobileAccessibility.usePreferredTextZoom(false);
             }
             app.loadLogos();
+            
       },
       setCurrentHymnObject: function(){
         const thisLanguageList = window['lyrics_'+ app.lang];
@@ -128,8 +131,8 @@ function redirectToSystemBrowser(url) {
         app.populateUcg();
 
         
-        //app.setNormalPlaylistForLang();
-        //app.setRandomPlaylistForLang();
+        app.setNormalPlaylistForLang();
+        
         
       },
       setScrollbarWidth: function(){
@@ -189,24 +192,29 @@ function redirectToSystemBrowser(url) {
         app.playlists = [];
         let numArr = Object.keys(app.currentLangHymns).map(Number);
         app.playlists = numArr;
-        app.userplaylist = numArr;
+   
+        let thisRandomPlaylist = app.playlists.slice();
+        let randomPlaylist = app.shuffleArray(thisRandomPlaylist);
+        app.randomPlaylists = randomPlaylist;
 
-        app.populatePlaylist();
+        
     
       },
-      setRandomPlaylistForLang: function(){
-        let thisPlaylist = null;
-        if(app.userplaylist.length>0){
-            thisPlaylist = app.userplaylist;
+
+      addHymnsToPlaylist: function(){
+        // open search drawer
+        const page = "search";
+        app.changePage(page);
+        // if it isn't in edit mode, add it
+        const searchMain = document.querySelector(".page#search .contentMain");
+        if(searchMain.classList.contains("editPlaylist")){
+            // cool
         } else {
-            let numArr = Object.keys(app.currentLangHymns);
-            thisPlaylist = numArr;
+            app.toggleSearchPlaylistEdit();
         }
-        let randomPlaylist = app.shuffleArray(thisPlaylist);
-        app.randomPlaylists = randomPlaylist;
-        
 
       },
+      
       changePage: function(id){
         if(document.querySelector("#" + id)){
             document.querySelectorAll(".page.wrapper").forEach(function(page){
@@ -737,10 +745,16 @@ function redirectToSystemBrowser(url) {
         app.checkPlaylistButton();
 
         let tar = document.getElementById("togglePlaylist");
-        tar.classList.remove("active");
+        //tar.classList.remove("active");
         const targetNode = document.getElementById("playlistContent");
         targetNode.classList.remove("active");
 
+      },
+      setUsingPlaylistState: function(){
+        const togglePlaylist = document.getElementById("togglePlaylist");
+        togglePlaylist.classList.toggle("active");
+        const usingPlaylistButton = document.getElementById("usingPlaylistButton");
+        usingPlaylistButton.classList.toggle("hidden");
       },
       toggleTheme: function(reverse){
 
@@ -821,6 +835,11 @@ function redirectToSystemBrowser(url) {
             document.getElementById("vocal_version").checked=true;
         }
 
+        app.storage.getItem("usingPlaylist")? app.usingPlaylist = (app.storage.getItem("usingPlaylist")=="true"?true:false) : app.usingPlaylist = false;
+
+        if(app.usingPlaylist==true){
+            app.setUsingPlaylistState();
+        }
         
         var fontKey = "size";
         var fontSize = app.storage.getItem(fontKey);
@@ -880,30 +899,44 @@ function redirectToSystemBrowser(url) {
         // need to account for when you are on a hymn not in the playlist
         let current = parseInt(app.currentHymn);
         let userList = app.userplaylist.slice();
+        let defaultPlaylist = app.playlists.slice();
+        let thisPlaylist = null;
         if(userList.length==0){
             // button shouldn't be clickable then
-            return;
+            thisPlaylist = defaultPlaylist;
+        } else {
+            thisPlaylist = userList;
         }
         if(app.shuffle){
-            userList = app.randomPlaylists.slice();   
+            thisPlaylist = app.randomPlaylists.slice();   
             
         }
 
-        let currentIndex = userList.indexOf(current);
+        let currentIndex = thisPlaylist.indexOf(current);
         let next = null;
-        
+        let newIndex = null;
         if(currentIndex==-1){
             // if not found, return
-            return;
+
+           // maybe you are in a playlist, but your current hymn isn't there
+           // if so, go to first one in playlist
+              if(thisPlaylist.length>0){
+                newIndex = 0;
+              }
+              next = thisPlaylist[newIndex];
+        } else {
+            newIndex = currentIndex + dir;
+            if(newIndex<0){
+                newIndex = thisPlaylist.length - 1;
+            }
+            if(newIndex>=thisPlaylist.length){
+                newIndex = 0;
+            }
+            next = thisPlaylist[newIndex];
         }
-        let newIndex = currentIndex + dir;
-        if(newIndex<0){
-            newIndex = userList.length - 1;
-        }
-        if(newIndex>=userList.length){
-            newIndex = 0;
-        }
-        next = userList[newIndex];
+        
+        
+        
        
         app.currentHymn = next;
         app.setHymn(next);
@@ -980,7 +1013,7 @@ function redirectToSystemBrowser(url) {
       },
       togglePlaylist: function(){
 
-            let tar = document.getElementById("togglePlaylist");
+            let tar = document.getElementById("usingPlaylistButton");
             tar.classList.toggle("active");
             const targetNode = document.getElementById("playlistContent");
             targetNode.classList.toggle("active");
@@ -1180,6 +1213,7 @@ function redirectToSystemBrowser(url) {
         const playListUl = document.getElementById("playlistUl");
         playListUl.innerHTML = "";
         let playlist = app.userplaylist;
+
         if(playlist.length==0){
             return;
         } else {
@@ -1253,24 +1287,44 @@ function redirectToSystemBrowser(url) {
     },
     checkPlaylistButton: function(){
         const addToPlaylistButton = document.getElementById("addToPlaylist");
-        
         let currentHymn = parseInt(app.currentHymn);
-        if(app.userplaylist.length>0){
-           if(app.userplaylist.indexOf(currentHymn)>-1){
-                // already in playlist
-                addToPlaylistButton.classList.add("inPlaylist");
+        if(addToPlaylistButton){
+            
+            if(app.userplaylist.length>0){
+            if(app.userplaylist.indexOf(currentHymn)>-1){
+                    // already in playlist
+                    addToPlaylistButton.classList.add("inPlaylist");
+                } else {
+                    addToPlaylistButton.classList.remove("inPlaylist");
+                }
             } else {
                 addToPlaylistButton.classList.remove("inPlaylist");
             }
-        } else {
-            addToPlaylistButton.classList.remove("inPlaylist");
+        }
+
+        const usingPlaylistButton = document.getElementById("usingPlaylistButton");
+        if(usingPlaylistButton){
+            /*
+            if(app.userplaylist.length==0){
+                usingPlaylistButton.classList.add("hidden");
+            } else {
+                usingPlaylistButton.classList.remove("hidden");
+            }
+                */
+            /*
+            if(app.usingPlaylist==true){
+                usingPlaylistButton.classList.add("active");
+            } else {
+                usingPlaylistButton.classList.remove("active");
+            }
+                */
         }
 
         // check prev.next buttons
         let prevNextButtonWrapper = document.querySelector("#hymnPrev").closest(".btn-group");
         
         
-        prevNextButtonWrapper.querySelectorAll(".btn").forEach(function(elem){
+        /*prevNextButtonWrapper.querySelectorAll(".btn").forEach(function(elem){
             if(app.userplaylist.length==0){
                 elem.classList.remove("disabled");
             }
@@ -1280,16 +1334,17 @@ function redirectToSystemBrowser(url) {
                 elem.classList.add("disabled");
             }
         });
+        */
 
         // check shuffle and play all buttons
         const shuffleButton = document.getElementById("shuffleBtn");
         const playAllButton = document.getElementById("playAll");
-        if(app.userplaylist.length>0){
+        if(app.playlists.length>0){
             shuffleButton.classList.remove("disabled");
             playAllButton.classList.remove("disabled");
         } else {
-            shuffleButton.classList.add("disabled");
-            playAllButton.classList.add("disabled");
+            //shuffleButton.classList.add("disabled");
+            //playAllButton.classList.add("disabled");
         }
         
         
@@ -1298,24 +1353,42 @@ function redirectToSystemBrowser(url) {
         
     },
     addAllToPlaylist: function(){
-        app.setNormalPlaylistForLang();
+
         app.populatePlaylist();
         app.checkPlaylistButton();
     },
     removeAllFromPlaylist: function(){
         app.userplaylist = [];
+        app.savePlaylistToStorage();
+
         app.populatePlaylist();
         app.checkPlaylistButton();
     },
+    toggleSearchPlaylistEdit: function(){
+        const tar = document.getElementById("addToPlaylist");
+        tar.classList.toggle("active");
 
-      eventBindings: function(){
+        app.editSearchPlaylist = !app.editSearchPlaylist;
+        const searchPageWrapper = document.querySelector(".page#search");
+        const searchContentWrapper = searchPageWrapper.querySelector(".contentMain");
+        if(app.editSearchPlaylist==true){
+            searchContentWrapper.classList.add("editPlaylist");
+
+        } else {
+            searchContentWrapper.classList.remove("editPlaylist");
+        }
+        app.makeSearchContent();
+    },
+
+    eventBindings: function(){
 
         document.getElementById("scripturalReferenceButton").addEventListener("click", function(e){
             e.preventDefault();
             app.toggleScripturalReference(false);
         });
 
-        document.getElementById("addToPlaylist").addEventListener("click", function(e){
+       
+        /*document.getElementById("addToPlaylist").addEventListener("click", function(e){
             e.preventDefault();
 
             let hymn = parseInt(app.currentHymn);
@@ -1339,27 +1412,9 @@ function redirectToSystemBrowser(url) {
             app.checkPlaylistButton();
             app.populatePlaylist();
         });
+        */
 
        
-
-        document.querySelectorAll(".playlistControlBulks").forEach(function(elem){
-            
-            elem.addEventListener("click", function(e){
-                let action = e.target.getAttribute("data-action");
-                if(action=="add"){
-                    app.setNormalPlaylistForLang();
-                    app.populatePlaylist();
-                    app.checkPlaylistButton();
-                }
-                if(action=="remove"){
-                    // remove all hymns from playlist
-                    app.playlists = [];
-                    app.userplaylist = [];
-                    app.populatePlaylist();
-                    app.checkPlaylistButton();
-                }
-            });
-        });
 
         document.querySelector(".playlistClose").addEventListener("click", function(e){
             e.preventDefault();
@@ -1372,8 +1427,24 @@ function redirectToSystemBrowser(url) {
 
          document.querySelector("#togglePlaylist").addEventListener("click", function(e){
             e.preventDefault();
-            app.togglePlaylist();
+            //app.togglePlaylist();
+            let tar = e.target;
+            if(tar.tagName=="I"){
+                tar = tar.closest(".btn");
+            }
+            tar.classList.toggle("active");
+            app.usingPlaylist = !app.usingPlaylist;
+            app.storage.setItem("usingPlaylist", app.usingPlaylist);
+
+            const playlistContent = document.getElementById("playlistContent");
+           
+            const usingPlaylistButton = document.getElementById("usingPlaylistButton");
+            usingPlaylistButton.classList.toggle("hidden");
+            playlistContent.classList.remove("active");
+            
         });
+
+        
 
       
 
@@ -1873,6 +1944,31 @@ function redirectToSystemBrowser(url) {
 
         return  startPrefix +  newString + endPrefix;
     },
+
+    handleSearchEditPlaylistChange: function(){
+        console.log("checkbox changed");
+        document.querySelectorAll(".searchCheckbox").forEach(function(elem){
+            let num = parseInt(elem.getAttribute("data-num"));
+            
+            if(elem.checked==true){
+                // add to userplaylist
+                console.log("num", num);
+                if(app.userplaylist.indexOf(num)<0){
+                    app.userplaylist.push(num);
+                }
+            } else {
+                // remove from userplaylist
+                let index = app.userplaylist.indexOf(num);
+                if(index>-1){
+                    app.userplaylist.splice(index, 1);
+                }
+            }
+        });
+        console.log("userplaylist", app.userplaylist);
+        app.populatePlaylist();
+        
+    
+    },
     
       makeSearchContent: function(){
 
@@ -1946,6 +2042,9 @@ function redirectToSystemBrowser(url) {
                 content += `
               
                     <tr>
+                        <td class="actionCol">
+                            ${app.editSearchPlaylist==true? `<input type="checkbox" name="searchEditPlaylistCheckbox" onchange="app.handleSearchEditPlaylistChange()"  class="searchCheckbox" ${app.userplaylist.indexOf(parseInt(num))>-1? "checked": ""} data-num="${num}" />`:""}
+                        </td>
                         <td>${origTitle}</td>
                         <td>
                             <a href="javascript:app.loadSearch('${num}');" class="searchLink">
@@ -2031,12 +2130,19 @@ function redirectToSystemBrowser(url) {
       savePlaylistToStorage: function(){
         // save userplaylist to storage
         let currentOrder = [];
-        document.querySelectorAll("#playlistUl li").forEach(function(elem){
-            let hymn = parseInt(elem.getAttribute("data-hymn"));
-            currentOrder.push(hymn);
-        });
-        app.userplaylist = currentOrder;
-        app.storage.setItem("userplaylist", JSON.stringify(app.userplaylist));
+        console.log("save playlist to storage");
+        if(app.userplaylist.length>0){
+        
+            document.querySelectorAll("#playlistUl li").forEach(function(elem){
+                let hymn = parseInt(elem.getAttribute("data-hymn"));
+                currentOrder.push(hymn);
+            });
+            app.userplaylist = currentOrder;
+            app.storage.setItem("userplaylist", JSON.stringify(app.userplaylist));
+        } else {
+            // if no userplaylist, save empty array
+            app.storage.setItem("userplaylist", JSON.stringify(app.userplaylist));
+        }
         // also save playlists
         
       },

@@ -218,14 +218,17 @@
             <div class="playlistHeader">
               <h3 class="playlistTitle">Playlist</h3>
               <a href="#" class="btn btn-sm btn-primary playlistClose" id="togglePlaylistClose">
-                <i class="fa-save fa"></i> <span class="translate" id="playlistSave">Save</span>
+                <i class="fa-times fa"></i> <span class="translate hidden" id="playlistSave">Save</span>
               </a>
               
             </div>
             <div class="playlistControls">
-                <a href="#" class="playlistControlBulk btn-sm btn btn-primary" onClick="app.addAllToPlaylist()" data-action="add" id="playlistAddAll"><i class="fa fa-plus"></i> <span>Add all</span></a> 
-                <a href="#" class="playlistControlBulk btn-sm  btn btn-primary" onClick="app.removeAllFromPlaylist()" data-action="remove" id="playlistRemoveAll"> <i class="fa fa-minus"></i> <span> Remove all</span></a>
-              </div>
+                
+
+                <a href="#" class="playlistControlBulk btn-sm  btn btn-primary" onClick="app.removeAllFromPlaylist()" data-action="remove" id="playlistRemoveAll"> <i class="fa fa-minus"></i> <span> Reset</span></a>
+                <a href="#" class="btn-sm btn btn-primary" onClick="app.addHymnsToPlaylist()" id="playlistAdd"><i class="fa fa-plus"></i> <span> Add </span></a> 
+                
+            </div>
             <div class="playlistBody">
               
               <ul id="playlistUl" class="playlistList">
@@ -255,7 +258,12 @@
           
           <div class="col actions">
             
+            <a class="btn btn btn-outline-secondary hidden"
+              onclick="app.togglePlaylist()" id="usingPlaylistButton">
+              Playlist
+            </a>
             <div class="btn-group">
+
               <a href="#" id="hymnPrev" class="music-control-toggler btn btn-outline-secondary">
                 <i class="fa-solid fa-chevron-left"></i>
               </a> 
@@ -292,20 +300,25 @@
             <div class="d-flex mediaPlayerRow">
               <div class="mediaItem">
 
-                <div class="btn-group playlistControlWrapper">
+                <!--<div class="btn-group playlistControlWrapper">
+                  
                   <a href="#" class="btn btn-tertiary fa-stack" id="addToPlaylist">
                     <i class="fa-solid fa-list"></i>
                     <i class="fa-solid fa-plus sub-fa"></i>
                     <i class="fa-solid fa-minus sub-fa"></i>
                   </a>
-                  <a href="#" class="btn btn-tertiary toggleButton" id="togglePlaylist">
-                    <i class="fa-solid fa-list"></i>
-                  </a>
+                  
+                  
 
                 </div>
+                -->
 
 
                 <div class="btn-group">
+                  <a href="#" class="music-control-btn btn btn-outline-tertiary toggleButton" id="togglePlaylist">
+                    <i class="fa-solid fa-list"></i>
+                  </a>
+
                   <a href="#" id="shuffleBtn" data-id="shuffle" class="music-control-btn btn btn-outline-tertiary">
                     <i class="fa-solid fa-random incorrectTarget"></i>                   
                   </a> 
@@ -398,11 +411,27 @@
         <nav class="navbar">
           <div class="container-fluid headingBar">
             
+            <div class="slot-left d-flex align-items-center">
             <a href="#" class="btn btn-outline-secondary changePageButton backToHymns" data-page="hymns">
               <i class="fa-solid fa-chevron-left"></i>
             </a>
             <a class="navbar-brand pageTitle" href="#" id="searchTitle">Search</a>
+            </div>
            
+            <div class="right-action">
+              <!--
+              <a href="#" class="btn btn-secondary text-white" onClick="app.toggleSearchPlaylistEdit()" id="toggleEditPlaylistSearch">
+                <span class="initialState"><i class="fa fa-edit"></i> Edit Playlist</span>
+                <span class="activeState"><i class="fa fa-save"></i> Save Playlist</span>
+              </a>
+              -->
+
+              <a href="#" class="btn btn-secondary fa-stack" onClick="app.toggleSearchPlaylistEdit()" id="addToPlaylist">
+                    <i class="fa-solid fa-list"></i>
+                    <i class="fa-solid fa-plus sub-fa inactiveState"></i>
+                    <i class="fa-solid fa-save sub-fa activeState"></i>
+                  </a>
+            </div>
           </div>
         </nav>
         <div class="p-2 headerFormControl">
@@ -414,6 +443,7 @@
           <table class="table table-border">
             <thead>
               <tr>
+                <th class="actionCol"></th>
                 <th>Page</th>
                 <th>Title</th>
               </tr>
