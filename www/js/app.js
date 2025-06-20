@@ -272,6 +272,9 @@ function redirectToSystemBrowser(url) {
             
         });
 
+        const playlistButton = document.getElementById("usingPlaylistButton");
+        playlistButton.innerHTML = (menuItems["playlist"]? menuItems["playlist"]: "Playlist");
+
         // playlist
         const playlistContent = document.querySelector("#playlistContent") 
         const playlistTitle = playlistContent.querySelector(".playlistTitle");
@@ -901,12 +904,17 @@ function redirectToSystemBrowser(url) {
         let userList = app.userplaylist.slice();
         let defaultPlaylist = app.playlists.slice();
         let thisPlaylist = null;
-        if(userList.length==0){
-            // button shouldn't be clickable then
-            thisPlaylist = defaultPlaylist;
+        if(app.usingPlaylist==true){
+            if(userList.length>0){
+                // button shouldn't be clickable then
+                thisPlaylist = userList;
+            } else {
+                return;
+            }
         } else {
-            thisPlaylist = userList;
+            thisPlaylist = defaultPlaylist;
         }
+        
         if(app.shuffle){
             thisPlaylist = app.randomPlaylists.slice();   
             
