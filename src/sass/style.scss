@@ -465,6 +465,14 @@ body {
             top: 0;
             opacity: 0;
 
+            header {
+                .changePageButton {
+                    &:hover {
+                        background: transparent;
+                    }
+                }
+            }
+
             .showPlaylistSong {
                 color: var(--text-color)
             }
@@ -1189,9 +1197,7 @@ body {
                             }
                         }
 
-                        &:active, &:hover, &:focus {
-                            background: transparent;
-                        }
+                       
                         
                     }
                 }  

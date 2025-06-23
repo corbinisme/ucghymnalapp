@@ -287,9 +287,9 @@ function redirectToSystemBrowser(url) {
             let translatedSaveText = (menuItems["savelist"]? menuItems["savelist"]: "Save");
             playlistSave.innerText = translatedSaveText;
         }
-        const playlistAddAll = playlistContent.querySelector("#playlistAddAll span");
+        const playlistAddAll = playlistContent.querySelector("#playlistAdd span");
         if(playlistAddAll){
-            let translatedAddAllText = (menuItems["addall"]? menuItems["addall"]: "Add All");
+            let translatedAddAllText = (menuItems["add"]? menuItems["add"]: "Add");
             playlistAddAll.innerText = translatedAddAllText;
         }
         const playlistRemoveAll = playlistContent.querySelector("#playlistRemoveAll span");
@@ -1954,13 +1954,13 @@ function redirectToSystemBrowser(url) {
     },
 
     handleSearchEditPlaylistChange: function(){
-        console.log("checkbox changed");
+
         document.querySelectorAll(".searchCheckbox").forEach(function(elem){
             let num = parseInt(elem.getAttribute("data-num"));
             
             if(elem.checked==true){
                 // add to userplaylist
-                console.log("num", num);
+            
                 if(app.userplaylist.indexOf(num)<0){
                     app.userplaylist.push(num);
                 }
@@ -1972,8 +1972,9 @@ function redirectToSystemBrowser(url) {
                 }
             }
         });
-        console.log("userplaylist", app.userplaylist);
+        
         app.populatePlaylist();
+        app.storage.setItem("userplaylist", JSON.stringify(app.userplaylist));
         
     
     },
@@ -2138,7 +2139,7 @@ function redirectToSystemBrowser(url) {
       savePlaylistToStorage: function(){
         // save userplaylist to storage
         let currentOrder = [];
-        console.log("save playlist to storage");
+ 
         if(app.userplaylist.length>0){
         
             document.querySelectorAll("#playlistUl li").forEach(function(elem){

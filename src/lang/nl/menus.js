@@ -19,6 +19,7 @@ var menu_nl = {
     "clickhere": "Klik hier",
     "playlist": "Lijst",
     "addall": "Voeg alles toe",
+    "add": "Voeg toe",
     "removeall": "Verwijder alles",
     "playlistempty": "Uw afspeellijst is leeg.",
     "savelist":"Sla"

@@ -19,6 +19,7 @@ var menu_it = {
     "clickhere": "Clicca qui",
     "playlist": "Playlist",
     "addall": "Aggiungi tutto",
+    "add": "Aggiungi",
     "removeall": "Rimuovi tutto",
     "playlistempty": "La tua playlist è vuota.",
     "savelist":"Salva"

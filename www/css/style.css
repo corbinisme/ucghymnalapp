@@ -320,6 +320,9 @@ body .mainContent .page {
   top: 0;
   opacity: 0;
 }
+body .mainContent .page header .changePageButton:hover {
+  background: transparent;
+}
 body .mainContent .page .showPlaylistSong {
   color: var(--text-color);
 }
@@ -984,9 +987,6 @@ body .mainContent .page header .navbar .btn#searchButton {
 body .mainContent .page header .navbar .btn#searchButton i {
   position: relative;
   top: 1px;
-}
-body .mainContent .page header .navbar .btn:active, body .mainContent .page header .navbar .btn:hover, body .mainContent .page header .navbar .btn:focus {
-  background: transparent;
 }
 body .mainContent .page header .navbar-brand {
   color: #fff;

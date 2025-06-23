@@ -19,6 +19,7 @@ var menu_es = {
     "clickhere": "Haga clic aquí",
     "playlist": "Lista",
     "addall": "Agregar todo",
+    "add": "Agregar",
     "removeall": "Eliminar todo",
     "playlistempty": "Su lista de reproducción está vacía.",
     "savelist":"Guardar"
