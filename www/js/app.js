@@ -272,9 +272,7 @@ function redirectToSystemBrowser(url) {
             
         });
 
-        const playlistButton = document.getElementById("usingPlaylistButton");
-        playlistButton.innerHTML = (menuItems["playlist"]? menuItems["playlist"]: "Playlist");
-
+        
         // playlist
         const playlistContent = document.querySelector("#playlistContent") 
         const playlistTitle = playlistContent.querySelector(".playlistTitle");
@@ -317,6 +315,7 @@ function redirectToSystemBrowser(url) {
         app.populateHolyDayCalendar();
         app.populateReportBug();
         app.populatePlaylist();
+        app.populateDefaultPlaylist();
 
       },
     populateReportBug: function(){
@@ -748,16 +747,31 @@ function redirectToSystemBrowser(url) {
         app.checkPlaylistButton();
 
         let tar = document.getElementById("togglePlaylist");
-        //tar.classList.remove("active");
+        tar.classList.remove("active");
         const targetNode = document.getElementById("playlistContent");
         targetNode.classList.remove("active");
 
       },
       setUsingPlaylistState: function(){
-        const togglePlaylist = document.getElementById("togglePlaylist");
-        togglePlaylist.classList.toggle("active");
-        const usingPlaylistButton = document.getElementById("usingPlaylistButton");
-        usingPlaylistButton.classList.toggle("hidden");
+        //const togglePlaylist = document.getElementById("togglePlaylist");
+        //togglePlaylist.classList.toggle("active");
+        //const usingPlaylistButton = document.getElementById("usingPlaylistButton");
+        //usingPlaylistButton.classList.toggle("hidden");
+        const playlistControls = document.querySelector(".playlistControls");
+        const userPlaylist = document.getElementById("playlistUl");
+        const defaultPlaylist = document.getElementById("defaultList");
+        console.log()
+        if(app.usingPlaylist==true){
+            playlistControls.classList.remove("hidden");
+            userPlaylist.classList.remove("hidden");
+            defaultPlaylist.classList.add("hidden");
+        } else {
+            playlistControls.classList.add("hidden");
+            userPlaylist.classList.add("hidden");
+            defaultPlaylist.classList.remove("hidden");
+            app.populateDefaultPlaylist();
+        }
+        console.log("setUsingPlaylistState");
       },
       toggleTheme: function(reverse){
 
@@ -840,8 +854,11 @@ function redirectToSystemBrowser(url) {
 
         app.storage.getItem("usingPlaylist")? app.usingPlaylist = (app.storage.getItem("usingPlaylist")=="true"?true:false) : app.usingPlaylist = false;
 
+        console.log("init usingPlaylist: " + typeof app.usingPlaylist);
+        
+        app.setUsingPlaylistState();
         if(app.usingPlaylist==true){
-            app.setUsingPlaylistState();
+            document.getElementById("custom_playlist").checked = true;
         }
         
         var fontKey = "size";
@@ -1019,10 +1036,18 @@ function redirectToSystemBrowser(url) {
         })
         //document.querySelector(`#${type}Icon`).classList.add("active");
       },
+      togglePlaylistPane: function(){
+        const targetNode = document.getElementById("playlistContent");
+        targetNode.classList.toggle("active");
+        const toggleButton = document.getElementById("togglePlaylist");
+        toggleButton.classList.toggle("active");
+
+        app.populateDefaultPlaylist();
+      },
       togglePlaylist: function(){
 
-            let tar = document.getElementById("usingPlaylistButton");
-            tar.classList.toggle("active");
+            //let tar = document.getElementById("usingPlaylistButton");
+            //tar.classList.toggle("active");
             const targetNode = document.getElementById("playlistContent");
             targetNode.classList.toggle("active");
 
@@ -1215,6 +1240,43 @@ function redirectToSystemBrowser(url) {
         });
 
       },
+      populateDefaultPlaylist: function(){
+        console.log("populateDefaultPlaylist");
+            const defaultPlayListUl = document.getElementById("defaultList");
+            defaultPlayListUl.innerHTML = "";
+            let playlist = app.playlists;
+
+             playlist.forEach(function(hymn){
+                let hymnLookup = app.getHymnWithZeros(hymn);
+                let hymnTitle = "";
+                if(app.currentLangHymns && app.currentLangHymns[hymn]){
+                    hymnTitle = app.currentLangHymns[hymn].title;
+                }
+                if(hymnTitle!==""){
+                    
+                    
+                
+                let li = document.createElement("li");
+                
+                li.classList.add("pe-3");
+                li.classList.add("p-2");
+
+                li.setAttribute("data-hymn", hymnLookup);
+                
+                
+                li.setAttribute("data-title", hymnTitle);
+                li.innerHTML = `<span class="playlistLeft">
+                        
+                        <span class="hymnTitle ${app.currentHymn==hymn? "active fw-bold":""}">
+                            <a href="#" data-hymn="${hymn}" class="showPlaylistSong">${hymn}) ${hymnTitle}</a>
+                        </span>
+                    </span>
+                    `;
+                defaultPlayListUl.appendChild(li);
+                }
+            });
+
+      },
       populatePlaylist: function(){
         const playlistContent = document.getElementById("playlistContent");
         
@@ -1310,23 +1372,6 @@ function redirectToSystemBrowser(url) {
             }
         }
 
-        const usingPlaylistButton = document.getElementById("usingPlaylistButton");
-        if(usingPlaylistButton){
-            /*
-            if(app.userplaylist.length==0){
-                usingPlaylistButton.classList.add("hidden");
-            } else {
-                usingPlaylistButton.classList.remove("hidden");
-            }
-                */
-            /*
-            if(app.usingPlaylist==true){
-                usingPlaylistButton.classList.add("active");
-            } else {
-                usingPlaylistButton.classList.remove("active");
-            }
-                */
-        }
 
         // check prev.next buttons
         let prevNextButtonWrapper = document.querySelector("#hymnPrev").closest(".btn-group");
@@ -1430,31 +1475,15 @@ function redirectToSystemBrowser(url) {
             // get current order of the playlist
             
             app.savePlaylistToStorage();
-            app.togglePlaylist();
+            app.togglePlaylistPane();
         });
-
-         document.querySelector("#togglePlaylist").addEventListener("click", function(e){
+        document.querySelector("#togglePlaylist").addEventListener("click", function(e){
             e.preventDefault();
-            //app.togglePlaylist();
-            let tar = e.target;
-            if(tar.tagName=="I"){
-                tar = tar.closest(".btn");
-            }
-            tar.classList.toggle("active");
-            app.usingPlaylist = !app.usingPlaylist;
-            app.storage.setItem("usingPlaylist", app.usingPlaylist);
-
-            const playlistContent = document.getElementById("playlistContent");
-           
-            const usingPlaylistButton = document.getElementById("usingPlaylistButton");
-            usingPlaylistButton.classList.toggle("hidden");
-            playlistContent.classList.remove("active");
+            app.togglePlaylistPane();
+            
             
         });
-
         
-
-      
 
         document.getElementById("searchScripture").addEventListener("change", function(e){
 
@@ -1709,6 +1738,15 @@ function redirectToSystemBrowser(url) {
             musicPlayerWrapper.classList.remove("active");
             hymnFooter.classList.remove("musicOpen");
             app.musicPlayer.pause();
+
+        });
+
+        document.getElementById("custom_playlist").addEventListener("change", function(e){
+            let val = e.target.checked;
+            console.log("custom playlist", val);
+            app.usingPlaylist = val;
+            app.storage.setItem("usingPlaylist", val);
+            app.setUsingPlaylistState();
 
         });
 

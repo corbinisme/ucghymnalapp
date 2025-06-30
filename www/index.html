@@ -216,8 +216,20 @@
           </div>
           <div id="playlistContent">
             <div class="playlistHeader">
-              <h3 class="playlistTitle">Playlist</h3>
-              <a href="#" class="btn btn-sm btn-primary playlistClose" id="togglePlaylistClose">
+              <div class="playlistHeaderWrapper d-flex align-items-center justify-content-between">
+               
+                <h3 class="playlistTitle mb-0">Playlist</h3>
+              
+                <div class="form-check form-switch"  id="custom_playlist_toggle">
+                    <label class="form-check-label" 
+                    for="custom_playlist"><span>Custom</span>
+                    </label>
+                    <input class="form-check-input" 
+                    type="checkbox" id="custom_playlist">
+                    
+                </div>
+              </div>
+               <a href="#" class="btn btn-sm btn-primary playlistClose" id="togglePlaylistClose">
                 <i class="fa-times fa"></i> <span class="translate hidden" id="playlistSave">Save</span>
               </a>
               
@@ -230,7 +242,9 @@
                 
             </div>
             <div class="playlistBody">
+              <ul id="defaultList" class="playlistList">
               
+              </ul> 
               <ul id="playlistUl" class="playlistList">
                 
               </ul>
@@ -260,10 +274,10 @@
             
            
             <div class="btn-group">
-               <a class="btn btn btn-outline-secondary hidden"
+               <!--<a class="btn btn btn-outline-secondary hidden"
                 onclick="app.togglePlaylist()" id="usingPlaylistButton">
                 Playlist
-              </a>
+              </a>-->
 
               <a href="#" id="hymnPrev" class="music-control-toggler btn btn-outline-secondary">
                 <i class="fa-solid fa-chevron-left"></i>
