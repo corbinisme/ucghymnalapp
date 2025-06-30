@@ -22,7 +22,8 @@ var menu_pt = {
     "add": "Adicionar",
     "removeall": "Remover tudo",
     "playlistempty": "Sua lista de reprodução está vazia.",
-    "savelist":"Salvar"
+    "savelist":"Salvar",
+    "custom": "Personalizado",
 }
 
 var bible_pt = {

@@ -94,6 +94,9 @@ body {
 body .rtTooltip {
   font-family: "Noto-sans", sans-serif;
 }
+body .body-text {
+  color: var(--text-color);
+}
 body.scripturalReferenceOpen .page.showFontSizer .scripturalReferenceContent {
   padding-bottom: 105px !important;
 }
@@ -1174,6 +1177,10 @@ body .main {
 }
 .whatsnew-open .main {
   opacity: 0.4;
+}
+
+#exampleCheck .form-switch {
+  margin-right: 50px;
 }
 
 .whatsnew-open #whatsnew-wrapper {

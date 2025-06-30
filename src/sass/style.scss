@@ -119,6 +119,10 @@ body {
         font-family: 'Noto-sans', sans-serif;
     }
 
+    .body-text {
+        color: var(--text-color);
+    }
+    
 
     &.scripturalReferenceOpen {
         .page.showFontSizer {

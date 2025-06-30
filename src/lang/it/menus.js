@@ -22,7 +22,8 @@ var menu_it = {
     "add": "Aggiungi",
     "removeall": "Rimuovi tutto",
     "playlistempty": "La tua playlist è vuota.",
-    "savelist":"Salva"
+    "savelist":"Salva",
+    "custom": "Personalizzato",
 
 }
 

@@ -22,7 +22,8 @@ var menu_en = {
     "add": "Add",
     "removeall": "Remove all",
     "playlistempty": "Your playlist is empty.",
-    "savelist":"Save"
+    "savelist":"Save",
+    "custom": "Custom", 
 }
 
 var bible_en = {

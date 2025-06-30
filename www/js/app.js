@@ -565,6 +565,8 @@ function redirectToSystemBrowser(url) {
               hymnTitle = window[langObj]["Search By Number"];
               informationTitle = (window[langObj]["Information"]? window[langObj]["Information"] : informationTitle) ;
           }
+
+          document.getElementById("customPlaylistText").innerHTML = (window['menu_' + currentLang]['custom']? window['menu_' + currentLang]['custom'] : "Custom");
           
 
           // update currentLanguageCode text
@@ -760,7 +762,7 @@ function redirectToSystemBrowser(url) {
         const playlistControls = document.querySelector(".playlistControls");
         const userPlaylist = document.getElementById("playlistUl");
         const defaultPlaylist = document.getElementById("defaultList");
-        console.log()
+
         if(app.usingPlaylist==true){
             playlistControls.classList.remove("hidden");
             userPlaylist.classList.remove("hidden");
@@ -771,7 +773,7 @@ function redirectToSystemBrowser(url) {
             defaultPlaylist.classList.remove("hidden");
             app.populateDefaultPlaylist();
         }
-        console.log("setUsingPlaylistState");
+        
       },
       toggleTheme: function(reverse){
 
@@ -854,7 +856,6 @@ function redirectToSystemBrowser(url) {
 
         app.storage.getItem("usingPlaylist")? app.usingPlaylist = (app.storage.getItem("usingPlaylist")=="true"?true:false) : app.usingPlaylist = false;
 
-        console.log("init usingPlaylist: " + typeof app.usingPlaylist);
         
         app.setUsingPlaylistState();
         if(app.usingPlaylist==true){
@@ -1241,7 +1242,7 @@ function redirectToSystemBrowser(url) {
 
       },
       populateDefaultPlaylist: function(){
-        console.log("populateDefaultPlaylist");
+
             const defaultPlayListUl = document.getElementById("defaultList");
             defaultPlayListUl.innerHTML = "";
             let playlist = app.playlists;
@@ -1743,7 +1744,7 @@ function redirectToSystemBrowser(url) {
 
         document.getElementById("custom_playlist").addEventListener("change", function(e){
             let val = e.target.checked;
-            console.log("custom playlist", val);
+  
             app.usingPlaylist = val;
             app.storage.setItem("usingPlaylist", val);
             app.setUsingPlaylistState();

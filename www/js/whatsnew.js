@@ -150,15 +150,17 @@ var whatsnew = {
                 {   
                     step:1, 
                     title: [
-                        {lang: "en", text: "Topical Index"},
-                        {lang: "de", text: "Themenindex"},
-                        {lang: "pt", text: "Índice Temático"},
-                        {lang: "es", text: "Índice Temático"},
-                        {lang: "fr", text: "Index thématique"},
-                        {lang: "nl", text: "Thematisch Index"},
-                        {lang: "it", text: "Indice tematico"}
+                        {lang: "en", text: "Topical and Scriptural Index"},
+                        {lang: "de", text: "Themen- und Schriftindex"},
+                        {lang: "pt", text: "Índice Temático e Escriturístico"},
+                        {lang: "es", text: "Índice Temático y de Escrituras"},
+                        {lang: "fr", text: "Index thématique et des Écritures"},
+                        {lang: "nl", text: "Thematisch en Schriftuurlijke Index"},
+                        {lang: "it", text: "Indice Tematico e Scritturale"}
                     ],
                     example: `<br /><span class="navbar-toggler-override fa fa-bars"></span><br />
+                    <a href="#" class="btn body-text"><i class="fa fa-th"></i> <span class="translate" data-id="topical"></span></a> <br />        
+                    <a href="#" class="btn body-text"><i class="fa fa-book"></i> <span class="translate" data-id="scripture"></span></a>
                              
                              `,                    
                    
@@ -227,7 +229,8 @@ var whatsnew = {
                         }
                     ],
                     example: `<br /><span class="navbar-toggler-override fa fa-bars"></span><br />
-                               `,
+                              <a href="#" class="btn body-text"><i class="fa fa-calendar"></i> 
+                              <span class="translate" data-id="holydays"></span></a>`,
                     content: [
                         {
                         "lang": "en",
@@ -286,6 +289,46 @@ var whatsnew = {
                         {lang: "fr", text: "Lecture automatique de tous les cantiques du cantique. Ouvrez le panneau de musique et basculez le bouton 'Jouer tout'.<br />"},
                         {lang: "nl", text: "Speel alle liederen in het gezangboek automatisch af. Open het muziekpaneel en schakel de knop 'Alles afspelen'.<br />"},
                         {lang: "it", text: "Riproduci automaticamente tutti gli inni del canto. Apri il pannello della musica e attiva il pulsante 'Riproduci tutto'.<br />"}
+                    ],
+                    
+                },
+                {   
+                    step:4, 
+                    title: [
+                        {lang: "en", text: "Custom Playlist"},
+                        {lang: "de", text: "Benutzerdefinierte Wiedergabeliste"},
+                        {lang: "pt", text: "Lista de Reprodução Personalizada"},
+                        {lang: "es", text: "Lista de Reproducción Personalizada"},
+                        {lang: "fr", text: "Liste de lecture personnalisée"},
+                        {lang: "nl", text: "Aangepaste afspeellijst"},
+                        {lang: "it", text: "Playlist personalizzata"}
+
+                    ],
+                    example: `<br /><div class="d-flex align-items-center align-content-center justify-content-center">
+                            <a class="btn body-text" href="#"><i class="fa-solid fa-list active"></i></a><br />
+                            <span class="ms-2 fa fa-arrow-right"></span> 
+                            <div id="exampleCheck" class="text-center d-flex justify-content-center"><div class="form-check form-switch"  id="example_custom_playlist_toggle">
+                                <label class="form-check-label" 
+                                for="example_custom_playlist"><span class="translate" data-id="custom">Custom</span>
+                                </label>
+                                <input class="form-check-input" 
+                                type="checkbox" id="example_custom_playlist">
+                                </div>
+                            </div>
+                            <span class="ms-2 fa fa-arrow-right"></span> 
+                            <a href="#" class="btn body-text" id="addToPlaylistExample">
+                                <i class="fa fa-plus"></i> <span class="translate" data-id="add"></span>
+                            </a>
+                        </div>
+                        `,
+                    content: [
+                        {lang: "en", text: "Toggle the playlist icon, then toggle 'Custom.' Click the 'Add' button to select hymns to add to the list. When finished, hit the <i class='fa fa-chevron-right'></i> button to get back to the playlist, and click on a hymn to view it.<br />"},
+                        {lang: "de", text: "Schalten Sie das Playlist-Symbol um und aktivieren Sie anschließend „Benutzerdefiniert“. Klicken Sie auf „Hinzufügen“, um Hymnen auszuwählen, die Sie der Liste hinzufügen möchten. Klicken Sie anschließend auf die Schaltfläche <i class='fa fa-chevron-right'></i>, um zur Playlist zurückzukehren, und klicken Sie auf eine Hymne, um sie anzuzeigen."},
+                        {lang: "pt", text: "Alterne o ícone da playlist e, em seguida, alterne a opção 'Personalizado'. Clique no botão 'Adicionar' para selecionar os hinos a serem adicionados à lista. Ao terminar, clique no botão <i class='fa fa-chevron-right'></i> para retornar à playlist e clique em um hino para visualizá-lo.<br />"},
+                        {lang: "es", text: "Activa el icono de la lista de reproducción y luego activa la opción 'Personalizada'. Haz clic en el botón 'Añadir' para seleccionar los himnos que quieras añadir a la lista. Al terminar, pulsa el botón <i class='fa fa-chevron-right'></i> para volver a la lista de reproducción y haz clic en un himno para verlo..<br />"},
+                        {lang: "fr", text: "Cliquez sur l'icône de la playlist, puis sur « Personnaliser ». Cliquez sur le bouton « Ajouter » pour sélectionner les hymnes à ajouter à la liste. Une fois terminé, cliquez sur le bouton <i class='fa fa-chevron-right'></i> pour revenir à la playlist, puis cliquez sur un hymne pour l'afficher.<br />"},
+                        {lang: "nl", text: "Schakel het afspeellijstpictogram in en uit, en vervolgens 'Aangepast'. Klik op de knop 'Toevoegen' om hymnes te selecteren die je aan de lijst wilt toevoegen. Klik na afloop op de knop <i class='fa fa-chevron-right'></i> om terug te gaan naar de afspeellijst en klik op een hymne om deze te bekijken.<br />"},
+                        {lang: "it", text: "Attiva l'icona della playlist, quindi attiva 'Personalizzato'. Fai clic sul pulsante 'Aggiungi' per selezionare gli inni da aggiungere alla lista. Al termine, premi il pulsante <i class='fa fa-chevron-right'></i> per tornare alla playlist e fai clic su un inno per visualizzarlo.<br />"}
                     ],
                     
                 }
@@ -422,6 +465,13 @@ var whatsnew = {
                         </div>`;
                         
         target.innerHTML = content;
+        document.querySelectorAll("#whatsnew-wrapper .translate").forEach(function(el) {
+            let id = el.getAttribute("data-id");
+            if(id){
+                el.innerHTML = window['menu_' + app.lang][id];
+            }
+        });
+
         //this.changeStep(1);
     },
 }

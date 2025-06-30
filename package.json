@@ -36,7 +36,6 @@
     "cordova-android": "^14.0.0",
     "cordova-android-reset-font-size-plugin": "file:extPlugin/cordova-android-reset-font-size-plugin-main",
     "cordova-browser": "^7.0.0",
-    "cordova-electron": "^3.1.0",
     "cordova-ios": "^7.1.1",
     "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-device": "github:apache/cordova-plugin-device",
@@ -59,7 +58,6 @@
   "cordova": {
     "platforms": [
       "browser",
-      "electron",
       "ios",
       "android"
     ],

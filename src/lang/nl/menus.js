@@ -22,7 +22,8 @@ var menu_nl = {
     "add": "Voeg toe",
     "removeall": "Verwijder alles",
     "playlistempty": "Uw afspeellijst is leeg.",
-    "savelist":"Sla"
+    "savelist":"Sla",
+    "custom": "Aangepast",
 
 }
 

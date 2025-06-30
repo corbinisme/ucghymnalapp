@@ -22,7 +22,8 @@ var menu_fr = {
     "add": "Ajouter",
     "removeall": "Supprimer tout",
     "playlistempty": "Votre liste de lecture est vide.",
-    "savelist":"Enregistrer"
+    "savelist":"Enregistrer",
+    "custom": "Personnalisé",
     
     
     

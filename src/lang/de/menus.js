@@ -22,7 +22,8 @@ var menu_de = {
     "add": "Hinzufügen",
     "removeall": "Alle entfernen",
     "playlistempty": "Ihre Playlist ist leer.",
-    "savelist":"Speichern"
+    "savelist":"Speichern",
+    "custom": "Benutzerdefiniert",
 
 }
 
