@@ -1030,6 +1030,11 @@ body {
                 opacity: 1;
                 z-index: 91;
             }
+            &#search {
+                .headingBar {
+                    justify-content: space-between;
+                }
+            }
 
             header {  
                 position: sticky;
@@ -1053,7 +1058,7 @@ body {
                     }
 
                     .headingBar {
-                        justify-content: space-between;
+                        justify-content: flex-start;
                     }
 
 
