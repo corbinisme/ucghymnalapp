@@ -305,13 +305,15 @@ var whatsnew = {
 
                     ],
                     example: `<br /><div class="d-flex align-items-center align-content-center justify-content-center">
+                            <a href="#" class="btn body-text"><i class="fa fa-music"></i></a>
+                            <span class="ms-2 fa fa-arrow-right"></span> 
                             <a class="btn body-text" href="#"><i class="fa-solid fa-list active"></i></a><br />
                             <span class="ms-2 fa fa-arrow-right"></span> 
                             <div id="exampleCheck" class="text-center d-flex justify-content-center"><div class="form-check form-switch"  id="example_custom_playlist_toggle">
                                 <label class="form-check-label" 
                                 for="example_custom_playlist"><span class="translate" data-id="custom">Custom</span>
                                 </label>
-                                <input class="form-check-input" 
+                                <input class="form-check-input" checked
                                 type="checkbox" id="example_custom_playlist">
                                 </div>
                             </div>
@@ -322,13 +324,34 @@ var whatsnew = {
                         </div>
                         `,
                     content: [
-                        {lang: "en", text: "Toggle the playlist icon, then toggle 'Custom.' Click the 'Add' button to select hymns to add to the list. When finished, hit the <i class='fa fa-chevron-right'></i> button to get back to the playlist, and click on a hymn to view it.<br />"},
-                        {lang: "de", text: "Schalten Sie das Playlist-Symbol um und aktivieren Sie anschließend „Benutzerdefiniert“. Klicken Sie auf „Hinzufügen“, um Hymnen auszuwählen, die Sie der Liste hinzufügen möchten. Klicken Sie anschließend auf die Schaltfläche <i class='fa fa-chevron-right'></i>, um zur Playlist zurückzukehren, und klicken Sie auf eine Hymne, um sie anzuzeigen."},
-                        {lang: "pt", text: "Alterne o ícone da playlist e, em seguida, alterne a opção 'Personalizado'. Clique no botão 'Adicionar' para selecionar os hinos a serem adicionados à lista. Ao terminar, clique no botão <i class='fa fa-chevron-right'></i> para retornar à playlist e clique em um hino para visualizá-lo.<br />"},
-                        {lang: "es", text: "Activa el icono de la lista de reproducción y luego activa la opción 'Personalizada'. Haz clic en el botón 'Añadir' para seleccionar los himnos que quieras añadir a la lista. Al terminar, pulsa el botón <i class='fa fa-chevron-right'></i> para volver a la lista de reproducción y haz clic en un himno para verlo..<br />"},
-                        {lang: "fr", text: "Cliquez sur l'icône de la playlist, puis sur « Personnaliser ». Cliquez sur le bouton « Ajouter » pour sélectionner les hymnes à ajouter à la liste. Une fois terminé, cliquez sur le bouton <i class='fa fa-chevron-right'></i> pour revenir à la playlist, puis cliquez sur un hymne pour l'afficher.<br />"},
-                        {lang: "nl", text: "Schakel het afspeellijstpictogram in en uit, en vervolgens 'Aangepast'. Klik op de knop 'Toevoegen' om hymnes te selecteren die je aan de lijst wilt toevoegen. Klik na afloop op de knop <i class='fa fa-chevron-right'></i> om terug te gaan naar de afspeellijst en klik op een hymne om deze te bekijken.<br />"},
-                        {lang: "it", text: "Attiva l'icona della playlist, quindi attiva 'Personalizzato'. Fai clic sul pulsante 'Aggiungi' per selezionare gli inni da aggiungere alla lista. Al termine, premi il pulsante <i class='fa fa-chevron-right'></i> per tornare alla playlist e fai clic su un inno per visualizzarlo.<br />"}
+                        {
+                            "lang": "en",
+                            "text": "Open the music player, then toggle the playlist icon, then toggle 'Custom.' Click the 'Add' button to select hymns to add to the list. When finished, hit the <i class='fa fa-chevron-right'></i> button to get back to the playlist, and click on a hymn to view it.<br />"
+                        },
+                        {
+                            "lang": "de",
+                            "text": "Öffnen Sie den Musik-Player, schalten Sie dann das Wiedergabelisten-Symbol um, und aktivieren Sie anschließend „Benutzerdefiniert“. Klicken Sie auf die Schaltfläche „Hinzufügen“, um Hymnen auszuwählen, die Sie der Liste hinzufügen möchten. Wenn Sie fertig sind, klicken Sie auf die Schaltfläche <i class='fa fa-chevron-right'></i>, um zur Wiedergabeliste zurückzukehren, und klicken Sie auf eine Hymne, um sie anzuzeigen.<br />"
+                        },
+                        {
+                            "lang": "pt",
+                            "text": "Abra o reprodutor de música, alterne o ícone da playlist e, em seguida, alterne a opção 'Personalizado'. Clique no botão 'Adicionar' para selecionar os hinos a serem adicionados à lista. Ao terminar, clique no botão <i class='fa fa-chevron-right'></i> para retornar à playlist e clique em um hino para visualizá-lo.<br />"
+                        },
+                        {
+                            "lang": "es",
+                            "text": "Abre el reproductor de música, activa el icono de la lista de reproducción y luego activa la opción 'Personalizada'. Haz clic en el botón 'Añadir' para seleccionar los himnos que quieras añadir a la lista. Al terminar, pulsa el botón <i class='fa fa-chevron-right'></i> para volver a la lista de reproducción y haz clic en un himno para verlo.<br />"
+                        },
+                        {
+                            "lang": "fr",
+                            "text": "Ouvrez le lecteur de musique, puis basculez l'icône de la playlist, puis basculez sur « Personnalisé ». Cliquez sur le bouton « Ajouter » pour sélectionner les hymnes à ajouter à la liste. Une fois terminé, cliquez sur le bouton <i class='fa fa-chevron-right'></i> pour revenir à la playlist, puis cliquez sur un hymne pour l'afficher.<br />"
+                        },
+                        {
+                            "lang": "nl",
+                            "text": "Open de muziekspeler, schakel vervolgens het afspeellijstpictogram in en uit, en vervolgens 'Aangepast'. Klik op de knop 'Toevoegen' om hymnes te selecteren die je aan de lijst wilt toevoegen. Klik na afloop op de knop <i class='fa fa-chevron-right'></i> om terug te gaan naar de afspeellijst en klik op een hymne om deze te bekijken.<br />"
+                        },
+                        {
+                            "lang": "it",
+                            "text": "Apri il lettore musicale, quindi attiva l'icona della playlist, quindi attiva 'Personalizzato'. Fai clic sul pulsante 'Aggiungi' per selezionare gli inni da aggiungere alla lista. Al termine, premi il pulsante <i class='fa fa-chevron-right'></i> per tornare alla playlist e fai clic su un inno per visualizzarlo.<br />"
+                        }
                     ],
                     
                 }

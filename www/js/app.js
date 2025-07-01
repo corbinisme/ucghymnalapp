@@ -970,17 +970,19 @@ function redirectToSystemBrowser(url) {
       playNext: function(){
         app.goToNextHymn(1);
         
-        if(app.isPlaying==true)
+        /*if(app.isPlaying==true)
 
             app.makeMusic(app.currentMusicType, true);
+            */
         
       },
       playPrevious: function(){
         app.goToNextHymn(-1);
       
-        if(app.isPlaying==true)
+        /*if(app.isPlaying==true)
 
             app.makeMusic(app.currentMusicType, true);
+            */
       },
       setLang: function(langValue){
         app.lang = langValue;
