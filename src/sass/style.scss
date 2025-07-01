@@ -609,11 +609,11 @@ body {
                 }
 
                 .scripturalReferenceContent {
-                    backdrop-filter: blur(7px);
+                    
                     padding: var(--big-padding);
                     padding-bottom: 60px;
                     width: 100vw;
-                    background-color: var(--scriptureBG);
+                    background: var(--bg-body);
                     .text {
                         font-weight: bold;
                         

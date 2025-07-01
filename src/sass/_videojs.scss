@@ -59,6 +59,7 @@ $videoJsFont: 17px;
             margin: 0;
             z-index: 9;
             left: calc(1em - 1px);
+            display: none;
             .vjs-menu-content {
                 display: flex;
                 justify-content: center;
