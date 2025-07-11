@@ -350,6 +350,10 @@ body .mainContent .page#holydays .headerFormControl a {
 body .mainContent .page#holydays .table th, body .mainContent .page#holydays .table td {
   background: transparent;
   color: var(--text-color);
+  width: 50%;
+}
+body .mainContent .page#holydays .table td:first-child, body .mainContent .page#holydays .table th:first-child {
+  max-width: 300px;
 }
 body .mainContent .page#holydays .table th {
   background-color: var(--bg-headerBot);

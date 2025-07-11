@@ -382,8 +382,14 @@ function redirectToSystemBrowser(url) {
                 let holydayStartFormatted = holydayStartDate.toLocaleDateString(currentLang, {year: 'numeric', month: 'long', day: 'numeric'});
                 let holydayEndFormatted = "";
                 if(holydayEnd){
-                    let holydayEndDate = new Date(holydayEnd);
+                    const endParts = holydayEnd.split('-');
+                    const endYear = parseInt(endParts[0], 10);
+                    const endMonth = parseInt(endParts[1], 10) - 1; // Month is 0-indexed in JavaScript Date
+                    const endDay = parseInt(endParts[2], 10);
+                    let holydayEndDate = new Date(endYear, endMonth, endDay);
+
                     holydayEndFormatted = holydayEndDate.toLocaleDateString(currentLang, {year: 'numeric', month: 'long', day: 'numeric'});
+                    
                 }
                 yearHtml+=`<tr><td>${holydayName}</td><td>${holydayStartFormatted}${holydayEnd? " - <br />" + holydayEndFormatted : ""}</td></tr>`;
             });

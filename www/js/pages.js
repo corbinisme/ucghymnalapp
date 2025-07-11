@@ -93,19 +93,21 @@ var copyright = [
 var holydaycalendar = {
     data: {
         2025: {
-            passover: {start: "2025-04-12"},
+            passover: {start: "2025-04-12", value: "April 12"},
             daysOfUnleavenedBread: {
                 start:"2025-04-13",
-                end:"2025-04-19"
+                end:"2025-04-19",
+                value: "April 13-19"
             },
-            pentecost: {start: "2025-06-01"},
-            trumpets: {start: "2025-09-23"},
-            atonement: {start: "2025-10-02"},
+            pentecost: {start: "2025-06-01", value: "June 1"},
+            trumpets: {start: "2025-09-23", value: "September 23"},
+            atonement: {start: "2025-10-02", value: "October 2"},
             tabernacles: {
                 start: "2025-10-07",
-                end: "2025-10-13"
+                end: "2025-10-13",
+                value: "October 7-13"
             },
-            eighthday: {start: "2025-10-14"}
+            eighthday: {start: "2025-10-14", value: "October 14"}
         },
         2026: {
             passover: {start: "2026-04-01"},
@@ -132,8 +134,8 @@ var holydaycalendar = {
             trumpets: {start: "2027-10-02"},
             atonement: {start: "2027-10-11"},
             tabernacles: {
-                start: "2027-09-16",
-                end: "2027-09-22"
+                start: "2027-10-16",
+                end: "2027-10-22"
             },
             eighthday: {start: "2027-10-23"}
         }

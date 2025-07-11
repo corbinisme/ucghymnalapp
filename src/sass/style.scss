@@ -513,6 +513,10 @@ body {
                     th, td {
                         background: transparent;
                         color: var(--text-color);
+                        width: 50%;
+                    }
+                    td:first-child, th:first-child {
+                        max-width: 300px;
                     }
                     th {
                         background-color: var(--bg-headerBot);
